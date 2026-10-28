@@ -33,15 +33,15 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Services — Smart H" },
+      { title: "Services — SmartEDGE" },
       {
         name: "description",
         content:
-          "Explore Smart H services across cloud infrastructure, cybersecurity, data and AI, automation, connectivity, technology consulting, solar energy and EV charging infrastructure.",
+          "Explore SmartEDGE services across cloud infrastructure, cybersecurity, data and AI, automation, connectivity, technology consulting, solar energy and EV charging infrastructure.",
       },
       {
         property: "og:title",
-        content: "Smart H Services",
+        content: "SmartEDGE Services",
       },
       {
         property: "og:description",
@@ -144,7 +144,7 @@ function Services() {
     <main className="sh-services-page">
       <style>{`
         /* ==================================================
-           SMART H SERVICES — DESIGN SYSTEM
+           SmartEDGE SERVICES — DESIGN SYSTEM
         ================================================== */
 
         .sh-services-page {
@@ -1742,7 +1742,7 @@ function Services() {
                               className="sh-svc-tag-dot"
                               aria-hidden="true"
                             />
-                            Smart H / Services
+                            SmartEDGE / Services
                           </span>
 
                           <span className="sh-svc-image-index">
@@ -1795,7 +1795,7 @@ function Services() {
 
                         <p className="sh-svc-summary">
                           {service.summary ||
-                            `Explore how Smart H approaches ${service.title.toLowerCase()} as part of a connected technology strategy.`}
+                            `Explore how SmartEDGE approaches ${service.title.toLowerCase()} as part of a connected technology strategy.`}
                         </p>
 
                         {displayCapabilities.length > 0 && (
@@ -1876,7 +1876,7 @@ function Services() {
 
               <p>
                 Service information is not available right now.
-                Please check back later or contact Smart H to
+                Please check back later or contact SmartEDGE to
                 discuss your technology requirements.
               </p>
             </div>

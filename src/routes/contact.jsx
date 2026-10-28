@@ -33,21 +33,21 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       {
-        title: "Contact Smart H — Book a Consultation",
+        title: "Contact SmartEDGE — Book a Consultation",
       },
       {
         name: "description",
         content:
-          "Tell Smart H about your technology project, discuss your requirements and explore practical next steps.",
+          "Tell SmartEDGE about your technology project, discuss your requirements and explore practical next steps.",
       },
       {
         property: "og:title",
-        content: "Contact Smart H",
+        content: "Contact SmartEDGE",
       },
       {
         property: "og:description",
         content:
-          "Start a conversation about your technology project with Smart H.",
+          "Start a conversation about your technology project with SmartEDGE.",
       },
     ],
   }),
@@ -109,7 +109,7 @@ function Contact() {
     <main className="sh-contact-page">
       <style>{`
         /* ==================================================
-           SMART H CONTACT — DESIGN SYSTEM
+           SmartEDGE CONTACT — DESIGN SYSTEM
         ================================================== */
 
         .sh-contact-page {

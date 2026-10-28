@@ -47,7 +47,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   const reduceMotion = useReducedMotion();
 
-  const siteName = siteConfig.name || "Smart H";
+  const siteName = siteConfig.name || "SmartEDGE";
   const description = siteConfig.description || "";
   const tagline = siteConfig.tagline || "";
 

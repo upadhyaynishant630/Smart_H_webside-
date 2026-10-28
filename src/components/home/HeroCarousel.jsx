@@ -63,7 +63,7 @@ export function HeroCarousel() {
         ref={sectionRef}
         className="surface-dark relative isolate h-[min(88svh,860px)] min-h-145 overflow-hidden bg-midnight"
         aria-roledescription="carousel"
-        aria-label="Smart H highlights"
+        aria-label="SmartEDGE highlights"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}

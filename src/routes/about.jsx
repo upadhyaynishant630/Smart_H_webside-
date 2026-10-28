@@ -126,21 +126,21 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       {
-        title: "About Smart H | Our Approach and Principles",
+        title: "About SmartEDGE | Our Approach and Principles",
       },
       {
         name: "description",
         content:
-          "Discover Smart H's approach to technology, our core values, expertise and structured way of working.",
+          "Discover SmartEDGE's approach to technology, our core values, expertise and structured way of working.",
       },
       {
         property: "og:title",
-        content: "About Smart H",
+        content: "About SmartEDGE",
       },
       {
         property: "og:description",
         content:
-          "Explore Smart H's approach, core values, technology expertise and delivery process.",
+          "Explore SmartEDGE's approach, core values, technology expertise and delivery process.",
       },
     ],
   }),
@@ -1600,9 +1600,9 @@ function About() {
       ================================= */}
 
       <PageHero
-        eyebrow="About Smart H"
+        eyebrow="About SmartEDGE"
         title="Technology partnership, built on clarity."
-        lead="Smart H exists to make complex technology decisions simpler — and to deliver them with care."
+        lead="SmartEDGE exists to make complex technology decisions simpler — and to deliver them with care."
         image={transformation}
       />
 
@@ -1688,7 +1688,7 @@ function About() {
               <Sparkles aria-hidden="true" />
               <span>
                 Mission and vision statements are draft copy and
-                can be refined by the Smart H leadership team.
+                can be refined by the SmartEDGE leadership team.
               </span>
             </div>
 
@@ -1874,7 +1874,7 @@ function About() {
                   <Workflow aria-hidden="true" />
                   <span>
                     Explore the capabilities connected to your
-                    existing Smart H service catalogue.
+                    existing SmartEDGE service catalogue.
                   </span>
                 </div>
               </div>

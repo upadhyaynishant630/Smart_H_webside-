@@ -80,7 +80,7 @@ function buildActions(pathname) {
     getText(ENV.VITE_CONTACT_EMAIL);
   const phoneDigits = phone.replace(/\D/g, "");
   const whatsappText = encodeURIComponent(
-    "Hello Smart H, I would like to discuss a technology project.",
+    "Hello SmartEDGE, I would like to discuss a technology project.",
   );
 
   const configuredWhatsApp =
@@ -104,7 +104,7 @@ function buildActions(pathname) {
     actions.push({
       id: "consult",
       label: "Book a consultation",
-      description: "Discuss your project with Smart H",
+      description: "Discuss your project with SmartEDGE",
       icon: <CalendarCheck size={17} strokeWidth={1.9} aria-hidden="true" />,
       tone: "consult",
       to: "/contact",
@@ -116,7 +116,7 @@ function buildActions(pathname) {
     label: "WhatsApp",
     description:
       phone.startsWith("+") && phoneDigits.length >= 8
-        ? "Message Smart H directly"
+        ? "Message SmartEDGE directly"
         : "Open WhatsApp and choose a contact",
     icon: <MessageCircle size={18} strokeWidth={1.9} aria-hidden="true" />,
     tone: "whatsapp",

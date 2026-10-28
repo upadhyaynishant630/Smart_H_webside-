@@ -71,16 +71,16 @@ export const Route = createFileRoute("/industries")({
   head: () => ({
     meta: [
       {
-        title: "Industries | Smart H",
+        title: "Industries | SmartEDGE",
       },
       {
         name: "description",
         content:
-          "Explore how Smart H technology services can adapt to the requirements of manufacturing, financial services, healthcare, retail, education and the public sector.",
+          "Explore how SmartEDGE technology services can adapt to the requirements of manufacturing, financial services, healthcare, retail, education and the public sector.",
       },
       {
         property: "og:title",
-        content: "Industries | Smart H",
+        content: "Industries | SmartEDGE",
       },
       {
         property: "og:description",

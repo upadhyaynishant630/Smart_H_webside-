@@ -1,6 +1,6 @@
 # Asset credits
 
-All imagery is AI-generated specifically for Smart H. No stock, third-party or reference-site assets are used.
+All imagery is AI-generated specifically for SmartEDGE. No stock, third-party or reference-site assets are used.
 
 | File | Source | Notes |
 | --- | --- | --- |

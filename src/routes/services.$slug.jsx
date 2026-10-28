@@ -52,12 +52,12 @@ export const Route = createFileRoute("/services/$slug")({
     const service = loaderData?.service;
 
     const title = service
-      ? `${service.title} — Smart H`
-      : "Service — Smart H";
+      ? `${service.title} — SmartEDGE`
+      : "Service — SmartEDGE";
 
     const description =
       service?.summary ||
-      "Explore Smart H's technology services, capabilities and delivery approach.";
+      "Explore SmartEDGE's technology services, capabilities and delivery approach.";
 
     return {
       meta: [
@@ -158,7 +158,7 @@ function ServiceDetail() {
     <main className="sh-service-detail">
       <style>{`
         /* ==================================================
-           SMART H SERVICE DETAIL — CORE DESIGN
+           SmartEDGE SERVICE DETAIL — CORE DESIGN
         ================================================== */
 
         .sh-service-detail {
@@ -1857,7 +1857,7 @@ function ServiceDetail() {
                 ) : (
                   <div className="sh-sd-no-content">
                     Specific challenges for this service have
-                    not been listed yet. Contact Smart H to
+                    not been listed yet. Contact SmartEDGE to
                     discuss your requirements.
                   </div>
                 )}
@@ -2153,7 +2153,7 @@ function ServiceDetail() {
           ) : (
             <div className="sh-sd-no-content">
               The delivery process is being prepared. Contact
-              Smart H to discuss how this service can support
+              SmartEDGE to discuss how this service can support
               your requirements.
             </div>
           )}
@@ -2180,7 +2180,7 @@ function ServiceDetail() {
                 </h2>
 
                 <p className="sh-sd-related-description">
-                  Explore other Smart H services that may be
+                  Explore other SmartEDGE services that may be
                   relevant to your wider technology requirements.
                 </p>
               </div>
@@ -2244,7 +2244,7 @@ function ServiceDetail() {
               </span>
 
               <div>
-                <h3>Explore all Smart H services.</h3>
+                <h3>Explore all SmartEDGE services.</h3>
 
                 <p>
                   Visit the service directory to explore

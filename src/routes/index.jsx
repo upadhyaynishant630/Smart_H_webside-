@@ -13,13 +13,13 @@ import { CustomerReviews } from "@/components/home/CustomerReviews";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Smart H — Secure, connected enterprise technology" },
+      { title: "SmartEDGE — Secure, connected enterprise technology" },
       {
         name: "description",
         content:
-          "Cloud, cybersecurity, data & AI, automation and networks — planned, built and run by one accountable Smart H team.",
+          "Cloud, cybersecurity, data & AI, automation and networks — planned, built and run by one accountable SmartEDGE team.",
       },
-      { property: "og:title", content: "Smart H — Secure, connected enterprise technology" },
+      { property: "og:title", content: "SmartEDGE — Secure, connected enterprise technology" },
       {
         property: "og:description",
         content:
@@ -64,12 +64,12 @@ function Home() {
               <span className="text-primary">people</span>.
             </h2>
             <p className="text-lead mt-6 text-muted-foreground">
-              Smart H brings infrastructure, security, data and automation expertise together so
+              SmartEDGE brings infrastructure, security, data and automation expertise together so
               organisations can modernise with confidence — without juggling disconnected vendors.
             </p>
             <div className="mt-8">
               <ButtonLink to="/about" variant="outline">
-                About Smart H
+                About SmartEDGE
               </ButtonLink>
             </div>
           </Reveal>
@@ -98,7 +98,7 @@ function Home() {
         <div className="container-x relative">
           <SectionHeading
             eyebrow="Principles"
-            title="How Smart H approaches every engagement"
+            title="How SmartEDGE approaches every engagement"
             lead="Three commitments shape the way we plan, build and hand over technology."
           />
           <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-3">

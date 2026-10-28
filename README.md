@@ -1,12 +1,12 @@
-# Smart Horizon Experience
+# SmartEDGEorizon Experience
 
-MASTER PROMPT — SMART H PREMIUM REACT WEBSITE
+MASTER PROMPT — SmartEDGE PREMIUM REACT WEBSITE
 
 Expert-Level UI/UX, 3D Visual Design, Motion Engineering & Production-Ready Development
 
 You are acting as a senior UI/UX designer, creative director, React architect, motion designer, frontend performance engineer, accessibility specialist, and QA engineer.
 
-Your task is to design and implement a complete, premium, original, responsive, multi-page React website for the brand Smart H, using the reference websites below only to understand broad enterprise website design principles:
+Your task is to design and implement a complete, premium, original, responsive, multi-page React website for the brand SmartEDGE, using the reference websites below only to understand broad enterprise website design principles:
 
 https://www.dsmgo.in/
 
@@ -28,7 +28,7 @@ Use reusable, independently maintainable components.
 
 Keep the folder structure simple and understandable for a developer working in VS Code.
 
-Preserve existing working functionality, project configuration, reusable components, and legitimate Smart H brand assets.
+Preserve existing working functionality, project configuration, reusable components, and legitimate SmartEDGE brand assets.
 
 Do not overwrite or delete the existing project before inspecting it.
 
@@ -36,13 +36,13 @@ Never copy source code, exact layouts, original marketing copy, logos, distincti
 
 Do not create nonfunctional buttons, dead links, decorative forms that cannot be submitted, or fake success notifications.
 
-Do not invent customer names, testimonials, partner logos, awards, certifications, statistics, or claims about Smart H.
+Do not invent customer names, testimonials, partner logos, awards, certifications, statistics, or claims about SmartEDGE.
 
 Do not leave placeholder images, broken images, empty pages, unfinished sections, unnecessary TODO comments, or demo-only interfaces in the final implementation.
 
 Do not claim the website is error-free or tested unless the relevant checks have actually been run.
 
-Primary objective: Create a professional enterprise technology website that feels custom-designed for Smart H rather than looking like a generic corporate template.
+Primary objective: Create a professional enterprise technology website that feels custom-designed for SmartEDGE rather than looking like a generic corporate template.
 
 2. FIRST: AUDIT THE EXISTING PROJECT
 
@@ -52,7 +52,7 @@ Inspect the repository, package.json, installed dependencies, application entry 
 
 Identify the current React version and build tool.
 
-Locate any Smart H logos, brand documents, service descriptions, photographs, icons, contact information, or existing website assets.
+Locate any SmartEDGE logos, brand documents, service descriptions, photographs, icons, contact information, or existing website assets.
 
 Determine what is already functional and should be preserved.
 
@@ -64,7 +64,7 @@ If the repository is empty, initialize a clean React + Vite project.
 
 If useful existing components are available, improve and reuse them instead of needlessly duplicating them.
 
-If Smart H's exact service information is unavailable, create a coherent, editable enterprise technology website using conservative draft copy. Centralize editable service descriptions and contact information in configuration files. Do not present unverified claims as established facts.
+If SmartEDGE's exact service information is unavailable, create a coherent, editable enterprise technology website using conservative draft copy. Centralize editable service descriptions and contact information in configuration files. Do not present unverified claims as established facts.
 
 3. ORIGINAL BRAND DESIGN SYSTEM
 
@@ -118,11 +118,11 @@ Establish clear typography scales, consistent spacing, a responsive grid, predic
 
 Avoid excessive gradients, random glassmorphism, neon outlines everywhere, overly rounded generic cards, and animations that distract from the information.
 
-The result must be an original Smart H design, not a recreation of either reference website.
+The result must be an original SmartEDGE design, not a recreation of either reference website.
 
-4. CREATE A SIGNATURE SMART H VISUAL LANGUAGE
+4. CREATE A SIGNATURE SmartEDGE VISUAL LANGUAGE
 
-Develop a distinctive design concept for Smart H based on the interaction of:
+Develop a distinctive design concept for SmartEDGE based on the interaction of:
 
 Architectural midnight-navy surfaces.
 
@@ -140,7 +140,7 @@ Use asymmetric composition, overlapping visual layers, carefully controlled nega
 
 Create custom reusable visual components instead of assembling unrelated templates.
 
-The logo must remain an actual brand asset. If no valid Smart H logo exists, create a clean original text-based Smart H wordmark using typography and simple geometric detailing. Do not pretend an unapproved graphic is an official logo.
+The logo must remain an actual brand asset. If no valid SmartEDGE logo exists, create a clean original text-based SmartEDGE wordmark using typography and simple geometric detailing. Do not pretend an unapproved graphic is an official logo.
 
 5. TOP ANNOUNCEMENT BAR WITH ROTATING ANIMATED TEXT
 
@@ -178,7 +178,7 @@ Store the messages and visual settings in a dedicated configuration file. Do not
 
 Build a reusable navbar with:
 
-Smart H logo or approved wordmark.
+SmartEDGE logo or approved wordmark.
 
 Home.
 
@@ -250,7 +250,7 @@ A distinctive but cohesive visual arrangement.
 
 A relevant image focal point that works on desktop and mobile.
 
-The carousel should communicate the Smart H brand story through four distinct angles, such as intelligent business transformation, connected technology, secure infrastructure, and scalable innovation. Adapt these themes to the actual services discovered during the project audit.
+The carousel should communicate the SmartEDGE brand story through four distinct angles, such as intelligent business transformation, connected technology, secure infrastructure, and scalable innovation. Adapt these themes to the actual services discovered during the project audit.
 
 Use original wording. Do not reproduce the reference websites' headlines or copy.
 
@@ -292,7 +292,7 @@ Store slide content in src/data/heroSlides.js or an equivalent centralized data 
 
 8. ORIGINAL IMAGE CREATION AND ASSET MANAGEMENT
 
-All website imagery must be original, properly licensed for its intended use, or generated specifically for Smart H.
+All website imagery must be original, properly licensed for its intended use, or generated specifically for SmartEDGE.
 
 Preferred workflow
 
@@ -312,7 +312,7 @@ Image requirements
 
 Do not download or extract images from DSM or Progressive.
 
-Do not use another company's logo as Smart H artwork.
+Do not use another company's logo as SmartEDGE artwork.
 
 Do not use images with visible watermarks.
 
@@ -358,7 +358,7 @@ If an ideal image cannot be created or sourced, generate a genuinely original il
 
 9. CUSTOM 3D-STYLE ICON SYSTEM
 
-Create a cohesive Smart H icon system that matches the midnight-navy, cobalt-blue, and bright-red visual identity.
+Create a cohesive SmartEDGE icon system that matches the midnight-navy, cobalt-blue, and bright-red visual identity.
 
 The icons should feel dimensional, sculpted, premium, and consistent.
 
@@ -390,7 +390,7 @@ className
 
 ariaLabel
 
-Create original icon artwork for relevant categories such as infrastructure, connectivity, cloud, AI, cybersecurity, automation, data, and consultation, according to Smart H's real service offerings.
+Create original icon artwork for relevant categories such as infrastructure, connectivity, cloud, AI, cybersecurity, automation, data, and consultation, according to SmartEDGE's real service offerings.
 
 Make the visual style consistent in lighting direction, depth, shadows, materials, and dimensions.
 
@@ -412,7 +412,7 @@ Announcement bar and navbar.
 
 Four-slide animated hero.
 
-Introduction to Smart H.
+Introduction to SmartEDGE.
 
 Main solutions or service pillars.
 
@@ -458,7 +458,7 @@ C. Services — /services
 
 Create a configurable services listing page.
 
-Use the actual Smart H services found in available documents or repository assets.
+Use the actual SmartEDGE services found in available documents or repository assets.
 
 Where appropriate, include service categories, descriptive visuals, benefits, deliverables, use cases, and links to detailed service pages.
 
@@ -490,7 +490,7 @@ E. Industries — /industries
 
 Create an industry-focused experience with relevant illustrations and industry descriptions.
 
-Use only industries that are relevant to Smart H's actual offering. Do not imply existing clients or specialized experience without evidence.
+Use only industries that are relevant to SmartEDGE's actual offering. Do not imply existing clients or specialized experience without evidence.
 
 F. Case Studies — /case-studies
 
@@ -572,7 +572,7 @@ Never show “Message sent successfully” merely because a button was clicked. 
 
 J. Not Found — *
 
-Implement a custom 404 page consistent with Smart H branding.
+Implement a custom 404 page consistent with SmartEDGE branding.
 
 Include a helpful message and working navigation back to the homepage.
 
@@ -1036,7 +1036,7 @@ Do not conceal errors by disabling lint rules, suppressing exceptions, or replac
 
 The task is complete only when:
 
-Smart H has a cohesive, original visual identity.
+SmartEDGE has a cohesive, original visual identity.
 
 The full React website is implemented, not merely a homepage mockup.
 
@@ -1086,7 +1086,7 @@ If operating in an environment that permits file delivery, provide the completed
 
 Do not stop after describing the plan. Do not leave the task at a design specification, an unfinished mockup, or a few isolated components.
 
-Build Smart H as a complete, polished, original, professional React website with premium motion design, custom dimensional visuals, clean architecture, and verified functionality to the extent supported by the available environment.     make it like a expert deep thinking and make it
+Build SmartEDGE as a complete, polished, original, professional React website with premium motion design, custom dimensional visuals, clean architecture, and verified functionality to the extent supported by the available environment.     make it like a expert deep thinking and make it
 
 This project was built with [Lovable](https://lovable.dev).
 

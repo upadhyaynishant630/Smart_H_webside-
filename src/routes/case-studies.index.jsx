@@ -34,20 +34,20 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/case-studies/")({
   head: () => ({
     meta: [
-      { title: "Case Studies — Smart H" },
+      { title: "Case Studies — SmartEDGE" },
       {
         name: "description",
         content:
-          "Explore illustrative Smart H case studies showing how structured thinking, technology and thoughtful execution can address cloud, data and security challenges.",
+          "Explore illustrative SmartEDGE case studies showing how structured thinking, technology and thoughtful execution can address cloud, data and security challenges.",
       },
       {
         property: "og:title",
-        content: "Case Studies — Smart H",
+        content: "Case Studies — SmartEDGE",
       },
       {
         property: "og:description",
         content:
-          "Explore project scenarios and the thinking behind Smart H's approach to digital challenges.",
+          "Explore project scenarios and the thinking behind SmartEDGE's approach to digital challenges.",
       },
     ],
   }),
@@ -134,7 +134,7 @@ function CaseStudies() {
     <main className="sh-case-studies-page">
       <style>{`
         /* =================================================
-           SMART H CASE STUDIES — DESIGN SYSTEM
+           SmartEDGE CASE STUDIES — DESIGN SYSTEM
         ================================================= */
 
         .sh-case-studies-page {
@@ -1206,7 +1206,7 @@ function CaseStudies() {
       <PageHero
         eyebrow="Case studies"
         title="How engagements take shape."
-        lead="Explore illustrative scenarios that show how Smart H approaches complex digital challenges. Each scenario highlights the thinking, process and decisions behind a considered solution."
+        lead="Explore illustrative scenarios that show how SmartEDGE approaches complex digital challenges. Each scenario highlights the thinking, process and decisions behind a considered solution."
         image={secure}
       />
 
@@ -1485,7 +1485,7 @@ function CaseStudies() {
             <div className="sh-cs-approach-header">
               <div>
                 <span className="sh-cs-eyebrow">
-                  The Smart H approach
+                  The SmartEDGE approach
                 </span>
 
                 <h2

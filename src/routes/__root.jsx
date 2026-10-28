@@ -81,12 +81,12 @@ export const Route = createRootRouteWithContext()({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Smart H — Enterprise Technology Partner" },
+      { title: "SmartEDGE — Enterprise Technology Partner" },
       {
         name: "description",
-        content: "Smart H helps organisations plan, build and run secure, connected technology.",
+        content: "SmartEDGE helps organisations plan, build and run secure, connected technology.",
       },
-      { property: "og:site_name", content: "Smart H" },
+      { property: "og:site_name", content: "SmartEDGE" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#071126" },

@@ -14,11 +14,11 @@ export function Wordmark({ className }) {
       )}
     >
       <span className="relative grid h-8 w-8 place-items-center rounded-lg bg-cobalt-gradient text-primary-foreground shadow-cobalt">
-        <span className="text-base leading-none">H</span>
+        <span className="text-base leading-none">E</span>
         <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-signal" />
       </span>
       <span>
-        Smart<span className="text-primary"> H</span>
+        Smart<span className="text-primary"> EDGE</span>
       </span>
     </span>
   );

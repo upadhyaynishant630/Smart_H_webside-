@@ -48,12 +48,12 @@ export const Route = createFileRoute("/case-studies/$slug")({
     const study = loaderData?.study;
 
     const title = study
-      ? `${study.title} — Smart H`
-      : "Case Study — Smart H";
+      ? `${study.title} — SmartEDGE`
+      : "Case Study — SmartEDGE";
 
     const description =
       study?.summary ||
-      "Explore the thinking, approach and solutions behind a Smart H case study.";
+      "Explore the thinking, approach and solutions behind a SmartEDGE case study.";
 
     return {
       meta: [
@@ -169,7 +169,7 @@ function CaseStudyDetail() {
     <main className="sh-case-detail">
       <style>{`
         /* =================================================
-           SMART H CASE STUDY DETAIL — DESIGN SYSTEM
+           SmartEDGE CASE STUDY DETAIL — DESIGN SYSTEM
         ================================================= */
 
         .sh-case-detail {
@@ -1527,7 +1527,7 @@ function CaseStudyDetail() {
                   <p>
                     This is an{" "}
                     <strong>illustrative sample scenario</strong>{" "}
-                    describing how Smart H would approach this
+                    describing how SmartEDGE would approach this
                     type of project. It does not represent a
                     named client, a verified engagement or
                     reported business results.
@@ -1846,7 +1846,7 @@ function CaseStudyDetail() {
 
                 <p className="sh-cd-related-description">
                   Explore other illustrative scenarios and
-                  approaches across Smart H's areas of focus.
+                  approaches across SmartEDGE's areas of focus.
                 </p>
               </div>
 

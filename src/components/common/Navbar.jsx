@@ -46,7 +46,7 @@ export function Navbar() {
     ? services.filter((service) => service && typeof service.slug === "string")
     : [];
 
-  const siteName = siteConfig?.name || "Smart H";
+  const siteName = siteConfig?.name || "SmartEDGE";
   const ctaLabel = siteConfig?.ctaLabel || "Let's talk";
 
   const isActive = (to) =>
@@ -197,7 +197,7 @@ export function Navbar() {
     >
       <style>{`
         /* =====================================
-           SMART H — PREMIUM NAVBAR
+           SmartEDGE — PREMIUM NAVBAR
         ===================================== */
 
         .sh-navbar {
@@ -1278,7 +1278,7 @@ export function Navbar() {
           >
             <div className="sh-navbar-mobile-inner">
               <p className="sh-navbar-mobile-caption">
-                Explore Smart H
+                Explore SmartEDGE
               </p>
 
               <ul className="sh-navbar-mobile-list">

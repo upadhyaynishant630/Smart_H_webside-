@@ -2,7 +2,7 @@ import manufacturingImg from "@/assets/industries/manufacturing.jpg";
 import cloudImg from "@/assets/services/cloud.jpg";
 import dataImg from "@/assets/services/data.jpg";
 
-/** Industries Smart H's services are designed to support (editable). */
+/** Industries SmartEDGE's services are designed to support (editable). */
 export const industries = [
   {
     slug: "manufacturing",

@@ -4,10 +4,10 @@
  * hardcoded. See .env.example.
  */
 export const siteConfig = {
-  name: "Smart H",
+  name: "SmartEDGE",
   tagline: "Enterprise technology, engineered with intent.",
   description:
-    "Smart H helps organisations plan, build and run secure, connected technology — from cloud and infrastructure to data, AI and automation.",
+    "SmartEDGE helps organisations plan, build and run secure, connected technology — from cloud and infrastructure to data, AI and automation.",
   ctaLabel: "Let's Talk",
   ctaTo: "/contact",
   contactEmail: import.meta.env["VITE_CONTACT_EMAIL"] ?? "",

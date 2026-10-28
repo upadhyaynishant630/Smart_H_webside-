@@ -9,7 +9,7 @@ import solarImg from "@/assets/services/solar-energy.png";
 import evChargingImg from "@/assets/services/ev-charging.jpg";
 
 /* ======================================================
-   SMART H — SERVICES DATA
+   SmartEDGE — SERVICES DATA
    Existing 6 services + Solar + EV
 ====================================================== */
 
