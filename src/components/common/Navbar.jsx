@@ -322,6 +322,21 @@ export function Navbar() {
           min-width: 0;
         }
 
+        .sh-navbar-services-trigger {
+          display: inline-flex;
+          align-items: center;
+          gap: 0;
+        }
+
+        .sh-navbar-services-home {
+          position: relative;
+        }
+
+        .sh-navbar .sh-navbar-services-dropdown {
+          min-width: 30px;
+          padding-inline: 7px;
+        }
+
         .sh-navbar-link {
           position: relative;
           display: inline-flex;
@@ -1015,34 +1030,44 @@ export function Navbar() {
                     }
                   }}
                 >
-                  <button
-                    type="button"
-                    aria-expanded={megaOpen}
-                    aria-controls="sh-services-menu"
-                    onClick={openMegaMenu}
-                    className="sh-navbar-link"
-                    data-active={isActive(item.to) ? "true" : "false"}
-                  >
-                    {item.label}
+                  <div className="sh-navbar-services-trigger">
+                    <Link
+                      to="/services"
+                      className="sh-navbar-link sh-navbar-services-home"
+                      aria-current={isActive(item.to) ? "page" : undefined}
+                      data-active={isActive(item.to) ? "true" : "false"}
+                      onClick={closeMegaMenu}
+                    >
+                      {item.label}
 
-                    <ChevronDown
-                      className="sh-navbar-link-chevron"
-                      aria-hidden="true"
-                    />
+                      {isActive(item.to) && (
+                        <motion.span
+                          layoutId="sh-navbar-indicator"
+                          className="sh-navbar-indicator"
+                          transition={{
+                            type: "spring",
+                            stiffness: 420,
+                            damping: 32,
+                          }}
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Link>
 
-                    {isActive(item.to) && (
-                      <motion.span
-                        layoutId="sh-navbar-indicator"
-                        className="sh-navbar-indicator"
-                        transition={{
-                          type: "spring",
-                          stiffness: 420,
-                          damping: 32,
-                        }}
+                    <button
+                      type="button"
+                      aria-label="Show individual service links"
+                      aria-expanded={megaOpen}
+                      aria-controls="sh-services-menu"
+                      onClick={openMegaMenu}
+                      className="sh-navbar-link sh-navbar-services-dropdown"
+                    >
+                      <ChevronDown
+                        className="sh-navbar-link-chevron"
                         aria-hidden="true"
                       />
-                    )}
-                  </button>
+                    </button>
+                  </div>
 
                   <AnimatePresence initial={false}>
                     {megaOpen && (
@@ -1083,7 +1108,7 @@ export function Navbar() {
                             </div>
 
                             <span className="sh-navbar-mega-caption">
-                              Solutions for your next step
+                              {serviceItems.length} connected services
                             </span>
                           </div>
 

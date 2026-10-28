@@ -122,15 +122,32 @@ function ServiceDetail() {
   const related = useMemo(() => {
     if (!Array.isArray(services)) return [];
 
-    return services
-      .filter(
-        (item) =>
-          item &&
-          item.slug &&
-          item.title &&
-          item.slug !== service.slug,
-      )
-      .slice(0, 3);
+    const available = services.filter(
+      (item) =>
+        item &&
+        item.slug &&
+        item.title &&
+        item.slug !== service.slug,
+    );
+
+    const cleanEnergySlugs = [
+      "solar-energy-solutions",
+      "ev-charging-infrastructure",
+    ];
+
+    // Keep the two sustainability-oriented offerings connected to each other.
+    if (cleanEnergySlugs.includes(service.slug)) {
+      return available
+        .slice()
+        .sort((a, b) => {
+          const aPreferred = cleanEnergySlugs.includes(a.slug) ? 0 : 1;
+          const bPreferred = cleanEnergySlugs.includes(b.slug) ? 0 : 1;
+          return aPreferred - bPreferred;
+        })
+        .slice(0, 3);
+    }
+
+    return available.slice(0, 3);
   }, [service.slug]);
 
   const overview =

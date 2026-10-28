@@ -1,11 +1,20 @@
+
 import cloudImg from "@/assets/services/cloud.jpg";
 import dataImg from "@/assets/services/data.jpg";
 import secureImg from "@/assets/hero/hero-secure.jpg";
 import connectedImg from "@/assets/hero/hero-connected.jpg";
 import scaleImg from "@/assets/hero/hero-scale.jpg";
 import consultImg from "@/assets/about/studio.jpg";
+import solarImg from "@/assets/services/solar-energy.png";
+import evChargingImg from "@/assets/services/ev-charging.jpg";
+
+/* ======================================================
+   SMART H — SERVICES DATA
+   Existing 6 services + Solar + EV
+====================================================== */
 
 export const services = [
+  // 1. CLOUD & INFRASTRUCTURE
   {
     slug: "cloud-infrastructure",
     title: "Cloud & Infrastructure",
@@ -14,7 +23,7 @@ export const services = [
       "Design, migrate and operate hybrid and cloud environments built for reliability and cost control.",
     image: cloudImg,
     overview:
-      "We assess your current estate, define a target architecture and move workloads in planned, reversible stages — then help you run it with clear operating practices.",
+      "We assess your current estate, define a target architecture and move workloads in planned, reversible stages, then help you run it with clear operating practices.",
     challenges: [
       "Ageing on-premise hardware and rising maintenance effort",
       "Unpredictable cloud spend",
@@ -34,6 +43,8 @@ export const services = [
       "Runbooks your team can own",
     ],
   },
+
+  // 2. CYBERSECURITY
   {
     slug: "cybersecurity",
     title: "Cybersecurity",
@@ -62,14 +73,17 @@ export const services = [
       "Clear ownership of security controls",
     ],
   },
+
+  // 3. DATA & AI
   {
     slug: "data-ai",
     title: "Data & AI",
     icon: "ai",
-    summary: "Turn scattered data into trusted reporting and responsibly applied AI.",
+    summary:
+      "Turn scattered data into trusted reporting and responsibly applied AI.",
     image: dataImg,
     overview:
-      "We build the data foundations first — quality, governance and access — then apply analytics and AI where they create measurable value.",
+      "We build the data foundations first, including quality, governance and access, then apply analytics and AI where they create measurable value.",
     challenges: [
       "Data spread across disconnected systems",
       "Reports nobody fully trusts",
@@ -89,6 +103,8 @@ export const services = [
       "AI use cases with defined success criteria",
     ],
   },
+
+  // 4. INTELLIGENT AUTOMATION
   {
     slug: "intelligent-automation",
     title: "Intelligent Automation",
@@ -117,11 +133,14 @@ export const services = [
       "A backlog of prioritised automation opportunities",
     ],
   },
+
+  // 5. CONNECTIVITY & NETWORKS
   {
     slug: "connectivity-networks",
     title: "Connectivity & Networks",
     icon: "network",
-    summary: "Secure, high-availability networks connecting offices, sites, devices and cloud.",
+    summary:
+      "Secure, high-availability networks connecting offices, sites, devices and cloud.",
     image: connectedImg,
     overview:
       "From campus Wi-Fi to multi-site WAN, we design networks around performance, visibility and security.",
@@ -144,6 +163,8 @@ export const services = [
       "Segmented access aligned to risk",
     ],
   },
+
+  // 6. TECHNOLOGY CONSULTING
   {
     slug: "technology-consulting",
     title: "Technology Consulting",
@@ -152,7 +173,7 @@ export const services = [
       "Independent advice, roadmaps and programme leadership for complex technology decisions.",
     image: consultImg,
     overview:
-      "We help leadership teams decide what to build, buy or retire — and stay alongside delivery to keep programmes on track.",
+      "We help leadership teams decide what to build, buy or retire, and stay alongside delivery to keep programmes on track.",
     challenges: [
       "Competing priorities and limited budgets",
       "Vendor choices with long-term impact",
@@ -172,29 +193,106 @@ export const services = [
       "Governance that keeps delivery aligned",
     ],
   },
+
+  // 7. SOLAR ENERGY SOLUTIONS
+  {
+    slug: "solar-energy-solutions",
+    title: "Solar Energy Solutions",
+    icon: "solar",
+    summary:
+      "Plan rooftop solar for homes, communities and businesses with site-aware design, installation coordination and performance planning.",
+    image: solarImg,
+    overview:
+      "We help organisations and property owners understand how solar can fit their site and energy needs. The work can cover initial suitability, system sizing, delivery coordination and ongoing performance planning.",
+    challenges: [
+      "Unclear rooftop suitability and available installation area",
+      "Choosing a system size that fits actual energy use",
+      "Coordinating installation, utility steps and ongoing upkeep",
+    ],
+    capabilities: [
+      "Rooftop suitability and energy-use assessment",
+      "Solar system sizing and solution planning",
+      "Residential, society and commercial rooftop options",
+      "Installation and commissioning coordination",
+      "Guidance on applicable approvals and net metering",
+      "Performance monitoring and maintenance planning",
+    ],
+    outcomes: [
+      "A site-specific solar feasibility and sizing roadmap",
+      "Clear project scope and delivery milestones",
+      "A practical plan for ongoing system performance checks",
+    ],
+  },
+
+  // 8. EV CHARGING INFRASTRUCTURE
+  {
+    slug: "ev-charging-infrastructure",
+    title: "EV Charging Infrastructure",
+    icon: "ev",
+    summary:
+      "Plan EV charging for homes, workplaces, fleets and commercial destinations with site assessment and deployment coordination.",
+    image: evChargingImg,
+    overview:
+      "We help shape EV charging infrastructure around parking layout, electrical capacity, vehicle usage and expected demand. The objective is a clear deployment plan that supports day-to-day charging and future expansion.",
+    challenges: [
+      "Selecting charging options for different vehicles and use cases",
+      "Working around electrical capacity and parking constraints",
+      "Planning charger visibility, maintenance and future expansion",
+    ],
+    capabilities: [
+      "Site feasibility and electrical-capacity review",
+      "AC/DC charger selection and layout planning",
+      "Home, workplace, fleet and destination charging concepts",
+      "Installation and commissioning coordination",
+      "Connectivity and charge-management planning",
+      "Usage monitoring and maintenance planning",
+    ],
+    outcomes: [
+      "A site-aware EV charger deployment plan",
+      "Clear operational and maintenance requirements",
+      "A scalable foundation for future charging demand",
+    ],
+  },
 ];
+
+/* ======================================================
+   SHARED DELIVERY PROCESS
+   Used by the service detail pages
+====================================================== */
 
 export const deliveryProcess = [
   {
     step: "01",
     title: "Discover",
-    body: "Understand goals, constraints and the current landscape through focused workshops.",
+    body:
+      "Understand goals, constraints and the current landscape through focused workshops.",
   },
   {
     step: "02",
     title: "Design",
-    body: "Define the target architecture, roadmap and success measures before building.",
+    body:
+      "Define the target architecture, roadmap and success measures before building.",
   },
   {
     step: "03",
     title: "Deliver",
-    body: "Implement in short, visible increments with testing and security at each stage.",
+    body:
+      "Implement in short, visible increments with testing and security at each stage.",
   },
   {
     step: "04",
     title: "Evolve",
-    body: "Hand over, support and continuously improve as needs change.",
+    body:
+      "Hand over, support and continuously improve as needs change.",
   },
 ];
 
-export const getService = (slug) => services.find((s) => s.slug === slug);
+/* ======================================================
+   SERVICE LOOKUP
+   Used by /services/$slug
+====================================================== */
+
+export const getService = (slug) =>
+  services.find((service) => service.slug === slug);
+
+export default services;

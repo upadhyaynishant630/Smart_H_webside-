@@ -37,7 +37,7 @@ export const Route = createFileRoute("/services/")({
       {
         name: "description",
         content:
-          "Explore Smart H technology services across cloud infrastructure, cybersecurity, data and AI, intelligent automation, connectivity and technology consulting.",
+          "Explore Smart H services across cloud infrastructure, cybersecurity, data and AI, automation, connectivity, technology consulting, solar energy and EV charging infrastructure.",
       },
       {
         property: "og:title",
@@ -1609,7 +1609,7 @@ function Services() {
       <PageHero
         eyebrow="Services"
         title="Connected capabilities for modern organisations."
-        lead="Choose a single practice or combine capabilities into a coordinated roadmap. Every service is designed to fit into the bigger picture."
+        lead="Explore connected technology, solar energy and EV charging services shaped around your organisation’s goals, site requirements and next steps."
         image={cloud}
       />
 
@@ -1639,9 +1639,9 @@ function Services() {
                 </h2>
 
                 <p className="sh-svc-intro-description">
-                  Explore our technology practices, understand
-                  their individual capabilities and find the
-                  services most relevant to your organisation.
+                  Explore our connected technology, solar energy
+                  and EV charging capabilities to find services
+                  relevant to your organisation and its next steps.
                 </p>
               </div>
 
@@ -1754,7 +1754,7 @@ function Services() {
                         <div className="sh-svc-visual-bottom">
                           <div className="sh-svc-visual-bottom-copy">
                             <span className="sh-svc-visual-kicker">
-                              Technology practice
+                              Service offering
                             </span>
 
                             <h3 className="sh-svc-visual-caption">
