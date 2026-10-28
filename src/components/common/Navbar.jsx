@@ -37,11 +37,17 @@ export function Navbar() {
 
   const reduceMotion = useReducedMotion();
 
-  const navItems = Array.isArray(navigation) ? navigation : [];
-  const serviceItems = Array.isArray(services) ? services : [];
+  const navItems = Array.isArray(navigation)
+    ? navigation.filter(
+        (item) => item && typeof item.to === "string" && typeof item.label === "string"
+      )
+    : [];
+  const serviceItems = Array.isArray(services)
+    ? services.filter((service) => service && typeof service.slug === "string")
+    : [];
 
-  const siteName = siteConfig.name || "Smart H";
-  const ctaLabel = siteConfig.ctaLabel || "Let's talk";
+  const siteName = siteConfig?.name || "Smart H";
+  const ctaLabel = siteConfig?.ctaLabel || "Let's talk";
 
   const isActive = (to) =>
     to === "/"
@@ -93,6 +99,27 @@ export function Navbar() {
       document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
+
+  /* =========================================
+     RESPONSIVE BREAKPOINT CLEANUP
+  ========================================= */
+
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1120) {
+        setMobileOpen(false);
+        setMobileServicesOpen(false);
+      } else {
+        setMegaOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", onResize, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
 
   /* =========================================
      ESCAPE + OUTSIDE CLICK
@@ -175,6 +202,7 @@ export function Navbar() {
 
         .sh-navbar {
           --sh-nav-bg: #0b1229;
+          --sh-nav-height: 70px;
           --sh-nav-ink: #f6f7ff;
           --sh-nav-muted: #aab4ce;
           --sh-nav-blue: #7775ff;
@@ -188,9 +216,9 @@ export function Navbar() {
           width: 100%;
           max-width: 100%;
           color: var(--sh-nav-ink);
-        background: rgba(11, 18, 41, 0.82);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+          background: rgba(11, 18, 41, 0.82);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
           border-bottom: 1px solid transparent;
           font-family:
             Inter,
@@ -216,10 +244,7 @@ export function Navbar() {
 
         .sh-navbar[data-scrolled="true"] {
           border-bottom-color: var(--sh-nav-border);
-          background: rgba(8, 14, 33, 0.72);
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
-backdrop-filter: blur(20px);
--webkit-backdrop-filter: blur(20px);
+          background: rgba(8, 14, 33, 0.82);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
@@ -241,7 +266,7 @@ backdrop-filter: blur(20px);
           display: flex;
           width: calc(100% - clamp(28px, 5vw, 80px));
           max-width: 1440px;
-          height: 70px;
+          height: var(--sh-nav-height);
           align-items: center;
           justify-content: space-between;
           gap: 20px;
@@ -558,7 +583,8 @@ backdrop-filter: blur(20px);
           gap: 10px;
         }
 
-        .sh-navbar-cta {
+        .sh-navbar .sh-navbar-cta {
+          display: none;
           min-height: 39px;
           justify-content: center;
           border-radius: 10px;
@@ -610,8 +636,8 @@ backdrop-filter: blur(20px);
         ===================================== */
 
         .sh-navbar-mobile-panel {
-          height: calc(100vh - 70px);
-          height: calc(100dvh - 70px);
+          height: calc(100vh - var(--sh-nav-height));
+          height: calc(100dvh - var(--sh-nav-height));
           overflow-x: hidden;
           overflow-y: auto;
           overscroll-behavior: contain;
@@ -845,12 +871,8 @@ backdrop-filter: blur(20px);
            DESKTOP BREAKPOINT
         ===================================== */
 
-        @media (min-width: 1024px) {
-          .sh-navbar-shell {
-            height: 70px;
-            gap: clamp(12px, 1.5vw, 25px);
-          }
-
+        /* Desktop navigation appears only when the full menu has enough room. */
+        @media (min-width: 1120px) {
           .sh-navbar-desktop {
             display: flex;
           }
@@ -858,23 +880,17 @@ backdrop-filter: blur(20px);
           .sh-navbar-mobile-toggle {
             display: none;
           }
-        }
 
-        @media (min-width: 1280px) {
-          .sh-navbar-shell {
-            height: 74px;
-            gap: 28px;
+          .sh-navbar .sh-navbar-cta {
+            display: inline-flex;
           }
 
-          .sh-navbar-link {
-            padding-inline: 14px;
-            font-size: 13px;
+          .sh-navbar-mobile-panel {
+            display: none !important;
           }
         }
 
-        /* Smaller laptops: keep navigation within the viewport */
-
-        @media (min-width: 1024px) and (max-width: 1120px) {
+        @media (min-width: 1120px) and (max-width: 1279px) {
           .sh-navbar-shell {
             width: calc(100% - 32px);
             gap: 10px;
@@ -886,30 +902,42 @@ backdrop-filter: blur(20px);
             font-size: 11px;
           }
 
-          .sh-navbar-cta {
+          .sh-navbar .sh-navbar-cta {
             padding-inline: 12px;
             font-size: 11px;
           }
         }
 
-        /* Tablet and mobile */
-
-        @media (max-width: 1023px) {
-          .sh-navbar-shell {
-            height: 66px;
+        @media (min-width: 1280px) {
+          .sh-navbar {
+            --sh-nav-height: 74px;
           }
 
-          .sh-navbar-mobile-panel {
-            height: calc(100vh - 66px);
-            height: calc(100dvh - 66px);
+          .sh-navbar-shell {
+            gap: 28px;
+          }
+
+          .sh-navbar-link {
+            padding-inline: 14px;
+            font-size: 13px;
+          }
+        }
+
+        /* Tablet and mobile */
+        @media (max-width: 1119px) {
+          .sh-navbar {
+            --sh-nav-height: 66px;
           }
         }
 
         @media (max-width: 560px) {
+          .sh-navbar {
+            --sh-nav-height: 64px;
+          }
+
           .sh-navbar-shell {
             width: calc(100% - 28px);
             gap: 10px;
-            height: 64px;
           }
 
           .sh-navbar-actions {
@@ -920,11 +948,6 @@ backdrop-filter: blur(20px);
             width: 40px;
             height: 40px;
             flex-basis: 40px;
-          }
-
-          .sh-navbar-mobile-panel {
-            height: calc(100vh - 64px);
-            height: calc(100dvh - 64px);
           }
 
           .sh-navbar-mobile-inner {
@@ -996,8 +1019,7 @@ backdrop-filter: blur(20px);
                     type="button"
                     aria-expanded={megaOpen}
                     aria-controls="sh-services-menu"
-                    onFocus={openMegaMenu}
-                    onClick={() => setMegaOpen((open) => !open)}
+                    onClick={openMegaMenu}
                     className="sh-navbar-link"
                     data-active={isActive(item.to) ? "true" : "false"}
                   >
@@ -1022,9 +1044,15 @@ backdrop-filter: blur(20px);
                     )}
                   </button>
 
-                  <AnimatePresence>
+                  <AnimatePresence initial={false}>
                     {megaOpen && (
-                      <div className="sh-navbar-mega-positioner">
+                      <motion.div
+                        className="sh-navbar-mega-positioner"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: reduceMotion ? 0 : 0.16, ease: EASE }}
+                      >
                         <motion.div
                           id="sh-services-menu"
                           className="sh-navbar-mega"
@@ -1037,11 +1065,6 @@ backdrop-filter: blur(20px);
                             opacity: 1,
                             y: 0,
                             scale: 1,
-                          }}
-                          exit={{
-                            opacity: 0,
-                            y: reduceMotion ? 0 : 7,
-                            scale: 0.99,
                           }}
                           transition={{
                             duration: reduceMotion ? 0 : 0.22,
@@ -1106,7 +1129,7 @@ backdrop-filter: blur(20px);
                             </Link>
                           </div>
                         </motion.div>
-                      </div>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </li>
@@ -1115,6 +1138,7 @@ backdrop-filter: blur(20px);
                   <Link
                     to={item.to}
                     className="sh-navbar-link"
+                    aria-current={isActive(item.to) ? "page" : undefined}
                     data-active={isActive(item.to) ? "true" : "false"}
                   >
                     {item.label}
@@ -1144,7 +1168,7 @@ backdrop-filter: blur(20px);
             to="/contact"
             className={cn(
               buttonStyles({ variant: "primary" }),
-              "sh-navbar-cta hidden sm:inline-flex"
+              "sh-navbar-cta"
             )}
           >
             {ctaLabel}
@@ -1216,9 +1240,7 @@ backdrop-filter: blur(20px);
             }
             animate={{
               opacity: 1,
-              height: reduceMotion
-                ? "calc(100dvh - 64px)"
-                : undefined,
+              height: "calc(100dvh - var(--sh-nav-height, 70px))",
             }}
             exit={{
               opacity: 0,
@@ -1260,11 +1282,11 @@ backdrop-filter: blur(20px);
                         <Link
                           to={item.to}
                           className="sh-navbar-mobile-link"
+                          aria-current={isActive(item.to) ? "page" : undefined}
                           data-active={isActive(item.to) ? "true" : "false"}
                           onClick={() => {
-                            if (!isServices) {
-                              setMobileOpen(false);
-                            }
+                            setMobileOpen(false);
+                            setMobileServicesOpen(false);
                           }}
                         >
                           <span className="sh-navbar-mobile-link-label">
@@ -1385,7 +1407,7 @@ backdrop-filter: blur(20px);
                   to="/contact"
                   className={cn(
                     buttonStyles({ variant: "signal" }),
-                    "sh-navbar-mobile-cta w-full"
+                    "sh-navbar-mobile-cta"
                   )}
                   onClick={() => setMobileOpen(false)}
                 >
