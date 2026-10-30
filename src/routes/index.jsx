@@ -1,10 +1,17 @@
+
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
+  Activity,
   ArrowRight,
   ArrowUpRight,
+  BatteryCharging,
   CheckCircle2,
+  Gauge,
   Leaf,
+  PanelsTopLeft,
+  ShieldCheck,
   Sun,
+  Zap,
 } from "lucide-react";
 
 import { HeroCarousel } from "@/components/home/HeroCarousel";
@@ -25,13 +32,89 @@ import {
   solarCapabilities,
   solarFaqs,
   solarHomeCopy as copy,
-  solarPreparationItems,
   solarPrinciples,
   solarProcess,
   solarSolutions,
-  solarUseCases,
 } from "@/data/solarHome";
 
+/*
+  These two content groups replace the repetitive property-use-case
+  and project-essentials sections. Copy is intentionally educational:
+  actual equipment, availability and final system suitability must be
+  confirmed during a site assessment.
+*/
+
+const solarSystemTypes = [
+  {
+    id: "on-grid",
+    icon: Sun,
+    label: "GRID-CONNECTED",
+    title: "On-Grid Solar",
+    body: "A solar configuration connected to the utility grid. It can help offset grid electricity use; export and net-metering arrangements depend on local utility rules.",
+    fit: "For properties with an available grid connection.",
+  },
+  {
+    id: "off-grid",
+    icon: BatteryCharging,
+    label: "BATTERY-SUPPORTED",
+    title: "Off-Grid Solar",
+    body: "A standalone configuration that uses battery storage to supply power when solar generation is unavailable. Capacity should be planned around essential loads and backup duration.",
+    fit: "For sites where grid access is unavailable or unreliable.",
+  },
+  {
+    id: "hybrid",
+    icon: Zap,
+    label: "GRID + STORAGE",
+    title: "Hybrid Solar",
+    body: "A configuration that combines solar, a grid connection and battery storage. Backup capability depends on the inverter, battery capacity and selected backup circuits.",
+    fit: "For properties that need grid connection with backup capability.",
+  },
+];
+
+const solarComponents = [
+  {
+    id: "solar-panels",
+    icon: PanelsTopLeft,
+    number: "01",
+    title: "Solar Panels",
+    body: "Convert sunlight into DC electricity. Selection depends on available roof space, orientation, shading and module specifications.",
+  },
+  {
+    id: "solar-inverter",
+    icon: Zap,
+    number: "02",
+    title: "Solar Inverter",
+    body: "Converts the panels’ DC output into usable AC electricity. Its type and capacity must match the system design.",
+  },
+  {
+    id: "mounting-structure",
+    icon: Gauge,
+    number: "03",
+    title: "Mounting Structure",
+    body: "Supports and secures the panels. The structure should suit the roof type and be designed for relevant site and wind conditions.",
+  },
+  {
+    id: "electrical-protection",
+    icon: ShieldCheck,
+    number: "04",
+    title: "Electrical Protection",
+    body: "Protective devices, earthing, isolators and correctly specified wiring help support safe system operation.",
+  },
+  {
+    id: "system-monitoring",
+    icon: Activity,
+    number: "05",
+    title: "Monitoring System",
+    body: "Helps track system performance and identify changes in generation. Features depend on the selected equipment and connectivity.",
+  },
+  {
+    id: "battery-storage",
+    icon: BatteryCharging,
+    number: "06",
+    title: "Battery Storage",
+    body: "Stores energy for later use where backup or off-grid operation is required. Battery sizing depends on load and backup needs.",
+  },
+];
 
 const solarHomeStyles = `
   .solar-home-page,
@@ -314,202 +397,420 @@ const solarHomeStyles = `
     letter-spacing: -.025em;
   }
 
- .solar-home-page .solar-image-note {
-  position: absolute;
-  z-index: 5;
-  top: 7%;
-   transform: translateY(-50%);
-  right: 5px;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  width: clamp(165px, 18vw, 205px);
-  max-width: calc(100% - 20px);
-   width: 280px;
-  min-width: 0;
-
-  margin: 0;
-  padding: 12px;
-
-  border: 1px solid rgba(36, 87, 237, 0.16);
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 12px 32px rgba(7, 20, 38, 0.16);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  transform: translateY(-50%);
-  animation: solar-note-fade 550ms ease-out both;
-  transition:
-    box-shadow 250ms ease,
-    border-color 250ms ease;
-}
-
-.solar-home-page .solar-image-note:hover {
-  border-color: rgba(36, 87, 237, 0.35);
-  box-shadow: 0 16px 36px rgba(7, 20, 38, 0.2);
-}
-
-/* Small icon */
-.solar-home-page .solar-image-note-icon {
-  display: grid;
-  place-items: center;
-
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-
-  border: 1px solid rgba(255, 48, 75, 0.18);
-  border-radius: 10px;
-
-  color: #ff304b;
-  background: rgba(255, 48, 75, 0.08);
-}
-
-.solar-home-page .solar-image-note-icon svg {
-  width: 17px;
-  height: 17px;
-}
-
-/* Text */
-.solar-home-page .solar-image-note-copy {
-  flex: 1;
-  min-width: 0;
-}
-
-.solar-home-page .solar-image-note-copy h3 {
-  margin: 0;
-  color: #071426;
-  font-size: 0.78rem;
-  font-weight: 750;
-  line-height: 1.4;
-  overflow-wrap: anywhere;
-}
-
-.solar-home-page .solar-image-note-copy p {
-  margin: 4px 0 0;
-  color: #65718a;
-  font-size: 0.69rem;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-/* Entrance animation — does not override the vertical positioning */
-@keyframes solar-note-fade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-/* Tablet and mobile */
-@media (max-width: 767px) {
   .solar-home-page .solar-image-note {
-    top: 12px;
-    right: 10px;
+    position: absolute;
+    z-index: 5;
+    top: 8%;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: clamp(180px, 22vw, 250px);
+    max-width: calc(100% - 24px);
+    min-width: 0;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid rgba(36, 87, 237, .16);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 12px 32px rgba(7, 20, 38, .16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transform: translateY(-50%);
+    animation: solar-note-fade 650ms ease-out both;
+    transition: box-shadow 250ms ease, border-color 250ms ease;
+  }
 
-    width: min(165px, 47%);
-    max-width: calc(100% - 20px);
-
-    gap: 7px;
-    padding: 9px;
-
-    border-radius: 12px;
-    transform: none;
+  .solar-home-page .solar-image-note:hover {
+    border-color: rgba(36, 87, 237, .35);
+    box-shadow: 0 16px 36px rgba(7, 20, 38, .2);
   }
 
   .solar-home-page .solar-image-note-icon {
-    width: 29px;
-    height: 29px;
-    flex-basis: 29px;
-    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border: 1px solid rgba(255, 48, 75, .18);
+    border-radius: 10px;
+    color: #ff304b;
+    background: rgba(255, 48, 75, .08);
   }
 
   .solar-home-page .solar-image-note-icon svg {
-    width: 15px;
-    height: 15px;
+    width: 17px;
+    height: 17px;
+  }
+
+  .solar-home-page .solar-image-note-copy {
+    flex: 1;
+    min-width: 0;
   }
 
   .solar-home-page .solar-image-note-copy h3 {
-    font-size: 0.72rem;
-    line-height: 1.35;
+    margin: 0;
+    color: #071426;
+    font-size: .78rem;
+    font-weight: 750;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
   }
 
   .solar-home-page .solar-image-note-copy p {
-    margin-top: 3px;
-    font-size: 0.64rem;
+    margin: 4px 0 0;
+    color: #65718a;
+    font-size: .69rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  @keyframes solar-note-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 767px) {
+    .solar-home-page .solar-image-note {
+      top: 12px;
+      right: 10px;
+      width: min(170px, 47%);
+      max-width: calc(100% - 20px);
+      gap: 7px;
+      padding: 9px;
+      border-radius: 12px;
+      transform: none;
+    }
+
+    .solar-home-page .solar-image-note-icon {
+      width: 29px;
+      height: 29px;
+      flex-basis: 29px;
+      border-radius: 8px;
+    }
+
+    .solar-home-page .solar-image-note-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .solar-home-page .solar-image-note-copy h3 {
+      font-size: .72rem;
+      line-height: 1.35;
+    }
+
+    .solar-home-page .solar-image-note-copy p {
+      margin-top: 3px;
+      font-size: .64rem;
+      line-height: 1.4;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .solar-home-page .solar-image-note {
+      top: 8px;
+      right: 8px;
+      width: min(148px, 47%);
+      gap: 6px;
+      padding: 7px;
+    }
+
+    .solar-home-page .solar-image-note-icon {
+      width: 26px;
+      height: 26px;
+      flex-basis: 26px;
+    }
+
+    .solar-home-page .solar-image-note-copy h3 {
+      font-size: .68rem;
+    }
+
+    .solar-home-page .solar-image-note-copy p {
+      font-size: .6rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .solar-home-page .solar-image-note {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  /* Solar system configuration cards. */
+
+  .solar-home-page .solar-system-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 8% 12%, rgba(36, 87, 237, .07), transparent 34%),
+      linear-gradient(180deg, #fff 0%, #f7f9ff 100%);
+  }
+
+  .solar-home-page .solar-system-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.4rem);
+    margin-top: clamp(2rem, 3.5vw, 2.8rem);
+  }
+
+  .solar-home-page .solar-system-card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    padding: clamp(1.35rem, 2.3vw, 1.85rem);
+    overflow: hidden;
+    border: 1px solid rgba(21, 43, 80, .12);
+    border-radius: 1.35rem;
+    background: rgba(255, 255, 255, .96);
+    box-shadow: 0 10px 30px rgba(7, 20, 38, .045);
+    transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .solar-home-page .solar-system-card::before {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 3px;
+    border-radius: 0 0 999px 999px;
+    background: linear-gradient(90deg, var(--sh-cobalt), var(--sh-red));
+    content: "";
+    opacity: .8;
+  }
+
+  .solar-home-page .solar-system-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(36, 87, 237, .32);
+    box-shadow: 0 19px 42px rgba(7, 20, 38, .085);
+  }
+
+  .solar-home-page .solar-system-icon {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    flex: 0 0 54px;
+    place-items: center;
+    border: 1px solid rgba(36, 87, 237, .13);
+    border-radius: 17px;
+    background: linear-gradient(145deg, rgba(36, 87, 237, .10), rgba(255, 48, 75, .08));
+    color: var(--sh-cobalt);
+    transition: transform 280ms ease, color 280ms ease;
+  }
+
+  .solar-home-page .solar-system-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .solar-home-page .solar-system-card:hover .solar-system-icon {
+    transform: translateY(-2px) rotate(-4deg);
+    color: var(--sh-red);
+  }
+
+  .solar-home-page .solar-system-label {
+    display: inline-flex;
+    align-self: flex-start;
+    max-width: 100%;
+    margin-top: 1.2rem;
+    padding: .42rem .7rem;
+    border: 1px solid rgba(36, 87, 237, .13);
+    border-radius: 999px;
+    background: rgba(36, 87, 237, .045);
+    color: var(--sh-cobalt);
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: .09em;
     line-height: 1.4;
   }
-}
 
-/* Very small mobile screens */
-@media (max-width: 380px) {
-  .solar-home-page .solar-image-note {
-    top: 8px;
-    right: 8px;
-    width: min(145px, 46%);
-    gap: 6px;
-    padding: 7px;
+  .solar-home-page .solar-system-card h3 {
+    margin: 1rem 0 0;
+    color: var(--sh-navy);
+    font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+    font-weight: 800;
+    line-height: 1.3;
   }
 
-  .solar-home-page .solar-image-note-icon {
-    width: 26px;
-    height: 26px;
-    flex-basis: 26px;
+  .solar-home-page .solar-system-card > p {
+    flex: 1;
+    margin: .75rem 0 1.15rem;
+    color: var(--sh-muted);
+    font-size: .88rem;
+    line-height: 1.8;
   }
 
-  .solar-home-page .solar-image-note-copy h3 {
-    font-size: 0.68rem;
+  .solar-home-page .solar-system-fit {
+    display: flex;
+    align-items: flex-start;
+    gap: .55rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(21, 43, 80, .09);
+    color: #45536e;
+    font-size: .76rem;
+    font-weight: 650;
+    line-height: 1.65;
   }
 
-  .solar-home-page .solar-image-note-copy p {
-    font-size: 0.6rem;
+  .solar-home-page .solar-system-fit svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    margin-top: 2px;
+    color: #27866d;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .solar-home-page .solar-image-note {
-    animation: none;
-    transition: none;
+  .solar-home-page .solar-system-disclaimer {
+    max-width: 850px;
+    margin: 1.5rem auto 0;
+    color: #748099;
+    font-size: .75rem;
+    line-height: 1.75;
+    text-align: center;
   }
-}
 
-.solar-home-page .solar-image-note {
-  animation:
-    solar-note-enter 700ms cubic-bezier(.22, 1, .36, 1) both,
-    solar-note-float 4s ease-in-out 700ms infinite;
-}
+  /* Solar components and technology cards. */
 
-@keyframes solar-note-enter {
-  from {
-    opacity: 0;
-    transform: translate(22px, calc(-50% + 8px)) scale(.96);
+  .solar-home-page .solar-technology-section {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(ellipse at 95% 5%, rgba(36, 87, 237, .065), transparent 33%),
+      linear-gradient(180deg, #f5f7fc 0%, #fff 100%);
   }
-  75% {
-    opacity: 1;
-    transform: translate(-2px, -50%) scale(1.01);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(-50%) scale(1);
-  }
-}
 
-@keyframes solar-note-float {
-  0%, 100% {
-    translate: 0 0;
+  .solar-home-page .solar-technology-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: clamp(2rem, 3.5vw, 2.8rem);
   }
-  50% {
-    translate: 0 -5px;
+
+  .solar-home-page .solar-technology-card {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    height: 100%;
+    flex-direction: column;
+    padding: 1.4rem;
+    border: 1px solid rgba(21, 43, 80, .11);
+    border-radius: 1.2rem;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(7, 20, 38, .035);
+    transition: transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
   }
-}
+
+  .solar-home-page .solar-technology-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(36, 87, 237, .3);
+    box-shadow: 0 16px 34px rgba(7, 20, 38, .075);
+  }
+
+  .solar-home-page .solar-technology-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .8rem;
+  }
+
+  .solar-home-page .solar-technology-icon {
+    display: grid;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(36, 87, 237, .085);
+    color: var(--sh-cobalt);
+    transition: transform 280ms ease, color 280ms ease, background 280ms ease;
+  }
+
+  .solar-home-page .solar-technology-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .solar-home-page .solar-technology-card:hover .solar-technology-icon {
+    transform: scale(1.06) rotate(-3deg);
+    background: rgba(255, 48, 75, .085);
+    color: var(--sh-red);
+  }
+
+  .solar-home-page .solar-technology-number {
+    color: rgba(36, 87, 237, .42);
+    font-size: .75rem;
+    font-weight: 850;
+    letter-spacing: .1em;
+  }
+
+  .solar-home-page .solar-technology-card h3 {
+    margin: 1.1rem 0 0;
+    color: var(--sh-navy);
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .solar-home-page .solar-technology-card p {
+    margin: .55rem 0 0;
+    color: var(--sh-muted);
+    font-size: .83rem;
+    line-height: 1.8;
+  }
+
+  .solar-home-page .solar-technology-note {
+    display: flex;
+    align-items: flex-start;
+    gap: .7rem;
+    max-width: 900px;
+    margin: 1.5rem auto 0;
+    padding: 1rem 1.15rem;
+    border: 1px solid rgba(36, 87, 237, .13);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, .8);
+    color: #66718a;
+    font-size: .76rem;
+    line-height: 1.75;
+  }
+
+  .solar-home-page .solar-technology-note svg {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+    margin-top: 2px;
+    color: var(--sh-cobalt);
+  }
+
+  @media (max-width: 1023px) {
+    .solar-home-page .solar-system-grid,
+    .solar-home-page .solar-technology-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 639px) {
+    .solar-home-page .solar-system-grid,
+    .solar-home-page .solar-technology-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .solar-home-page .solar-system-card {
+      padding: 1.35rem;
+    }
+
+    .solar-home-page .solar-technology-card {
+      padding: 1.25rem;
+    }
+
+    .solar-home-page .solar-technology-note {
+      padding: .9rem;
+    }
+  }
+
   /* Marquee theme integration. */
 
   .solar-home-page .solar-capability-marquee {
@@ -748,68 +1049,6 @@ const solarHomeStyles = `
     transform: scaleX(1);
   }
 
-  /* Applications section. */
-
-  .solar-home-page .solar-applications-section {
-    position: relative;
-    background:
-      radial-gradient(
-        ellipse at 95% 10%,
-        rgba(36, 87, 237, .055),
-        transparent 38%
-      ),
-      linear-gradient(180deg, #f7f9fd 0%, #f2f5fb 100%);
-  }
-
-  .solar-home-page .solar-applications-layout {
-    align-items: start;
-    gap: clamp(2rem, 4vw, 3.5rem);
-  }
-
-  .solar-home-page .solar-applications-copy {
-    min-width: 0;
-  }
-
-  .solar-home-page .solar-application-note {
-    border-color: rgba(36, 87, 237, .15);
-    box-shadow: 0 12px 32px rgba(7, 20, 38, .045);
-    transition:
-      transform 280ms ease,
-      box-shadow 280ms ease;
-  }
-
-  .solar-home-page .solar-application-note:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 17px 34px rgba(7, 20, 38, .075);
-  }
-
-  .solar-home-page .solar-use-case-card {
-    min-width: 0;
-    height: 100%;
-    border-color: rgba(24, 43, 79, .11);
-    box-shadow: 0 8px 22px rgba(7, 20, 38, .025);
-    transition:
-      transform 280ms cubic-bezier(.22, 1, .36, 1),
-      border-color 280ms ease,
-      box-shadow 280ms ease;
-  }
-
-  .solar-home-page .solar-use-case-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(36, 87, 237, .33);
-    box-shadow: 0 16px 34px rgba(7, 20, 38, .065);
-  }
-
-  .solar-home-page .solar-use-case-icon {
-    transition: transform 280ms ease;
-  }
-
-  .solar-home-page .solar-use-case-card:hover .solar-use-case-icon {
-    transform: translateY(-2px) scale(1.04);
-    color: var(--sh-red);
-    background: rgba(255, 48, 75, .09);
-  }
-
   /* Installation process. */
 
   .solar-home-page .solar-process-list {
@@ -849,40 +1088,6 @@ const solarHomeStyles = `
 
   .solar-home-page .solar-process-step p {
     line-height: 1.75;
-  }
-
-  /* Preparation cards. */
-
-  .solar-home-page .solar-preparation-grid {
-    gap: 1rem;
-    margin-top: clamp(2rem, 3.5vw, 2.7rem);
-  }
-
-  .solar-home-page .solar-preparation-card {
-    height: 100%;
-    min-width: 0;
-    border-color: rgba(24, 43, 79, .11);
-    box-shadow: 0 8px 24px rgba(7, 20, 38, .035);
-    transition:
-      transform 300ms ease,
-      border-color 300ms ease,
-      box-shadow 300ms ease;
-  }
-
-  .solar-home-page .solar-preparation-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(36, 87, 237, .3);
-    box-shadow: 0 15px 32px rgba(7, 20, 38, .07);
-  }
-
-  .solar-home-page .solar-preparation-icon {
-    color: var(--sh-red) !important;
-    background: rgba(255, 48, 75, .08) !important;
-    transition: transform 280ms ease;
-  }
-
-  .solar-home-page .solar-preparation-card:hover .solar-preparation-icon {
-    transform: scale(1.07) rotate(-4deg);
   }
 
   /* Subsidy banner in the matching colour system. */
@@ -1059,10 +1264,6 @@ const solarHomeStyles = `
       max-height: none;
     }
 
-    .solar-home-page .solar-image-note {
-      width: calc(100% - 1rem);
-    }
-
     .solar-home-page .solar-section-heading-row {
       align-items: flex-start;
       gap: 1.15rem;
@@ -1072,9 +1273,7 @@ const solarHomeStyles = `
       align-self: flex-start;
     }
 
-    .solar-home-page .solar-solution-card:hover,
-    .solar-home-page .solar-use-case-card:hover,
-    .solar-home-page .solar-preparation-card:hover {
+    .solar-home-page .solar-solution-card:hover {
       transform: translateY(-2px);
     }
 
@@ -1110,28 +1309,6 @@ const solarHomeStyles = `
       gap: .4rem;
       padding: .4rem .65rem;
       font-size: .66rem;
-    }
-
-    .solar-home-page .solar-image-note {
-      align-items: flex-start;
-      margin-top: .65rem;
-      padding: .85rem;
-      border-radius: .9rem;
-    }
-
-    .solar-home-page .solar-image-note-icon {
-      width: 38px;
-      height: 38px;
-      flex-basis: 38px;
-      border-radius: .75rem;
-    }
-
-    .solar-home-page .solar-image-note-copy h3 {
-      font-size: .83rem;
-    }
-
-    .solar-home-page .solar-image-note-copy p {
-      font-size: .74rem;
     }
 
     .solar-home-page .solar-solution-card {
@@ -1442,82 +1619,62 @@ function Home() {
         </div>
       </section>
 
-      {/* Property applications */}
+      {/* Solar system types — replaces the repetitive property-use-case section */}
       <section
-        id="solar-applications"
-        className="solar-applications-section scroll-mt-28 section-y"
+        id="solar-system-types"
+        className="solar-system-section section-y scroll-mt-28"
       >
-        <div className="solar-applications-layout container-x grid lg:grid-cols-12">
-          <Reveal className="solar-applications-copy min-w-0 lg:col-span-5">
-            <span className="eyebrow">
-              {copy.applicationsSection.eyebrow}
-            </span>
+        <div className="container-x">
+          <SectionHeading
+            eyebrow="SOLAR SYSTEM CONFIGURATIONS"
+            title="Choose a Solar System That Fits Your Energy Needs"
+            lead="On-grid, off-grid and hybrid systems serve different needs. The right configuration depends on grid availability, backup expectations, electricity usage and site conditions."
+            align="center"
+          />
 
-            <h2 className="text-h2 mt-4 text-balance">
-              {copy.applicationsSection.title}
-            </h2>
-
-            <p className="text-lead mt-5 text-muted-foreground">
-              {copy.applicationsSection.body}
-            </p>
-
-            <div className="solar-application-note mt-7 rounded-2xl border border-border bg-card p-5 sm:p-6">
-              <div className="flex min-w-0 items-start gap-3">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <Sun className="h-5 w-5" aria-hidden="true" />
-                </span>
-
-                <div className="min-w-0">
-                  <h3 className="font-bold">
-                    {copy.applicationsSection.noteTitle}
-                  </h3>
-
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {copy.applicationsSection.noteBody}
-                  </p>
-                </div>
-              </div>
-
-              <Link
-                to="/contact"
-                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors"
-              >
-                {copy.applicationsSection.noteLink}
-                <ArrowRight
-                  className="h-4 w-4 shrink-0"
-                  aria-hidden="true"
-                />
-              </Link>
-            </div>
-          </Reveal>
-
-          <div className="grid min-w-0 gap-4 sm:grid-cols-2 lg:col-span-7">
-            {solarUseCases.map((item, index) => {
-              const Icon = item.icon;
+          <div className="solar-system-grid">
+            {solarSystemTypes.map((system, index) => {
+              const Icon = system.icon;
 
               return (
                 <Reveal
-                  key={item.title}
-                  delay={(index % 2) * 0.06}
+                  key={system.id}
+                  delay={index * 0.08}
                   className="min-w-0"
                 >
-                  <article className="solar-use-case-card h-full rounded-2xl border border-border bg-card p-5 sm:p-6">
-                    <span className="solar-use-case-icon grid h-12 w-12 place-items-center rounded-xl bg-primary/10 text-primary">
-                      <Icon className="h-6 w-6" aria-hidden="true" />
+                  <article className="solar-system-card">
+                    <span className="solar-system-icon">
+                      <Icon aria-hidden="true" />
                     </span>
 
-                    <h3 className="mt-5 text-lg font-bold leading-snug">
-                      {item.title}
-                    </h3>
+                    <span className="solar-system-label">
+                      {system.label}
+                    </span>
 
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      {item.body}
-                    </p>
+                    <h3>{system.title}</h3>
+                    <p>{system.body}</p>
+
+                    <div className="solar-system-fit">
+                      <CheckCircle2 aria-hidden="true" />
+                      <span>{system.fit}</span>
+                    </div>
+
+                    <Link
+                      to="/contact"
+                      className="solar-solution-link mt-5 inline-flex items-center gap-2 text-sm font-semibold"
+                    >
+                      Discuss this option
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
                   </article>
                 </Reveal>
               );
             })}
           </div>
+
+          <p className="solar-system-disclaimer">
+            System availability, export arrangements, backup performance and final capacity are subject to site assessment, equipment specifications and applicable electricity-distribution rules.
+          </p>
         </div>
       </section>
 
@@ -1558,44 +1715,63 @@ function Home() {
           ))}
         </ol>
       </section>
-      {/* Solar project essentials — single-row marquee */}
-<CustomerReviews />
 
-      {/* Preparation checklist */}
-      <section className="solar-applications-section section-y">
+      {/* Customer Reviews */}
+      <CustomerReviews />
+
+      {/* Solar components & technology — replaces the repeated project-essentials checklist */}
+      <section
+        id="solar-components"
+        className="solar-technology-section section-y scroll-mt-28"
+      >
         <div className="container-x">
           <SectionHeading
-            eyebrow={copy.preparationSection.eyebrow}
-            title={copy.preparationSection.title}
-            lead={copy.preparationSection.lead}
+            eyebrow="SOLAR COMPONENTS & TECHNOLOGY"
+            title="The Key Components Behind a Reliable Solar System"
+            lead="A solar installation is a connected system. Each component has a specific role, and its specification should be selected around the property, electrical design and energy requirements."
             align="center"
           />
 
-          <div className="solar-preparation-grid grid gap-4 md:grid-cols-3">
-            {solarPreparationItems.map((item, index) => (
-              <Reveal
-                key={item.title}
-                delay={index * 0.06}
-                className="min-w-0"
-              >
-                <article className="solar-preparation-card rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-6">
-                  <span className="solar-preparation-icon grid h-11 w-11 place-items-center rounded-xl">
-                    <CheckCircle2
-                      className="h-5 w-5"
-                      aria-hidden="true"
-                    />
-                  </span>
+          <div className="solar-technology-grid">
+            {solarComponents.map((component, index) => {
+              const Icon = component.icon;
 
-                  <h3 className="mt-4 text-lg font-bold">
-                    {item.title}
-                  </h3>
+              return (
+                <Reveal
+                  key={component.id}
+                  delay={(index % 3) * 0.07}
+                  className="min-w-0"
+                >
+                  <article className="solar-technology-card">
+                    <div className="solar-technology-card-top">
+                      <span className="solar-technology-icon">
+                        <Icon aria-hidden="true" />
+                      </span>
 
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {item.body}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
+                      <span className="solar-technology-number">
+                        {component.number}
+                      </span>
+                    </div>
+
+                    <h3>{component.title}</h3>
+                    <p>{component.body}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <div className="solar-technology-note">
+            <ShieldCheck aria-hidden="true" />
+            <p>
+              Component selection, protection requirements and equipment specifications should be confirmed by a qualified solar professional after reviewing the site and electrical requirements. Battery storage is optional and is not required for every solar installation.
+            </p>
+          </div>
+
+          <div className="mt-7 flex justify-center">
+            <ButtonLink to="/contact" variant="primary">
+              Discuss Your Solar Requirements
+            </ButtonLink>
           </div>
         </div>
       </section>
