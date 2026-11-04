@@ -1,5 +1,7 @@
 
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+
 import {
   Activity,
   ArrowRight,
@@ -16,13 +18,16 @@ import {
 
 import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { SolarCapabilityMarquee } from "@/components/home/SolarCapabilityMarquee";
+import SolarQuotePopup from "@/components/common/SolarQuotePopup";
 import { CustomerReviews } from "@/components/home/CustomerReviews";
+
 import {
   ButtonLink,
   CtaBand,
   Reveal,
   SectionHeading,
 } from "@/components/ui/brand";
+
 import { FAQAccordion } from "@/components/ui/cards";
 import { ThreeDIcon } from "@/components/ui/ThreeDIcon";
 
@@ -39,10 +44,16 @@ import {
 
 /*
   These two content groups replace the repetitive property-use-case
-  and project-essentials sections. Copy is intentionally educational:
+  and project-essentials sections.
+
+  Copy is intentionally educational:
   actual equipment, availability and final system suitability must be
   confirmed during a site assessment.
 */
+
+// ======================================================
+// SOLAR SYSTEM TYPES
+// ======================================================
 
 const solarSystemTypes = [
   {
@@ -70,6 +81,10 @@ const solarSystemTypes = [
     fit: "For properties that need grid connection with backup capability.",
   },
 ];
+
+// ======================================================
+// SOLAR COMPONENTS
+// ======================================================
 
 const solarComponents = [
   {
@@ -115,6 +130,10 @@ const solarComponents = [
     body: "Stores energy for later use where backup or off-grid operation is required. Battery sizing depends on load and backup needs.",
   },
 ];
+
+// ======================================================
+// HOME PAGE STYLES
+// ======================================================
 
 const solarHomeStyles = `
   .solar-home-page,
@@ -466,8 +485,13 @@ const solarHomeStyles = `
   }
 
   @keyframes solar-note-fade {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   @media (max-width: 767px) {
@@ -544,7 +568,11 @@ const solarHomeStyles = `
     isolation: isolate;
     overflow: hidden;
     background:
-      radial-gradient(ellipse at 8% 12%, rgba(36, 87, 237, .07), transparent 34%),
+      radial-gradient(
+        ellipse at 8% 12%,
+        rgba(36, 87, 237, .07),
+        transparent 34%
+      ),
       linear-gradient(180deg, #fff 0%, #f7f9ff 100%);
   }
 
@@ -1354,6 +1382,10 @@ const solarHomeStyles = `
   }
 `;
 
+// ======================================================
+// TANSTACK ROUTER
+// ======================================================
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -1375,493 +1407,631 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+// ======================================================
+// HOME PAGE
+// ======================================================
+
 function Home() {
+  /*
+    Open the solar quote popup every time the Home route mounts.
+
+    The zero-delay timeout allows the popup's custom event listener
+    to attach before the event is dispatched.
+
+    This also works when the user returns to Home through navigation.
+  */
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      window.dispatchEvent(
+        new Event("smartedge:open-quote")
+      );
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, []);
+
   return (
-    <div className="solar-home-page">
-      <style>{solarHomeStyles}</style>
+    <>
+      <div className="solar-home-page">
+        <style>{solarHomeStyles}</style>
 
-      {/* Hero */}
-      <HeroCarousel />
+        {/* =========================================
+            HERO
+        ========================================= */}
 
-      {/* Solar suitability */}
-      <section
-        id="solar-fit"
-        className="section-y container-x solar-intro-section scroll-mt-28"
-      >
-        <div className="solar-intro-grid grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-          <Reveal className="solar-intro-copy min-w-0 lg:col-span-6">
-            <span className="eyebrow">{copy.intro.eyebrow}</span>
+        <HeroCarousel />
 
-            <h2 className="text-h2 mt-4 text-balance">
-              {copy.intro.titleLead}{" "}
-              <span className="text-primary">
-                {copy.intro.titleHighlight}
+        {/* =========================================
+            SOLAR SUITABILITY
+        ========================================= */}
+
+        <section
+          id="solar-fit"
+          className="section-y container-x solar-intro-section scroll-mt-28"
+        >
+          <div className="solar-intro-grid grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+            <Reveal className="solar-intro-copy min-w-0 lg:col-span-6">
+              <span className="eyebrow">
+                {copy.intro.eyebrow}
               </span>
-              {copy.intro.titleTail}
-            </h2>
 
-            <p className="text-lead mt-5 text-muted-foreground">
-              {copy.intro.body}
-            </p>
-
-            <ul className="solar-intro-checklist mt-6 grid gap-3 text-sm sm:grid-cols-2">
-              {copy.intro.checklist.map((item) => (
-                <li
-                  key={item}
-                  className="flex min-w-0 items-start gap-2.5 text-muted-foreground"
-                >
-                  <CheckCircle2
-                    className="mt-0.5 h-4 w-4 shrink-0 text-primary"
-                    aria-hidden="true"
-                  />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="solar-intro-actions mt-7 flex flex-wrap gap-3">
-              <ButtonLink to="/contact" variant="primary">
-                {copy.intro.primaryCta}
-              </ButtonLink>
-
-              <ButtonLink to="/#solar-solutions" variant="outline">
-                {copy.intro.secondaryCta}
-              </ButtonLink>
-            </div>
-          </Reveal>
-
-          <Reveal
-            delay={0.1}
-            className="solar-image-stack min-w-0 lg:col-span-6"
-          >
-            <div className="solar-image-frame">
-              <img
-                src={residentialImage}
-                alt={copy.intro.imageAlt}
-                loading="lazy"
-                width={1130}
-                height={636}
-                className="solar-image-main"
-              />
-
-              <div
-                className="solar-image-overlay"
-                aria-hidden="true"
-              />
-
-              <div className="solar-image-caption">
-                <span className="solar-image-badge">
-                  <Sun
-                    className="h-4 w-4 shrink-0"
-                    aria-hidden="true"
-                  />
-                  <span>{copy.intro.imageBadge}</span>
+              <h2 className="text-h2 mt-4 text-balance">
+                {copy.intro.titleLead}{" "}
+                <span className="text-primary">
+                  {copy.intro.titleHighlight}
                 </span>
+                {copy.intro.titleTail}
+              </h2>
 
-                <p>{copy.intro.imageHeadline}</p>
-              </div>
-            </div>
+              <p className="text-lead mt-5 text-muted-foreground">
+                {copy.intro.body}
+              </p>
 
-            <div className="solar-image-note">
-              <span className="solar-image-note-icon">
-                <Leaf className="h-5 w-5" aria-hidden="true" />
-              </span>
-
-              <div className="solar-image-note-copy">
-                <h3>{copy.intro.imageNoteTitle}</h3>
-                <p>{copy.intro.imageNoteBody}</p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Solar capabilities */}
-      <SolarCapabilityMarquee
-        items={solarCapabilities}
-        badge={copy.marquee.badge}
-        titleFirst={copy.marquee.titleFirst}
-        titleHighlight={copy.marquee.titleHighlight}
-        quote={copy.marquee.quote}
-        ariaLabel={copy.marquee.ariaLabel}
-      />
-
-      {/* Solar solutions */}
-      <section
-        id="solar-solutions"
-        className="section-y container-x scroll-mt-28"
-      >
-        <div className="solar-section-heading-row flex flex-col justify-between md:flex-row md:items-end">
-          <SectionHeading
-            eyebrow={copy.solutionsSection.eyebrow}
-            title={copy.solutionsSection.title}
-            lead={copy.solutionsSection.lead}
-          />
-
-          <Reveal className="solar-section-action">
-            <a
-              href="#solar-solutions"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-current/25 px-5 py-2.5 text-sm font-semibold transition"
-            >
-              {copy.solutionsSection.button}
-              <ArrowUpRight
-                className="h-4 w-4 shrink-0"
-                aria-hidden="true"
-              />
-            </a>
-          </Reveal>
-        </div>
-
-        <div className="solar-solutions-grid grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {solarSolutions.map((solution, index) => {
-            const Icon = solution.icon;
-
-            return (
-              <Reveal
-                key={solution.title}
-                delay={(index % 3) * 0.06}
-                className="min-w-0"
-              >
-                <article className="solar-solution-card group relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-7">
-                  {solution.image && (
-                    <div className="-mx-5 -mt-5 mb-5 overflow-hidden sm:-mx-7 sm:-mt-7">
-                      <img
-                        src={solution.image}
-                        alt={solution.imageAlt || "Rooftop solar solution"}
-                        loading="lazy"
-                        width={800}
-                        height={450}
-                        className="solar-solution-image"
-                      />
-                    </div>
-                  )}
-
-                  <div className="relative flex min-w-0 items-center justify-between gap-3">
-                    <span className="solar-solution-icon grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary sm:h-14 sm:w-14">
-                      <Icon
-                        className="h-6 w-6 sm:h-7 sm:w-7"
-                        aria-hidden="true"
-                      />
-                    </span>
-
-                    <span className="solar-solution-label rounded-full border border-border px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-muted-foreground sm:px-3 sm:text-[0.68rem]">
-                      {solution.label}
-                    </span>
-                  </div>
-
-                  <h3 className="relative mt-5 text-xl font-bold leading-snug">
-                    {solution.title}
-                  </h3>
-
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-                    {solution.summary}
-                  </p>
-
-                  <Link
-                    to="/contact"
-                    className="solar-solution-link mt-6 inline-flex items-center text-sm font-semibold"
+              <ul className="solar-intro-checklist mt-6 grid gap-3 text-sm sm:grid-cols-2">
+                {copy.intro.checklist.map((item) => (
+                  <li
+                    key={item}
+                    className="flex min-w-0 items-start gap-2.5 text-muted-foreground"
                   >
-                    {copy.solutionsSection.cardLink}
-                    <ArrowRight
-                      className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                    <CheckCircle2
+                      className="mt-0.5 h-4 w-4 shrink-0 text-primary"
                       aria-hidden="true"
                     />
-                  </Link>
-                </article>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
 
-      {/* Solar principles */}
-      <section className="solar-principles-section surface-dark relative overflow-hidden bg-night section-y">
-        <div className="grid-lines absolute inset-0" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
 
-        <div className="container-x relative z-10">
-          <SectionHeading
-            eyebrow={copy.principlesSection.eyebrow}
-            title={copy.principlesSection.title}
-            lead={copy.principlesSection.lead}
-          />
+              <div className="solar-intro-actions mt-7 flex flex-wrap gap-3">
+                <ButtonLink to="/contact" variant="primary">
+                  {copy.intro.primaryCta}
+                </ButtonLink>
 
-          <div className="solar-principles-grid grid overflow-hidden rounded-3xl md:grid-cols-3">
-            {solarPrinciples.map((principle, index) => (
-              <Reveal
-                key={principle.title}
-                delay={index * 0.07}
-                className="min-w-0"
-              >
-                <article className="solar-principle-card group h-full p-6 sm:p-8 lg:p-9">
-                  <ThreeDIcon
-                    type={
-                      index === 0
-                        ? "solar"
-                        : index === 1
-                          ? "data"
-                          : "shield"
-                    }
-                    variant="night"
-                    size={58}
+                <ButtonLink
+                  to="/#solar-solutions"
+                  variant="outline"
+                >
+                  {copy.intro.secondaryCta}
+                </ButtonLink>
+              </div>
+            </Reveal>
+
+            <Reveal
+              delay={0.1}
+              className="solar-image-stack min-w-0 lg:col-span-6"
+            >
+              <div className="solar-image-frame">
+                <img
+                  src={residentialImage}
+                  alt={copy.intro.imageAlt}
+                  loading="lazy"
+                  width={1130}
+                  height={636}
+                  className="solar-image-main"
+                />
+
+                <div
+                  className="solar-image-overlay"
+                  aria-hidden="true"
+                />
+
+                <div className="solar-image-caption">
+                  <span className="solar-image-badge">
+                    <Sun
+                      className="h-4 w-4 shrink-0"
+                      aria-hidden="true"
+                    />
+
+                    <span>
+                      {copy.intro.imageBadge}
+                    </span>
+                  </span>
+
+                  <p>
+                    {copy.intro.imageHeadline}
+                  </p>
+                </div>
+              </div>
+
+              <div className="solar-image-note">
+                <span className="solar-image-note-icon">
+                  <Leaf
+                    className="h-5 w-5"
+                    aria-hidden="true"
                   />
+                </span>
 
-                  <h3 className="mt-5 text-xl font-bold">
-                    {principle.title}
+                <div className="solar-image-note-copy">
+                  <h3>
+                    {copy.intro.imageNoteTitle}
                   </h3>
 
-                  <p className="mt-3 text-sm">
-                    {principle.body}
+                  <p>
+                    {copy.intro.imageNoteBody}
                   </p>
-                </article>
-              </Reveal>
-            ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Solar system types — replaces the repetitive property-use-case section */}
-      <section
-        id="solar-system-types"
-        className="solar-system-section section-y scroll-mt-28"
-      >
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="SOLAR SYSTEM CONFIGURATIONS"
-            title="Choose a Solar System That Fits Your Energy Needs"
-            lead="On-grid, off-grid and hybrid systems serve different needs. The right configuration depends on grid availability, backup expectations, electricity usage and site conditions."
-            align="center"
-          />
+        {/* =========================================
+            SOLAR CAPABILITIES
+        ========================================= */}
 
-          <div className="solar-system-grid">
-            {solarSystemTypes.map((system, index) => {
-              const Icon = system.icon;
+        <SolarCapabilityMarquee
+          items={solarCapabilities}
+          badge={copy.marquee.badge}
+          titleFirst={copy.marquee.titleFirst}
+          titleHighlight={copy.marquee.titleHighlight}
+          quote={copy.marquee.quote}
+          ariaLabel={copy.marquee.ariaLabel}
+        />
+
+        {/* =========================================
+            SOLAR SOLUTIONS
+        ========================================= */}
+
+        <section
+          id="solar-solutions"
+          className="section-y container-x scroll-mt-28"
+        >
+          <div className="solar-section-heading-row flex flex-col justify-between md:flex-row md:items-end">
+            <SectionHeading
+              eyebrow={copy.solutionsSection.eyebrow}
+              title={copy.solutionsSection.title}
+              lead={copy.solutionsSection.lead}
+            />
+
+            <Reveal className="solar-section-action">
+              <a
+                href="#solar-solutions"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-current/25 px-5 py-2.5 text-sm font-semibold transition"
+              >
+                {copy.solutionsSection.button}
+
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                />
+              </a>
+            </Reveal>
+          </div>
+
+          <div className="solar-solutions-grid grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {solarSolutions.map((solution, index) => {
+              const Icon = solution.icon;
 
               return (
                 <Reveal
-                  key={system.id}
-                  delay={index * 0.08}
+                  key={solution.title}
+                  delay={(index % 3) * 0.06}
                   className="min-w-0"
                 >
-                  <article className="solar-system-card">
-                    <span className="solar-system-icon">
-                      <Icon aria-hidden="true" />
-                    </span>
+                  <article className="solar-solution-card group relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-soft sm:p-7">
+                    {solution.image && (
+                      <div className="-mx-5 -mt-5 mb-5 overflow-hidden sm:-mx-7 sm:-mt-7">
+                        <img
+                          src={solution.image}
+                          alt={
+                            solution.imageAlt ||
+                            "Rooftop solar solution"
+                          }
+                          loading="lazy"
+                          width={800}
+                          height={450}
+                          className="solar-solution-image"
+                        />
+                      </div>
+                    )}
 
-                    <span className="solar-system-label">
-                      {system.label}
-                    </span>
+                    <div className="relative flex min-w-0 items-center justify-between gap-3">
+                      <span className="solar-solution-icon grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary/10 text-primary sm:h-14 sm:w-14">
+                        <Icon
+                          className="h-6 w-6 sm:h-7 sm:w-7"
+                          aria-hidden="true"
+                        />
+                      </span>
 
-                    <h3>{system.title}</h3>
-                    <p>{system.body}</p>
-
-                    <div className="solar-system-fit">
-                      <CheckCircle2 aria-hidden="true" />
-                      <span>{system.fit}</span>
+                      <span className="solar-solution-label rounded-full border border-border px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wider text-muted-foreground sm:px-3 sm:text-[0.68rem]">
+                        {solution.label}
+                      </span>
                     </div>
+
+                    <h3 className="relative mt-5 text-xl font-bold leading-snug">
+                      {solution.title}
+                    </h3>
+
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                      {solution.summary}
+                    </p>
 
                     <Link
                       to="/contact"
-                      className="solar-solution-link mt-5 inline-flex items-center gap-2 text-sm font-semibold"
+                      className="solar-solution-link mt-6 inline-flex items-center text-sm font-semibold"
                     >
-                      Discuss this option
-                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      {copy.solutionsSection.cardLink}
+
+                      <ArrowRight
+                        className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
                     </Link>
                   </article>
                 </Reveal>
               );
             })}
           </div>
+        </section>
 
-          <p className="solar-system-disclaimer">
-            System availability, export arrangements, backup performance and final capacity are subject to site assessment, equipment specifications and applicable electricity-distribution rules.
-          </p>
-        </div>
-      </section>
+        {/* =========================================
+            SOLAR PRINCIPLES
+        ========================================= */}
 
-      {/* Installation process */}
-      <section
-        id="solar-process"
-        className="section-y container-x scroll-mt-28"
-      >
-        <SectionHeading
-          eyebrow={copy.processSection.eyebrow}
-          title={copy.processSection.title}
-          lead={copy.processSection.lead}
-          align="center"
-        />
-
-        <ol className="solar-process-list relative grid gap-8 md:grid-cols-4 md:gap-6">
-          <li
-            className="absolute left-0 right-0 top-6 hidden h-px bg-linear-to-r from-transparent via-primary/40 to-transparent md:block"
+        <section className="solar-principles-section surface-dark relative overflow-hidden bg-night section-y">
+          <div
+            className="grid-lines absolute inset-0"
             aria-hidden="true"
           />
 
-          {solarProcess.map((step, index) => (
-            <li key={step.step} className="solar-process-step relative">
-              <Reveal delay={index * 0.06}>
-                <span className="solar-process-number relative z-10 grid h-12 w-12 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
-                  {step.step}
-                </span>
+          <div className="container-x relative z-10">
+            <SectionHeading
+              eyebrow={copy.principlesSection.eyebrow}
+              title={copy.principlesSection.title}
+              lead={copy.principlesSection.lead}
+            />
 
-                <h3 className="mt-5 text-xl font-bold">
-                  {step.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {step.body}
-                </p>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* Customer Reviews */}
-      <CustomerReviews />
-
-      {/* Solar components & technology — replaces the repeated project-essentials checklist */}
-      <section
-        id="solar-components"
-        className="solar-technology-section section-y scroll-mt-28"
-      >
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="SOLAR COMPONENTS & TECHNOLOGY"
-            title="The Key Components Behind a Reliable Solar System"
-            lead="A solar installation is a connected system. Each component has a specific role, and its specification should be selected around the property, electrical design and energy requirements."
-            align="center"
-          />
-
-          <div className="solar-technology-grid">
-            {solarComponents.map((component, index) => {
-              const Icon = component.icon;
-
-              return (
+            <div className="solar-principles-grid grid overflow-hidden rounded-3xl md:grid-cols-3">
+              {solarPrinciples.map((principle, index) => (
                 <Reveal
-                  key={component.id}
-                  delay={(index % 3) * 0.07}
+                  key={principle.title}
+                  delay={index * 0.07}
                   className="min-w-0"
                 >
-                  <article className="solar-technology-card">
-                    <div className="solar-technology-card-top">
-                      <span className="solar-technology-icon">
+                  <article className="solar-principle-card group h-full p-6 sm:p-8 lg:p-9">
+                    <ThreeDIcon
+                      type={
+                        index === 0
+                          ? "solar"
+                          : index === 1
+                            ? "data"
+                            : "shield"
+                      }
+                      variant="night"
+                      size={58}
+                    />
+
+                    <h3 className="mt-5 text-xl font-bold">
+                      {principle.title}
+                    </h3>
+
+                    <p className="mt-3 text-sm">
+                      {principle.body}
+                    </p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================
+            SOLAR SYSTEM TYPES
+        ========================================= */}
+
+        <section
+          id="solar-system-types"
+          className="solar-system-section section-y scroll-mt-28"
+        >
+          <div className="container-x">
+            <SectionHeading
+              eyebrow="SOLAR SYSTEM CONFIGURATIONS"
+              title="Choose a Solar System That Fits Your Energy Needs"
+              lead="On-grid, off-grid and hybrid systems serve different needs. The right configuration depends on grid availability, backup expectations, electricity usage and site conditions."
+              align="center"
+            />
+
+            <div className="solar-system-grid">
+              {solarSystemTypes.map((system, index) => {
+                const Icon = system.icon;
+
+                return (
+                  <Reveal
+                    key={system.id}
+                    delay={index * 0.08}
+                    className="min-w-0"
+                  >
+                    <article className="solar-system-card">
+                      <span className="solar-system-icon">
                         <Icon aria-hidden="true" />
                       </span>
 
-                      <span className="solar-technology-number">
-                        {component.number}
+                      <span className="solar-system-label">
+                        {system.label}
                       </span>
-                    </div>
 
-                    <h3>{component.title}</h3>
-                    <p>{component.body}</p>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
+                      <h3>{system.title}</h3>
 
-          <div className="solar-technology-note">
-            <ShieldCheck aria-hidden="true" />
-            <p>
-              Component selection, protection requirements and equipment specifications should be confirmed by a qualified solar professional after reviewing the site and electrical requirements. Battery storage is optional and is not required for every solar installation.
+                      <p>{system.body}</p>
+
+                      <div className="solar-system-fit">
+                        <CheckCircle2 aria-hidden="true" />
+
+                        <span>{system.fit}</span>
+                      </div>
+
+                      <Link
+                        to="/contact"
+                        className="solar-solution-link mt-5 inline-flex items-center gap-2 text-sm font-semibold"
+                      >
+                        Discuss this option
+
+                        <ArrowRight
+                          className="h-4 w-4"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </article>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            <p className="solar-system-disclaimer">
+              System availability, export arrangements, backup
+              performance and final capacity are subject to
+              site assessment, equipment specifications and
+              applicable electricity-distribution rules.
             </p>
           </div>
+        </section>
 
-          <div className="mt-7 flex justify-center">
-            <ButtonLink to="/contact" variant="primary">
-              Discuss Your Solar Requirements
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
+        {/* =========================================
+            INSTALLATION PROCESS
+        ========================================= */}
 
-      {/* Subsidy guidance */}
-      <section className="solar-subsidy-section container-x">
-        <Reveal>
-          <div className="solar-subsidy-card relative overflow-hidden rounded-3xl border p-5 shadow-soft sm:p-8 lg:p-10">
-            <div
-              className="pointer-events-none absolute -right-14 -top-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+        <section
+          id="solar-process"
+          className="section-y container-x scroll-mt-28"
+        >
+          <SectionHeading
+            eyebrow={copy.processSection.eyebrow}
+            title={copy.processSection.title}
+            lead={copy.processSection.lead}
+            align="center"
+          />
+
+          <ol className="solar-process-list relative grid gap-8 md:grid-cols-4 md:gap-6">
+            <li
+              className="absolute left-0 right-0 top-6 hidden h-px bg-linear-to-r from-transparent via-primary/40 to-transparent md:block"
               aria-hidden="true"
             />
 
-            <div className="solar-subsidy-content relative grid min-w-0 gap-6 lg:grid-cols-12 lg:items-center lg:gap-8">
-              <div className="min-w-0 lg:col-span-8">
-                <span className="inline-flex max-w-full items-center gap-2 rounded-full border bg-white/85 px-3 py-1.5 text-xs font-bold uppercase tracking-wider">
-                  <Sun className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span>{copy.subsidySection.eyebrow}</span>
-                </span>
+            {solarProcess.map((step, index) => (
+              <li
+                key={step.step}
+                className="solar-process-step relative"
+              >
+                <Reveal delay={index * 0.06}>
+                  <span className="solar-process-number relative z-10 grid h-12 w-12 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
+                    {step.step}
+                  </span>
 
-                <h2 className="text-h2 mt-5 text-balance">
-                  {copy.subsidySection.title}
-                </h2>
+                  <h3 className="mt-5 text-xl font-bold">
+                    {step.title}
+                  </h3>
 
-                <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
-                  {copy.subsidySection.body}
-                </p>
-              </div>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {step.body}
+                  </p>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-              <div className="solar-subsidy-action min-w-0 lg:col-span-4 lg:flex lg:justify-end">
-                <a
-                  href={copy.subsidySection.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-semibold text-white sm:w-auto"
-                >
-                  <span>{copy.subsidySection.button}</span>
-                  <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-                </a>
-              </div>
+        {/* =========================================
+            CUSTOMER REVIEWS
+        ========================================= */}
+
+        <CustomerReviews />
+
+        {/* =========================================
+            SOLAR COMPONENTS & TECHNOLOGY
+        ========================================= */}
+
+        <section
+          id="solar-components"
+          className="solar-technology-section section-y scroll-mt-28"
+        >
+          <div className="container-x">
+            <SectionHeading
+              eyebrow="SOLAR COMPONENTS & TECHNOLOGY"
+              title="The Key Components Behind a Reliable Solar System"
+              lead="A solar installation is a connected system. Each component has a specific role, and its specification should be selected around the property, electrical design and energy requirements."
+              align="center"
+            />
+
+            <div className="solar-technology-grid">
+              {solarComponents.map((component, index) => {
+                const Icon = component.icon;
+
+                return (
+                  <Reveal
+                    key={component.id}
+                    delay={(index % 3) * 0.07}
+                    className="min-w-0"
+                  >
+                    <article className="solar-technology-card">
+                      <div className="solar-technology-card-top">
+                        <span className="solar-technology-icon">
+                          <Icon aria-hidden="true" />
+                        </span>
+
+                        <span className="solar-technology-number">
+                          {component.number}
+                        </span>
+                      </div>
+
+                      <h3>{component.title}</h3>
+
+                      <p>{component.body}</p>
+                    </article>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            <div className="solar-technology-note">
+              <ShieldCheck aria-hidden="true" />
+
+              <p>
+                Component selection, protection requirements
+                and equipment specifications should be
+                confirmed by a qualified solar professional
+                after reviewing the site and electrical
+                requirements. Battery storage is optional
+                and is not required for every solar installation.
+              </p>
+            </div>
+
+            <div className="mt-7 flex justify-center">
+              <ButtonLink to="/contact" variant="primary">
+                Discuss Your Solar Requirements
+              </ButtonLink>
             </div>
           </div>
-        </Reveal>
-      </section>
+        </section>
 
-      {/* FAQ */}
-      <section
-        id="solar-faq"
-        className="solar-faq-section section-y container-x scroll-mt-28 grid lg:grid-cols-12"
-      >
-        <div className="solar-faq-copy lg:col-span-4">
-          <SectionHeading
-            eyebrow={copy.faqSection.eyebrow}
-            title={copy.faqSection.title}
-            lead={copy.faqSection.lead}
-          />
+        {/* =========================================
+            SUBSIDY GUIDANCE
+        ========================================= */}
 
-          <div className="solar-faq-note mt-6 rounded-2xl border border-border bg-card p-5">
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              {copy.faqSection.note}
-            </p>
+        <section className="solar-subsidy-section container-x">
+          <Reveal>
+            <div className="solar-subsidy-card relative overflow-hidden rounded-3xl border p-5 shadow-soft sm:p-8 lg:p-10">
+              <div
+                className="pointer-events-none absolute -right-14 -top-20 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
+                aria-hidden="true"
+              />
 
-            <a
-              href={copy.subsidySection.href}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
-            >
-              <span>{copy.faqSection.noteLink}</span>
-              <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-            </a>
+              <div className="solar-subsidy-content relative grid min-w-0 gap-6 lg:grid-cols-12 lg:items-center lg:gap-8">
+                <div className="min-w-0 lg:col-span-8">
+                  <span className="inline-flex max-w-full items-center gap-2 rounded-full border bg-white/85 px-3 py-1.5 text-xs font-bold uppercase tracking-wider">
+                    <Sun
+                      className="h-4 w-4 shrink-0"
+                      aria-hidden="true"
+                    />
+
+                    <span>
+                      {copy.subsidySection.eyebrow}
+                    </span>
+                  </span>
+
+                  <h2 className="text-h2 mt-5 text-balance">
+                    {copy.subsidySection.title}
+                  </h2>
+
+                  <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">
+                    {copy.subsidySection.body}
+                  </p>
+                </div>
+
+                <div className="solar-subsidy-action min-w-0 lg:col-span-4 lg:flex lg:justify-end">
+                  <a
+                    href={copy.subsidySection.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-semibold text-white sm:w-auto"
+                  >
+                    <span>
+                      {copy.subsidySection.button}
+                    </span>
+
+                    <ArrowUpRight
+                      className="h-4 w-4 shrink-0"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        {/* =========================================
+            FAQ
+        ========================================= */}
+
+        <section
+          id="solar-faq"
+          className="solar-faq-section section-y container-x scroll-mt-28 grid lg:grid-cols-12"
+        >
+          <div className="solar-faq-copy lg:col-span-4">
+            <SectionHeading
+              eyebrow={copy.faqSection.eyebrow}
+              title={copy.faqSection.title}
+              lead={copy.faqSection.lead}
+            />
+
+            <div className="solar-faq-note mt-6 rounded-2xl border border-border bg-card p-5">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {copy.faqSection.note}
+              </p>
+
+              <a
+                href={copy.subsidySection.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+              >
+                <span>
+                  {copy.faqSection.noteLink}
+                </span>
+
+                <ArrowUpRight
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                />
+              </a>
+            </div>
           </div>
+
+          <Reveal className="min-w-0 lg:col-span-8">
+            <FAQAccordion items={solarFaqs} />
+          </Reveal>
+        </section>
+
+        {/* =========================================
+            FINAL CALL TO ACTION
+        ========================================= */}
+
+        <div className="solar-home-cta">
+          <CtaBand
+            eyebrow={copy.cta.eyebrow}
+            title={copy.cta.title}
+            body={copy.cta.body}
+            buttonLabel={copy.cta.button}
+            buttonTo="/contact"
+          />
         </div>
-
-        <Reveal className="min-w-0 lg:col-span-8">
-          <FAQAccordion items={solarFaqs} />
-        </Reveal>
-      </section>
-
-      {/* Final call to action */}
-      <div className="solar-home-cta">
-        <CtaBand
-          eyebrow={copy.cta.eyebrow}
-          title={copy.cta.title}
-          body={copy.cta.body}
-          buttonLabel={copy.cta.button}
-          buttonTo="/contact"
-        />
       </div>
-    </div>
+
+      {/* =========================================
+          SOLAR QUOTE POPUP
+
+          autoOpen is false intentionally:
+          Home triggers the popup through the custom event
+          on every route mount, bypassing the old
+          sessionStorage auto-open restriction.
+      ========================================= */}
+
+      <SolarQuotePopup autoOpen={false} />
+    </>
   );
 }
 
