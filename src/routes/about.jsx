@@ -24,7 +24,7 @@ import { BrandMarquee } from "@/components/home/BrandMarquee";
 import { services } from "@/data/services";
 
 import studio from "@/assets/about/studio.jpg";
-import transformation from "@/assets/hero/hero-transformation.jpg";
+import transformation from "@/assets/about/image.png";
 
 /* =========================================
    PAGE DATA

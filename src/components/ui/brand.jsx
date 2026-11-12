@@ -86,7 +86,7 @@ export function PageHero({ eyebrow, title, lead, image, children }) {
         <img
           src={image}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-45"
+          className="absolute inset-0 h-full w-full object-cover opacity-65 brightness-110 saturate-105"
           width={1280}
           height={960}
         />

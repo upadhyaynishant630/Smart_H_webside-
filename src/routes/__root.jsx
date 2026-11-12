@@ -17,6 +17,8 @@ import { Footer } from "@/components/common/Footer";
 import { buttonStyles } from "@/components/ui/brand";
 import { FloatingActions } from "@/components/common/FloatingActions";
 
+const INITIAL_PATH_STORAGE_KEY = "smartedge_initial_path";
+
 function NotFoundComponent() {
   return (
     <section className="surface-dark relative flex min-h-[70vh] items-center overflow-hidden bg-night">
@@ -89,7 +91,7 @@ export const Route = createRootRouteWithContext()({
       { property: "og:site_name", content: "SmartEDGE" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#071126" },
+      { name: "theme-color", content: "#ffffff" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -124,6 +126,20 @@ function RootShell({ children }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  if (typeof window !== "undefined") {
+    try {
+      if (!window.sessionStorage.getItem(INITIAL_PATH_STORAGE_KEY)) {
+        window.sessionStorage.setItem(
+          INITIAL_PATH_STORAGE_KEY,
+          window.location.pathname
+        );
+      }
+    } catch {
+      // The popup still remains available through manual triggers.
+    }
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <a

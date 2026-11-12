@@ -116,10 +116,10 @@ export function AnnouncementBar() {
         }
 
         .sh-announcement {
-          --sh-ab-blue: #7775ff;
-          --sh-ab-cyan: #54e5f0;
-          --sh-ab-text: #f6f7ff;
-          --sh-ab-muted: #c5cce1;
+          --sh-ab-blue: #3478e8;
+          --sh-ab-cyan: #3478e8;
+          --sh-ab-text: #f6f9ff;
+          --sh-ab-muted: #c9d8ea;
 
           position: relative;
           z-index: 50;
@@ -130,22 +130,22 @@ export function AnnouncementBar() {
           color: var(--sh-ab-text);
           background:
             radial-gradient(
-              ellipse at 18% 50%,
-              rgba(83, 92, 255, 0.18),
-              transparent 40%
+              ellipse at 12% 50%,
+              rgba(83, 151, 255, 0.22),
+              transparent 34%
             ),
             radial-gradient(
-              ellipse at 86% 50%,
-              rgba(48, 194, 226, 0.11),
-              transparent 34%
+              ellipse at 88% 50%,
+              rgba(72, 196, 226, 0.16),
+              transparent 38%
             ),
             linear-gradient(
               105deg,
-              #080f25 0%,
-              #101a3b 48%,
-              #09152d 100%
+              #102d52 0%,
+              #163d68 48%,
+              #0b1f3b 100%
             );
-          border-bottom: 1px solid rgba(151, 169, 255, 0.15);
+          border-bottom: 0;
           font-family:
             Inter,
             Manrope,
@@ -168,14 +168,7 @@ export function AnnouncementBar() {
           left: 0;
           width: 100%;
           height: 1px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(119, 117, 255, 0.8),
-            var(--sh-ab-cyan),
-            rgba(119, 117, 255, 0.8),
-            transparent
-          );
+          background: transparent;
           content: "";
           pointer-events: none;
         }
@@ -187,14 +180,9 @@ export function AnnouncementBar() {
           left: -35%;
           width: 32%;
           height: 1px;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            #fff,
-            transparent
-          );
-          box-shadow: 0 0 14px rgba(84, 229, 240, 0.65);
-          animation: sh-ab-light-sweep 7s ease-in-out infinite;
+          background: transparent;
+          box-shadow: none;
+          animation: none;
           content: "";
           pointer-events: none;
         }
@@ -270,10 +258,10 @@ export function AnnouncementBar() {
           flex: 0 0 auto;
           padding: 5px 10px;
           overflow: hidden;
-          border: 1px solid rgba(119, 117, 255, 0.25);
+          border: 1px solid rgba(151, 196, 255, 0.38);
           border-radius: 999px;
-          background: rgba(119, 117, 255, 0.11);
-          color: #dcdcff;
+          background: rgba(91, 157, 244, 0.18);
+          color: #f6f9ff;
           font-size: 11px;
           font-weight: 750;
           letter-spacing: 0.015em;
@@ -307,10 +295,10 @@ export function AnnouncementBar() {
 
         .sh-ab-link:hover {
           transform: translateY(-1px);
-          border-color: rgba(84, 229, 240, 0.4);
-          background: rgba(84, 229, 240, 0.12);
-          color: #fff;
-          box-shadow: 0 3px 16px rgba(84, 229, 240, 0.08);
+          border-color: rgba(164, 213, 255, 0.72);
+          background: rgba(91, 174, 255, 0.3);
+          color: #ffffff;
+          box-shadow: 0 3px 16px rgba(52, 120, 232, 0.24);
         }
 
         .sh-ab-link:hover::before {
@@ -345,7 +333,7 @@ export function AnnouncementBar() {
           align-items: center;
           justify-content: center;
           flex: 0 0 auto;
-          color: #a9a6ff;
+          color: #3478e8;
         }
 
         .sh-ab-sparkle svg {

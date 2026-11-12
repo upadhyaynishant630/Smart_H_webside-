@@ -2024,13 +2024,12 @@ function Home() {
       {/* =========================================
           SOLAR QUOTE POPUP
 
-          autoOpen is false intentionally:
-          Home triggers the popup through the custom event
-          on every route mount, bypassing the old
-          sessionStorage auto-open restriction.
+          The automatic popup is limited to the initial
+          Home entry. Manual quote triggers remain available
+          after navigation.
       ========================================= */}
 
-      <SolarQuotePopup autoOpen={false} />
+      <SolarQuotePopup autoOpen={true} />
     </>
   );
 }

@@ -34,21 +34,21 @@ const HERO_SLIDES = Array.isArray(heroSlides)
 const heroStats = [
   {
     id: "experience",
-    value: 7,
+    value: 2,
     suffix: "+",
     label: "Years Experience",
     description: "Years Experience",
   },
   {
     id: "projects",
-    value: 500,
+    value: 210,
     suffix: "+",
     label: "Projects Completed",
     description: "Projects Completed",
   },
   {
     id: "solar",
-    value: 5,
+    value: 2.1,
     suffix: "MW+",
     label: "Solar Installed",
     description: "Solar Installed",
@@ -275,6 +275,8 @@ const heroCarouselStyles = `
   object-fit: cover;
   object-position: center;
 
+  filter: brightness(1.16) saturate(1.06);
+
   transform: scale(1.035);
 
   user-select: none;
@@ -315,16 +317,16 @@ const heroCarouselStyles = `
   background:
     linear-gradient(
       90deg,
-      rgba(3, 10, 20, .96) 0%,
-      rgba(4, 13, 26, .88) 29%,
-      rgba(4, 13, 26, .58) 56%,
-      rgba(4, 13, 26, .17) 100%
+      rgba(3, 10, 20, .82) 0%,
+      rgba(4, 13, 26, .70) 29%,
+      rgba(4, 13, 26, .40) 56%,
+      rgba(4, 13, 26, .12) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(3, 10, 20, .88) 0%,
-      rgba(3, 10, 20, .08) 40%,
-      rgba(3, 10, 20, .27) 100%
+      rgba(3, 10, 20, .68) 0%,
+      rgba(3, 10, 20, .06) 40%,
+      rgba(3, 10, 20, .18) 100%
     );
 }
 

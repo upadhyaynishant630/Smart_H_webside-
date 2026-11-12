@@ -69,8 +69,8 @@
   --cobalt: oklch(0.56 0.235 266);
   --electric: oklch(0.67 0.17 268);
   --red: oklch(0.65 0.225 18);
-  --offwhite: oklch(0.98 0.005 260);
-  --mist: oklch(0.77 0.035 262);
+  --offwhite: oklch(1 0 0);
+  --mist: oklch(0.72 0.025 262);
 
   --radius: 0.75rem;
   --background: var(--offwhite);
@@ -81,18 +81,18 @@
   --popover-foreground: var(--midnight);
   --primary: var(--cobalt);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.94 0.012 262);
+  --secondary: oklch(0.96 0.018 262);
   --secondary-foreground: var(--midnight);
-  --muted: oklch(0.95 0.01 262);
-  --muted-foreground: oklch(0.47 0.04 264);
-  --accent: oklch(0.93 0.035 266);
+  --muted: oklch(0.97 0.012 262);
+  --muted-foreground: oklch(0.43 0.035 264);
+  --accent: oklch(0.95 0.025 266);
   --accent-foreground: var(--cobalt);
   --signal: var(--red);
   --signal-foreground: oklch(1 0 0);
   --destructive: oklch(0.58 0.22 22);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0.015 262);
-  --input: oklch(0.88 0.018 262);
+  --border: oklch(0.91 0.012 262);
+  --input: oklch(0.89 0.015 262);
   --ring: var(--cobalt);
   --chart-1: var(--cobalt);
   --chart-2: var(--electric);
@@ -111,7 +111,7 @@
   --gradient-cobalt: linear-gradient(135deg, var(--cobalt), var(--electric));
   --gradient-night: radial-gradient(120% 90% at 85% 0%, oklch(0.3 0.12 266 / 0.55), transparent 60%),
     linear-gradient(180deg, var(--midnight), var(--deep));
-  --gradient-scrim: linear-gradient(90deg, oklch(0.17 0.04 266 / 0.94) 0%, oklch(0.17 0.04 266 / 0.72) 45%, oklch(0.17 0.04 266 / 0.2) 100%);
+  --gradient-scrim: linear-gradient(90deg, oklch(0.17 0.04 266 / 0.82) 0%, oklch(0.17 0.04 266 / 0.56) 45%, oklch(0.17 0.04 266 / 0.12) 100%);
   --shadow-soft: 0 1px 2px oklch(0.17 0.04 266 / 0.06), 0 12px 32px -12px oklch(0.17 0.04 266 / 0.18);
   --shadow-lift: 0 30px 60px -24px oklch(0.17 0.04 266 / 0.35);
   --shadow-cobalt: 0 14px 36px -12px oklch(0.56 0.235 266 / 0.55);
@@ -121,7 +121,7 @@
 .surface-dark {
   --background: var(--midnight);
   --foreground: oklch(0.98 0.005 260);
-  --card: var(--deep);
+  --card: oklch(37.445% 0.07767 265.654 / 0.919);
   --card-foreground: oklch(0.98 0.005 260);
   --popover: var(--deep);
   --popover-foreground: oklch(0.98 0.005 260);
@@ -142,12 +142,13 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
-    background-color: var(--color-background);
+    background-color: #ffffff;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+  main { background-color: #ffffff; }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
   :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 4px; }
   @media (prefers-reduced-motion: reduce) {
@@ -215,8 +216,8 @@
   position: relative; display: grid; place-items: center; width: 100%; height: 100%;
   border-radius: 28%;
   background:
-    radial-gradient(120% 90% at 25% 15%, oklch(0.8 0.12 268 / 0.9), transparent 45%),
-    linear-gradient(150deg, var(--electric) 0%, var(--cobalt) 45%, oklch(0.36 0.18 266) 100%);
+    radial-gradient(120% 90% at 25% 15%, oklch(0.9 0.1 268 / 0.95), transparent 45%),
+    linear-gradient(150deg, oklch(0.76 0.14 268) 0%, var(--cobalt) 45%, oklch(0.48 0.16 266) 100%);
   box-shadow:
     inset 0 2px 0 oklch(1 0 0 / 0.45),
     inset 0 -6px 12px oklch(0.2 0.1 266 / 0.55),
@@ -234,8 +235,8 @@
 }
 @utility icon3d-night {
   background:
-    radial-gradient(120% 90% at 25% 15%, oklch(0.5 0.12 266 / 0.8), transparent 50%),
-    linear-gradient(150deg, oklch(0.32 0.08 266), var(--deep) 60%, var(--midnight));
+    radial-gradient(120% 90% at 25% 15%, oklch(0.72 0.1 266 / 0.9), transparent 50%),
+    linear-gradient(150deg, oklch(0.48 0.12 266), oklch(0.36 0.08 266) 60%, oklch(0.27 0.05 266));
   box-shadow:
     inset 0 1px 0 oklch(1 0 0 / 0.25), inset 0 -6px 12px oklch(0 0 0 / 0.4),
     0 8px 0 -2px oklch(0.12 0.03 266), 0 18px 30px -10px oklch(0.1 0.05 266 / 0.7);

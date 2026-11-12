@@ -8,6 +8,8 @@ import React, {
 } from "react";
 
 const STORAGE_KEY = "smartedge_solar_quote_popup_seen";
+const INITIAL_PATH_STORAGE_KEY = "smartedge_initial_path";
+let automaticOpenReserved = false;
 
 const QUOTE_CTA_LABELS = [
   "request a solar assessment",
@@ -54,6 +56,7 @@ export default function SolarQuotePopup({
   // ---------------------------------------------
   // OPEN POPUP
   // ---------------------------------------------
+
   const openPopup = useCallback(() => {
     if (autoTimerRef.current !== null) {
       window.clearTimeout(autoTimerRef.current);
@@ -67,6 +70,9 @@ export default function SolarQuotePopup({
 
     isOpenRef.current = true;
 
+    // Remember that the popup has been displayed.
+    // Session storage prevents automatic reopening after a refresh while
+    // allowing the popup to appear again in a new browser session.
     try {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
     } catch {
@@ -80,6 +86,7 @@ export default function SolarQuotePopup({
   // ---------------------------------------------
   // CLOSE POPUP
   // ---------------------------------------------
+
   const closePopup = useCallback(() => {
     if (isSubmittingRef.current) return;
 
@@ -90,6 +97,7 @@ export default function SolarQuotePopup({
   // ---------------------------------------------
   // AUTO OPEN + CTA CLICK HANDLING
   // ---------------------------------------------
+
   useEffect(() => {
     const handleDocumentClick = (event) => {
       const target = event.target;
@@ -160,21 +168,45 @@ export default function SolarQuotePopup({
       handleCustomOpen
     );
 
-    // Show once per browser session.
+    // ---------------------------------------------
+    // SHOW AUTOMATICALLY ONLY ONCE
+    // ---------------------------------------------
+
     if (autoOpen) {
       let alreadyShown = false;
+      let openedAtHome = false;
 
       try {
         alreadyShown =
           window.sessionStorage.getItem(STORAGE_KEY) === "1";
+        openedAtHome =
+          window.sessionStorage.getItem(
+            INITIAL_PATH_STORAGE_KEY
+          ) === "/";
       } catch {
         alreadyShown = false;
+        openedAtHome = false;
       }
 
-      if (!alreadyShown) {
+      // Do not automatically show again if already displayed.
+      if (
+        openedAtHome &&
+        !alreadyShown &&
+        !automaticOpenReserved
+      ) {
         const safeDelay = Number.isFinite(Number(delay))
           ? Math.max(0, Number(delay))
           : 2400;
+
+        // Reserve the one automatic opening before starting the timer.
+        // This prevents a route remount from scheduling another popup
+        // before the delayed popup has actually appeared.
+        automaticOpenReserved = true;
+        try {
+          window.sessionStorage.setItem(STORAGE_KEY, "1");
+        } catch {
+          // The in-memory reservation still prevents SPA remounts.
+        }
 
         autoTimerRef.current = window.setTimeout(
           openPopup,
@@ -205,6 +237,7 @@ export default function SolarQuotePopup({
   // ---------------------------------------------
   // ACCESSIBILITY + SCROLL LOCK + FOCUS TRAP
   // ---------------------------------------------
+
   useEffect(() => {
     if (!isOpen) return undefined;
 
@@ -308,6 +341,7 @@ export default function SolarQuotePopup({
   // ---------------------------------------------
   // FORM SUBMISSION
   // ---------------------------------------------
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -366,6 +400,7 @@ export default function SolarQuotePopup({
   // ---------------------------------------------
   // COMPONENT
   // ---------------------------------------------
+
   return (
     <>
       {isOpen && (
