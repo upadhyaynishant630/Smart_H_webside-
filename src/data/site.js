@@ -1,7 +1,7 @@
 /**
  * Central brand configuration. Edit names, contact details and CTA labels here.
- * Contact values come from environment variables so no unverified details are
- * hardcoded. See .env.example.
+ * Environment variables can override the published contact details below.
+ * See .env.example for deployment-specific overrides.
  */
 export const siteConfig = {
   name: "SmartEDGE",
@@ -10,8 +10,11 @@ export const siteConfig = {
     "SmartEDGE helps organisations plan, build and run secure, connected technology — from cloud and infrastructure to data, AI and automation.",
   ctaLabel: "Let's Talk",
   ctaTo: "/contact",
-  contactEmail: import.meta.env["VITE_CONTACT_EMAIL"] ?? "",
-  contactPhone: import.meta.env["VITE_CONTACT_PHONE"] ?? "",
+  contactEmail: import.meta.env["VITE_CONTACT_EMAIL"] || "info@domain.com",
+  contactPhone: import.meta.env["VITE_CONTACT_PHONE"] || "9152622242",
+  whatsappPhone: "919152622242",
+  address:
+    "Premises No. 8 & 9, 4th Floor, Sharee Kamdhenu Estate, Near Vibgyor School, Off Link Road, Chincholi Bunder, Malad West, Mumbai 400064",
   contactEndpoint: import.meta.env["VITE_CONTACT_ENDPOINT"] ?? "",
   social: [],
 };

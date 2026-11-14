@@ -96,8 +96,8 @@ function buildActions(pathname) {
 
   const whatsappUrl =
     configuredWhatsApp ||
-    (phone.startsWith("+") && phoneDigits.length >= 8
-      ? `https://wa.me/${phoneDigits}?text=${whatsappText}`
+    ((siteConfig?.whatsappPhone || phoneDigits.length >= 8)
+      ? `https://wa.me/${siteConfig?.whatsappPhone || phoneDigits}?text=${whatsappText}`
       : `https://api.whatsapp.com/send?text=${whatsappText}`);
 
   if (pathname !== "/contact") {
@@ -115,7 +115,7 @@ function buildActions(pathname) {
     id: "whatsapp",
     label: "WhatsApp",
     description:
-      phone.startsWith("+") && phoneDigits.length >= 8
+      siteConfig?.whatsappPhone || (phone.startsWith("+") && phoneDigits.length >= 8)
         ? "Message SmartEDGE directly"
         : "Open WhatsApp and choose a contact",
     icon: <MessageCircle size={18} strokeWidth={1.9} aria-hidden="true" />,
@@ -134,15 +134,7 @@ function buildActions(pathname) {
     external: true,
   });
 
-  actions.push({
-    id: "facebook",
-    label: "Facebook",
-    description: "Open Facebook",
-    icon: <Facebook size={17} strokeWidth={1.9} aria-hidden="true" />,
-    tone: "facebook",
-    href: findSocialUrl(/facebook|fb\.com/i, "VITE_FACEBOOK_URL", "https://www.facebook.com/"),
-    external: true,
-  });
+ 
 
   actions.push({
     id: "linkedin",
@@ -154,15 +146,7 @@ function buildActions(pathname) {
     external: true,
   });
 
-  actions.push({
-    id: "youtube",
-    label: "YouTube",
-    description: "Open YouTube",
-    icon: <Youtube size={18} strokeWidth={1.9} aria-hidden="true" />,
-    tone: "youtube",
-    href: findSocialUrl(/youtube|youtu\.be/i, "VITE_YOUTUBE_URL", "https://www.youtube.com/"),
-    external: true,
-  });
+
 
   if (phone) {
     actions.push({

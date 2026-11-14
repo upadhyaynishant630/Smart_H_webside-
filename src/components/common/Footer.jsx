@@ -5,6 +5,8 @@ import {
   ArrowUp,
   ArrowUpRight,
   Mail,
+  MapPin,
+  MessageCircle,
   MessageSquareText,
   Phone,
 } from "lucide-react";
@@ -53,6 +55,8 @@ export function Footer() {
 
   const contactEmail = siteConfig.contactEmail || "";
   const contactPhone = siteConfig.contactPhone || "";
+  const whatsappPhone = siteConfig.whatsappPhone || "";
+  const address = siteConfig.address || "";
 
   const navItems = Array.isArray(navigation) ? navigation : [];
   const serviceItems = Array.isArray(services) ? services : [];
@@ -963,6 +967,22 @@ export function Footer() {
                   href={`tel:${contactPhone}`}
                   icon={<Phone />}
                   label={contactPhone}
+                />
+              )}
+
+              {whatsappPhone && (
+                <ContactRow
+                  href={`https://wa.me/${whatsappPhone}`}
+                  icon={<MessageCircle />}
+                  label={`WhatsApp: ${contactPhone}`}
+                />
+              )}
+
+              {address && (
+                <ContactRow
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
+                  icon={<MapPin />}
+                  label={address}
                 />
               )}
 

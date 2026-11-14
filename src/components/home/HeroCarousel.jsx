@@ -275,7 +275,7 @@ const heroCarouselStyles = `
   object-fit: cover;
   object-position: center;
 
-  filter: brightness(1.16) saturate(1.06);
+  filter: brightness(1.28) saturate(1.12) contrast(1.04);
 
   transform: scale(1.035);
 
@@ -317,16 +317,16 @@ const heroCarouselStyles = `
   background:
     linear-gradient(
       90deg,
-      rgba(3, 10, 20, .82) 0%,
-      rgba(4, 13, 26, .70) 29%,
-      rgba(4, 13, 26, .40) 56%,
-      rgba(4, 13, 26, .12) 100%
+      rgba(3, 10, 20, .68) 0%,
+      rgba(4, 13, 26, .52) 29%,
+      rgba(4, 13, 26, .25) 56%,
+      rgba(4, 13, 26, .06) 100%
     ),
     linear-gradient(
       0deg,
-      rgba(3, 10, 20, .68) 0%,
-      rgba(3, 10, 20, .06) 40%,
-      rgba(3, 10, 20, .18) 100%
+      rgba(3, 10, 20, .48) 0%,
+      rgba(3, 10, 20, .03) 40%,
+      rgba(3, 10, 20, .12) 100%
     );
 }
 
@@ -540,7 +540,7 @@ const heroCarouselStyles = `
 }
 
 .se-hero__copy {
-  width: min(100%, 850px);
+  width: min(100%, 780px);
   min-width: 0;
 }
 
@@ -617,12 +617,12 @@ const heroCarouselStyles = `
 .se-hero__title {
   position: relative;
 
-  max-width: 850px;
+  max-width: 780px;
   margin: 0;
 
   color: var(--se-white);
 
-  font-size: clamp(2.8rem, 5.15vw, 5.6rem);
+  font-size: clamp(2.75rem, 4.8vw, 5.1rem);
   font-weight: 790;
   line-height: .99;
 
@@ -682,7 +682,7 @@ const heroCarouselStyles = `
 ========================================= */
 
 .se-hero__description {
-  max-width: 610px;
+  max-width: 580px;
 
   margin: clamp(14px, 2.1vh, 22px) 0 0;
 
@@ -1342,16 +1342,16 @@ const heroCarouselStyles = `
     background:
       linear-gradient(
         90deg,
-        rgba(3, 10, 20, .92) 0%,
-        rgba(4, 13, 26, .76) 62%,
-        rgba(4, 13, 26, .46) 100%
+        rgba(3, 10, 20, .78) 0%,
+        rgba(4, 13, 26, .6) 62%,
+        rgba(4, 13, 26, .28) 100%
       ),
       linear-gradient(
         0deg,
-        rgba(3, 10, 20, .97) 0%,
-        rgba(3, 10, 20, .67) 38%,
-        rgba(3, 10, 20, .12) 78%,
-        rgba(3, 10, 20, .36) 100%
+        rgba(3, 10, 20, .72) 0%,
+        rgba(3, 10, 20, .48) 38%,
+        rgba(3, 10, 20, .08) 78%,
+        rgba(3, 10, 20, .22) 100%
       );
   }
 
