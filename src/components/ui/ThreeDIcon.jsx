@@ -66,6 +66,43 @@ const glyphs = {
       <path d="M7.5 6.5h.01M7.5 17.5h.01M11 6.5h5M11 17.5h5M12 9.5v5" />
     </>
   ),
+  "solar-panel": (
+    <>
+      <path d="m3 6 14 0 3 12H6L3 6Z" />
+      <path d="M7 6 9 18M12 6l1 12M4.5 12h15M2 21h18" />
+    </>
+  ),
+  "solar-inverter": (
+    <>
+      <rect x="6" y="3" width="12" height="18" rx="2" />
+      <path d="M9 7h6M9 11h6M9 15h2M13 15h2" />
+    </>
+  ),
+  "solar-structure": (
+    <>
+      <path d="m3 13 9-9 9 9" />
+      <path d="M5 11v9h14v-9M9 20v-6h6v6" />
+    </>
+  ),
+  "solar-components": (
+    <>
+      <circle cx="7" cy="12" r="3" />
+      <circle cx="17" cy="7" r="3" />
+      <circle cx="17" cy="17" r="3" />
+      <path d="m9.5 10.5 5-2M9.5 13.5l5 2" />
+    </>
+  ),
+  "solar-installation": (
+    <>
+      <path d="m4 20 7-7M13 5l6 6M8 16l-4 4M15 3l6 6" />
+      <path d="m7 13 4 4M12 8l4 4" />
+    </>
+  ),
+  "solar-maintenance": (
+    <>
+      <path d="M14 5a4 4 0 0 0-5 5l-6 6a2 2 0 0 0 3 3l6-6a4 4 0 0 0 5-5l-3 3-3-3 3-3Z" />
+    </>
+  ),
 };
 
 /** Dimensional brand icon: sculpted block + light sweep + red signal node. */

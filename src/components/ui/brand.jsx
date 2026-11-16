@@ -3,23 +3,16 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import smartedgeLogo from "@/assets/smartedge-logo.png";
 
-/** Text wordmark (no official logo supplied). */
 export function Wordmark({ className }) {
   return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-2 font-display text-xl font-bold tracking-tight",
-        className,
-      )}
-    >
-      <span className="relative grid h-8 w-8 place-items-center rounded-lg bg-cobalt-gradient text-primary-foreground shadow-cobalt">
-        <span className="text-base leading-none">E</span>
-        <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-signal" />
-      </span>
-      <span>
-        Smart<span className="text-primary"> EDGE</span>
-      </span>
+    <span className={cn("smartedge-logo-wrap", className)}>
+      <img
+        src={smartedgeLogo}
+        alt="SmartEdge Global Technologies"
+        className="smartedge-logo"
+      />
     </span>
   );
 }
@@ -79,25 +72,26 @@ export function SectionHeading({ eyebrow, title, lead, align = "left", className
 }
 
 /** Sub-page hero, shared across inner pages. */
-export function PageHero({ eyebrow, title, lead, image, children }) {
+export function PageHero({ eyebrow, title, lead, image, children, accent = false }) {
   return (
-    <section className="surface-dark relative overflow-hidden bg-night">
+    <section className="page-hero-bright relative overflow-hidden">
       {image && (
         <img
           src={image}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-65 brightness-110 saturate-105"
+          className="absolute inset-0 h-full w-full object-cover brightness-[1.4] saturate-[1.12] contrast-[1.06]"
           width={1280}
           height={960}
         />
       )}
-      <div className="absolute inset-0 bg-scrim" />
-      <div className="grid-lines absolute inset-0" />
+      <div className="page-hero-bright-scrim absolute inset-0" aria-hidden="true" />
       <div className="container-x relative pb-20 pt-24 md:pb-28 md:pt-32">
-        <Reveal>
-          <span className="eyebrow text-electric">{eyebrow}</span>
-          <h1 className="text-display mt-5 max-w-4xl text-balance">{title}</h1>
-          <p className="text-lead mt-6 max-w-2xl text-muted-foreground">{lead}</p>
+        <Reveal className={cn("page-hero-bright-content", accent && "page-hero-bright-content--accent")}>
+          <span className="eyebrow page-hero-bright-eyebrow">{eyebrow}</span>
+          <h1 className="text-display page-hero-bright-title mt-5 max-w-4xl text-balance">
+            {title}
+          </h1>
+          <p className="text-lead page-hero-bright-lead mt-6 max-w-2xl">{lead}</p>
           {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
         </Reveal>
       </div>
@@ -106,7 +100,7 @@ export function PageHero({ eyebrow, title, lead, image, children }) {
 }
 
 export function CtaBand({
-  title = "Have a technology challenge worth solving?",
+  title = "Have a solar requirement worth discussing?",
   body = "Tell us where you are and where you want to be. We'll come back with practical next steps.",
 }) {
   return (

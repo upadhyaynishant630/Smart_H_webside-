@@ -201,13 +201,13 @@ export function Navbar() {
         ===================================== */
 
         .sh-navbar {
-          --sh-nav-bg: #ffffff;
+          --sh-nav-bg: var(--primary-700);
           --sh-nav-height: 70px;
-          --sh-nav-ink: #172b40;
-          --sh-nav-muted: #526477;
-          --sh-nav-blue: #3478e8;
-          --sh-nav-cyan: #3478e8;
-          --sh-nav-border: #e5eaf0;
+          --sh-nav-ink: var(--white);
+          --sh-nav-muted: var(--primary-100);
+          --sh-nav-blue: var(--primary-400);
+          --sh-nav-cyan: var(--primary-400);
+          --sh-nav-border: var(--primary-400);
 
           position: sticky;
           top: 0;
@@ -216,7 +216,7 @@ export function Navbar() {
           width: 100%;
           max-width: 100%;
           color: var(--sh-nav-ink);
-          background: rgba(255, 255, 255, 0.96);
+          background: rgb(76 29 149 / 0.96);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
           border-bottom: 0;
@@ -244,7 +244,7 @@ export function Navbar() {
 
         .sh-navbar[data-scrolled="true"] {
           border-bottom-color: transparent;
-          background: rgba(255, 255, 255, 0.98);
+          background: rgb(76 29 149 / 0.98);
           box-shadow: 0 8px 32px rgba(23, 43, 64, 0.08);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
@@ -364,8 +364,8 @@ export function Navbar() {
         .sh-navbar-link:hover,
         .sh-navbar-link[data-active="true"],
         .sh-navbar-link[aria-expanded="true"] {
-          background: #f3f7ff;
-          color: #172b40;
+          background: rgb(237 233 254 / 0.16);
+          color: var(--white);
         }
 
         .sh-navbar-link-chevron {
@@ -412,9 +412,13 @@ export function Navbar() {
         .sh-navbar-mega {
           position: relative;
           overflow: hidden;
-          border: 1px solid rgba(175, 190, 235, 0.17);
+          border: 1px solid rgb(155 114 234 / 0.35);
           border-radius: 21px;
-          background: #ffffff;
+          background: linear-gradient(
+            145deg,
+            var(--primary-700) 0%,
+            var(--primary-900) 100%
+          );
           box-shadow:
             0 24px 65px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.035);
@@ -428,13 +432,13 @@ export function Navbar() {
           justify-content: space-between;
           gap: 15px;
           padding: 19px 21px 16px;
-          border-bottom: 1px solid var(--sh-nav-border);
+          border-bottom: 1px solid rgb(237 233 254 / 0.22);
         }
 
         .sh-navbar-mega-eyebrow {
           display: block;
           margin-bottom: 5px;
-          color: #245fb7;
+          color: var(--primary-400);
           font-size: 9px;
           font-weight: 800;
           letter-spacing: 0.15em;
@@ -443,14 +447,14 @@ export function Navbar() {
 
         .sh-navbar-mega-heading {
           margin: 0;
-          color: #172b40;
+          color: var(--white);
           font-size: 16px;
           font-weight: 800;
           letter-spacing: -0.025em;
         }
 
         .sh-navbar-mega-caption {
-          color: var(--sh-nav-muted);
+          color: var(--primary-100);
           font-size: 10px;
           line-height: 1.6;
         }
@@ -470,7 +474,7 @@ export function Navbar() {
           padding: 12px;
           border: 1px solid transparent;
           border-radius: 13px;
-          color: #172b40;
+          color: var(--white);
           text-decoration: none;
           transition:
             transform 220ms ease,
@@ -480,8 +484,8 @@ export function Navbar() {
 
         .sh-navbar-service-link:hover {
           transform: translateY(-2px);
-          border-color: rgba(133, 132, 255, 0.22);
-          background: rgba(255, 255, 255, 0.055);
+          border-color: rgb(155 114 234 / 0.45);
+          background: rgb(255 255 255 / 0.1);
         }
 
         .sh-navbar-service-icon {
@@ -517,7 +521,7 @@ export function Navbar() {
 
         .sh-navbar-service-title {
           display: block;
-          color: #172b40;
+          color: var(--white);
           font-size: 12px;
           font-weight: 750;
           line-height: 1.5;
@@ -526,14 +530,14 @@ export function Navbar() {
         }
 
         .sh-navbar-service-link:hover .sh-navbar-service-title {
-          color: #245fb7;
+          color: var(--primary-400);
         }
 
         .sh-navbar-service-summary {
           display: -webkit-box;
           margin-top: 4px;
           overflow: hidden;
-          color: #526477;
+          color: var(--primary-100);
           font-size: 10px;
           line-height: 1.7;
           -webkit-box-orient: vertical;
@@ -554,8 +558,8 @@ export function Navbar() {
           padding: 10px 14px;
           border: 1px solid rgba(133, 132, 255, 0.18);
           border-radius: 12px;
-          background: rgba(76, 85, 237, 0.085);
-          color: #245fb7;
+          background: var(--primary-100);
+          color: var(--primary-700);
           font-size: 11px;
           font-weight: 750;
           text-decoration: none;
@@ -567,8 +571,8 @@ export function Navbar() {
 
         .sh-navbar-view-all:hover {
           border-color: rgba(83, 222, 236, 0.3);
-          background: #eaf3ff;
-          color: #172b40;
+          background: var(--primary-400);
+          color: var(--primary-900);
         }
 
         .sh-navbar-view-all svg {
@@ -617,8 +621,8 @@ export function Navbar() {
           place-items: center;
           border: 1px solid var(--sh-nav-border);
           border-radius: 13px;
-          background: #f3f7ff;
-          color: #172b40;
+          background: rgb(237 233 254 / 0.16);
+          color: var(--white);
           cursor: pointer;
           transition:
             background 200ms ease,
@@ -698,7 +702,7 @@ export function Navbar() {
           padding: 10px 12px;
           border: 1px solid transparent;
           border-radius: 12px;
-          color: #526477;
+          color: var(--primary-100);
           font-size: 14px;
           font-weight: 650;
           line-height: 1.5;
@@ -712,8 +716,8 @@ export function Navbar() {
         .sh-navbar-mobile-link:hover,
         .sh-navbar-mobile-link[data-active="true"] {
           border-color: rgba(133, 132, 255, 0.13);
-          background: #f3f7ff;
-          color: #172b40;
+          background: rgb(237 233 254 / 0.16);
+          color: var(--white);
         }
 
         .sh-navbar-mobile-link-label {
@@ -780,7 +784,7 @@ export function Navbar() {
           padding: 9px;
           border: 1px solid transparent;
           border-radius: 10px;
-          color: #526477;
+          color: var(--primary-100);
           font-size: 12px;
           font-weight: 550;
           line-height: 1.5;
@@ -793,8 +797,8 @@ export function Navbar() {
 
         .sh-navbar-mobile-service:hover {
           border-color: rgba(133, 132, 255, 0.16);
-          background: #f3f7ff;
-          color: #172b40;
+          background: rgb(237 233 254 / 0.16);
+          color: var(--white);
         }
 
         .sh-navbar-mobile-service-icon {
@@ -1429,7 +1433,7 @@ export function Navbar() {
                 </Link>
 
                 <p className="sh-navbar-mobile-note">
-                  Clear strategy. Thoughtful technology. Meaningful progress.
+                  Clear products. Thoughtful solar support. Meaningful progress.
                 </p>
               </div>
             </div>

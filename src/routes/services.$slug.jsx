@@ -57,7 +57,7 @@ export const Route = createFileRoute("/services/$slug")({
 
     const description =
       service?.summary ||
-      "Explore SmartEDGE's technology services, capabilities and delivery approach.";
+      "Explore SmartEDGE's solar products and services, capabilities and next steps.";
 
     return {
       meta: [
@@ -1741,7 +1741,7 @@ function ServiceDetail() {
               <p className="sh-sd-section-description">
                 Understand the purpose behind this service, the
                 challenges it addresses and how it can fit into
-                your wider technology environment.
+                your wider solar project.
               </p>
             </header>
           </Reveal>
@@ -2181,7 +2181,7 @@ function ServiceDetail() {
 
                 <p className="sh-sd-related-description">
                   Explore other SmartEDGE services that may be
-                  relevant to your wider technology requirements.
+                  relevant to your wider solar requirements.
                 </p>
               </div>
 

@@ -33,7 +33,7 @@ const industryApproach = [
     icon: Layers3,
     title: "Understand the environment",
     description:
-      "Consider existing systems, workflows, operating conditions and the needs of the people who use the technology.",
+      "Understand the site, energy use, operating conditions and the needs of the people who will use the solar system.",
     points: [
       "Business context",
       "Existing infrastructure",
@@ -76,7 +76,7 @@ export const Route = createFileRoute("/industries")({
       {
         name: "description",
         content:
-          "Explore how SmartEDGE technology services can adapt to the requirements of manufacturing, financial services, healthcare, retail, education and the public sector.",
+          "Explore SmartEDGE solar products and services for residential customers, businesses, EPC companies and commercial buyers.",
       },
       {
         property: "og:title",
@@ -85,7 +85,7 @@ export const Route = createFileRoute("/industries")({
       {
         property: "og:description",
         content:
-          "Technology services shaped around sector-specific needs, operational priorities and business requirements.",
+          "Solar products and services shaped around residential and commercial requirements.",
       },
     ],
   }),
@@ -957,8 +957,8 @@ function Industries() {
 
       <PageHero
         eyebrow="Industries"
-        title="Technology shaped around how your sector works."
-        lead="Every sector has its own pressures — regulation, uptime, scale or safety. Our services are designed to adapt to them."
+        title="Solar solutions for homes and businesses."
+        lead="SmartEDGE supports both B2C residential enquiries and B2B commercial solar requirements with products, installation and ongoing service."
         image={industryFeatureImage}
       />
 
@@ -989,8 +989,8 @@ function Industries() {
 
               <p className="si-directory-description">
                 Explore the industries we support and the
-                operational priorities that can shape technology
-                decisions in each sector.
+                residential and commercial solar priorities that
+                can shape the right product or service decision.
               </p>
             </div>
 
@@ -1100,16 +1100,16 @@ function Industries() {
               className="si-section-title"
               id="si-approach-title"
             >
-              The right technology starts with{" "}
+              The right solar plan starts with{" "}
               <span className="si-approach-title-highlight">
                 the right context.
               </span>
             </h2>
 
             <p className="si-section-description">
-              Effective technology choices start with understanding
-              the operating environment, identifying priorities and
-              selecting an approach that fits the actual need.
+              Effective solar planning starts with understanding the
+              site, identifying priorities and selecting a practical
+              product or service scope.
             </p>
           </Reveal>
 

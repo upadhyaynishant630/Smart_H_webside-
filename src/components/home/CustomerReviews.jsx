@@ -255,9 +255,9 @@ export function CustomerReviews({
         }
 
         .smartedge-reviews {
-          --sr-navy: #071126;
+          --sr-navy: var(--primary-900);
           --sr-blue: #2f5bff;
-          --sr-blue-dark: #193bce;
+          --sr-blue-dark: var(--primary-700);
           --sr-muted: #68748c;
           --sr-gold: #f3ae35;
 

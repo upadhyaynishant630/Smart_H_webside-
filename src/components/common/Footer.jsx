@@ -15,6 +15,14 @@ import { navigation, siteConfig } from "@/data/site";
 import { services } from "@/data/services";
 import { Reveal, Wordmark } from "@/components/ui/brand";
 
+function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+      <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3Zm-8.4 18.1h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.8-1.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.1 3.3 5.1 4.6 1.9.8 2.6.9 3.5.8.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3Z" />
+    </svg>
+  );
+}
+
 const linkClass = "sh-footer-link";
 
 function LinkDash() {
@@ -71,13 +79,13 @@ export function Footer() {
     <footer className="sh-footer surface-dark bg-night">
       <style>{`
         .sh-footer {
-          --sf-bg: #080f24;
-          --sf-card: rgba(255, 255, 255, 0.035);
-          --sf-line: rgba(178, 192, 230, 0.14);
-          --sf-text: #f4f6ff;
-          --sf-muted: #a3aec8;
-          --sf-blue: #8584ff;
-          --sf-cyan: #5cdeed;
+          --sf-bg: var(--primary-900);
+          --sf-card: rgb(255 255 255 / 0.08);
+          --sf-line: rgb(237 233 254 / 0.22);
+          --sf-text: var(--white);
+          --sf-muted: var(--primary-100);
+          --sf-blue: var(--primary-400);
+          --sf-cyan: var(--accent-blue);
 
           position: relative;
           isolation: isolate;
@@ -87,15 +95,15 @@ export function Footer() {
           background:
             radial-gradient(
               ellipse at 5% 0%,
-              rgba(76, 85, 237, 0.15),
+              rgb(109 40 217 / 0.18),
               transparent 36%
             ),
             radial-gradient(
               ellipse at 100% 90%,
-              rgba(71, 212, 232, 0.075),
+              rgb(11 111 214 / 0.1),
               transparent 32%
             ),
-            linear-gradient(140deg, #0b1229 0%, #0c1531 52%, #080f24 100%);
+            linear-gradient(140deg, var(--primary-900) 0%, var(--primary-700) 52%, var(--primary-900) 100%);
           color: var(--sf-text);
           font-family:
             Inter,
@@ -158,13 +166,13 @@ export function Footer() {
         .sh-footer-glow--left {
           top: 30px;
           left: -150px;
-          background: rgba(76, 85, 237, 0.18);
+          background: rgb(109 40 217 / 0.2);
         }
 
         .sh-footer-glow--right {
           right: -155px;
           bottom: 90px;
-          background: rgba(71, 212, 232, 0.11);
+          background: rgb(11 111 214 / 0.12);
           animation-delay: -5s;
         }
 
@@ -178,8 +186,8 @@ export function Footer() {
           background: linear-gradient(
             90deg,
             transparent,
-            rgba(133, 132, 255, 0.7),
-            rgba(92, 222, 237, 0.75),
+            rgb(155 114 234 / 0.8),
+            rgb(11 111 214 / 0.75),
             transparent
           );
         }
@@ -326,7 +334,7 @@ export function Footer() {
           border: 1px solid rgba(133, 132, 255, 0.17);
           border-radius: 9px;
           background: rgba(76, 85, 237, 0.16);
-          color: #b8b6ff;
+          color: var(--primary-400);
           transition:
             background 220ms ease,
             color 220ms ease,
@@ -349,7 +357,7 @@ export function Footer() {
           z-index: 1;
           min-width: 0;
           flex: 1 1 auto;
-          color: #e4e9f8;
+          color: var(--primary-100);
           font-size: 12px;
           line-height: 1.55;
           overflow-wrap: anywhere;
@@ -366,7 +374,7 @@ export function Footer() {
           width: 14px;
           height: 14px;
           flex: 0 0 auto;
-          color: #7280a5;
+          color: var(--primary-400);
           opacity: 0;
           transform: translate(-3px, 3px);
           transition:
@@ -665,7 +673,7 @@ export function Footer() {
         .sh-footer-copyright,
         .sh-footer-tagline {
           margin: 0;
-          color: #98a4bf;
+          color: var(--primary-100);
           font-size: 10px;
           line-height: 1.7;
         }
@@ -690,7 +698,7 @@ export function Footer() {
           border: 1px solid var(--sf-line);
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.025);
-          color: #e5eaff;
+          color: var(--primary-100);
           font-family: inherit;
           font-size: 10px;
           font-weight: 750;
@@ -973,7 +981,7 @@ export function Footer() {
               {whatsappPhone && (
                 <ContactRow
                   href={`https://wa.me/${whatsappPhone}`}
-                  icon={<MessageCircle />}
+                  icon={<WhatsAppIcon />}
                   label={`WhatsApp: ${contactPhone}`}
                 />
               )}

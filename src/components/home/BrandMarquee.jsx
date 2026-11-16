@@ -158,7 +158,7 @@ export function BrandMarquee({ brands = defaultBrands }) {
           border: 1px solid rgba(37, 99, 235, 0.28);
           border-radius: 999px;
           background: rgba(37, 99, 235, 0.07);
-          color: #2563eb;
+          color: var(--accent-blue);
           font-size: 0.72rem;
           font-weight: 700;
           line-height: 1.35;
@@ -173,14 +173,14 @@ export function BrandMarquee({ brands = defaultBrands }) {
           width: 0.5rem;
           height: 0.5rem;
           border-radius: 50%;
-          background: #2563eb;
+          background: var(--accent-blue);
         }
 
         .sh-brand .sh-badge-dot::after {
           position: absolute;
           inset: 0;
           border-radius: inherit;
-          background: #2563eb;
+          background: var(--accent-blue);
           content: "";
           animation: sh-pulse 2s ease-out infinite;
         }
@@ -196,8 +196,8 @@ export function BrandMarquee({ brands = defaultBrands }) {
         }
 
         .sh-brand .sh-title-grad {
-          color: #2563eb;
-          background-image: linear-gradient(90deg, #2563eb, #7c3aed, #06b6d4, #2563eb);
+          color: var(--accent-blue);
+          background-image: linear-gradient(90deg, var(--accent-blue), var(--primary-500), var(--accent-blue), var(--accent-blue));
           background-size: 200% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -211,7 +211,7 @@ export function BrandMarquee({ brands = defaultBrands }) {
           height: 3px;
           margin-top: 1.1rem;
           border-radius: 999px;
-          background: linear-gradient(90deg, #2563eb, #7c3aed, #06b6d4);
+          background: linear-gradient(90deg, var(--accent-blue), var(--primary-500), var(--accent-blue));
           transform-origin: left center;
           animation: sh-line-grow 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
@@ -305,7 +305,7 @@ export function BrandMarquee({ brands = defaultBrands }) {
           width: 0.5rem;
           height: 0.5rem;
           border-radius: 50%;
-          background: linear-gradient(135deg, #2563eb, #7c3aed);
+          background: linear-gradient(135deg, var(--accent-blue), var(--primary-500));
         }
 
         .sh-brand .sh-logo-img {
@@ -366,16 +366,16 @@ export function BrandMarquee({ brands = defaultBrands }) {
         }
 
         .sh-brand .sh-tone-grad {
-          color: #2563eb;
-          background-image: linear-gradient(90deg, #2563eb, #7c3aed, #06b6d4);
+          color: var(--accent-blue);
+          background-image: linear-gradient(90deg, var(--accent-blue), var(--primary-500), var(--accent-blue));
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
         }
 
         .sh-brand .sh-tone-shine {
-          color: #2563eb;
-          background-image: linear-gradient(110deg, #64748b 20%, #2563eb 40%, #06b6d4 50%, #7c3aed 60%, #64748b 80%);
+          color: var(--accent-blue);
+          background-image: linear-gradient(110deg, #64748b 20%, var(--accent-blue) 40%, var(--accent-blue) 50%, var(--primary-500) 60%, #64748b 80%);
           background-size: 250% auto;
           -webkit-background-clip: text;
           background-clip: text;

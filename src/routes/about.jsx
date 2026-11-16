@@ -35,25 +35,25 @@ const principles = [
     icon: "consult",
     number: "01",
     title: "Clarity and understanding",
-    body: "We understand the business problem before recommending a technology solution.",
+    body: "We understand the customer requirement before recommending a solar product or service.",
   },
   {
     icon: "shield",
     number: "02",
     title: "Security and trust",
-    body: "We consider risk, resilience and security throughout the technology lifecycle.",
+    body: "We consider product suitability, installation context and ongoing service needs.",
   },
   {
     icon: "automation",
     number: "03",
     title: "Transparency and accountability",
-    body: "Clear milestones and communication help keep delivery understandable and measurable.",
+    body: "Clear milestones and communication help keep every solar enquiry understandable.",
   },
   {
     icon: "data",
     number: "04",
     title: "Knowledge and ownership",
-    body: "Documentation, training and knowledge sharing help teams understand the systems they use.",
+    body: "Clear information helps customers and partners understand the products and services they choose.",
   },
 ];
 
@@ -126,12 +126,12 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       {
-        title: "About SmartEDGE | Our Approach and Principles",
+        title: "About SmartEDGE | Your Solar Energy Partner",
       },
       {
         name: "description",
         content:
-          "Discover SmartEDGE's approach to technology, our core values, expertise and structured way of working.",
+          "Discover SmartEDGE's solar products, services, values and structured way of working.",
       },
       {
         property: "og:title",
@@ -140,7 +140,7 @@ export const Route = createFileRoute("/about")({
       {
         property: "og:description",
         content:
-          "Explore SmartEDGE's approach, core values, technology expertise and delivery process.",
+          "Explore SmartEDGE's approach, solar expertise and delivery process.",
       },
     ],
   }),
@@ -1601,8 +1601,8 @@ function About() {
 
       <PageHero
         eyebrow="About SmartEDGE"
-        title="Technology partnership, built on clarity."
-        lead="SmartEDGE exists to make complex technology decisions simpler — and to deliver them with care."
+        title="Your trusted partner in solar energy."
+        lead="SmartEDGE brings together solar products, installation services and maintenance solutions for customers and partners."
         image={transformation}
       />
 
@@ -1639,7 +1639,7 @@ function About() {
                   </div>
 
                   <h3>
-                    Thoughtful technology.
+                    Thoughtful solar support.
                     <br />
                     Meaningful progress.
                   </h3>
@@ -1671,7 +1671,7 @@ function About() {
               className="sh-about-story-title"
               id="sh-about-story-title"
             >
-              Helping organisations run on technology they{" "}
+              Helping customers choose solar products and services they{" "}
               <span className="sh-about-gradient-text">
                 understand and trust.
               </span>
@@ -1679,7 +1679,7 @@ function About() {
 
             <p className="sh-about-story-description">
               Our proposed mission is to give every client a clear
-              technology direction and the dependable systems to
+              solar direction and the dependable services to
               follow it. Our vision is a future where infrastructure,
               data and security quietly enable growth.
             </p>
@@ -1822,7 +1822,7 @@ function About() {
               >
                 Expertise across the{" "}
                 <span className="sh-about-gradient-text">
-                  technology stack.
+                  solar requirement.
                 </span>
               </h2>
 
@@ -1866,7 +1866,7 @@ function About() {
                 ) : (
                   <p className="sh-about-capabilities-empty">
                     Explore our services to learn more about
-                    available technology capabilities.
+                    available solar capabilities.
                   </p>
                 )}
 

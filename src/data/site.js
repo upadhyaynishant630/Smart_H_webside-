@@ -5,10 +5,10 @@
  */
 export const siteConfig = {
   name: "SmartEDGE",
-  tagline: "Enterprise technology, engineered with intent.",
+  tagline: "Solar products and services, delivered with care.",
   description:
-    "SmartEDGE helps organisations plan, build and run secure, connected technology — from cloud and infrastructure to data, AI and automation.",
-  ctaLabel: "Let's Talk",
+    "Explore solar panels, inverters, structures, components, installation, AMC and partnership opportunities with SmartEDGE.",
+  ctaLabel: "Become a partner",
   ctaTo: "/contact",
   contactEmail: import.meta.env["VITE_CONTACT_EMAIL"] || "info@domain.com",
   contactPhone: import.meta.env["VITE_CONTACT_PHONE"] || "9152622242",
@@ -22,9 +22,10 @@ export const siteConfig = {
 export const navigation = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
-  { label: "Services", to: "/services" },
   { label: "Industries", to: "/industries" },
-  { label: "Case Studies", to: "/case-studies" },
+  { label: "Our Services", to: "/services" },
+  { label: "Franchise", to: "/franchise" },
+  { label: "Gallery", to: "/gallery" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -37,21 +38,21 @@ export const announcementConfig = {
   messages: [
     {
       id: "practices",
-      text: "Six technology practices, one accountable delivery team.",
+      text: "Solar products, installation and maintenance support for homes and businesses.",
       linkLabel: "Explore services",
       to: "/services",
     },
     {
       id: "consult",
-      text: "Planning a modernisation roadmap? Start with a focused consultation.",
-      linkLabel: "Book a call",
+      text: "Looking for a solar product or project partner?",
+      linkLabel: "Become a partner",
       to: "/contact",
     },
     {
       id: "security",
-      text: "Security is designed in from day one — not bolted on at the end.",
-      linkLabel: "Our approach",
-      to: "/about",
+      text: "Residential and commercial solar enquiries welcome.",
+      linkLabel: "Contact us",
+      to: "/contact",
     },
   ],
 };

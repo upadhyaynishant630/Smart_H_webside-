@@ -207,10 +207,10 @@ const heroCarouselStyles = `
 
 .se-hero {
   --se-header-offset: 82px;
-  --se-bg: #06111f;
+  --se-bg: var(--primary-900);
   --se-white: #f7fbff;
   --se-muted: rgba(233, 241, 251, .78);
-  --se-accent: #70edf1;
+  --se-accent: var(--primary-400);
 
   position: relative;
   isolation: isolate;
@@ -782,7 +782,7 @@ const heroCarouselStyles = `
     linear-gradient(
       130deg,
       #b0fbf4 0%,
-      #70edf1 50%,
+      var(--primary-400) 50%,
       #2cc8d8 100%
     );
 
@@ -1058,9 +1058,9 @@ const heroCarouselStyles = `
     linear-gradient(
       90deg,
       transparent 0%,
-      #2457ed 22%,
-      #70edf1 50%,
-      #2457ed 78%,
+      var(--primary-600) 22%,
+      var(--primary-400) 50%,
+      var(--primary-600) 78%,
       transparent 100%
     );
 
@@ -1262,7 +1262,7 @@ const heroCarouselStyles = `
   border-radius: 99px;
 
   background:
-    linear-gradient(90deg, #2457ed, #70edf1);
+    linear-gradient(90deg, var(--primary-600), var(--primary-400));
 
   transition: width 300ms ease;
 }

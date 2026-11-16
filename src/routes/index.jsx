@@ -146,7 +146,7 @@ const solarHomeStyles = `
   .solar-home-page {
     --sh-midnight: #071426;
     --sh-navy: #0b1730;
-    --sh-cobalt: #2457ed;
+    --sh-cobalt: var(--primary-600);
     --sh-cobalt-dark: #193db2;
     --sh-red: #ff304b;
     --sh-red-dark: #df1839;
@@ -1213,7 +1213,7 @@ const solarHomeStyles = `
 
   .solar-home-page .se-hero {
     --se-accent: #ff304b;
-    --se-accent-strong: #2457ed;
+    --se-accent-strong: var(--primary-600);
   }
 
   .solar-home-page .se-hero .se-hero__eyebrow {
@@ -1232,7 +1232,7 @@ const solarHomeStyles = `
 
   .solar-home-page .se-hero .se-hero__action--primary a,
   .solar-home-page .se-hero .se-hero__action--primary button {
-    background: linear-gradient(135deg, #355ff2, #2457ed);
+    background: linear-gradient(135deg, #355ff2, var(--primary-600));
     color: #fff;
     box-shadow: 0 10px 28px rgba(36, 87, 237, .25);
   }

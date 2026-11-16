@@ -6,7 +6,7 @@ const valid = {
   email: "asha@company.com",
   company: "Acme",
   phone: "",
-  service: "cybersecurity",
+  service: "solar-panels",
   details: "We need a security review of our offices.",
   timeline: "",
   website: "",
@@ -21,5 +21,14 @@ describe("contact validation", () => {
   it("treats phone as optional but validates it when given", () => {
     expect(validateContact({ ...valid, phone: "" }).phone).toBeUndefined();
     expect(validateContact({ ...valid, phone: "abc" }).phone).toBeDefined();
+  });
+  it("allows residential enquiries without a company name", () => {
+    expect(
+      validateContact({
+        ...valid,
+        company: "",
+        service: "residential-solar",
+      }),
+    ).toEqual({});
   });
 });

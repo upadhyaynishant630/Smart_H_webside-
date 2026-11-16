@@ -38,7 +38,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Tell SmartEDGE about your technology project, discuss your requirements and explore practical next steps.",
+          "Tell SmartEDGE about your solar requirement, discuss your needs and explore practical next steps.",
       },
       {
         property: "og:title",
@@ -47,7 +47,7 @@ export const Route = createFileRoute("/contact")({
       {
         property: "og:description",
         content:
-          "Start a conversation about your technology project with SmartEDGE.",
+          "Start a conversation about solar products and services with SmartEDGE.",
       },
     ],
   }),

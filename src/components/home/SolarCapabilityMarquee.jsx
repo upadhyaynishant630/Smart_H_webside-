@@ -48,7 +48,7 @@ export function SolarCapabilityMarquee({
         .scm-section {
           --scm-ink: #0b1730;
           --scm-muted: #627087;
-          --scm-blue: #2459d6;
+          --scm-blue: var(--primary-600);
           --scm-violet: #7952d8;
           --scm-cyan: #12b7c8;
           --scm-amber: #f4ad36;
@@ -171,7 +171,7 @@ export function SolarCapabilityMarquee({
 
         .scm-section .scm-title-highlight {
           color: var(--scm-blue);
-          background-image: linear-gradient(100deg, #2459d6 0%, #7150d6 42%, #0daec3 72%, #2459d6 100%);
+          background-image: linear-gradient(100deg, var(--primary-600) 0%, #7150d6 42%, #0daec3 72%, var(--primary-600) 100%);
           background-size: 220% auto;
           -webkit-background-clip: text;
           background-clip: text;

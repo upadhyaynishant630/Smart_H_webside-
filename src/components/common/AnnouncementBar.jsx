@@ -116,10 +116,10 @@ export function AnnouncementBar() {
         }
 
         .sh-announcement {
-          --sh-ab-blue: #3478e8;
-          --sh-ab-cyan: #3478e8;
-          --sh-ab-text: #f6f9ff;
-          --sh-ab-muted: #c9d8ea;
+          --sh-ab-blue: var(--primary-400);
+          --sh-ab-cyan: var(--primary-400);
+          --sh-ab-text: var(--white);
+          --sh-ab-muted: var(--primary-100);
 
           position: relative;
           z-index: 50;
@@ -131,19 +131,19 @@ export function AnnouncementBar() {
           background:
             radial-gradient(
               ellipse at 12% 50%,
-              rgba(83, 151, 255, 0.22),
+              rgb(155 114 234 / 0.2),
               transparent 34%
             ),
             radial-gradient(
               ellipse at 88% 50%,
-              rgba(72, 196, 226, 0.16),
+              rgb(11 111 214 / 0.12),
               transparent 38%
             ),
             linear-gradient(
               105deg,
-              #102d52 0%,
-              #163d68 48%,
-              #0b1f3b 100%
+              var(--primary-900) 0%,
+              var(--primary-700) 48%,
+              var(--primary-900) 100%
             );
           border-bottom: 0;
           font-family:

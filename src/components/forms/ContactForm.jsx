@@ -118,7 +118,7 @@ const contactFormStyles = `
   }
 
   .contact-form-enhanced .cf-field:focus-within label {
-    color: hsl(var(--primary));
+    color: var(--primary);
   }
 
   .contact-form-enhanced .cf-control {
@@ -506,6 +506,7 @@ export function ContactForm() {
         <div className="cf-field-cell min-w-0">
           {field("company", "Company or organisation", {
             auto: "organization",
+            optional: true,
           })}
         </div>
 
@@ -522,7 +523,7 @@ export function ContactForm() {
             htmlFor="f-service"
             className="block text-sm font-semibold"
           >
-            Inquiry type{" "}
+            Enquiry type{" "}
             <span className="text-signal" aria-hidden="true">
               *
             </span>
@@ -541,6 +542,8 @@ export function ContactForm() {
           >
             <option value="">Select…</option>
 
+            <option value="residential-solar">Residential Solar - B2C</option>
+            <option value="commercial-solar">Commercial Solar - B2B</option>
             {services.map((service) => (
               <option
                 key={service.slug}
@@ -550,9 +553,9 @@ export function ContactForm() {
               </option>
             ))}
 
-            <option value="general">
-              General inquiry
-            </option>
+            <option value="franchise">Franchise Enquiry</option>
+            <option value="partnership">Business Partnership / Dealership</option>
+            <option value="general">General Enquiry</option>
           </select>
 
           {errors.service && (

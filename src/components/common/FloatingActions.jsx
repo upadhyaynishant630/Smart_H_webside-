@@ -28,6 +28,14 @@ const ENV = import.meta.env || {};
 const getText = (value) =>
   typeof value === "string" ? value.trim() : "";
 
+function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+      <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3Zm-8.4 18.1h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.8-1.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.1 3.3 5.1 4.6 1.9.8 2.6.9 3.5.8.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3Z" />
+    </svg>
+  );
+}
+
 function getSafeWebUrl(value) {
   const input = getText(value);
   if (!input) return "";
@@ -80,7 +88,7 @@ function buildActions(pathname) {
     getText(ENV.VITE_CONTACT_EMAIL);
   const phoneDigits = phone.replace(/\D/g, "");
   const whatsappText = encodeURIComponent(
-    "Hello SmartEDGE, I would like to discuss a technology project.",
+    "Hello SmartEDGE, I would like to enquire about your solar products and services.",
   );
 
   const configuredWhatsApp =
@@ -118,7 +126,7 @@ function buildActions(pathname) {
       siteConfig?.whatsappPhone || (phone.startsWith("+") && phoneDigits.length >= 8)
         ? "Message SmartEDGE directly"
         : "Open WhatsApp and choose a contact",
-    icon: <MessageCircle size={18} strokeWidth={1.9} aria-hidden="true" />,
+    icon: <WhatsAppIcon />,
     tone: "whatsapp",
     href: whatsappUrl,
     external: true,

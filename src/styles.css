@@ -5,17 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * SmartEDGE design system.
- * Brand palette (hex reference -> oklch token):
- *   Midnight Navy #071126  Deep Navy #0B1733  Cobalt #2F5BFF
- *   Electric Blue #6687FF  Bright Red #FF334D  Off-White #F6F8FC  Muted #A8B4CC
- * Light surfaces are the default; wrap any block in .surface-dark to flip
- * every semantic token to the cinematic navy theme.
+ * SmartEdge Global Technologies design system.
+ * All brand colors live here so routes and components share one source of truth.
  */
 
 @theme inline {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Sora", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -43,10 +39,10 @@
   --color-ring-offset-background: var(--background);
   --color-signal: var(--signal);
   --color-signal-foreground: var(--signal-foreground);
-  --color-electric: var(--electric);
-  --color-midnight: var(--midnight);
-  --color-deep: var(--deep);
-  --color-mist: var(--mist);
+  --color-electric: var(--primary-400);
+  --color-midnight: var(--primary-900);
+  --color-deep: var(--primary-700);
+  --color-mist: var(--primary-100);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -63,77 +59,81 @@
 }
 
 :root {
-  /* Raw brand tokens */
-  --midnight: oklch(0.17 0.04 266);
-  --deep: oklch(0.215 0.055 266);
-  --cobalt: oklch(0.56 0.235 266);
-  --electric: oklch(0.67 0.17 268);
-  --red: oklch(0.65 0.225 18);
-  --offwhite: oklch(1 0 0);
-  --mist: oklch(0.72 0.025 262);
+  --primary-900: #3B1380;
+  --primary-700: #4C1D95;
+  --primary-600: #6D28D9;
+  --primary-500: #7C3AED;
+  --primary-400: #9B72EA;
+  --primary-100: #EDE9FE;
+  --primary-50: #F5F0FF;
+  --accent-blue: #0B6FD6;
+  --white: #FFFFFF;
+  --text-dark: #1F1535;
+  --text-muted: #6B6480;
+  --border-brand: #E4DDF5;
+  --gradient-brand: linear-gradient(135deg, #4C1D95 0%, #7C3AED 60%, #9B72EA 100%);
+  --shadow-brand: 0 8px 24px rgba(109, 40, 217, 0.15);
 
   --radius: 0.75rem;
-  --background: var(--offwhite);
-  --foreground: var(--midnight);
-  --card: oklch(1 0 0);
-  --card-foreground: var(--midnight);
-  --popover: oklch(1 0 0);
-  --popover-foreground: var(--midnight);
-  --primary: var(--cobalt);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0.018 262);
-  --secondary-foreground: var(--midnight);
-  --muted: oklch(0.97 0.012 262);
-  --muted-foreground: oklch(0.43 0.035 264);
-  --accent: oklch(0.95 0.025 266);
-  --accent-foreground: var(--cobalt);
-  --signal: var(--red);
-  --signal-foreground: oklch(1 0 0);
-  --destructive: oklch(0.58 0.22 22);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.91 0.012 262);
-  --input: oklch(0.89 0.015 262);
-  --ring: var(--cobalt);
-  --chart-1: var(--cobalt);
-  --chart-2: var(--electric);
-  --chart-3: var(--red);
-  --chart-4: var(--mist);
-  --chart-5: var(--deep);
-  --sidebar: var(--offwhite);
-  --sidebar-foreground: var(--midnight);
-  --sidebar-primary: var(--cobalt);
-  --sidebar-primary-foreground: oklch(1 0 0);
+  --background: var(--white);
+  --foreground: var(--text-dark);
+  --card: var(--white);
+  --card-foreground: var(--text-dark);
+  --popover: var(--white);
+  --popover-foreground: var(--text-dark);
+  --primary: var(--primary-600);
+  --primary-foreground: var(--white);
+  --secondary: var(--primary-50);
+  --secondary-foreground: var(--primary-700);
+  --muted: var(--primary-50);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--primary-100);
+  --accent-foreground: var(--primary-700);
+  --signal: var(--accent-blue);
+  --signal-foreground: var(--white);
+  --destructive: #B42318;
+  --destructive-foreground: var(--white);
+  --border: var(--border-brand);
+  --input: var(--border-brand);
+  --ring: var(--primary-500);
+  --chart-1: var(--primary-600);
+  --chart-2: var(--primary-400);
+  --chart-3: var(--accent-blue);
+  --chart-4: var(--primary-100);
+  --chart-5: var(--primary-900);
+  --sidebar: var(--white);
+  --sidebar-foreground: var(--text-dark);
+  --sidebar-primary: var(--primary-600);
+  --sidebar-primary-foreground: var(--white);
   --sidebar-accent: var(--secondary);
-  --sidebar-accent-foreground: var(--midnight);
+  --sidebar-accent-foreground: var(--primary-700);
   --sidebar-border: var(--border);
-  --sidebar-ring: var(--cobalt);
-
-  --gradient-cobalt: linear-gradient(135deg, var(--cobalt), var(--electric));
-  --gradient-night: radial-gradient(120% 90% at 85% 0%, oklch(0.3 0.12 266 / 0.55), transparent 60%),
-    linear-gradient(180deg, var(--midnight), var(--deep));
-  --gradient-scrim: linear-gradient(90deg, oklch(0.17 0.04 266 / 0.82) 0%, oklch(0.17 0.04 266 / 0.56) 45%, oklch(0.17 0.04 266 / 0.12) 100%);
-  --shadow-soft: 0 1px 2px oklch(0.17 0.04 266 / 0.06), 0 12px 32px -12px oklch(0.17 0.04 266 / 0.18);
-  --shadow-lift: 0 30px 60px -24px oklch(0.17 0.04 266 / 0.35);
-  --shadow-cobalt: 0 14px 36px -12px oklch(0.56 0.235 266 / 0.55);
+  --sidebar-ring: var(--primary-500);
+  --gradient-cobalt: var(--gradient-brand);
+  --gradient-night: linear-gradient(180deg, var(--primary-900), var(--primary-700));
+  --gradient-scrim: linear-gradient(90deg, rgb(59 19 128 / 0.9) 0%, rgb(76 29 149 / 0.58) 55%, transparent 100%);
+  --shadow-soft: var(--shadow-brand);
+  --shadow-lift: 0 20px 44px rgb(59 19 128 / 0.22);
+  --shadow-cobalt: 0 12px 28px rgb(109 40 217 / 0.24);
   --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .surface-dark {
-  --background: var(--midnight);
-  --foreground: oklch(0.98 0.005 260);
-  --card: oklch(37.445% 0.07767 265.654 / 0.919);
-  --card-foreground: oklch(0.98 0.005 260);
-  --popover: var(--deep);
-  --popover-foreground: oklch(0.98 0.005 260);
-  --secondary: oklch(0.26 0.06 266);
-  --secondary-foreground: oklch(0.98 0.005 260);
-  --muted: oklch(0.25 0.05 266);
-  --muted-foreground: var(--mist);
-  --accent: oklch(0.28 0.08 266);
-  --accent-foreground: var(--electric);
-  --border: oklch(1 0 0 / 0.1);
-  --input: oklch(1 0 0 / 0.16);
-  --ring: var(--electric);
+  --background: var(--primary-900);
+  --foreground: var(--white);
+  --card: rgb(255 255 255 / 0.1);
+  --card-foreground: var(--white);
+  --popover: var(--primary-700);
+  --popover-foreground: var(--white);
+  --secondary: rgb(255 255 255 / 0.1);
+  --secondary-foreground: var(--white);
+  --muted: rgb(255 255 255 / 0.08);
+  --muted-foreground: #EDE9FE;
+  --accent: rgb(155 114 234 / 0.2);
+  --accent-foreground: var(--white);
+  --border: rgb(255 255 255 / 0.2);
+  --input: rgb(255 255 255 / 0.25);
+  --ring: var(--primary-400);
   background-color: var(--background);
   color: var(--foreground);
 }
@@ -142,13 +142,30 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
-    background-color: #ffffff;
+    background-color: var(--white);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  main { background-color: #ffffff; }
+
+  .smartedge-logo-wrap {
+    display: inline-flex;
+    width: clamp(9rem, 18vw, 12rem);
+    height: 3.25rem;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+  }
+
+  .smartedge-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  main { background-color: var(--white); }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
   :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; border-radius: 4px; }
   @media (prefers-reduced-motion: reduce) {
@@ -181,18 +198,87 @@
 @utility shadow-cobalt { box-shadow: var(--shadow-cobalt); }
 @utility grid-lines {
   background-image:
-    linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at 70% 30%, black 20%, transparent 75%);
 }
 @utility grid-lines-light {
   background-image:
-    linear-gradient(to right, oklch(0.17 0.04 266 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.17 0.04 266 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(59 19 128 / 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(59 19 128 / 0.08) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 @utility ease-brand { transition-timing-function: var(--ease-brand); }
+
+.page-hero-bright {
+  position: relative;
+  isolation: isolate;
+  min-height: 420px;
+  background: var(--gradient-brand);
+  color: var(--white);
+}
+
+.page-hero-bright-scrim {
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgb(31 21 53 / 0.84) 0%, rgb(59 19 128 / 0.58) 42%, transparent 84%),
+    linear-gradient(0deg, rgb(31 21 53 / 0.38), transparent 42%);
+  pointer-events: none;
+}
+
+
+.page-hero-bright-eyebrow {
+  color: var(--white);
+}
+
+.page-hero-bright-title {
+  color: var(--white);
+  text-shadow: none;
+}
+
+.page-hero-bright-lead {
+  color: var(--white);
+}
+
+.sh-about-page .page-hero-bright-title,
+.sh-about-page .page-hero-bright-lead,
+.sh-about-page .page-hero-bright-eyebrow,
+.sh-services-page .page-hero-bright-title,
+.sh-services-page .page-hero-bright-lead,
+.sh-services-page .page-hero-bright-eyebrow,
+.sh-industries-page .page-hero-bright-title,
+.sh-industries-page .page-hero-bright-lead,
+.sh-industries-page .page-hero-bright-eyebrow,
+.sh-case-studies-page .page-hero-bright-title,
+.sh-case-studies-page .page-hero-bright-lead,
+.sh-case-studies-page .page-hero-bright-eyebrow,
+.sh-service-detail .page-hero-bright-title,
+.sh-service-detail .page-hero-bright-lead,
+.sh-service-detail .page-hero-bright-eyebrow,
+.sh-case-detail .page-hero-bright-title,
+.sh-case-detail .page-hero-bright-lead,
+.sh-case-detail .page-hero-bright-eyebrow {
+  text-shadow: 0 2px 8px rgb(0 0 0 / 0.32);
+}
+
+.sh-about-page .page-hero-bright-title,
+.sh-about-page .page-hero-bright-lead,
+.sh-about-page .page-hero-bright-eyebrow {
+  text-shadow: 0 2px 7px rgb(0 0 0 / 0.62);
+}
+
+.page-hero-bright a[class*="border-primary-foreground"] {
+  color: var(--primary-700);
+  border-color: rgb(255 255 255 / 0.65);
+  background: var(--white);
+  box-shadow: var(--shadow-brand);
+}
+
+.page-hero-bright a[class*="border-primary-foreground"]:hover {
+  color: var(--primary-700);
+  background: var(--primary-100);
+}
 
 /* Hero slow zoom for the active slide */
 @keyframes kenburns { from { transform: scale(1.08); } to { transform: scale(1); } }
@@ -216,30 +302,30 @@
   position: relative; display: grid; place-items: center; width: 100%; height: 100%;
   border-radius: 28%;
   background:
-    radial-gradient(120% 90% at 25% 15%, oklch(0.9 0.1 268 / 0.95), transparent 45%),
-    linear-gradient(150deg, oklch(0.76 0.14 268) 0%, var(--cobalt) 45%, oklch(0.48 0.16 266) 100%);
+    radial-gradient(120% 90% at 25% 15%, var(--primary-400), transparent 45%),
+    linear-gradient(150deg, var(--primary-400) 0%, var(--primary-600) 45%, var(--primary-900) 100%);
   box-shadow:
-    inset 0 2px 0 oklch(1 0 0 / 0.45),
-    inset 0 -6px 12px oklch(0.2 0.1 266 / 0.55),
-    0 8px 0 -2px oklch(0.32 0.16 266),
-    0 18px 30px -10px oklch(0.3 0.2 266 / 0.6);
+    inset 0 2px 0 rgb(255 255 255 / 0.45),
+    inset 0 -6px 12px rgb(59 19 128 / 0.55),
+    0 8px 0 -2px var(--primary-900),
+    0 18px 30px -10px rgb(59 19 128 / 0.6);
   transform: rotateX(14deg) rotateY(-16deg);
   transform-style: preserve-3d;
   transition: transform 0.5s var(--ease-brand);
   overflow: hidden;
   &::after {
     content: ""; position: absolute; inset: -40%;
-    background: linear-gradient(115deg, transparent 40%, oklch(1 0 0 / 0.35) 50%, transparent 60%);
+    background: linear-gradient(115deg, transparent 40%, rgb(255 255 255 / 0.35) 50%, transparent 60%);
     transform: translateX(-60%); transition: transform 0.9s var(--ease-brand);
   }
 }
 @utility icon3d-night {
   background:
-    radial-gradient(120% 90% at 25% 15%, oklch(0.72 0.1 266 / 0.9), transparent 50%),
-    linear-gradient(150deg, oklch(0.48 0.12 266), oklch(0.36 0.08 266) 60%, oklch(0.27 0.05 266));
+    radial-gradient(120% 90% at 25% 15%, var(--primary-400), transparent 50%),
+    linear-gradient(150deg, var(--primary-700), var(--primary-900) 60%, #241050);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.25), inset 0 -6px 12px oklch(0 0 0 / 0.4),
-    0 8px 0 -2px oklch(0.12 0.03 266), 0 18px 30px -10px oklch(0.1 0.05 266 / 0.7);
+    inset 0 1px 0 rgb(255 255 255 / 0.25), inset 0 -6px 12px rgb(0 0 0 / 0.4),
+    0 8px 0 -2px var(--primary-900), 0 18px 30px -10px rgb(59 19 128 / 0.7);
 }
 .group:hover .icon3d-block, .icon3d:hover .icon3d-block { transform: rotateX(4deg) rotateY(6deg) translateY(-3px); }
 .group:hover .icon3d-block::after, .icon3d:hover .icon3d-block::after { transform: translateX(60%); }

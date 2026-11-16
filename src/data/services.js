@@ -1,298 +1,86 @@
-
-import cloudImg from "@/assets/services/cloud.jpg";
-import dataImg from "@/assets/services/data.jpg";
-import secureImg from "@/assets/hero/hero-secure.jpg";
-import connectedImg from "@/assets/hero/hero-connected.jpg";
-import scaleImg from "@/assets/hero/hero-scale.jpg";
-import consultImg from "@/assets/about/studio.jpg";
-import solarImg from "@/assets/services/solar-energy.png";
-import evChargingImg from "@/assets/services/ev-charging.jpg";
-
-/* ======================================================
-   SmartEDGE — SERVICES DATA
-   Existing 6 services + Solar + EV
-====================================================== */
+import solarPanelsImg from "@/assets/hero/solar-rooftop.jpg";
+import solarInverterImg from "@/assets/services/solar-energy.png";
+import solarStructureImg from "@/assets/hero/solar-commercial.jpg";
+import solarComponentsImg from "@/assets/hero/solar-site-assessment.jpg";
+import solarInstallationImg from "@/assets/hero/solar-residential.jpg";
+import solarAmcImg from "@/assets/hero/solar-long-term.jpg";
 
 export const services = [
-  // 1. CLOUD & INFRASTRUCTURE
   {
-    slug: "cloud-infrastructure",
-    title: "Cloud & Infrastructure",
-    icon: "cloud",
-    summary:
-      "Design, migrate and operate hybrid and cloud environments built for reliability and cost control.",
-    image: cloudImg,
-    overview:
-      "We assess your current estate, define a target architecture and move workloads in planned, reversible stages, then help you run it with clear operating practices.",
-    challenges: [
-      "Ageing on-premise hardware and rising maintenance effort",
-      "Unpredictable cloud spend",
-      "Environments built without consistent standards",
-    ],
-    capabilities: [
-      "Cloud readiness assessment",
-      "Landing zone and network design",
-      "Workload migration planning",
-      "Infrastructure as code",
-      "Backup and disaster recovery design",
-      "Managed operations handover",
-    ],
-    outcomes: [
-      "A documented target architecture",
-      "A staged migration plan with rollback points",
-      "Runbooks your team can own",
-    ],
+    slug: "solar-panels",
+    title: "Solar Panels",
+    icon: "solar-panel",
+    summary: "Solar panel products for residential and commercial solar applications.",
+    image: solarPanelsImg,
+    overview: "Explore solar panel options for homes, businesses and other suitable installation sites. We help clarify the product requirements, site considerations and next steps for your enquiry.",
+    challenges: ["Understanding the right panel requirements", "Working within available roof or site area", "Coordinating supply with the wider project"],
+    capabilities: ["Residential and commercial panel enquiries", "Site-aware product discussions", "Supply coordination", "Installation-ready planning"],
+    outcomes: ["A clearer product shortlist", "A practical supply and installation scope", "Defined next steps for the project"],
   },
-
-  // 2. CYBERSECURITY
   {
-    slug: "cybersecurity",
-    title: "Cybersecurity",
-    icon: "shield",
-    summary:
-      "Practical security programmes that reduce risk across identities, endpoints, networks and data.",
-    image: secureImg,
-    overview:
-      "We start from your real exposure, prioritise what matters most and implement controls that people can actually work with.",
-    challenges: [
-      "Unclear view of security posture",
-      "Too many tools, too little coverage",
-      "Compliance requirements without a plan",
-    ],
-    capabilities: [
-      "Security posture assessment",
-      "Identity and access hardening",
-      "Endpoint and network protection",
-      "Security monitoring design",
-      "Incident response planning",
-      "Policy and awareness programmes",
-    ],
-    outcomes: [
-      "A prioritised risk register",
-      "A phased remediation roadmap",
-      "Clear ownership of security controls",
-    ],
+    slug: "solar-inverters",
+    title: "Solar Inverters",
+    icon: "solar-inverter",
+    summary: "Solar inverter solutions for different residential and commercial solar-system requirements.",
+    image: solarInverterImg,
+    overview: "We help customers identify inverter requirements that fit the intended solar system, installation context and operating needs without making unverified performance or warranty claims.",
+    challenges: ["Matching the inverter to the proposed system", "Understanding installation and connection requirements", "Planning access for future service"],
+    capabilities: ["Residential and commercial enquiries", "System compatibility discussions", "Installation coordination", "Maintenance planning"],
+    outcomes: ["A documented inverter enquiry", "Clear compatibility questions for the installer", "A practical route to quotation"],
   },
-
-  // 3. DATA & AI
   {
-    slug: "data-ai",
-    title: "Data & AI",
-    icon: "ai",
-    summary:
-      "Turn scattered data into trusted reporting and responsibly applied AI.",
-    image: dataImg,
-    overview:
-      "We build the data foundations first, including quality, governance and access, then apply analytics and AI where they create measurable value.",
-    challenges: [
-      "Data spread across disconnected systems",
-      "Reports nobody fully trusts",
-      "AI pilots that never reach production",
-    ],
-    capabilities: [
-      "Data platform architecture",
-      "Integration and pipeline engineering",
-      "Dashboards and reporting",
-      "Data governance frameworks",
-      "AI use-case discovery",
-      "Model deployment and monitoring",
-    ],
-    outcomes: [
-      "A single, governed source of truth",
-      "Reporting aligned to business decisions",
-      "AI use cases with defined success criteria",
-    ],
+    slug: "solar-structures",
+    title: "Solar Structures",
+    icon: "solar-structure",
+    summary: "Solar mounting structures and supporting systems for rooftop and other suitable solar installations.",
+    image: solarStructureImg,
+    overview: "Solar structures support safe, practical panel placement across suitable rooftops and other sites. We help scope the mounting requirement around the installation context.",
+    challenges: ["Assessing the available mounting area", "Allowing for site-specific installation constraints", "Coordinating structure supply and installation"],
+    capabilities: ["Rooftop structure enquiries", "Mounting-layout discussions", "Project coordination", "Installation-ready scope"],
+    outcomes: ["A clearer structural requirement", "Better coordination with the solar project", "Defined information needed for assessment"],
   },
-
-  // 4. INTELLIGENT AUTOMATION
   {
-    slug: "intelligent-automation",
-    title: "Intelligent Automation",
-    icon: "automation",
-    summary:
-      "Remove repetitive work by automating processes end to end, with people kept in control.",
-    image: scaleImg,
-    overview:
-      "We map how work really flows, identify where automation helps and build workflows that are observable, maintainable and safe to change.",
-    challenges: [
-      "Manual hand-offs between teams and tools",
-      "Error-prone repetitive tasks",
-      "Automation scripts no one maintains",
-    ],
-    capabilities: [
-      "Process discovery and mapping",
-      "Workflow and RPA implementation",
-      "System integration and APIs",
-      "Approval and exception handling",
-      "Automation monitoring",
-      "Centre-of-excellence setup",
-    ],
-    outcomes: [
-      "Documented, owned workflows",
-      "Fewer manual hand-offs",
-      "A backlog of prioritised automation opportunities",
-    ],
+    slug: "solar-components",
+    title: "Solar Components",
+    icon: "solar-components",
+    summary: "Essential electrical, connection and installation components used in solar systems.",
+    image: solarComponentsImg,
+    overview: "Solar systems depend on the right supporting components and connection materials. We help organise component enquiries around the overall system and installation needs.",
+    challenges: ["Identifying the supporting components required", "Coordinating products across a project", "Avoiding gaps during installation"],
+    capabilities: ["Component requirement discussions", "Electrical and connection accessories", "Supply coordination", "Project checklist support"],
+    outcomes: ["A more complete project checklist", "Fewer avoidable supply gaps", "Clearer coordination with installation teams"],
   },
-
-  // 5. CONNECTIVITY & NETWORKS
   {
-    slug: "connectivity-networks",
-    title: "Connectivity & Networks",
-    icon: "network",
-    summary:
-      "Secure, high-availability networks connecting offices, sites, devices and cloud.",
-    image: connectedImg,
-    overview:
-      "From campus Wi-Fi to multi-site WAN, we design networks around performance, visibility and security.",
-    challenges: [
-      "Slow or unreliable connectivity between sites",
-      "Limited visibility into network health",
-      "Growing numbers of connected devices",
-    ],
-    capabilities: [
-      "Network architecture and design",
-      "SD-WAN and multi-site connectivity",
-      "Wireless planning",
-      "IoT and device connectivity",
-      "Network monitoring",
-      "Segmentation and zero-trust access",
-    ],
-    outcomes: [
-      "A resilient, documented network design",
-      "Monitoring with clear alerting",
-      "Segmented access aligned to risk",
-    ],
+    slug: "solar-installation",
+    title: "Solar Installation Service",
+    icon: "solar-installation",
+    summary: "Solar installation and commissioning services for residential and commercial requirements.",
+    image: solarInstallationImg,
+    overview: "We support residential and commercial solar installation enquiries from initial coordination through installation and commissioning discussions, based on the confirmed project scope.",
+    challenges: ["Coordinating site access and installation activities", "Keeping product, structure and electrical work aligned", "Planning commissioning and handover"],
+    capabilities: ["Residential installation coordination", "Commercial project coordination", "Installation planning", "Commissioning and handover support"],
+    outcomes: ["A coordinated installation scope", "Clear project milestones", "A documented handover plan"],
   },
-
-  // 6. TECHNOLOGY CONSULTING
   {
-    slug: "technology-consulting",
-    title: "Technology Consulting",
-    icon: "consult",
-    summary:
-      "Independent advice, roadmaps and programme leadership for complex technology decisions.",
-    image: consultImg,
-    overview:
-      "We help leadership teams decide what to build, buy or retire, and stay alongside delivery to keep programmes on track.",
-    challenges: [
-      "Competing priorities and limited budgets",
-      "Vendor choices with long-term impact",
-      "Programmes drifting from their goals",
-    ],
-    capabilities: [
-      "IT strategy and roadmaps",
-      "Architecture reviews",
-      "Vendor evaluation and selection",
-      "Programme and project leadership",
-      "Technology due diligence",
-      "Operating model design",
-    ],
-    outcomes: [
-      "A prioritised, costed roadmap",
-      "Decision records for major choices",
-      "Governance that keeps delivery aligned",
-    ],
-  },
-
-  // 7. SOLAR ENERGY SOLUTIONS
-  {
-    slug: "solar-energy-solutions",
-    title: "Solar Energy Solutions",
-    icon: "solar",
-    summary:
-      "Plan rooftop solar for homes, communities and businesses with site-aware design, installation coordination and performance planning.",
-    image: solarImg,
-    overview:
-      "We help organisations and property owners understand how solar can fit their site and energy needs. The work can cover initial suitability, system sizing, delivery coordination and ongoing performance planning.",
-    challenges: [
-      "Unclear rooftop suitability and available installation area",
-      "Choosing a system size that fits actual energy use",
-      "Coordinating installation, utility steps and ongoing upkeep",
-    ],
-    capabilities: [
-      "Rooftop suitability and energy-use assessment",
-      "Solar system sizing and solution planning",
-      "Residential, society and commercial rooftop options",
-      "Installation and commissioning coordination",
-      "Guidance on applicable approvals and net metering",
-      "Performance monitoring and maintenance planning",
-    ],
-    outcomes: [
-      "A site-specific solar feasibility and sizing roadmap",
-      "Clear project scope and delivery milestones",
-      "A practical plan for ongoing system performance checks",
-    ],
-  },
-
-  // 8. EV CHARGING INFRASTRUCTURE
-  {
-    slug: "ev-charging-infrastructure",
-    title: "EV Charging Infrastructure",
-    icon: "ev",
-    summary:
-      "Plan EV charging for homes, workplaces, fleets and commercial destinations with site assessment and deployment coordination.",
-    image: evChargingImg,
-    overview:
-      "We help shape EV charging infrastructure around parking layout, electrical capacity, vehicle usage and expected demand. The objective is a clear deployment plan that supports day-to-day charging and future expansion.",
-    challenges: [
-      "Selecting charging options for different vehicles and use cases",
-      "Working around electrical capacity and parking constraints",
-      "Planning charger visibility, maintenance and future expansion",
-    ],
-    capabilities: [
-      "Site feasibility and electrical-capacity review",
-      "AC/DC charger selection and layout planning",
-      "Home, workplace, fleet and destination charging concepts",
-      "Installation and commissioning coordination",
-      "Connectivity and charge-management planning",
-      "Usage monitoring and maintenance planning",
-    ],
-    outcomes: [
-      "A site-aware EV charger deployment plan",
-      "Clear operational and maintenance requirements",
-      "A scalable foundation for future charging demand",
-    ],
+    slug: "solar-amc",
+    title: "AMC & Maintenance Service",
+    icon: "solar-maintenance",
+    summary: "Annual maintenance and ongoing inspection support for solar installations.",
+    image: solarAmcImg,
+    overview: "Regular inspection and maintenance help solar installations remain easier to monitor and manage. We discuss an appropriate support scope for the site and system.",
+    challenges: ["Keeping inspection responsibilities clear", "Planning routine service access", "Responding to maintenance observations"],
+    capabilities: ["Maintenance requirement discussions", "Inspection planning", "Service coordination", "Ongoing support scope"],
+    outcomes: ["A clearer maintenance plan", "Defined service responsibilities", "A practical route to ongoing support"],
   },
 ];
-
-/* ======================================================
-   SHARED DELIVERY PROCESS
-   Used by the service detail pages
-====================================================== */
 
 export const deliveryProcess = [
-  {
-    step: "01",
-    title: "Discover",
-    body:
-      "Understand goals, constraints and the current landscape through focused workshops.",
-  },
-  {
-    step: "02",
-    title: "Design",
-    body:
-      "Define the target architecture, roadmap and success measures before building.",
-  },
-  {
-    step: "03",
-    title: "Deliver",
-    body:
-      "Implement in short, visible increments with testing and security at each stage.",
-  },
-  {
-    step: "04",
-    title: "Evolve",
-    body:
-      "Hand over, support and continuously improve as needs change.",
-  },
+  { number: "01", title: "Understand", description: "We learn about your site, requirements and intended solar use." },
+  { number: "02", title: "Plan", description: "We shape a practical product or service scope around the available information." },
+  { number: "03", title: "Coordinate", description: "We align supply, installation and service activities with the agreed scope." },
+  { number: "04", title: "Support", description: "We help clarify handover and ongoing maintenance requirements." },
 ];
 
-/* ======================================================
-   SERVICE LOOKUP
-   Used by /services/$slug
-====================================================== */
-
-export const getService = (slug) =>
-  services.find((service) => service.slug === slug);
-
-export default services;
+export function getService(slug) {
+  return services.find((service) => service.slug === slug);
+}

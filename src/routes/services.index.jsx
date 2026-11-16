@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/brand";
 import { ThreeDIcon } from "@/components/ui/ThreeDIcon";
 import { services } from "@/data/services";
-import cloud from "@/assets/services/cloud.jpg";
+import solarHero from "@/assets/hero/solar-commercial.jpg";
 import { cn } from "@/lib/utils";
 
 /* ======================================================
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/services/")({
       {
         name: "description",
         content:
-          "Explore SmartEDGE services across cloud infrastructure, cybersecurity, data and AI, automation, connectivity, technology consulting, solar energy and EV charging infrastructure.",
+          "Explore SmartEDGE solar panels, inverters, structures, components, installation and AMC services.",
       },
       {
         property: "og:title",
@@ -46,7 +46,7 @@ export const Route = createFileRoute("/services/")({
       {
         property: "og:description",
         content:
-          "Explore connected technology capabilities designed around your organisation's needs.",
+          "Explore solar products and services designed around residential and commercial requirements.",
       },
     ],
   }),
@@ -1607,10 +1607,10 @@ function Services() {
       ================================================== */}
 
       <PageHero
-        eyebrow="Services"
-        title="Connected capabilities for modern organisations."
-        lead="Explore connected technology, solar energy and EV charging services shaped around your organisation’s goals, site requirements and next steps."
-        image={cloud}
+        eyebrow="Our Services"
+        title="Solar products and services for every stage."
+        lead="Explore solar products, installation and maintenance support for residential and commercial requirements."
+        image={solarHero}
       />
 
       {/* ==================================================
@@ -1639,9 +1639,9 @@ function Services() {
                 </h2>
 
                 <p className="sh-svc-intro-description">
-                  Explore our connected technology, solar energy
-                  and EV charging capabilities to find services
-                  relevant to your organisation and its next steps.
+                  Explore our solar products and services to find the
+                  right starting point for your site, project or
+                  maintenance requirement.
                 </p>
               </div>
 
@@ -1677,7 +1677,7 @@ function Services() {
                     {serviceCountLabel}
                   </span>
                   <span className="sh-svc-overview-label">
-                    Technology practices
+                    Solar offerings
                   </span>
                 </span>
               </motion.div>
@@ -1723,7 +1723,7 @@ function Services() {
 
                       <div className="sh-svc-visual">
                         <img
-                          src={service.image || cloud}
+                          src={service.image || solarHero}
                           alt={`${service.title} service`}
                           loading={index === 0 ? "eager" : "lazy"}
                           width={1280}
@@ -1795,7 +1795,7 @@ function Services() {
 
                         <p className="sh-svc-summary">
                           {service.summary ||
-                            `Explore how SmartEDGE approaches ${service.title.toLowerCase()} as part of a connected technology strategy.`}
+                            `Explore SmartEDGE ${service.title.toLowerCase()} for your solar requirement.`}
                         </p>
 
                         {displayCapabilities.length > 0 && (
@@ -1833,8 +1833,7 @@ function Services() {
 
                         <div className="sh-svc-card-footer">
                           <span className="sh-svc-footer-note">
-                            Explore the practice, capabilities
-                            and relevant solutions.
+                            Explore the offering, capabilities and next steps.
                           </span>
 
                           <Link
@@ -1877,7 +1876,7 @@ function Services() {
               <p>
                 Service information is not available right now.
                 Please check back later or contact SmartEDGE to
-                discuss your technology requirements.
+                discuss your solar requirements.
               </p>
             </div>
           )}
@@ -1921,10 +1920,10 @@ function Services() {
               </div>
 
               <p className="sh-svc-workflow-description">
-                Technology works best when the strategy, systems
+                Solar projects work best when products, installation
                 and implementation support the same objective.
                 Our approach connects the important stages of
-                a technology engagement.
+                a solar product or service enquiry.
               </p>
             </div>
           </Reveal>

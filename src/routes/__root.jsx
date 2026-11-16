@@ -83,22 +83,22 @@ export const Route = createRootRouteWithContext()({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SmartEDGE — Enterprise Technology Partner" },
+      { title: "SmartEDGE | Solar Products, Installation & AMC Services" },
       {
         name: "description",
-        content: "SmartEDGE helps organisations plan, build and run secure, connected technology.",
+        content: "Explore solar panels, inverters, structures, components, residential and commercial solar solutions, installation services, AMC and franchise opportunities with SmartEDGE.",
       },
       { property: "og:site_name", content: "SmartEDGE" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#ffffff" },
+      { name: "theme-color", content: "#6D28D9" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Sora:wght@600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
