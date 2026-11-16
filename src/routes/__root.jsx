@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext()({
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "icon", href: "/smartedge-logo.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,

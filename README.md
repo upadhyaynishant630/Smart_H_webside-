@@ -772,7 +772,7 @@ icons/
 
 backgrounds/
 
-favicon.svg
+smartedge-logo.png
 
 src/
 

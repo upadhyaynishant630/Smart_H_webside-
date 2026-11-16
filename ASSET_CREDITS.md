@@ -12,7 +12,7 @@ All imagery is AI-generated specifically for SmartEDGE. No stock, third-party or
 | src/assets/services/cloud.jpg | AI-generated | Cloud service |
 | src/assets/services/data.jpg | AI-generated | Data & AI service |
 | src/assets/industries/manufacturing.jpg | AI-generated | Industries |
-| public/favicon.svg | Original SVG | Text-based "H" mark (not an official logo) |
+| src/assets/smartedge-logo.png | Supplied brand asset | SmartEdge Global Technologies logo |
 
 Icons: original SVG glyphs rendered by `src/components/ui/ThreeDIcon.tsx`; UI controls use lucide-react (ISC license).
 Fonts: Manrope and Sora via Google Fonts (SIL Open Font License).

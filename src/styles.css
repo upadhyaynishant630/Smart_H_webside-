@@ -157,13 +157,14 @@
     align-items: center;
     justify-content: center;
     border-radius: 0.5rem;
+    transform: translateY(2px);
   }
 
   .smartedge-logo {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 45%;
   }
   main { background-color: var(--white); }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.025em; }
@@ -222,8 +223,8 @@
 .page-hero-bright-scrim {
   z-index: 0;
   background:
-    linear-gradient(90deg, rgb(31 21 53 / 0.84) 0%, rgb(59 19 128 / 0.58) 42%, transparent 84%),
-    linear-gradient(0deg, rgb(31 21 53 / 0.38), transparent 42%);
+    linear-gradient(90deg, rgba(31, 21, 53, 0.592) 0%, rgba(62, 21, 133, 0.338) 42%, transparent 80%),
+    linear-gradient(0deg, rgba(43, 29, 72, 0.38), transparent 42%);
   pointer-events: none;
 }
 
