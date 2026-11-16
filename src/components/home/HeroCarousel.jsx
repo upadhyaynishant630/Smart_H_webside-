@@ -1294,6 +1294,13 @@ const heroCarouselStyles = `
 
   .se-hero {
     --se-header-offset: 76px;
+
+    height: min(
+      760px,
+      max(480px, calc(100svh - 130px))
+    );
+
+    min-height: 480px;
   }
 
   .se-hero__inner,
@@ -1331,11 +1338,11 @@ const heroCarouselStyles = `
     --se-header-offset: 70px;
 
     height: min(
-      840px,
-      max(540px, calc(100svh - var(--se-header-offset)))
+      700px,
+      max(460px, calc(100svh - 130px))
     );
 
-    min-height: 540px;
+    min-height: 460px;
   }
 
   .se-hero__overlay {
@@ -1533,11 +1540,11 @@ const heroCarouselStyles = `
     --se-header-offset: 64px;
 
     height: min(
-      840px,
-      max(520px, calc(100svh - var(--se-header-offset)))
+      620px,
+      max(440px, calc(100svh - 140px))
     );
 
-    min-height: 520px;
+    min-height: 440px;
   }
 
   .se-hero__inner,
@@ -1609,11 +1616,11 @@ const heroCarouselStyles = `
 
   .se-hero {
     height: min(
-      920px,
-      max(520px, calc(100svh - var(--se-header-offset)))
+      760px,
+      max(480px, calc(100svh - 130px))
     );
 
-    min-height: 520px;
+    min-height: 480px;
   }
 
   .se-hero__inner {
@@ -1662,8 +1669,8 @@ const heroCarouselStyles = `
 @media (max-height: 650px) and (max-width: 680px) {
 
   .se-hero {
-    height: 520px;
-    min-height: 520px;
+    height: 480px;
+    min-height: 480px;
   }
 
   .se-hero__inner {

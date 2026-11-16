@@ -1,8 +1,6 @@
 
 import { Link } from "@tanstack/react-router";
-import { useReducedMotion } from "framer-motion";
 import {
-  ArrowUp,
   ArrowUpRight,
   Mail,
   MapPin,
@@ -14,6 +12,7 @@ import {
 import { navigation, siteConfig } from "@/data/site";
 import { services } from "@/data/services";
 import { Reveal, Wordmark } from "@/components/ui/brand";
+import virtumediaLogo from "@/assets/virtumedia-logo.png";
 
 function WhatsAppIcon() {
   return (
@@ -55,7 +54,6 @@ function ContactRow({ href, icon, label }) {
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const reduceMotion = useReducedMotion();
 
   const siteName = siteConfig.name || "SmartEDGE";
   const description = siteConfig.description || "";
@@ -688,48 +686,25 @@ export function Footer() {
           text-align: center;
         }
 
-        .sh-footer-top-button {
+        .sh-footer-credit {
           display: inline-flex;
-          min-height: 32px;
-          flex: 0 0 auto;
+          min-width: 0;
           align-items: center;
-          gap: 7px;
-          padding: 6px 11px;
-          border: 1px solid var(--sf-line);
-          border-radius: 999px;
-          background: rgba(255, 255, 255, 0.025);
+          justify-content: flex-end;
+          gap: 8px;
           color: var(--primary-100);
-          font-family: inherit;
           font-size: 10px;
-          font-weight: 750;
-          cursor: pointer;
-          transition:
-            color 200ms ease,
-            background 200ms ease,
-            border-color 200ms ease,
-            transform 200ms ease;
+          font-weight: 650;
+          line-height: 1.4;
+          text-align: right;
         }
 
-        .sh-footer-top-button:hover {
-          transform: translateY(-1px);
-          border-color: rgba(133, 132, 255, 0.45);
-          background: rgba(133, 132, 255, 0.1);
-          color: #fff;
-        }
-
-        .sh-footer-top-button:focus-visible {
-          outline: 2px solid var(--sf-cyan);
-          outline-offset: 3px;
-        }
-
-        .sh-footer-top-button svg {
-          width: 13px;
-          height: 13px;
-          transition: transform 200ms ease;
-        }
-
-        .sh-footer-top-button:hover svg {
-          transform: translateY(-2px);
+        .sh-footer-credit img {
+          width: 28px;
+          height: 28px;
+          flex: 0 0 28px;
+          object-fit: contain;
+          border-radius: 6px;
         }
 
         /* Animations */
@@ -886,10 +861,6 @@ export function Footer() {
             display: none;
           }
 
-          .sh-footer-top-button {
-            min-height: 30px;
-            padding: 5px 9px;
-          }
         }
 
         @media (max-width: 360px) {
@@ -1090,19 +1061,10 @@ export function Footer() {
             </p>
           )}
 
-          <button
-            type="button"
-            onClick={() => {
-              window.scrollTo({
-                top: 0,
-                behavior: reduceMotion ? "auto" : "smooth",
-              });
-            }}
-            className="sh-footer-top-button"
-          >
-            Back to top
-            <ArrowUp aria-hidden="true" />
-          </button>
+          <div className="sh-footer-credit">
+            <img src={virtumediaLogo} alt="VirtuMedia" />
+            <span>Developed by VirtuMedia</span>
+          </div>
         </div>
       </div>
     </footer>

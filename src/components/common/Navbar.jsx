@@ -193,6 +193,7 @@ export function Navbar() {
         ease: EASE,
       }}
       data-scrolled={scrolled ? "true" : "false"}
+      data-mobile-open={mobileOpen ? "true" : "false"}
       className="sh-navbar"
     >
       <style>{`
@@ -216,7 +217,7 @@ export function Navbar() {
           width: 100%;
           max-width: 100%;
           color: var(--sh-nav-ink);
-          background: rgb(76 29 149 / 0.96);
+          background: rgb(76 29 149 / 0.92);
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
           border-bottom: 0;
@@ -244,10 +245,25 @@ export function Navbar() {
 
         .sh-navbar[data-scrolled="true"] {
           border-bottom-color: transparent;
-          background: rgb(76 29 149 / 0.98);
-          box-shadow: 0 8px 32px rgba(23, 43, 64, 0.08);
+          background: rgb(76 29 149 / 0.78);
+          border-bottom: 1px solid rgb(155 114 234 / 0.28);
+          box-shadow: 0 8px 32px rgb(31 21 53 / 0.2);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
+        }
+
+        .sh-navbar[data-mobile-open="true"] > .sh-navbar-shell {
+          display: none !important;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        .sh-navbar[data-mobile-open="true"] {
+          background: transparent;
+          backdrop-filter: none;
+          -webkit-backdrop-filter: none;
+          box-shadow: none;
         }
 
         .sh-navbar a,
@@ -416,8 +432,8 @@ export function Navbar() {
           border-radius: 21px;
           background: linear-gradient(
             145deg,
-            var(--primary-700) 0%,
-            var(--primary-900) 100%
+            var(--primary-600) 0%,
+            var(--primary-700) 100%
           );
           box-shadow:
             0 24px 65px rgba(0, 0, 0, 0.3),
@@ -454,7 +470,7 @@ export function Navbar() {
         }
 
         .sh-navbar-mega-caption {
-          color: var(--primary-100);
+          color: var(--text-dark);
           font-size: 10px;
           line-height: 1.6;
         }
@@ -537,7 +553,7 @@ export function Navbar() {
           display: -webkit-box;
           margin-top: 4px;
           overflow: hidden;
-          color: var(--primary-100);
+          color: var(--text-muted);
           font-size: 10px;
           line-height: 1.7;
           -webkit-box-orient: vertical;
@@ -557,7 +573,7 @@ export function Navbar() {
           gap: 12px;
           padding: 10px 14px;
           border: 1px solid rgba(133, 132, 255, 0.18);
-          border-radius: 12px;
+          border-radius: 999px;
           background: var(--primary-100);
           color: var(--primary-700);
           font-size: 11px;
@@ -648,28 +664,99 @@ export function Navbar() {
            MOBILE MENU
         ===================================== */
 
+        .sh-navbar-mobile-backdrop {
+          position: fixed;
+          z-index: 0;
+          inset: 0;
+          width: 100%;
+          border: 0;
+          background: rgb(31 21 53 / 0.22);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          cursor: pointer;
+        }
+
         .sh-navbar-mobile-panel {
-          height: calc(100vh - var(--sh-nav-height));
-          height: calc(100dvh - var(--sh-nav-height));
+          position: fixed;
+          top: 0;
+          right: 0;
+          z-index: 1;
+          width: 60vw;
+          height: 100vh;
+          height: 100dvh;
           overflow-x: hidden;
           overflow-y: auto;
           overscroll-behavior: contain;
-          border-top: 0;
-          background: #ffffff;
+          background: linear-gradient(
+            160deg,
+            var(--primary-700) 0%,
+            var(--primary-900) 100%
+          );
+          box-shadow: -18px 0 40px rgb(31 21 53 / 0.16);
+          border-left: 0;
           scrollbar-width: thin;
-          scrollbar-color: rgba(133, 132, 255, 0.35) transparent;
+          scrollbar-color: var(--primary-400) transparent;
+        }
+
+        .sh-navbar-mobile-sheet-head {
+          display: flex;
+          min-height: 74px;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          padding: 0 16px;
+          border-bottom: 1px solid var(--border);
+          background: linear-gradient(
+            135deg,
+            var(--primary-600) 0%,
+            var(--primary-700) 100%
+          );
+        }
+
+        .sh-navbar-mobile-brand .smartedge-logo-wrap {
+          width: 8rem;
+          height: 2.8rem;
+          padding: 4px 8px;
+          border: 1px solid var(--primary-100);
+          border-radius: 10px;
+          background: var(--primary-50);
+          transform: none;
+        }
+
+        .sh-navbar-mobile-brand .smartedge-logo {
+          transform: scale(1.18);
+        }
+
+        .sh-navbar-mobile-close {
+          display: grid;
+          width: 42px;
+          height: 42px;
+          place-items: center;
+          border: 0;
+          border-radius: 12px;
+          background: rgb(237 233 254 / 0.16);
+          color: var(--white);
+          cursor: pointer;
+          transition:
+            background 200ms ease,
+            transform 200ms ease;
+        }
+
+        .sh-navbar-mobile-close:hover {
+          background: rgb(237 233 254 / 0.28);
+          transform: rotate(4deg);
         }
 
         .sh-navbar-mobile-inner {
-          width: calc(100% - 36px);
+          width: calc(100% - 32px);
           max-width: 640px;
           margin-inline: auto;
-          padding-block: 14px 25px;
+          padding-block: 18px 25px;
         }
 
         .sh-navbar-mobile-caption {
           margin: 0 0 12px;
-          color: #858fb1;
+          color: var(--primary-100);
           font-size: 9px;
           font-weight: 800;
           letter-spacing: 0.16em;
@@ -702,11 +789,13 @@ export function Navbar() {
           padding: 10px 12px;
           border: 1px solid transparent;
           border-radius: 12px;
-          color: var(--primary-100);
+          color: var(--white);
+          white-space: normal;
           font-size: 14px;
           font-weight: 650;
           line-height: 1.5;
           text-decoration: none;
+          text-shadow: none;
           transition:
             background 200ms ease,
             border-color 200ms ease,
@@ -715,8 +804,8 @@ export function Navbar() {
 
         .sh-navbar-mobile-link:hover,
         .sh-navbar-mobile-link[data-active="true"] {
-          border-color: rgba(133, 132, 255, 0.13);
-          background: rgb(237 233 254 / 0.16);
+          border-color: transparent;
+          background: rgb(237 233 254 / 0.18);
           color: var(--white);
         }
 
@@ -745,7 +834,7 @@ export function Navbar() {
           border: 1px solid var(--sh-nav-border);
           border-radius: 11px;
           background: rgba(255, 255, 255, 0.035);
-          color: #c3c9ff;
+          color: var(--white);
           cursor: pointer;
           transition:
             transform 200ms ease,
@@ -784,11 +873,12 @@ export function Navbar() {
           padding: 9px;
           border: 1px solid transparent;
           border-radius: 10px;
-          color: var(--primary-100);
+          color: var(--white);
           font-size: 12px;
           font-weight: 550;
           line-height: 1.5;
           text-decoration: none;
+          text-shadow: none;
           transition:
             color 200ms ease,
             border-color 200ms ease,
@@ -832,8 +922,8 @@ export function Navbar() {
           margin-top: 4px;
           padding: 9px 10px;
           border-radius: 10px;
-          background: rgba(76, 85, 237, 0.12);
-          color: #c6c4ff;
+          background: rgb(237 233 254 / 0.12);
+          color: var(--white);
           font-size: 11px;
           font-weight: 750;
           text-decoration: none;
@@ -847,7 +937,7 @@ export function Navbar() {
         .sh-navbar-mobile-cta-wrap {
           padding-top: 18px;
           margin-top: 15px;
-          border-top: 0;
+          border-top: 1px solid var(--border);
         }
 
         .sh-navbar-mobile-cta {
@@ -857,7 +947,7 @@ export function Navbar() {
           align-items: center;
           justify-content: center;
           gap: 9px;
-          border-radius: 12px;
+          border-radius: 999px;
           font-size: 13px;
         }
 
@@ -868,7 +958,7 @@ export function Navbar() {
 
         .sh-navbar-mobile-note {
           margin: 12px 0 0;
-          color: #7f8baa;
+          color: var(--primary-100);
           font-size: 10px;
           line-height: 1.7;
           text-align: center;
@@ -894,6 +984,13 @@ export function Navbar() {
 
           .sh-navbar-mobile-panel {
             display: none !important;
+          }
+        }
+
+        @media (min-width: 640px) and (max-width: 1119px) {
+          .sh-navbar-mobile-panel {
+            width: 60vw;
+            max-width: 460px;
           }
         }
 
@@ -1247,27 +1344,49 @@ export function Navbar() {
 
       <AnimatePresence initial={false}>
         {mobileOpen && (
-          <motion.div
-            id="sh-mobile-menu"
-            className="sh-navbar-mobile-panel"
-            initial={
-              reduceMotion
-                ? { opacity: 0 }
-                : { opacity: 0, height: 0 }
-            }
-            animate={{
-              opacity: 1,
-              height: "calc(100dvh - var(--sh-nav-height, 70px))",
-            }}
-            exit={{
-              opacity: 0,
-              height: 0,
-            }}
-            transition={{
-              duration: reduceMotion ? 0 : 0.3,
-              ease: EASE,
-            }}
-          >
+          <>
+            <motion.button
+              type="button"
+              className="sh-navbar-mobile-backdrop"
+              aria-label="Close mobile menu"
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.2 }}
+              onClick={toggleMobileMenu}
+            />
+            <motion.div
+              id="sh-mobile-menu"
+              className="sh-navbar-mobile-panel"
+              initial={
+                reduceMotion
+                  ? { opacity: 0 }
+                  : { opacity: 0, height: 0 }
+              }
+              animate={{
+                opacity: 1,
+                height: "100dvh",
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+              }}
+              transition={{
+                duration: reduceMotion ? 0 : 0.3,
+                ease: EASE,
+              }}
+            >
+            <div className="sh-navbar-mobile-sheet-head">
+              <Wordmark className="sh-navbar-mobile-brand" />
+              <button
+                type="button"
+                className="sh-navbar-mobile-close"
+                aria-label="Close mobile menu"
+                onClick={toggleMobileMenu}
+              >
+                <X aria-hidden="true" />
+              </button>
+            </div>
             <div className="sh-navbar-mobile-inner">
               <p className="sh-navbar-mobile-caption">
                 Explore SmartEDGE
@@ -1410,7 +1529,7 @@ export function Navbar() {
                                 View all services
                                 <ArrowRight aria-hidden="true" />
                               </Link>
-                            </motion.div>
+                              </motion.div>
                           )}
                         </AnimatePresence>
                       )}
@@ -1438,6 +1557,7 @@ export function Navbar() {
               </div>
             </div>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

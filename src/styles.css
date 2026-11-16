@@ -151,8 +151,8 @@
 
   .smartedge-logo-wrap {
     display: inline-flex;
-    width: clamp(9rem, 18vw, 12rem);
-    height: 3.25rem;
+    width: clamp(10rem, 20vw, 13.5rem);
+    height: 3.75rem;
     overflow: hidden;
     align-items: center;
     justify-content: center;
