@@ -960,6 +960,7 @@ function Industries() {
         title="Solar solutions for homes and businesses."
         lead="SmartEDGE supports both B2C residential enquiries and B2B commercial solar requirements with products, installation and ongoing service."
         image={industryFeatureImage}
+        imagePosition="center 70%"
       />
 
       {/* =====================================

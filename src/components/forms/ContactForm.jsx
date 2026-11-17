@@ -12,10 +12,138 @@ import { validateContact } from "@/lib/formValidation";
 import { buttonStyles } from "@/components/ui/brand";
 import { cn } from "@/lib/utils";
 
+/* --------------------------------------------------
+   COUNTRY LIST
+   Each country has a unique ISO value.
+   Countries sharing a dialing code remain distinct.
+-------------------------------------------------- */
+
+const countries = [
+  { iso: "AF", name: "Afghanistan", code: "+93" },
+  { iso: "AL", name: "Albania", code: "+355" },
+  { iso: "DZ", name: "Algeria", code: "+213" },
+  { iso: "AD", name: "Andorra", code: "+376" },
+  { iso: "AO", name: "Angola", code: "+244" },
+  { iso: "AG", name: "Antigua and Barbuda", code: "+1268" },
+  { iso: "AR", name: "Argentina", code: "+54" },
+  { iso: "AM", name: "Armenia", code: "+374" },
+  { iso: "AU", name: "Australia", code: "+61" },
+  { iso: "AT", name: "Austria", code: "+43" },
+  { iso: "AZ", name: "Azerbaijan", code: "+994" },
+  { iso: "BS", name: "Bahamas", code: "+1242" },
+  { iso: "BH", name: "Bahrain", code: "+973" },
+  { iso: "BD", name: "Bangladesh", code: "+880" },
+  { iso: "BB", name: "Barbados", code: "+1246" },
+  { iso: "BY", name: "Belarus", code: "+375" },
+  { iso: "BE", name: "Belgium", code: "+32" },
+  { iso: "BZ", name: "Belize", code: "+501" },
+  { iso: "BJ", name: "Benin", code: "+229" },
+  { iso: "BT", name: "Bhutan", code: "+975" },
+  { iso: "BO", name: "Bolivia", code: "+591" },
+  { iso: "BA", name: "Bosnia and Herzegovina", code: "+387" },
+  { iso: "BW", name: "Botswana", code: "+267" },
+  { iso: "BR", name: "Brazil", code: "+55" },
+  { iso: "BN", name: "Brunei", code: "+673" },
+  { iso: "BG", name: "Bulgaria", code: "+359" },
+  { iso: "KH", name: "Cambodia", code: "+855" },
+  { iso: "CM", name: "Cameroon", code: "+237" },
+  { iso: "CA", name: "Canada", code: "+1" },
+  { iso: "CL", name: "Chile", code: "+56" },
+  { iso: "CN", name: "China", code: "+86" },
+  { iso: "CO", name: "Colombia", code: "+57" },
+  { iso: "CR", name: "Costa Rica", code: "+506" },
+  { iso: "HR", name: "Croatia", code: "+385" },
+  { iso: "CY", name: "Cyprus", code: "+357" },
+  { iso: "CZ", name: "Czechia", code: "+420" },
+  { iso: "DK", name: "Denmark", code: "+45" },
+  { iso: "DO", name: "Dominican Republic", code: "+1809" },
+  { iso: "EC", name: "Ecuador", code: "+593" },
+  { iso: "EG", name: "Egypt", code: "+20" },
+  { iso: "EE", name: "Estonia", code: "+372" },
+  { iso: "ET", name: "Ethiopia", code: "+251" },
+  { iso: "FI", name: "Finland", code: "+358" },
+  { iso: "FR", name: "France", code: "+33" },
+  { iso: "GE", name: "Georgia", code: "+995" },
+  { iso: "DE", name: "Germany", code: "+49" },
+  { iso: "GH", name: "Ghana", code: "+233" },
+  { iso: "GR", name: "Greece", code: "+30" },
+  { iso: "HK", name: "Hong Kong", code: "+852" },
+  { iso: "HU", name: "Hungary", code: "+36" },
+  { iso: "IS", name: "Iceland", code: "+354" },
+  { iso: "IN", name: "India", code: "+91" },
+  { iso: "ID", name: "Indonesia", code: "+62" },
+  { iso: "IR", name: "Iran", code: "+98" },
+  { iso: "IQ", name: "Iraq", code: "+964" },
+  { iso: "IE", name: "Ireland", code: "+353" },
+  { iso: "IL", name: "Israel", code: "+972" },
+  { iso: "IT", name: "Italy", code: "+39" },
+  { iso: "JM", name: "Jamaica", code: "+1876" },
+  { iso: "JP", name: "Japan", code: "+81" },
+  { iso: "JO", name: "Jordan", code: "+962" },
+  { iso: "KZ", name: "Kazakhstan", code: "+7" },
+  { iso: "KE", name: "Kenya", code: "+254" },
+  { iso: "KW", name: "Kuwait", code: "+965" },
+  { iso: "LB", name: "Lebanon", code: "+961" },
+  { iso: "LT", name: "Lithuania", code: "+370" },
+  { iso: "LU", name: "Luxembourg", code: "+352" },
+  { iso: "MY", name: "Malaysia", code: "+60" },
+  { iso: "MV", name: "Maldives", code: "+960" },
+  { iso: "MT", name: "Malta", code: "+356" },
+  { iso: "MU", name: "Mauritius", code: "+230" },
+  { iso: "MX", name: "Mexico", code: "+52" },
+  { iso: "MC", name: "Monaco", code: "+377" },
+  { iso: "MN", name: "Mongolia", code: "+976" },
+  { iso: "MA", name: "Morocco", code: "+212" },
+  { iso: "MM", name: "Myanmar", code: "+95" },
+  { iso: "NP", name: "Nepal", code: "+977" },
+  { iso: "NL", name: "Netherlands", code: "+31" },
+  { iso: "NZ", name: "New Zealand", code: "+64" },
+  { iso: "NG", name: "Nigeria", code: "+234" },
+  { iso: "NO", name: "Norway", code: "+47" },
+  { iso: "OM", name: "Oman", code: "+968" },
+  { iso: "PK", name: "Pakistan", code: "+92" },
+  { iso: "PA", name: "Panama", code: "+507" },
+  { iso: "PE", name: "Peru", code: "+51" },
+  { iso: "PH", name: "Philippines", code: "+63" },
+  { iso: "PL", name: "Poland", code: "+48" },
+  { iso: "PT", name: "Portugal", code: "+351" },
+  { iso: "QA", name: "Qatar", code: "+974" },
+  { iso: "RO", name: "Romania", code: "+40" },
+  { iso: "RU", name: "Russia", code: "+7" },
+  { iso: "SA", name: "Saudi Arabia", code: "+966" },
+  { iso: "SG", name: "Singapore", code: "+65" },
+  { iso: "ZA", name: "South Africa", code: "+27" },
+  { iso: "KR", name: "South Korea", code: "+82" },
+  { iso: "ES", name: "Spain", code: "+34" },
+  { iso: "LK", name: "Sri Lanka", code: "+94" },
+  { iso: "SE", name: "Sweden", code: "+46" },
+  { iso: "CH", name: "Switzerland", code: "+41" },
+  { iso: "TW", name: "Taiwan", code: "+886" },
+  { iso: "TZ", name: "Tanzania", code: "+255" },
+  { iso: "TH", name: "Thailand", code: "+66" },
+  { iso: "TR", name: "Turkey", code: "+90" },
+  { iso: "UA", name: "Ukraine", code: "+380" },
+  { iso: "AE", name: "United Arab Emirates", code: "+971" },
+  { iso: "GB", name: "United Kingdom", code: "+44" },
+  { iso: "US", name: "United States", code: "+1" },
+  { iso: "UG", name: "Uganda", code: "+256" },
+  { iso: "UY", name: "Uruguay", code: "+598" },
+  { iso: "UZ", name: "Uzbekistan", code: "+998" },
+  { iso: "VE", name: "Venezuela", code: "+58" },
+  { iso: "VN", name: "Vietnam", code: "+84" },
+  { iso: "ZM", name: "Zambia", code: "+260" },
+  { iso: "ZW", name: "Zimbabwe", code: "+263" },
+].sort((a, b) => a.name.localeCompare(b.name));
+
+/* --------------------------------------------------
+   INITIAL FORM VALUES
+-------------------------------------------------- */
+
 const empty = {
   name: "",
   email: "",
   company: "",
+  countryISO: "",
   phone: "",
   service: "",
   details: "",
@@ -26,10 +154,10 @@ const empty = {
 const inputCls =
   "cf-control mt-2 block w-full min-w-0 rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/15 aria-[invalid=true]:border-destructive";
 
-/*
- * Keep the original visual design.
- * Add responsive fitting and subtle animations only.
- */
+/* --------------------------------------------------
+   FORM ANIMATIONS AND RESPONSIVE STYLES
+-------------------------------------------------- */
+
 const contactFormStyles = `
   .contact-form-enhanced,
   .contact-form-enhanced *,
@@ -91,6 +219,10 @@ const contactFormStyles = `
 
   .contact-form-enhanced > .cf-field-cell:nth-of-type(7) {
     animation-delay: 280ms;
+  }
+
+  .contact-form-enhanced > .cf-field-cell:nth-of-type(8) {
+    animation-delay: 320ms;
   }
 
   @keyframes cf-field-enter {
@@ -195,10 +327,10 @@ const contactFormStyles = `
     animation: cf-form-enter 350ms ease-out both;
   }
 
-  /*
-   * Off-screen honeypot:
-   * It does not occupy layout space or receive keyboard focus.
-   */
+  .contact-form-enhanced .cf-country-info {
+    animation: cf-error-enter 200ms ease-out both;
+  }
+
   .contact-form-honeypot {
     position: absolute !important;
     top: auto !important;
@@ -270,10 +402,6 @@ const contactFormStyles = `
     }
   }
 
-  /*
-   * More compact spacing on shorter desktop/laptop screens.
-   * Content remains accessible instead of being clipped.
-   */
   @media (min-width: 641px) and (max-height: 760px) {
     .contact-form-enhanced {
       gap: 1rem;
@@ -301,6 +429,7 @@ const contactFormStyles = `
     .contact-form-enhanced .cf-error,
     .contact-form-enhanced .cf-alert,
     .contact-form-enhanced .cf-submit,
+    .contact-form-enhanced .cf-country-info,
     .cf-success-card,
     .cf-success-icon {
       animation: none !important;
@@ -313,11 +442,21 @@ const contactFormStyles = `
   }
 `;
 
+/* --------------------------------------------------
+   CONTACT FORM COMPONENT
+-------------------------------------------------- */
+
 export function ContactForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
 
+  const selectedCountry =
+    countries.find(
+      (country) => country.iso === values.countryISO,
+    ) ?? null;
+
+  /* Generic field update */
   const set = (key) => (event) => {
     const value = event.target.value;
 
@@ -341,12 +480,45 @@ export function ContactForm() {
     }
   };
 
+  /* Form submission */
   async function onSubmit(event) {
     event.preventDefault();
 
     if (status === "sending") return;
 
-    const found = validateContact(values);
+    const found = {
+      ...(validateContact(values) ?? {}),
+    };
+
+    /*
+     * Project details are optional.
+     * Country and phone have their own validation.
+     */
+    delete found.details;
+    delete found.phone;
+    delete found.countryISO;
+
+    /* Country selection validation */
+    if (!selectedCountry) {
+      found.countryISO = "Please select your country.";
+    }
+
+    /* Phone validation */
+    const phoneInput = values.phone.trim();
+    const phoneDigits = phoneInput.replace(/\D/g, "");
+
+    if (!phoneInput) {
+      found.phone = "Phone number is required.";
+    } else if (!/^[0-9\s().-]+$/.test(phoneInput)) {
+      found.phone = "Please enter a valid phone number.";
+    } else if (phoneDigits.length < 6) {
+      found.phone = "Phone number must contain at least 6 digits.";
+    } else if (
+      selectedCountry &&
+      phoneDigits.length + selectedCountry.code.replace(/\D/g, "").length > 15
+    ) {
+      found.phone = "The international phone number is too long.";
+    }
 
     setErrors(found);
 
@@ -360,7 +532,7 @@ export function ContactForm() {
       return;
     }
 
-    // Honeypot: silently ignore automated submissions.
+    /* Spam protection */
     if (values.website) return;
 
     if (!siteConfig.contactEndpoint) {
@@ -371,6 +543,9 @@ export function ContactForm() {
     setStatus("sending");
 
     try {
+      const completePhone =
+        `${selectedCountry.code} ${phoneDigits}`;
+
       const response = await fetch(
         siteConfig.contactEndpoint,
         {
@@ -381,14 +556,33 @@ export function ContactForm() {
           },
           body: JSON.stringify({
             ...values,
+
+            /* Country information */
+            countryISO: selectedCountry.iso,
+            countryName: selectedCountry.name,
+            countryCode: selectedCountry.code,
+
+            /* Complete international phone */
+            phone: completePhone,
+
+            /* Separate national number */
+            phoneNumber: phoneDigits,
+
+            /* Optional project details */
+            details: values.details.trim(),
+
+            /* Honeypot excluded */
             website: undefined,
+
             source: "smart-h-website",
           }),
         },
       );
 
       if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
+        throw new Error(
+          `Request failed: ${response.status}`,
+        );
       }
 
       setValues({ ...empty });
@@ -399,6 +593,7 @@ export function ContactForm() {
     }
   }
 
+  /* Reusable input field */
   const field = (key, label, options = {}) => (
     <div className="cf-field">
       <label
@@ -423,8 +618,11 @@ export function ContactForm() {
         name={key}
         type={options.type ?? "text"}
         autoComplete={options.auto}
+        inputMode={options.inputMode}
+        placeholder={options.placeholder}
         value={values[key]}
         onChange={set(key)}
+        required={!options.optional}
         aria-invalid={Boolean(errors[key])}
         aria-describedby={
           errors[key] ? `e-${key}` : undefined
@@ -443,6 +641,7 @@ export function ContactForm() {
     </div>
   );
 
+  /* Success screen */
   if (status === "success") {
     return (
       <>
@@ -481,6 +680,7 @@ export function ContactForm() {
     );
   }
 
+  /* Main form */
   return (
     <>
       <style>{contactFormStyles}</style>
@@ -490,12 +690,14 @@ export function ContactForm() {
         onSubmit={onSubmit}
         className="contact-form-enhanced relative grid w-full min-w-0 gap-5 overflow-visible rounded-2xl border border-border bg-card p-5 shadow-soft sm:grid-cols-2 sm:p-9"
       >
+        {/* Full name */}
         <div className="cf-field-cell min-w-0">
           {field("name", "Full name", {
             auto: "name",
           })}
         </div>
 
+        {/* Business email */}
         <div className="cf-field-cell min-w-0">
           {field("email", "Business email", {
             type: "email",
@@ -503,6 +705,7 @@ export function ContactForm() {
           })}
         </div>
 
+        {/* Company */}
         <div className="cf-field-cell min-w-0">
           {field("company", "Company or organisation", {
             auto: "organization",
@@ -510,14 +713,69 @@ export function ContactForm() {
           })}
         </div>
 
+        {/* Country dropdown */}
+        <div className="cf-field-cell cf-field min-w-0">
+          <label
+            htmlFor="f-countryISO"
+            className="block text-sm font-semibold"
+          >
+            Country / Dialing Code{" "}
+            <span className="text-signal" aria-hidden="true">
+              *
+            </span>
+          </label>
+
+          <select
+            id="f-countryISO"
+            name="countryISO"
+            value={values.countryISO}
+            onChange={set("countryISO")}
+            required
+            aria-invalid={Boolean(errors.countryISO)}
+            aria-describedby={
+              errors.countryISO
+                ? "e-countryISO"
+                : selectedCountry
+                  ? "cf-country-selected"
+                  : undefined
+            }
+            className={inputCls}
+          >
+            <option value="">
+              Select your country
+            </option>
+
+            {countries.map((country) => (
+              <option
+                key={country.iso}
+                value={country.iso}
+              >
+                {country.name} ({country.code})
+              </option>
+            ))}
+          </select>
+
+          {errors.countryISO && (
+            <p
+              id="e-countryISO"
+              className="cf-error mt-1.5 text-xs text-destructive"
+            >
+              {errors.countryISO}
+            </p>
+          )}
+        </div>
+
+        {/* Phone number */}
         <div className="cf-field-cell min-w-0">
-          {field("phone", "Phone (with country code)", {
+          {field("phone", "Phone number", {
             type: "tel",
-            optional: true,
-            auto: "tel",
+            auto: "tel-national",
+            inputMode: "tel",
+            placeholder: "Enter your phone number",
           })}
         </div>
 
+        {/* Enquiry type */}
         <div className="cf-field-cell cf-field min-w-0">
           <label
             htmlFor="f-service"
@@ -534,6 +792,7 @@ export function ContactForm() {
             name="service"
             value={values.service}
             onChange={set("service")}
+            required
             aria-invalid={Boolean(errors.service)}
             aria-describedby={
               errors.service ? "e-service" : undefined
@@ -542,8 +801,14 @@ export function ContactForm() {
           >
             <option value="">Select…</option>
 
-            <option value="residential-solar">Residential Solar - B2C</option>
-            <option value="commercial-solar">Commercial Solar - B2B</option>
+            <option value="residential-solar">
+              Residential Solar - B2C
+            </option>
+
+            <option value="commercial-solar">
+              Commercial Solar - B2B
+            </option>
+
             {services.map((service) => (
               <option
                 key={service.slug}
@@ -553,9 +818,17 @@ export function ContactForm() {
               </option>
             ))}
 
-            <option value="franchise">Franchise Enquiry</option>
-            <option value="partnership">Business Partnership / Dealership</option>
-            <option value="general">General Enquiry</option>
+            <option value="franchise">
+              Franchise Enquiry
+            </option>
+
+            <option value="partnership">
+              Business Partnership / Dealership
+            </option>
+
+            <option value="general">
+              General Enquiry
+            </option>
           </select>
 
           {errors.service && (
@@ -568,6 +841,7 @@ export function ContactForm() {
           )}
         </div>
 
+        {/* Timeline */}
         <div className="cf-field-cell cf-field min-w-0">
           <label
             htmlFor="f-timeline"
@@ -593,14 +867,15 @@ export function ContactForm() {
           </select>
         </div>
 
+        {/* Project details - optional */}
         <div className="cf-field-cell cf-field min-w-0 sm:col-span-2">
           <label
             htmlFor="f-details"
             className="block text-sm font-semibold"
           >
             Project details{" "}
-            <span className="text-signal" aria-hidden="true">
-              *
+            <span className="font-normal text-muted-foreground">
+              (optional)
             </span>
           </label>
 
@@ -610,24 +885,12 @@ export function ContactForm() {
             rows={4}
             value={values.details}
             onChange={set("details")}
-            aria-invalid={Boolean(errors.details)}
-            aria-describedby={
-              errors.details ? "e-details" : undefined
-            }
             className={inputCls}
+            placeholder="Tell us a little about your project (optional)"
           />
-
-          {errors.details && (
-            <p
-              id="e-details"
-              className="cf-error mt-1.5 text-xs text-destructive"
-            >
-              {errors.details}
-            </p>
-          )}
         </div>
 
-        {/* Honeypot: off-screen and excluded from keyboard navigation. */}
+        {/* Honeypot */}
         <div
           className="contact-form-honeypot"
           aria-hidden="true"
@@ -645,6 +908,7 @@ export function ContactForm() {
           />
         </div>
 
+        {/* Submission errors */}
         {(status === "error" ||
           status === "unconfigured") && (
           <div
@@ -656,7 +920,7 @@ export function ContactForm() {
               aria-hidden="true"
             />
 
-            <p className="min-w-0 ">
+            <p className="min-w-0">
               {status === "error"
                 ? "We couldn't send your message. Please check your connection and try again."
                 : "Online submission isn't connected yet, so your message was not sent."}
@@ -679,6 +943,7 @@ export function ContactForm() {
           </div>
         )}
 
+        {/* Footer and submit */}
         <div className="cf-footer flex min-w-0 flex-col items-start gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-muted-foreground">
             Fields marked * are required.

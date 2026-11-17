@@ -275,7 +275,7 @@ const heroCarouselStyles = `
   object-fit: cover;
   object-position: center;
 
-  filter: brightness(1.28) saturate(1.12) contrast(1.04);
+  filter: brightness(1.4) saturate(1.12) contrast(1.04);
 
   transform: scale(1.035);
 

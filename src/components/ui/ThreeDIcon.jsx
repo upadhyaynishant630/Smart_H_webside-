@@ -1,13 +1,27 @@
+
 import { cn } from "@/lib/utils";
 
+import {
+  PackageCheck,
+  CircuitBoard,
+} from "lucide-react";
+
+/* =========================================================
+   CUSTOM SVG GLYPHS
+========================================================= */
+
 const glyphs = {
-  cloud: <path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18Z" />,
+  cloud: (
+    <path d="M7 18h10a4 4 0 0 0 .6-7.96A6 6 0 0 0 6.2 9.1 4.5 4.5 0 0 0 7 18Z" />
+  ),
+
   shield: (
     <>
       <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6L12 3Z" />
       <path d="m8.8 12 2.2 2.2 4.2-4.4" />
     </>
   ),
+
   ai: (
     <>
       <rect x="6.5" y="6.5" width="11" height="11" rx="2.5" />
@@ -15,12 +29,14 @@ const glyphs = {
       <path d="M10 14.5 12 9.5l2 5M10.7 13h2.6" />
     </>
   ),
+
   automation: (
     <>
       <circle cx="12" cy="12" r="3" />
       <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" />
     </>
   ),
+
   network: (
     <>
       <circle cx="12" cy="5" r="2.2" />
@@ -29,6 +45,7 @@ const glyphs = {
       <path d="M11 7 6 16M13 7l5 9M7.2 18h9.6" />
     </>
   ),
+
   consult: (
     <>
       <path d="M4 5.5h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3.5v-3.5H4a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z" />
@@ -36,12 +53,14 @@ const glyphs = {
       <path d="M20 9.5h.5a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 1-1.5 1.5H20v2.5L17 17.5" />
     </>
   ),
+
   data: (
     <>
       <ellipse cx="12" cy="6" rx="7" ry="2.8" />
       <path d="M5 6v6c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6M5 12v6c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8v-6" />
     </>
   ),
+
   solar: (
     <>
       <circle cx="17.5" cy="5.5" r="2.6" />
@@ -50,6 +69,7 @@ const glyphs = {
       <path d="m7 13.2-1.1 7M11 13.2l.2 7M2.1 16.7h14.2" />
     </>
   ),
+
   ev: (
     <>
       <path d="m4 14 1.7-4.5A2.5 2.5 0 0 1 8 8h6.8a2.5 2.5 0 0 1 2.3 1.5L19 14" />
@@ -59,6 +79,7 @@ const glyphs = {
       <path d="m11.8 10.4-1.4 3h2l-1.1 2.6 3-3.8h-2l1-1.8Z" />
     </>
   ),
+
   infrastructure: (
     <>
       <rect x="4" y="3.5" width="16" height="6" rx="1.5" />
@@ -66,24 +87,28 @@ const glyphs = {
       <path d="M7.5 6.5h.01M7.5 17.5h.01M11 6.5h5M11 17.5h5M12 9.5v5" />
     </>
   ),
+
   "solar-panel": (
     <>
       <path d="m3 6 14 0 3 12H6L3 6Z" />
       <path d="M7 6 9 18M12 6l1 12M4.5 12h15M2 21h18" />
     </>
   ),
+
   "solar-inverter": (
     <>
       <rect x="6" y="3" width="12" height="18" rx="2" />
       <path d="M9 7h6M9 11h6M9 15h2M13 15h2" />
     </>
   ),
+
   "solar-structure": (
     <>
       <path d="m3 13 9-9 9 9" />
       <path d="M5 11v9h14v-9M9 20v-6h6v6" />
     </>
   ),
+
   "solar-components": (
     <>
       <circle cx="7" cy="12" r="3" />
@@ -92,12 +117,14 @@ const glyphs = {
       <path d="m9.5 10.5 5-2M9.5 13.5l5 2" />
     </>
   ),
+
   "solar-installation": (
     <>
       <path d="m4 20 7-7M13 5l6 6M8 16l-4 4M15 3l6 6" />
       <path d="m7 13 4 4M12 8l4 4" />
     </>
   ),
+
   "solar-maintenance": (
     <>
       <path d="M14 5a4 4 0 0 0-5 5l-6 6a2 2 0 0 0 3 3l6-6a4 4 0 0 0 5-5l-3 3-3-3 3-3Z" />
@@ -105,7 +132,20 @@ const glyphs = {
   ),
 };
 
-/** Dimensional brand icon: sculpted block + light sweep + red signal node. */
+/* =========================================================
+   LUCIDE ICON MAPPING
+   Different icons for solar products and components.
+========================================================= */
+
+const iconMap = {
+  "solar-products-kit": PackageCheck,
+  "solar-components": CircuitBoard,
+};
+
+/* =========================================================
+   3D BRAND ICON COMPONENT
+========================================================= */
+
 export function ThreeDIcon({
   type,
   variant = "cobalt",
@@ -114,28 +154,61 @@ export function ThreeDIcon({
   className,
   ariaLabel,
 }) {
+  // Select the appropriate Lucide icon.
+  const IconComponent = iconMap[type];
+
+  // Use the custom SVG glyph if no Lucide icon is mapped.
+  // The solar glyph acts as a safe fallback for unknown types.
+  const customGlyph = glyphs[type] ?? glyphs.solar;
+
   return (
     <span
-      className={cn("icon3d shrink-0", animated && "animate-drift", className)}
-      style={{ width: size, height: size }}
+      className={cn(
+        "icon3d shrink-0",
+        animated && "animate-drift",
+        className
+      )}
+      style={{
+        width: size,
+        height: size,
+      }}
       role={ariaLabel ? "img" : undefined}
       aria-label={ariaLabel}
       aria-hidden={ariaLabel ? undefined : true}
     >
-      <span className={cn("icon3d-block", variant === "night" && "icon3d-night")}>
-        <svg
-          viewBox="0 0 24 24"
-          width={size * 0.5}
-          height={size * 0.5}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={1.7}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="relative z-10 text-primary-foreground drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]"
-        >
-          {glyphs[type]}
-        </svg>
+      <span
+        className={cn(
+          "icon3d-block",
+          variant === "night" && "icon3d-night"
+        )}
+      >
+        {IconComponent ? (
+          /* Lucide icons */
+          <IconComponent
+            size={size * 0.5}
+            strokeWidth={1.7}
+            className="relative z-10 text-primary-foreground drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]"
+            aria-hidden="true"
+          />
+        ) : (
+          /* Existing custom SVG icons */
+          <svg
+            viewBox="0 0 24 24"
+            width={size * 0.5}
+            height={size * 0.5}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.7}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="relative z-10 text-primary-foreground drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)]"
+            aria-hidden="true"
+          >
+            {customGlyph}
+          </svg>
+        )}
+
+        {/* Decorative signal node */}
         <span className="absolute right-[16%] top-[16%] h-[9%] w-[9%] rounded-full bg-signal shadow-[0_0_10px_var(--signal)]" />
       </span>
     </span>

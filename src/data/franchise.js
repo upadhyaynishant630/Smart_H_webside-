@@ -1,7 +1,7 @@
-import applicationImg from "@/assets/hero/solar-site-assessment.jpg";
-import verificationImg from "@/assets/hero/solar-commercial.jpg";
-import onboardingImg from "@/assets/hero/solar-residential.jpg";
-import growthImg from "@/assets/hero/solar-long-term.jpg";
+import applicationImg from "@/assets/Gallery/elevated-rooftop-solar.jpeg";
+import verificationImg from "@/assets/Gallery/solar-panel-installation-team.jpeg";
+import onboardingImg from "@/assets/Gallery/commercial-solar-installation.jpeg";
+import growthImg from "@/assets/Gallery/urban-rooftop-solar.jpeg";
 
 export const franchiseSteps = [
   { number: "01", title: "Submit Your Franchise Application", description: "Share your interest, background and preferred business focus with our team.", image: applicationImg },

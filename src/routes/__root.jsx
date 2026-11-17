@@ -83,10 +83,12 @@ export const Route = createRootRouteWithContext()({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SmartEDGE | Solar Products, Installation & AMC Services" },
+      { title: "SmartEDGE | Site Survey, Solar Products Kit & Services" },
       {
+
         name: "description",
-        content: "Explore solar panels, inverters, structures, components, residential and commercial solar solutions, installation services, AMC and franchise opportunities with SmartEDGE.",
+        content:
+          "Explore professional solar site surveys, solar product kits, components, residential and commercial solar solutions, installation services and AMC support with SmartEDGE.",
       },
       { property: "og:site_name", content: "SmartEDGE" },
       { property: "og:type", content: "website" },

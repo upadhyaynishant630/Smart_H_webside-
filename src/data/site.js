@@ -7,7 +7,7 @@ export const siteConfig = {
   name: "SmartEDGE",
   tagline: "Solar products and services, delivered with care.",
   description:
-    "Explore solar panels, inverters, structures, components, installation, AMC and partnership opportunities with SmartEDGE.",
+  "Explore professional solar site surveys, solar product kits, components, installation, AMC and partnership opportunities with SmartEDGE.",
   ctaLabel: "Become a partner",
   ctaTo: "/contact",
   contactEmail: import.meta.env["VITE_CONTACT_EMAIL"] || "info@domain.com",

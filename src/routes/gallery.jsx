@@ -26,7 +26,7 @@ function Gallery() {
           </div>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {visible.map((item) => <figure key={item.id} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition duration-300 hover:-translate-y-1"><img src={item.image} alt={item.title} width="1280" height="900" loading="lazy" className="aspect-[4/3]. w-full object-cover transition duration-500 group-hover:scale-105" /><figcaption className="p-4"><span className="text-xs font-bold uppercase tracking-wider text-primary">{item.category}</span><p className="mt-1 font-semibold">{item.title}</p><p className="mt-1 text-xs text-muted-foreground">Representative solar imagery.</p></figcaption></figure>)}
+          {visible.map((item) => <figure key={item.id} className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition duration-300 hover:-translate-y-1"><img src={item.image} alt={item.title} width="1280" height="900" loading="lazy" className="aspect-[4/3].w-full object-cover object-center transition duration-500 group-hover:scale-105" /><figcaption className="p-4"><span className="text-xs font-bold uppercase tracking-wider text-primary">{item.category}</span><p className="mt-1 font-semibold">{item.title}</p><p className="mt-1 text-xs text-muted-foreground">{item.description}</p></figcaption></figure>)}
         </div>
       </section>
     </main>

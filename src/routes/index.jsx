@@ -1412,14 +1412,7 @@ export const Route = createFileRoute("/")({
 // ======================================================
 
 function Home() {
-  /*
-    Open the solar quote popup every time the Home route mounts.
 
-    The zero-delay timeout allows the popup's custom event listener
-    to attach before the event is dispatched.
-
-    This also works when the user returns to Home through navigation.
-  */
 
   useEffect(() => {
     const timer = window.setTimeout(() => {

@@ -1,5 +1,6 @@
 import residentialImg from "@/assets/hero/solar-residential.jpg";
 import commercialImg from "@/assets/hero/solar-commercial.jpg";
+import industriesImg from "@/assets/hero/industries.png";
 
 export const industries = [
   {
@@ -20,7 +21,7 @@ export const industries = [
   },
 ];
 
-export const industryFeatureImage = commercialImg;
+export const industryFeatureImage = industriesImg;
 
 export const industryImages = {
   residential: residentialImg,

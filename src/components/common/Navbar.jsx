@@ -43,7 +43,12 @@ export function Navbar() {
       )
     : [];
   const serviceItems = Array.isArray(services)
-    ? services.filter((service) => service && typeof service.slug === "string")
+    ? services.filter(
+        (service) =>
+          service &&
+          typeof service.slug === "string" &&
+          typeof service.title === "string"
+      )
     : [];
 
   const siteName = siteConfig?.name || "SmartEDGE";
@@ -470,9 +475,27 @@ export function Navbar() {
         }
 
         .sh-navbar-mega-caption {
-          color: var(--text-dark);
-          font-size: 10px;
-          line-height: 1.6;
+          display: inline-flex;
+          min-height: 30px;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 6px 11px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.1);
+          color: #F8F5FF;
+          font-size: 11px;
+          font-weight: 650;
+          line-height: 1.3;
+          white-space: nowrap;
+        }
+
+        .sh-navbar-mega-count {
+          color: #A5F3FC;
+          font-size: 13px;
+          font-weight: 850;
+          font-variant-numeric: tabular-nums;
         }
 
         .sh-navbar-mega-grid {
@@ -553,9 +576,13 @@ export function Navbar() {
           display: -webkit-box;
           margin-top: 4px;
           overflow: hidden;
-          color: var(--text-muted);
-          font-size: 10px;
-          line-height: 1.7;
+          color: #F5F0FF;
+          opacity: 1;
+          font-size: 11px;
+          font-weight: 450;
+          line-height: 1.65;
+          letter-spacing: 0.005em;
+          text-shadow: 0 1px 3px rgba(24, 8, 56, 0.16);
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           overflow-wrap: anywhere;
@@ -681,7 +708,7 @@ export function Navbar() {
           top: 0;
           right: 0;
           z-index: 1;
-          width: 60vw;
+          width: min(420px, 100vw);
           height: 100vh;
           height: 100dvh;
           overflow-x: hidden;
@@ -989,8 +1016,13 @@ export function Navbar() {
 
         @media (min-width: 640px) and (max-width: 1119px) {
           .sh-navbar-mobile-panel {
-            width: 60vw;
-            max-width: 460px;
+            width: min(460px, 88vw);
+          }
+        }
+
+        @media (max-width: 560px) {
+          .sh-navbar-mobile-panel {
+            width: 100vw;
           }
         }
 
@@ -1080,6 +1112,8 @@ export function Navbar() {
             transition-duration: 0.01ms !important;
           }
         }
+
+
       `}</style>
 
       {/* =====================================
@@ -1145,10 +1179,13 @@ export function Navbar() {
 
                     <button
                       type="button"
-                      aria-label="Show individual service links"
+                      aria-label={
+                        megaOpen ? "Hide individual service links" : "Show individual service links"
+                      }
+                      aria-haspopup="true"
                       aria-expanded={megaOpen}
                       aria-controls="sh-services-menu"
-                      onClick={openMegaMenu}
+                      onClick={() => setMegaOpen((open) => !open)}
                       className="sh-navbar-link sh-navbar-services-dropdown"
                     >
                       <ChevronDown
@@ -1196,8 +1233,14 @@ export function Navbar() {
                               </h2>
                             </div>
 
-                            <span className="sh-navbar-mega-caption">
-                              {serviceItems.length} connected services
+                            <span
+                              className="sh-navbar-mega-caption"
+                              aria-label={`${serviceItems.length} connected services`}
+                            >
+                              <span className="sh-navbar-mega-count">
+                                {serviceItems.length}
+                              </span>
+                              <span>connected services</span>
                             </span>
                           </div>
 

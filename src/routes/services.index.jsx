@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/brand";
 import { ThreeDIcon } from "@/components/ui/ThreeDIcon";
 import { services } from "@/data/services";
+import servicesHero from "@/assets/services/our service.jpeg";
 import solarHero from "@/assets/hero/solar-commercial.jpg";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +38,7 @@ export const Route = createFileRoute("/services/")({
       {
         name: "description",
         content:
-          "Explore SmartEDGE solar panels, inverters, structures, components, installation and AMC services.",
+          "Explore SmartEDGE site survey, solar products kits, solar components, installation and AMC services for residential and commercial requirements.",
       },
       {
         property: "og:title",
@@ -59,13 +60,13 @@ export const Route = createFileRoute("/services/")({
 
 const SERVICE_LIST = Array.isArray(services)
   ? services.filter(
-      (service) =>
-        service &&
-        typeof service.slug === "string" &&
-        service.slug.length > 0 &&
-        typeof service.title === "string" &&
-        service.title.length > 0,
-    )
+    (service) =>
+      service &&
+      typeof service.slug === "string" &&
+      service.slug.length > 0 &&
+      typeof service.title === "string" &&
+      service.title.length > 0,
+  )
   : [];
 
 /* ======================================================
@@ -129,10 +130,10 @@ function Services() {
       SERVICE_LIST.reduce((total, service) => {
         const capabilities = Array.isArray(service.capabilities)
           ? service.capabilities.filter(
-              (item) =>
-                typeof item === "string" &&
-                item.trim().length > 0,
-            )
+            (item) =>
+              typeof item === "string" &&
+              item.trim().length > 0,
+          )
           : [];
 
         return total + capabilities.length;
@@ -1610,7 +1611,7 @@ function Services() {
         eyebrow="Our Services"
         title="Solar products and services for every stage."
         lead="Explore solar products, installation and maintenance support for residential and commercial requirements."
-        image={solarHero}
+        image={servicesHero}
       />
 
       {/* ==================================================
@@ -1677,7 +1678,7 @@ function Services() {
                     {serviceCountLabel}
                   </span>
                   <span className="sh-svc-overview-label">
-                    Solar offerings
+                    Connected services
                   </span>
                 </span>
               </motion.div>
@@ -1693,10 +1694,10 @@ function Services() {
                   service.capabilities,
                 )
                   ? service.capabilities.filter(
-                      (capability) =>
-                        typeof capability === "string" &&
-                        capability.trim().length > 0,
-                    )
+                    (capability) =>
+                      typeof capability === "string" &&
+                      capability.trim().length > 0,
+                  )
                   : [];
 
                 const isReversed = index % 2 === 1;
@@ -1941,9 +1942,9 @@ function Services() {
                     reduceMotion
                       ? false
                       : {
-                          opacity: 0,
-                          y: 24,
-                        }
+                        opacity: 0,
+                        y: 24,
+                      }
                   }
                   whileInView={{
                     opacity: 1,

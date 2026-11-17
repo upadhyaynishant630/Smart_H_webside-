@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { franchiseSteps } from "@/data/franchise";
 import { PageHero, CtaBand } from "@/components/ui/brand";
-import franchiseHero from "@/assets/hero/solar-commercial.jpg";
+import FranchisePlans from "@/components/common/FranchisePlans";
+import franchiseHero from "@/assets/hero/frenchise.png";
 
 export const Route = createFileRoute("/franchise")({
   head: () => ({ meta: [
@@ -22,6 +23,7 @@ function Franchise() {
           <span className="eyebrow">The journey</span>
           <h2 id="franchise-journey-title" className="text-h2 mt-4">A clear path to explore the opportunity.</h2>
         </div>
+      
         <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2">
           {franchiseSteps.map((step) => (
             <article key={step.number} className="overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
@@ -31,6 +33,8 @@ function Franchise() {
           ))}
         </div>
       </section>
+
+       <FranchisePlans />
       <CtaBand title="Ready to explore a partnership?" body="Share your interest and our team will review the information you provide." />
     </main>
   );

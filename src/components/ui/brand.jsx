@@ -72,7 +72,15 @@ export function SectionHeading({ eyebrow, title, lead, align = "left", className
 }
 
 /** Sub-page hero, shared across inner pages. */
-export function PageHero({ eyebrow, title, lead, image, children, accent = false }) {
+export function PageHero({
+  eyebrow,
+  title,
+  lead,
+  image,
+  imagePosition = "center",
+  children,
+  accent = false,
+}) {
   return (
     <section className="page-hero-bright relative overflow-hidden">
       {image && (
@@ -80,6 +88,7 @@ export function PageHero({ eyebrow, title, lead, image, children, accent = false
           src={image}
           alt=""
           className="absolute inset-0 h-full w-full object-cover brightness-[1.4] saturate-[1.12] contrast-[1.06]"
+          style={{ objectPosition: imagePosition }}
           width={1280}
           height={960}
         />

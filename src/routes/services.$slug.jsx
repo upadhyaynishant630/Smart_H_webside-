@@ -1,4 +1,10 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+
+import {
+  createFileRoute,
+  notFound,
+  redirect,
+} from "@tanstack/react-router";
+
 import { useMemo } from "react";
 import {
   motion,
@@ -34,11 +40,34 @@ import {
 } from "@/data/services";
 
 /* ======================================================
+   LEGACY SERVICE URL REDIRECTS
+====================================================== */
+
+const legacyServiceSlugs = {
+  "solar-panels": "site-survey",
+  "solar-inverters": "solar-products-kit",
+};
+
+/* ======================================================
    ROUTE CONFIGURATION + SEO
 ====================================================== */
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
+    // Redirect old service URLs to their replacement pages.
+    const replacementSlug = legacyServiceSlugs[params.slug];
+
+    if (replacementSlug) {
+      throw redirect({
+        to: "/services/$slug",
+        params: {
+          slug: replacementSlug,
+        },
+        replace: true,
+      });
+    }
+
+    // Load the requested service after checking legacy URLs.
     const service = getService(params.slug);
 
     if (!service) {
@@ -1436,7 +1465,7 @@ function ServiceDetail() {
             width: 45px;
             height: 45px;
             margin-bottom: 20px;
-            border-radius: 13px;
+            border-radius: 12px;
           }
 
           .sh-sd-overview-card h2 {
