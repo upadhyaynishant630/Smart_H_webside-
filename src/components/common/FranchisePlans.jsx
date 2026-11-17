@@ -657,7 +657,7 @@ export default function FranchisePlans() {
                   {/* CTA */}
 
                   <a
-                    href="#contact"
+                    href="/contact"
                     className="se-franchise-action"
                     aria-label={`Get details for ${plan.name}`}
                   >
