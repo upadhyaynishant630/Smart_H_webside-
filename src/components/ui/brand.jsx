@@ -11,6 +11,7 @@ export function Wordmark({ className }) {
       <img
         src={smartedgeLogo}
         alt="SmartEdge Global Technologies"
+        decoding="async"
         className="smartedge-logo"
       />
     </span>
@@ -91,6 +92,8 @@ export function PageHero({
           style={{ objectPosition: imagePosition }}
           width={1280}
           height={960}
+          decoding="async"
+          fetchPriority="high"
         />
       )}
       <div className="page-hero-bright-scrim absolute inset-0" aria-hidden="true" />

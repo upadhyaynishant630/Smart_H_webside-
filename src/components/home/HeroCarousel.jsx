@@ -2013,6 +2013,8 @@ export function HeroCarousel() {
                       : "low"
                   }
 
+                  decoding="async"
+
                   draggable="false"
 
                   className={

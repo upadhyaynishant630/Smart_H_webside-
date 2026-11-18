@@ -60,7 +60,7 @@ function Gallery() {
           {visible.map((item) => (
             <figure
               key={item.id}
-              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition duration-300 hover:-translate-y-1"
+              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition duration-300 hover:-translate-y-1 [content-visibility:auto] [contain-intrinsic-size:300px]"
             >
               <div className="aspect-[4/3] w-full overflow-hidden">
                 <img
@@ -69,6 +69,9 @@ function Gallery() {
                   width="1280"
                   height="900"
                   loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   className="h-full w-full object-cover object-center transition duration-500 group-hover:scale-105"
                 />
               </div>
