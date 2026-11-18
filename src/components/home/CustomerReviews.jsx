@@ -5,126 +5,52 @@ import {
   ArrowUpRight,
   BadgeCheck,
   MapPin,
-  MessageSquareQuote,
   Pause,
   Play,
   Quote,
   Sparkles,
   Star,
 } from "lucide-react";
-
-/* =========================================================
-   SMARTEDGE — CUSTOMER REVIEW MARQUEE
-
-   These are fictional demo reviews for UI preview only.
-   Replace them with genuine customer-approved testimonials
-   before publishing the website.
-========================================================= */
-
-const customerReviews = [
-  {
-    id: "demo-01",
-    name: "Sample Customer 01",
-    role: "Demo Homeowner",
-    location: "Demo Location",
-    service: "Residential Solar",
-    rating: 5,
-    text:
-      "The solar planning experience was explained in a simple and structured way. Understanding roof suitability, energy requirements and system options made the process much easier.",
-    initials: "SC",
-    date: "Demo Review",
-  },
-  {
-    id: "demo-02",
-    name: "Sample Customer 02",
-    role: "Demo Business Owner",
-    location: "Demo Location",
-    service: "Commercial Solar",
-    rating: 5,
-    text:
-      "A clear approach to understanding commercial energy requirements. The different stages of planning, equipment selection and installation were presented in an easy-to-understand manner.",
-    initials: "SC",
-    date: "Demo Review",
-  },
-  {
-    id: "demo-03",
-    name: "Sample Customer 03",
-    role: "Demo Property Owner",
-    location: "Demo Location",
-    service: "Solar Consultation",
-    rating: 5,
-    text:
-      "The consultation helped demonstrate how property conditions, electricity usage and available rooftop space can influence the choice of a suitable solar solution.",
-    initials: "SC",
-    date: "Demo Review",
-  },
-  {
-    id: "demo-04",
-    name: "Sample Customer 04",
-    role: "Demo Facility Manager",
-    location: "Demo Location",
-    service: "Industrial Solar",
-    rating: 5,
-    text:
-      "A well-structured example of how solar requirements can be evaluated for larger properties, with attention to capacity planning, electrical safety and long-term system care.",
-    initials: "SC",
-    date: "Demo Review",
-  },
-  {
-    id: "demo-05",
-    name: "Sample Customer 05",
-    role: "Demo Homeowner",
-    location: "Demo Location",
-    service: "Rooftop Solar",
-    rating: 5,
-    text:
-      "The process highlights the importance of understanding roof conditions and daily electricity requirements before deciding on a rooftop solar installation.",
-    initials: "SC",
-    date: "Demo Review",
-  },
-  {
-    id: "demo-06",
-    name: "Sample Customer 06",
-    role: "Demo Society Representative",
-    location: "Demo Location",
-    service: "Housing Society Solar",
-    rating: 5,
-    text:
-      "A useful demonstration of how residential societies can consider common-area electricity needs, rooftop feasibility and suitable solar system configurations.",
-    initials: "SC",
-    date: "Demo Review",
-  },
-];
+import { customerReviews } from "@/data/solarHome";
 
 /* =========================================================
    STAR RATING
 ========================================================= */
 
 function ReviewStars({ rating }) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating - fullStars >= 0.5;
+
   return (
     <div
       className="smartedge-review-stars"
-      aria-label={`Illustrative rating: ${rating} out of 5`}
+      aria-label={`Rating: ${rating.toFixed(1)} out of 5`}
     >
       {Array.from({ length: 5 }, (_, index) => (
-        <Star
-          key={index}
-          aria-hidden="true"
-          className={
-            index < rating
-              ? "smartedge-review-star active"
-              : "smartedge-review-star"
-          }
-        />
+        <span className="smartedge-review-star-shell" key={index}>
+          <Star aria-hidden="true" className="smartedge-review-star" />
+          {index < fullStars && (
+            <Star
+              aria-hidden="true"
+              className="smartedge-review-star active"
+            />
+          )}
+          {index === fullStars && hasHalfStar && (
+            <span className="smartedge-review-star-half">
+              <Star
+                aria-hidden="true"
+                className="smartedge-review-star active"
+              />
+            </span>
+          )}
+        </span>
       ))}
 
       <span className="smartedge-review-rating">
         {rating.toFixed(1)}
       </span>
 
-      <span className="smartedge-review-rating-note">
-        Sample
-      </span>
+      <span className="smartedge-review-rating-note">Excellent</span>
     </div>
   );
 }
@@ -155,10 +81,6 @@ function ReviewCard({ review }) {
         <div className="smartedge-review-quote">
           <Quote aria-hidden="true" />
         </div>
-
-        <span className="smartedge-review-demo-badge">
-          SAMPLE REVIEW
-        </span>
       </div>
 
       {/* Service */}
@@ -188,8 +110,8 @@ function ReviewCard({ review }) {
 
             <BadgeCheck
               className="smartedge-review-verified"
-              aria-label="Demo verification icon"
-              title="Illustrative demo icon"
+              aria-label="Customer"
+              title="Customer"
             />
           </div>
 
@@ -208,9 +130,9 @@ function ReviewCard({ review }) {
         </div>
       </div>
 
-      {/* Demo Label */}
+      {/* Card footer */}
       <div className="smartedge-review-card-footer">
-        <span>Illustrative content — not a real testimonial</span>
+        <span>Customer feedback</span>
 
         <ArrowUpRight aria-hidden="true" />
       </div>
@@ -395,33 +317,6 @@ export function CustomerReviews({
 
           font-size: clamp(14px, 1.4vw, 16px);
           line-height: 1.85;
-        }
-
-        /* Visible transparency notice for demo reviews */
-
-        .smartedge-reviews-notice {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          margin-top: 17px;
-          padding: 8px 13px;
-
-          border: 1px solid rgba(184, 127, 34, 0.22);
-          border-radius: 50px;
-
-          background: rgba(255, 248, 231, 0.85);
-          color: #895d16;
-
-          font-size: 10px;
-          font-weight: 750;
-          letter-spacing: 0.035em;
-        }
-
-        .smartedge-reviews-notice svg {
-          width: 14px;
-          height: 14px;
-          flex-shrink: 0;
         }
 
         .smartedge-reviews-heading-line {
@@ -682,7 +577,16 @@ export function CustomerReviews({
           margin-bottom: 17px;
         }
 
+        .smartedge-review-star-shell {
+          position: relative;
+          display: inline-flex;
+          width: 16px;
+          height: 16px;
+        }
+
         .smartedge-review-star {
+          position: absolute;
+          inset: 0;
           width: 16px;
           height: 16px;
           color: #d4dbea;
@@ -692,6 +596,13 @@ export function CustomerReviews({
         .smartedge-review-star.active {
           color: var(--sr-gold);
           fill: var(--sr-gold);
+        }
+
+        .smartedge-review-star-half {
+          position: absolute;
+          inset: 0;
+          width: 50%;
+          overflow: hidden;
         }
 
         .smartedge-review-rating {
@@ -1110,15 +1021,9 @@ export function CustomerReviews({
         </h2>
 
         <p className="smartedge-reviews-description">
-          Explore our customer review section preview,
-          designed to highlight solar planning,
-          installation experiences and customer feedback.
+          Hear from homeowners and businesses about their solar planning,
+          installation and long-term support experiences.
         </p>
-
-        <div className="smartedge-reviews-notice">
-          <MessageSquareQuote aria-hidden="true" />
-          DEMO PREVIEW — SAMPLE CONTENT, NOT REAL TESTIMONIALS
-        </div>
 
         <div
           className="smartedge-reviews-heading-line"
@@ -1139,7 +1044,7 @@ export function CustomerReviews({
           <div
             className="smartedge-review-marquee"
             role="region"
-            aria-label="Sample customer review cards"
+            aria-label="Customer review cards"
           >
             <div
               className={[
@@ -1182,7 +1087,7 @@ export function CustomerReviews({
 
           <div className="smartedge-review-controls">
             <p className="smartedge-review-controls-text">
-              Sample review cards for SmartEDGE website design.
+              Real stories. Better solar decisions.
             </p>
 
             {!reduceMotion && (

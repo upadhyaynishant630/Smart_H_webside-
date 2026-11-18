@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/brand";
 
 import { ThreeDIcon } from "@/components/ui/ThreeDIcon";
-import { BrandMarquee } from "@/components/home/BrandMarquee";
 import { services } from "@/data/services";
 
 import studio from "@/assets/about/studio.jpg";
@@ -768,23 +767,7 @@ function About() {
           line-height: 1.8;
         }
 
-        /* =================================
-           BRAND MARQUEE
-           Reduce wrapper spacing
-        ================================= */
-
-        .sh-about-brand-marquee {
-          width: 100%;
-          max-width: 100%;
-          margin: 0;
-          padding-block: 7px;
-          overflow: hidden;
-        }
-
-        .sh-about-brand-marquee > * {
-          margin-block: 0 !important;
-          padding-block: clamp(7px, 1.25vw, 14px) !important;
-        }
+        
 
         /* =================================
            3. OUR EXPERTISE
@@ -1792,14 +1775,6 @@ function About() {
           </div>
         </div>
       </section>
-
-      {/* =================================
-          BRAND MARQUEE
-      ================================= */}
-
-      <div className="sh-about-brand-marquee">
-        <BrandMarquee />
-      </div>
 
       {/* =================================
           4. OUR EXPERTISE

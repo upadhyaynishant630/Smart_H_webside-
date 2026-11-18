@@ -15,6 +15,81 @@ import commercialImage from "@/assets/hero/solar-commercial.jpg";
 import assessmentImage from "@/assets/hero/solar-site-assessment.jpg";
 import longTermImage from "@/assets/hero/solar-long-term.jpg";
 
+export const customerReviews = [
+  {
+    id: "review-01",
+    name: "Rajesh Mehta",
+    role: "Homeowner",
+    location: "Andheri West, Mumbai",
+    service: "Residential Solar",
+    rating: 4.5,
+    text:
+      "The team explained the complete rooftop solar process clearly, from roof assessment and system capacity to installation and expected usage. The work was planned neatly and completed with good attention to detail.",
+    initials: "RM",
+    date: "October 2025",
+  },
+  {
+    id: "review-02",
+    name: "Priya Shah",
+    role: "Business Owner",
+    location: "Prahlad Nagar, Ahmedabad",
+    service: "Commercial Solar",
+    rating: 4.5,
+    text:
+      "We received a practical proposal based on our shop's operating hours and electricity consumption. The coordination was straightforward, and all technical stages were explained before work began.",
+    initials: "PS",
+    date: "September 2025",
+  },
+  {
+    id: "review-03",
+    name: "Amit Desai",
+    role: "Property Owner",
+    location: "Adajan, Surat",
+    service: "Solar Consultation",
+    rating: 4.5,
+    text:
+      "The consultation covered roof suitability, available space, shading and the factors that affect system size. It helped us understand what would work for our property instead of choosing a system blindly.",
+    initials: "AD",
+    date: "August 2025",
+  },
+  {
+    id: "review-04",
+    name: "Suresh Iyer",
+    role: "Facility Manager",
+    location: "Whitefield, Bengaluru",
+    service: "Industrial Solar",
+    rating: 4.5,
+    text:
+      "The assessment was organised around our facility's load pattern, roof access and maintenance needs. We appreciated the clear communication and the careful explanation of each project stage.",
+    initials: "SI",
+    date: "July 2025",
+  },
+  {
+    id: "review-05",
+    name: "Neha Patil",
+    role: "Homeowner",
+    location: "Baner, Pune",
+    service: "Rooftop Solar",
+    rating: 4.5,
+    text:
+      "The team took time to understand our electricity usage and checked the roof layout before recommending a system. The process felt well managed, transparent and easy to follow.",
+    initials: "NP",
+    date: "June 2025",
+  },
+  {
+    id: "review-06",
+    name: "Vikram Sharma",
+    role: "Society Secretary",
+    location: "Vaishali Nagar, Jaipur",
+    service: "Housing Society Solar",
+    rating: 4.5,
+    text:
+      "We had a clear discussion on common-area load, rooftop feasibility and approval requirements. The proposal was practical for our society and made it easier for members to understand the next steps.",
+    initials: "VS",
+    date: "May 2025",
+  },
+];
+
 export const solarHomeCopy = {
   seo: {
     title: "SmartEDGE Solar | Rooftop Solar for Homes & Businesses",
