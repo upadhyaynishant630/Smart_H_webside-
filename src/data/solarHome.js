@@ -11,9 +11,12 @@ import {
 } from "lucide-react";
 
 import residentialImage from "@/assets/hero/solar-residential.jpg";
-import commercialImage from "@/assets/hero/solar-commercial.jpg";
-import assessmentImage from "@/assets/hero/solar-site-assessment.jpg";
+import commercialImage from "@/assets/hero/Commercial-Solar.png";
+import recidencial from "@/assets/hero/solar-commercial.jpg";
+import housingsociety from "@/assets/hero/housing-society.png";
+import assessmentImage from "@/assets/hero/Solar-Feasibility.png";
 import longTermImage from "@/assets/hero/solar-long-term.jpg";
+
 
 export const customerReviews = [
   {
@@ -229,7 +232,7 @@ export const solarSolutions = [
     summary:
       "Plan around roof area, electrical infrastructure, operating schedules and maintenance access.",
     icon: Factory,
-    image: commercialImage,
+    image: recidencial,
     imageAlt: "Large industrial rooftop with rows of photovoltaic panels",
     label: "For industry",
   },
@@ -238,7 +241,7 @@ export const solarSolutions = [
     summary:
       "Explore solar for common-area loads, subject to roof rights and applicable local rules.",
     icon: PanelsTopLeft,
-    image: residentialImage,
+    image: housingsociety,
     imageAlt: "Residential rooftop photovoltaic installation",
     label: "For communities",
   },

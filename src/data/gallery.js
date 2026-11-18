@@ -3,17 +3,20 @@ import elevatedRooftopImg from "@/assets/Gallery/elevated-rooftop-solar.jpeg";
 import installationTeamImg from "@/assets/Gallery/solar-panel-installation-team.jpeg";
 import compactRooftopImg from "@/assets/Gallery/compact-rooftop-solar.jpeg";
 import commercialInstallationImg from "@/assets/Gallery/commercial-solar-installation.jpeg";
-import urbanRooftopImg from "@/assets/Gallery/urban-rooftop-solar.jpeg";
-import cityRooftopArrayImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.14 PM.jpeg";
-import elevatedTerraceLayoutImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.14 PM (1).jpeg";
-import terracePanelSystemImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.14 PM (2).jpeg";
-import largeRooftopProjectImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.14 PM (3).jpeg";
-import residentialRooftopImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.15 PM.jpeg";
-import installationTeamViewImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.15 PM (1).jpeg";
-import panelMountingImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.15 PM (2).jpeg";
-import rooftopCrewImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.15 PM (3).jpeg";
-import flatRooftopCommercialImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.15 PM (4).jpeg";
-import commercialRooftopArrayImg from "@/assets/Gallery/WhatsApp Image 2026-11-17 at 6.03.16 PM.jpeg";
+import urbanRooftopImg from "@/assets/Gallery/rooftop-solar.jpeg";
+import cityRooftopArrayImg from "@/assets/Gallery/gallery-project-01.jpeg";
+import elevatedTerraceLayoutImg from "@/assets/Gallery/gallery-project-02.jpeg";
+import terracePanelSystemImg from "@/assets/Gallery/gallery-project-03.jpeg";
+import largeRooftopProjectImg from "@/assets/Gallery/gallery-project-04.jpeg";
+import residentialRooftopImg from "@/assets/Gallery/gallery-project-05.jpeg";
+import installationTeamViewImg from "@/assets/Gallery/gallery-project-06.jpeg";
+import panelMountingImg from "@/assets/Gallery/gallery-project-07.jpeg";
+import rooftopCrewImg from "@/assets/Gallery/gallery-project-08.jpeg";
+import flatRooftopCommercialImg from "@/assets/Gallery/gallery-project-09.jpeg";
+import commercialRooftopArrayImg from "@/assets/Gallery/gallery-project-10.jpeg";
+import terraceSolarDetailImg from "@/assets/Gallery/gallery-project-11.jpeg";
+import projectWorksiteImg from "@/assets/Gallery/gallery-project-12.jpeg";
+import rooftopCompletionImg from "@/assets/Gallery/gallery-project-13.jpeg";
 
 export const galleryItems = [
   {
@@ -127,6 +130,27 @@ export const galleryItems = [
     category: "Commercial",
     description: "A high-capacity rooftop array serving a large commercial or institutional building.",
     image: commercialRooftopArrayImg,
+  },
+  {
+    id: "terrace-solar-detail-01",
+    title: "Terrace Solar Project Detail",
+    category: "Rooftop Systems",
+    description: "A detailed view of the panel layout and mounting arrangement on a project terrace.",
+    image: terraceSolarDetailImg,
+  },
+  {
+    id: "solar-project-worksite-01",
+    title: "Solar Project Worksite",
+    category: "Installation",
+    description: "On-site solar project activity showing the installation process and work area.",
+    image: projectWorksiteImg,
+  },
+  {
+    id: "rooftop-project-completion-01",
+    title: "Completed Rooftop Solar Project",
+    category: "Commercial",
+    description: "A completed rooftop solar installation showing the final panel arrangement.",
+    image: rooftopCompletionImg,
   },
 ];
 
