@@ -13,129 +13,6 @@ import { buttonStyles } from "@/components/ui/brand";
 import { cn } from "@/lib/utils";
 
 /* --------------------------------------------------
-   COUNTRY LIST
-   Each country has a unique ISO value.
-   Countries sharing a dialing code remain distinct.
--------------------------------------------------- */
-
-const countries = [
-  { iso: "AF", name: "Afghanistan", code: "+93" },
-  { iso: "AL", name: "Albania", code: "+355" },
-  { iso: "DZ", name: "Algeria", code: "+213" },
-  { iso: "AD", name: "Andorra", code: "+376" },
-  { iso: "AO", name: "Angola", code: "+244" },
-  { iso: "AG", name: "Antigua and Barbuda", code: "+1268" },
-  { iso: "AR", name: "Argentina", code: "+54" },
-  { iso: "AM", name: "Armenia", code: "+374" },
-  { iso: "AU", name: "Australia", code: "+61" },
-  { iso: "AT", name: "Austria", code: "+43" },
-  { iso: "AZ", name: "Azerbaijan", code: "+994" },
-  { iso: "BS", name: "Bahamas", code: "+1242" },
-  { iso: "BH", name: "Bahrain", code: "+973" },
-  { iso: "BD", name: "Bangladesh", code: "+880" },
-  { iso: "BB", name: "Barbados", code: "+1246" },
-  { iso: "BY", name: "Belarus", code: "+375" },
-  { iso: "BE", name: "Belgium", code: "+32" },
-  { iso: "BZ", name: "Belize", code: "+501" },
-  { iso: "BJ", name: "Benin", code: "+229" },
-  { iso: "BT", name: "Bhutan", code: "+975" },
-  { iso: "BO", name: "Bolivia", code: "+591" },
-  { iso: "BA", name: "Bosnia and Herzegovina", code: "+387" },
-  { iso: "BW", name: "Botswana", code: "+267" },
-  { iso: "BR", name: "Brazil", code: "+55" },
-  { iso: "BN", name: "Brunei", code: "+673" },
-  { iso: "BG", name: "Bulgaria", code: "+359" },
-  { iso: "KH", name: "Cambodia", code: "+855" },
-  { iso: "CM", name: "Cameroon", code: "+237" },
-  { iso: "CA", name: "Canada", code: "+1" },
-  { iso: "CL", name: "Chile", code: "+56" },
-  { iso: "CN", name: "China", code: "+86" },
-  { iso: "CO", name: "Colombia", code: "+57" },
-  { iso: "CR", name: "Costa Rica", code: "+506" },
-  { iso: "HR", name: "Croatia", code: "+385" },
-  { iso: "CY", name: "Cyprus", code: "+357" },
-  { iso: "CZ", name: "Czechia", code: "+420" },
-  { iso: "DK", name: "Denmark", code: "+45" },
-  { iso: "DO", name: "Dominican Republic", code: "+1809" },
-  { iso: "EC", name: "Ecuador", code: "+593" },
-  { iso: "EG", name: "Egypt", code: "+20" },
-  { iso: "EE", name: "Estonia", code: "+372" },
-  { iso: "ET", name: "Ethiopia", code: "+251" },
-  { iso: "FI", name: "Finland", code: "+358" },
-  { iso: "FR", name: "France", code: "+33" },
-  { iso: "GE", name: "Georgia", code: "+995" },
-  { iso: "DE", name: "Germany", code: "+49" },
-  { iso: "GH", name: "Ghana", code: "+233" },
-  { iso: "GR", name: "Greece", code: "+30" },
-  { iso: "HK", name: "Hong Kong", code: "+852" },
-  { iso: "HU", name: "Hungary", code: "+36" },
-  { iso: "IS", name: "Iceland", code: "+354" },
-  { iso: "IN", name: "India", code: "+91" },
-  { iso: "ID", name: "Indonesia", code: "+62" },
-  { iso: "IR", name: "Iran", code: "+98" },
-  { iso: "IQ", name: "Iraq", code: "+964" },
-  { iso: "IE", name: "Ireland", code: "+353" },
-  { iso: "IL", name: "Israel", code: "+972" },
-  { iso: "IT", name: "Italy", code: "+39" },
-  { iso: "JM", name: "Jamaica", code: "+1876" },
-  { iso: "JP", name: "Japan", code: "+81" },
-  { iso: "JO", name: "Jordan", code: "+962" },
-  { iso: "KZ", name: "Kazakhstan", code: "+7" },
-  { iso: "KE", name: "Kenya", code: "+254" },
-  { iso: "KW", name: "Kuwait", code: "+965" },
-  { iso: "LB", name: "Lebanon", code: "+961" },
-  { iso: "LT", name: "Lithuania", code: "+370" },
-  { iso: "LU", name: "Luxembourg", code: "+352" },
-  { iso: "MY", name: "Malaysia", code: "+60" },
-  { iso: "MV", name: "Maldives", code: "+960" },
-  { iso: "MT", name: "Malta", code: "+356" },
-  { iso: "MU", name: "Mauritius", code: "+230" },
-  { iso: "MX", name: "Mexico", code: "+52" },
-  { iso: "MC", name: "Monaco", code: "+377" },
-  { iso: "MN", name: "Mongolia", code: "+976" },
-  { iso: "MA", name: "Morocco", code: "+212" },
-  { iso: "MM", name: "Myanmar", code: "+95" },
-  { iso: "NP", name: "Nepal", code: "+977" },
-  { iso: "NL", name: "Netherlands", code: "+31" },
-  { iso: "NZ", name: "New Zealand", code: "+64" },
-  { iso: "NG", name: "Nigeria", code: "+234" },
-  { iso: "NO", name: "Norway", code: "+47" },
-  { iso: "OM", name: "Oman", code: "+968" },
-  { iso: "PK", name: "Pakistan", code: "+92" },
-  { iso: "PA", name: "Panama", code: "+507" },
-  { iso: "PE", name: "Peru", code: "+51" },
-  { iso: "PH", name: "Philippines", code: "+63" },
-  { iso: "PL", name: "Poland", code: "+48" },
-  { iso: "PT", name: "Portugal", code: "+351" },
-  { iso: "QA", name: "Qatar", code: "+974" },
-  { iso: "RO", name: "Romania", code: "+40" },
-  { iso: "RU", name: "Russia", code: "+7" },
-  { iso: "SA", name: "Saudi Arabia", code: "+966" },
-  { iso: "SG", name: "Singapore", code: "+65" },
-  { iso: "ZA", name: "South Africa", code: "+27" },
-  { iso: "KR", name: "South Korea", code: "+82" },
-  { iso: "ES", name: "Spain", code: "+34" },
-  { iso: "LK", name: "Sri Lanka", code: "+94" },
-  { iso: "SE", name: "Sweden", code: "+46" },
-  { iso: "CH", name: "Switzerland", code: "+41" },
-  { iso: "TW", name: "Taiwan", code: "+886" },
-  { iso: "TZ", name: "Tanzania", code: "+255" },
-  { iso: "TH", name: "Thailand", code: "+66" },
-  { iso: "TR", name: "Turkey", code: "+90" },
-  { iso: "UA", name: "Ukraine", code: "+380" },
-  { iso: "AE", name: "United Arab Emirates", code: "+971" },
-  { iso: "GB", name: "United Kingdom", code: "+44" },
-  { iso: "US", name: "United States", code: "+1" },
-  { iso: "UG", name: "Uganda", code: "+256" },
-  { iso: "UY", name: "Uruguay", code: "+598" },
-  { iso: "UZ", name: "Uzbekistan", code: "+998" },
-  { iso: "VE", name: "Venezuela", code: "+58" },
-  { iso: "VN", name: "Vietnam", code: "+84" },
-  { iso: "ZM", name: "Zambia", code: "+260" },
-  { iso: "ZW", name: "Zimbabwe", code: "+263" },
-].sort((a, b) => a.name.localeCompare(b.name));
-
-/* --------------------------------------------------
    INITIAL FORM VALUES
 -------------------------------------------------- */
 
@@ -143,8 +20,8 @@ const empty = {
   name: "",
   email: "",
   company: "",
-  countryISO: "",
   phone: "",
+  pincode: "",
   service: "",
   details: "",
   timeline: "",
@@ -263,6 +140,33 @@ const contactFormStyles = `
       transform 220ms ease;
   }
 
+  .contact-form-enhanced .cf-phone-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: .5rem;
+  }
+
+  .contact-form-enhanced .cf-dial-code {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--muted);
+    color: var(--foreground);
+    font-size: .875rem;
+    font-weight: 750;
+  }
+
+  .contact-form-enhanced .cf-phone-wrap .cf-control {
+    flex: 1 1 auto;
+    margin-top: 0;
+  }
+
   .contact-form-enhanced input.cf-control:focus,
   .contact-form-enhanced select.cf-control:focus,
   .contact-form-enhanced textarea.cf-control:focus {
@@ -325,10 +229,6 @@ const contactFormStyles = `
     min-width: 0;
     overflow-wrap: anywhere;
     animation: cf-form-enter 350ms ease-out both;
-  }
-
-  .contact-form-enhanced .cf-country-info {
-    animation: cf-error-enter 200ms ease-out both;
   }
 
   .contact-form-honeypot {
@@ -429,7 +329,6 @@ const contactFormStyles = `
     .contact-form-enhanced .cf-error,
     .contact-form-enhanced .cf-alert,
     .contact-form-enhanced .cf-submit,
-    .contact-form-enhanced .cf-country-info,
     .cf-success-card,
     .cf-success-icon {
       animation: none !important;
@@ -450,11 +349,6 @@ export function ContactForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle");
-
-  const selectedCountry =
-    countries.find(
-      (country) => country.iso === values.countryISO,
-    ) ?? null;
 
   /* Generic field update */
   const set = (key) => (event) => {
@@ -480,6 +374,26 @@ export function ContactForm() {
     }
   };
 
+  const setDigits = (key, maxLength) => (event) => {
+    const value = event.target.value.replace(/\D/g, "").slice(0, maxLength);
+
+    setValues((current) => ({
+      ...current,
+      [key]: value,
+    }));
+
+    if (errors[key]) {
+      setErrors((currentErrors) => ({
+        ...currentErrors,
+        [key]: undefined,
+      }));
+    }
+
+    if (status === "error" || status === "unconfigured") {
+      setStatus("idle");
+    }
+  };
+
   /* Form submission */
   async function onSubmit(event) {
     event.preventDefault();
@@ -492,16 +406,11 @@ export function ContactForm() {
 
     /*
      * Project details are optional.
-     * Country and phone have their own validation.
+     * Pincode and phone have their own validation.
      */
     delete found.details;
     delete found.phone;
-    delete found.countryISO;
-
-    /* Country selection validation */
-    if (!selectedCountry) {
-      found.countryISO = "Please select your country.";
-    }
+    delete found.pincode;
 
     /* Phone validation */
     const phoneInput = values.phone.trim();
@@ -511,13 +420,16 @@ export function ContactForm() {
       found.phone = "Phone number is required.";
     } else if (!/^[0-9\s().-]+$/.test(phoneInput)) {
       found.phone = "Please enter a valid phone number.";
-    } else if (phoneDigits.length < 6) {
-      found.phone = "Phone number must contain at least 6 digits.";
-    } else if (
-      selectedCountry &&
-      phoneDigits.length + selectedCountry.code.replace(/\D/g, "").length > 15
-    ) {
-      found.phone = "The international phone number is too long.";
+    } else if (phoneDigits.length !== 10) {
+      found.phone = "Enter a valid 10-digit Indian mobile number.";
+    }
+
+    /* Pincode validation */
+    const pincode = values.pincode.trim();
+    if (!pincode) {
+      found.pincode = "Pincode is required.";
+    } else if (!/^[1-9][0-9]{5}$/.test(pincode)) {
+      found.pincode = "Enter a valid 6-digit Indian pincode.";
     }
 
     setErrors(found);
@@ -543,8 +455,7 @@ export function ContactForm() {
     setStatus("sending");
 
     try {
-      const completePhone =
-        `${selectedCountry.code} ${phoneDigits}`;
+      const completePhone = `+91 ${phoneDigits}`;
 
       const response = await fetch(
         siteConfig.contactEndpoint,
@@ -556,11 +467,9 @@ export function ContactForm() {
           },
           body: JSON.stringify({
             ...values,
-
-            /* Country information */
-            countryISO: selectedCountry.iso,
-            countryName: selectedCountry.name,
-            countryCode: selectedCountry.code,
+            countryISO: "IN",
+            countryName: "India",
+            countryCode: "+91",
 
             /* Complete international phone */
             phone: completePhone,
@@ -713,66 +622,83 @@ export function ContactForm() {
           })}
         </div>
 
-        {/* Country dropdown */}
+        {/* Pincode */}
         <div className="cf-field-cell cf-field min-w-0">
           <label
-            htmlFor="f-countryISO"
+            htmlFor="f-pincode"
             className="block text-sm font-semibold"
           >
-            Country / Dialing Code{" "}
+            Pincode{" "}
             <span className="text-signal" aria-hidden="true">
               *
             </span>
           </label>
-
-          <select
-            id="f-countryISO"
-            name="countryISO"
-            value={values.countryISO}
-            onChange={set("countryISO")}
+          <input
+            id="f-pincode"
+            name="pincode"
+            type="text"
+            inputMode="numeric"
+            autoComplete="postal-code"
+            placeholder="Enter 6-digit pincode"
+            value={values.pincode}
+            onChange={setDigits("pincode", 6)}
             required
-            aria-invalid={Boolean(errors.countryISO)}
-            aria-describedby={
-              errors.countryISO
-                ? "e-countryISO"
-                : selectedCountry
-                  ? "cf-country-selected"
-                  : undefined
-            }
+            aria-invalid={Boolean(errors.pincode)}
+            aria-describedby={errors.pincode ? "e-pincode" : undefined}
             className={inputCls}
-          >
-            <option value="">
-              Select your country
-            </option>
-
-            {countries.map((country) => (
-              <option
-                key={country.iso}
-                value={country.iso}
-              >
-                {country.name} ({country.code})
-              </option>
-            ))}
-          </select>
-
-          {errors.countryISO && (
+          />
+          {errors.pincode && (
             <p
-              id="e-countryISO"
+              id="e-pincode"
               className="cf-error mt-1.5 text-xs text-destructive"
             >
-              {errors.countryISO}
+              {errors.pincode}
             </p>
           )}
         </div>
 
         {/* Phone number */}
         <div className="cf-field-cell min-w-0">
-          {field("phone", "Phone number", {
-            type: "tel",
-            auto: "tel-national",
-            inputMode: "tel",
-            placeholder: "Enter your phone number",
-          })}
+          <div className="cf-field">
+            <label
+              htmlFor="f-phone"
+              className="block text-sm font-semibold"
+            >
+              Phone number{" "}
+              <span className="text-signal" aria-hidden="true">
+                *
+              </span>
+            </label>
+            <div className="cf-phone-wrap">
+              <span className="cf-dial-code" aria-label="India dialing code">
+                +91
+              </span>
+              <input
+                id="f-phone"
+                name="phone"
+                type="tel"
+                autoComplete="tel-national"
+                inputMode="numeric"
+                pattern="[0-9]{10}"
+                maxLength={10}
+                placeholder="98765 43210"
+                value={values.phone}
+                onChange={setDigits("phone", 10)}
+                required
+                aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? "e-phone" : undefined}
+                className={inputCls}
+              />
+            </div>
+            {errors.phone && (
+              <p
+                id="e-phone"
+                className="cf-error mt-1.5 text-xs text-destructive"
+              >
+                {errors.phone}
+              </p>
+            )}
+          </div>
         </div>
 
         {/* Enquiry type */}

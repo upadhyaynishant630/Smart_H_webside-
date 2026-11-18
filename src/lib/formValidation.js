@@ -8,7 +8,7 @@ export function validateContact(v) {
   if (v.company.trim() && v.company.trim().length < 2)
     e.company = "Please enter at least 2 characters, or leave this field blank.";
   if (v.phone.trim() && !PHONE.test(v.phone.trim()))
-    e.phone = "Please enter a valid phone number, e.g. +91 98765 43210.";
+    e.phone = "Please enter a valid 10-digit Indian phone number.";
   if (!v.service) e.service = "Please choose an enquiry type.";
   if (v.details.trim().length < 20)
     e.details = "Please share at least 20 characters about your project.";
