@@ -214,6 +214,10 @@ const heroCarouselStyles = `
 
   position: relative;
   isolation: isolate;
+  display: block;
+  margin: 0;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 
   width: 100%;
   height: min(920px, max(520px, calc(100svh - var(--se-header-offset))));
@@ -1020,6 +1024,10 @@ const heroCarouselStyles = `
 .se-hero-stats {
   position: relative;
   isolation: isolate;
+  display: block;
+  margin: 0;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 
   width: 100%;
   min-width: 0;
@@ -1040,31 +1048,10 @@ const heroCarouselStyles = `
       #091d46 50%,
       #0b2250 100%
     );
-
-  border-bottom: 1px solid rgba(255, 255, 255, .07);
 }
 
 .se-hero-stats::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 2px;
-
-  content: "";
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--primary-600) 22%,
-      var(--primary-400) 50%,
-      var(--primary-600) 78%,
-      transparent 100%
-    );
-
-  opacity: .8;
+  content: none;
 }
 
 .se-hero-stats::after {
@@ -1186,23 +1173,7 @@ const heroCarouselStyles = `
 /* Vertical dividers */
 
 .se-hero-stats__item:not(:last-child)::after {
-  position: absolute;
-
-  top: 12%;
-  right: 0;
-
-  width: 1px;
-  height: 76%;
-
-  content: "";
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(255, 255, 255, .16),
-      transparent
-    );
+  content: none;
 }
 
 /* Number */
@@ -1491,34 +1462,6 @@ const heroCarouselStyles = `
 
   .se-hero-stats__item:nth-child(2)::after {
     display: none;
-  }
-
-  .se-hero-stats__item:nth-child(1)::after,
-  .se-hero-stats__item:nth-child(3)::after {
-    top: 14%;
-    height: 72%;
-  }
-
-  /* Horizontal row separator */
-
-  .se-hero-stats__item:nth-child(-n+2)::before {
-    position: absolute;
-
-    right: 8%;
-    bottom: 0;
-    left: 8%;
-
-    height: 1px;
-
-    content: "";
-
-    background:
-      linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, .16),
-        transparent
-      );
   }
 
   .se-hero-stats__value {
