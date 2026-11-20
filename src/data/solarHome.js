@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 
 import residentialImage from "@/assets/hero/solar-residential.jpg";
-import commercialImage from "@/assets/hero/Commercial-Solar.png";
-import recidencial from "@/assets/hero/solar-commercial.jpg";
+import commercialImage from "@/assets/hero/recidencial.png";
+import recidencial from "@/assets/hero/rooftop-solar.jpg";
 import housingsociety from "@/assets/hero/housing-society.png";
 import assessmentImage from "@/assets/hero/Solar-Feasibility.png";
 import longTermImage from "@/assets/hero/solar-long-term.jpg";
@@ -118,11 +118,10 @@ export const solarHomeCopy = {
     primaryCta: "Request a site assessment",
     secondaryCta: "Explore solar solutions",
     imageAlt: "Photovoltaic solar panels on a modern residential rooftop",
-    imageBadge: "Plan around the site, not a guess",
+   
     imageHeadline:
       "A well-planned layout balances generation, access, safety and the way you use power.",
-    imageNoteTitle: "Built around your needs",
-    imageNoteBody: "No one-size-fits-all system sizing",
+   
   },
 
   marquee: {

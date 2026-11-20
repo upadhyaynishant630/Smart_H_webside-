@@ -2,7 +2,6 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
-  Mail,
   MapPin,
   MessageCircle,
   MessageSquareText,
@@ -59,7 +58,6 @@ export function Footer() {
   const description = siteConfig.description || "";
   const tagline = siteConfig.tagline || "";
 
-  const contactEmail = siteConfig.contactEmail || "";
   const contactPhone = siteConfig.contactPhone || "";
   const whatsappPhone = siteConfig.whatsappPhone || "";
   const address = siteConfig.address || "";
@@ -933,14 +931,6 @@ export function Footer() {
             )}
 
             <div className="sh-footer-contacts">
-              {contactEmail && (
-                <ContactRow
-                  href={`mailto:${contactEmail}`}
-                  icon={<Mail />}
-                  label={contactEmail}
-                />
-              )}
-
               {contactPhone && (
                 <ContactRow
                   href={`tel:${contactPhone}`}
@@ -965,17 +955,6 @@ export function Footer() {
                 />
               )}
 
-              <Link to="/contact" className="sh-footer-cta">
-                <span className="sh-footer-cta-label">
-                  <MessageSquareText aria-hidden="true" />
-                  Start a conversation
-                </span>
-
-                <ArrowUpRight
-                  className="sh-footer-cta-arrow"
-                  aria-hidden="true"
-                />
-              </Link>
             </div>
 
             {socialItems.length > 0 && (

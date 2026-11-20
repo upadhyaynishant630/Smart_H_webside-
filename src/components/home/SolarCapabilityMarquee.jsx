@@ -1,8 +1,91 @@
 import { useId } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Sun } from "lucide-react";
+import {
+  Activity,
+  BatteryCharging,
+  ClipboardCheck,
+  Compass,
+  Factory,
+  FileText,
+  Gauge,
+  Home,
+  IndianRupee,
+  Layers,
+  Leaf,
+  Lightbulb,
+  PlugZap,
+  Ruler,
+  Settings,
+  ShieldCheck,
+  Sun,
+  TrendingUp,
+  Wrench,
+  Zap,
+} from "lucide-react";
 
-/** Homepage-only, animated solar capability marquee. */
+
+const TONES = ["amber", "blue", "violet", "cyan", "green", "rose"];
+
+// Order matters: the first matching rule wins.
+const ICON_RULES = [
+  { test: /subsid|incentive|scheme|rebate|financ|loan|emi/, icon: IndianRupee, tone: "cyan" },
+  { test: /net\s*meter|metering|grid|export/, icon: Gauge, tone: "violet" },
+  { test: /safety|protect|earthing|surge|compliance|standard/, icon: ShieldCheck, tone: "green" },
+  { test: /roof|structure|mounting|terrace/, icon: Home, tone: "blue" },
+  { test: /siz|load|capacity|calculat|estimat/, icon: Ruler, tone: "blue" },
+  { test: /install|commission|erect|setup|set-up/, icon: Wrench, tone: "amber" },
+  { test: /batter|storage|backup|hybrid/, icon: BatteryCharging, tone: "cyan" },
+  { test: /inverter|wiring|cable|connection/, icon: PlugZap, tone: "rose" },
+  { test: /monitor|track|performance|analytic/, icon: Activity, tone: "cyan" },
+  { test: /maint|clean|service|repair|amc|warranty/, icon: Settings, tone: "violet" },
+  { test: /permit|approv|document|paper|licen|discom|application/, icon: FileText, tone: "blue" },
+  { test: /survey|site|assess|audit|inspect|feasib|shadow/, icon: ClipboardCheck, tone: "rose" },
+  { test: /design|plan|layout|engineer/, icon: Compass, tone: "violet" },
+  { test: /saving|\broi\b|payback|cost|bill|return|budget/, icon: TrendingUp, tone: "green" },
+  { test: /commercial|industrial|factory|business/, icon: Factory, tone: "blue" },
+  { test: /home|house|resident/, icon: Home, tone: "amber" },
+  { test: /eco-?friendly|green|carbon|sustainab|environment/, icon: Leaf, tone: "green" },
+  { test: /panel|module|photovoltaic|\bpv\b|solar/, icon: Sun, tone: "amber" },
+  { test: /energy|power|electric/, icon: Zap, tone: "amber" },
+];
+
+// Used when no rule matches, so neighbouring pills still look different.
+const FALLBACKS = [
+  { icon: Sun, tone: "amber" },
+  { icon: Zap, tone: "blue" },
+  { icon: Leaf, tone: "green" },
+  { icon: Compass, tone: "violet" },
+  { icon: Lightbulb, tone: "cyan" },
+  { icon: Layers, tone: "rose" },
+];
+
+function isIconComponent(value) {
+  return (
+    typeof value === "function" ||
+    (typeof value === "object" && value !== null && "$$typeof" in value)
+  );
+}
+
+function resolveVisual(item, index) {
+  const lowerName = item.name.toLowerCase();
+  const rule = ICON_RULES.find((entry) => entry.test.test(lowerName));
+  const fallback = FALLBACKS[index % FALLBACKS.length];
+
+  const Icon = isIconComponent(item.icon)
+    ? item.icon
+    : rule
+      ? rule.icon
+      : fallback.icon;
+
+  const tone = TONES.includes(item.tone)
+    ? item.tone
+    : rule
+      ? rule.tone
+      : fallback.tone;
+
+  return { ...item, Icon, tone };
+}
+
 export function SolarCapabilityMarquee({
   items = [],
   badge = "Solar planning capabilities",
@@ -23,13 +106,35 @@ export function SolarCapabilityMarquee({
             item.name.trim().length > 0,
         )
         .map((item) => ({ ...item, name: item.name.trim() }))
+        .map(resolveVisual)
     : [];
 
   if (capabilities.length === 0) return null;
 
+  const count = capabilities.length;
+
+  // Repeat items inside one group so a single group is always wider than very
+  // large screens; the loop then never shows an empty gap.
+  const repeat = reduceMotion ? 1 : Math.max(1, Math.ceil(16 / count));
+  const pillsPerGroup = count * repeat;
+
+  // Second row starts from the middle and runs backwards so rows don't mirror.
+  const half = Math.floor(count / 2);
+  const rotated = [...capabilities.slice(half), ...capabilities.slice(0, half)];
+
   const rows = [
-    { reverse: false, items: capabilities, key: "forward" },
-    { reverse: true, items: [...capabilities].reverse(), key: "reverse" },
+    {
+      key: "forward",
+      reverse: false,
+      items: capabilities,
+      duration: Math.max(28, pillsPerGroup * 4),
+    },
+    {
+      key: "reverse",
+      reverse: true,
+      items: [...rotated].reverse(),
+      duration: Math.max(32, pillsPerGroup * 4.6),
+    },
   ];
 
   return (
@@ -48,16 +153,17 @@ export function SolarCapabilityMarquee({
         .scm-section {
           --scm-ink: #0b1730;
           --scm-muted: #627087;
-          --scm-blue: var(--primary-600);
+          --scm-blue: var(--primary-600, #2459d6);
           --scm-violet: #7952d8;
           --scm-cyan: #12b7c8;
           --scm-amber: #f4ad36;
+          --scm-gutter: clamp(1rem, 4vw, 2rem);
           position: relative;
           isolation: isolate;
           width: 100%;
           max-width: 100%;
           overflow: hidden;
-          padding: clamp(3.25rem, 7vw, 5.75rem) clamp(1rem, 4vw, 2rem);
+          padding: clamp(3.25rem, 7vw, 5.75rem) 0;
           color: var(--scm-ink);
           background:
             radial-gradient(ellipse at 12% 12%, rgba(244, 173, 54, .11), transparent 32%),
@@ -101,21 +207,23 @@ export function SolarCapabilityMarquee({
           animation: scm-float-blue 17s ease-in-out infinite;
         }
 
-        .scm-section .scm-shell {
+        /* ---------- Heading row ---------- */
+        .scm-section .scm-head {
           position: relative;
           z-index: 1;
           display: grid;
-          grid-template-columns: minmax(15rem, .8fr) minmax(0, 1.45fr);
-          align-items: center;
-          gap: clamp(2rem, 5vw, 4.75rem);
+          grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+          align-items: end;
+          gap: clamp(1.5rem, 4vw, 4rem);
           width: 100%;
           max-width: 1240px;
           margin-inline: auto;
+          padding-inline: var(--scm-gutter);
+          margin-bottom: clamp(1.9rem, 4vw, 3rem);
         }
 
         .scm-section .scm-heading {
           min-width: 0;
-          max-width: 31rem;
         }
 
         .scm-section .scm-badge {
@@ -171,7 +279,7 @@ export function SolarCapabilityMarquee({
 
         .scm-section .scm-title-highlight {
           color: var(--scm-blue);
-          background-image: linear-gradient(100deg, var(--primary-600) 0%, #7150d6 42%, #0daec3 72%, var(--primary-600) 100%);
+          background-image: linear-gradient(100deg, var(--scm-blue) 0%, #7150d6 42%, #0daec3 72%, var(--scm-blue) 100%);
           background-size: 220% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -191,29 +299,33 @@ export function SolarCapabilityMarquee({
         }
 
         .scm-section .scm-quote {
-          max-width: 28rem;
-          margin: 1.1rem 0 0;
+          max-width: 30rem;
+          margin: 0;
+          padding-left: 1.1rem;
+          border-left: 3px solid rgba(36, 89, 214, .22);
           color: var(--scm-muted);
           font-size: clamp(.95rem, 1.35vw, 1.06rem);
           line-height: 1.78;
           overflow-wrap: anywhere;
         }
 
+        /* ---------- Full-width marquee ---------- */
         .scm-section .scm-marquee {
           position: relative;
-          min-width: 0;
+          z-index: 1;
           width: 100%;
+          min-width: 0;
           overflow: hidden;
-          padding: .35rem 0;
-          -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
-          mask-image: linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%);
+          padding: .2rem 0;
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
         }
 
         .scm-section .scm-row {
           width: 100%;
           min-width: 0;
           overflow: hidden;
-          padding: .55rem 0;
+          padding: .75rem 0;
         }
 
         .scm-section .scm-track {
@@ -226,11 +338,11 @@ export function SolarCapabilityMarquee({
         }
 
         .scm-section .scm-track--forward {
-          animation: scm-scroll-forward 34s linear infinite;
+          animation: scm-scroll-forward var(--scm-dur, 40s) linear infinite;
         }
 
         .scm-section .scm-track--reverse {
-          animation: scm-scroll-reverse 40s linear infinite;
+          animation: scm-scroll-reverse var(--scm-dur, 46s) linear infinite;
         }
 
         .scm-section .scm-marquee:hover .scm-track--forward,
@@ -246,7 +358,13 @@ export function SolarCapabilityMarquee({
           padding-right: .85rem;
         }
 
+        /* ---------- Pills ---------- */
         .scm-section .scm-pill {
+          --t-fg: #c78316;
+          --t-bg1: #fff9ea;
+          --t-bg2: #fff0cd;
+          --t-bd: rgba(244, 173, 54, .30);
+          --t-sh: rgba(244, 173, 54, .12);
           position: relative;
           display: inline-flex;
           flex: 0 0 auto;
@@ -270,6 +388,13 @@ export function SolarCapabilityMarquee({
           transition: transform .32s ease, border-color .32s ease, box-shadow .32s ease, background .32s ease;
         }
 
+        .scm-section .scm-tone--amber  { --t-fg: #c78316; --t-bg1: #fff9ea; --t-bg2: #fff0cd; --t-bd: rgba(244, 173, 54, .32); --t-sh: rgba(244, 173, 54, .14); }
+        .scm-section .scm-tone--blue   { --t-fg: #2459d6; --t-bg1: #f3f7ff; --t-bg2: #dfe9ff; --t-bd: rgba(36, 89, 214, .26);  --t-sh: rgba(36, 89, 214, .12); }
+        .scm-section .scm-tone--violet { --t-fg: #7952d8; --t-bg1: #f7f3ff; --t-bg2: #eadfff; --t-bd: rgba(121, 82, 216, .28); --t-sh: rgba(121, 82, 216, .12); }
+        .scm-section .scm-tone--cyan   { --t-fg: #0e93a3; --t-bg1: #f0fcfd; --t-bg2: #d3f5f9; --t-bd: rgba(18, 183, 200, .30); --t-sh: rgba(18, 183, 200, .12); }
+        .scm-section .scm-tone--green  { --t-fg: #178a58; --t-bg1: #f1fbf6; --t-bg2: #d5f3e3; --t-bd: rgba(23, 138, 88, .28);  --t-sh: rgba(23, 138, 88, .12); }
+        .scm-section .scm-tone--rose   { --t-fg: #d1456b; --t-bg1: #fff4f7; --t-bg2: #ffe0e8; --t-bd: rgba(209, 69, 107, .28); --t-sh: rgba(209, 69, 107, .12); }
+
         .scm-section .scm-pill::after {
           position: absolute;
           top: -60%;
@@ -285,9 +410,9 @@ export function SolarCapabilityMarquee({
 
         .scm-section .scm-pill:hover {
           z-index: 2;
-          border-color: rgba(36, 89, 214, .35);
+          border-color: var(--t-bd);
           background: rgba(255, 255, 255, .98);
-          box-shadow: 0 15px 34px rgba(36, 89, 214, .12), 0 3px 10px rgba(12, 23, 48, .04);
+          box-shadow: 0 15px 34px var(--t-sh), 0 3px 10px rgba(12, 23, 48, .04);
           transform: translateY(-3px);
         }
 
@@ -302,11 +427,11 @@ export function SolarCapabilityMarquee({
           height: 2.15rem;
           flex: 0 0 2.15rem;
           place-items: center;
-          border: 1px solid rgba(244, 173, 54, .28);
+          border: 1px solid var(--t-bd);
           border-radius: 50%;
-          color: #c78316;
-          background: linear-gradient(145deg, #fff9ea, #fff0cd);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), 0 4px 10px rgba(244, 173, 54, .10);
+          color: var(--t-fg);
+          background: linear-gradient(145deg, var(--t-bg1), var(--t-bg2));
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), 0 4px 10px var(--t-sh);
           transition: transform .35s ease, background .35s ease, color .35s ease;
         }
 
@@ -320,18 +445,24 @@ export function SolarCapabilityMarquee({
         .scm-section .scm-pill:hover .scm-icon-wrap {
           color: #fff;
           border-color: transparent;
-          background: linear-gradient(135deg, var(--scm-blue), var(--scm-violet));
+          background: linear-gradient(135deg, var(--t-fg), var(--scm-violet));
           transform: rotate(-8deg) scale(1.06);
         }
 
         .scm-section .scm-pill:hover .scm-icon-wrap svg {
-          transform: rotate(28deg);
+          transform: scale(1.08) rotate(8deg);
         }
 
         .scm-section .scm-label {
           display: inline-block;
           max-width: 100%;
           overflow-wrap: anywhere;
+        }
+
+        /* ---------- Reduced motion: static, swipeable row ---------- */
+        .scm-section.scm-reduced-motion .scm-marquee {
+          -webkit-mask-image: none;
+          mask-image: none;
         }
 
         .scm-section .scm-row-static {
@@ -344,6 +475,7 @@ export function SolarCapabilityMarquee({
 
         .scm-section .scm-track-static {
           width: max-content;
+          padding-inline: var(--scm-gutter);
           animation: none !important;
         }
 
@@ -382,32 +514,22 @@ export function SolarCapabilityMarquee({
           to { transform: scaleX(1); }
         }
 
+        /* ---------- Responsive ---------- */
         @media (max-width: 900px) {
-          .scm-section .scm-shell {
+          .scm-section .scm-head {
             grid-template-columns: minmax(0, 1fr);
-            gap: 1.8rem;
+            align-items: start;
+            gap: 1.25rem;
           }
 
-          .scm-section .scm-heading {
-            max-width: 44rem;
-          }
-
-          .scm-section .scm-marquee {
-            width: 100%;
-          }
-
-          .scm-section .scm-title {
-            max-width: 42rem;
+          .scm-section .scm-quote {
+            max-width: 40rem;
           }
         }
 
         @media (max-width: 560px) {
           .scm-section {
-            padding: 3rem .85rem;
-          }
-
-          .scm-section .scm-shell {
-            gap: 1.45rem;
+            padding: 3rem 0;
           }
 
           .scm-section .scm-badge {
@@ -428,13 +550,12 @@ export function SolarCapabilityMarquee({
           }
 
           .scm-section .scm-quote {
-            margin-top: .85rem;
             font-size: .94rem;
             line-height: 1.68;
           }
 
           .scm-section .scm-row {
-            padding: .4rem 0;
+            padding: .55rem 0;
           }
 
           .scm-section .scm-group {
@@ -460,12 +581,9 @@ export function SolarCapabilityMarquee({
             height: .92rem;
           }
 
-          .scm-section .scm-track--forward {
-            animation-duration: 27s;
-          }
-
+          .scm-section .scm-track--forward,
           .scm-section .scm-track--reverse {
-            animation-duration: 32s;
+            animation-duration: calc(var(--scm-dur, 40s) * .8);
           }
         }
 
@@ -498,74 +616,85 @@ export function SolarCapabilityMarquee({
         <span className="scm-blob scm-blob--blue" />
       </div>
 
-      <div className="scm-shell">
-        <motion.div
-          className="scm-heading"
-          initial={reduceMotion ? false : { opacity: 0, x: -28 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-        >
+      <motion.div
+        className="scm-head"
+        initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="scm-heading">
           <span className="scm-badge">
             <span className="scm-badge-dot" aria-hidden="true" />
             {badge}
           </span>
 
           <h2 id={headingId} className="scm-title">
-            {titleFirst} <span className="scm-title-highlight">{titleHighlight}</span>
+            {titleFirst}{" "}
+            <span className="scm-title-highlight">{titleHighlight}</span>
           </h2>
           <span className="scm-title-line" aria-hidden="true" />
+        </div>
 
-          <p className="scm-quote">{quote}</p>
-        </motion.div>
+        <p className="scm-quote">{quote}</p>
+      </motion.div>
 
-        <motion.div
-          className="scm-marquee"
-          initial={reduceMotion ? false : { opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          role="region"
-          aria-label={ariaLabel}
-        >
-          {rows.map(({ reverse, items: rowItems, key }) => {
-            const direction = reverse ? "reverse" : "forward";
-            const trackClass = reduceMotion
-              ? "scm-track scm-track-static"
-              : `scm-track scm-track--${direction}`;
+      <motion.div
+        className="scm-marquee"
+        initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+        role="region"
+        aria-label={ariaLabel}
+      >
+        {rows.map(({ key, reverse, items: rowItems, duration }) => {
+          const direction = reverse ? "reverse" : "forward";
+          const trackClass = reduceMotion
+            ? "scm-track scm-track-static"
+            : `scm-track scm-track--${direction}`;
 
-            return (
+          // One group = the items repeated `repeat` times.
+          const groupItems = Array.from({ length: repeat }).flatMap(() => rowItems);
+
+          return (
+            <div
+              key={key}
+              className={`scm-row${reduceMotion ? " scm-row-static" : ""}`}
+              aria-hidden={reverse ? "true" : undefined}
+              tabIndex={reduceMotion && !reverse ? 0 : undefined}
+            >
               <div
-                key={key}
-                className={`scm-row${reduceMotion ? " scm-row-static" : ""}`}
-                aria-hidden={reverse ? "true" : undefined}
+                className={trackClass}
+                style={reduceMotion ? undefined : { "--scm-dur": `${duration}s` }}
               >
-                <div className={trackClass}>
-                  {[0, 1].slice(0, reduceMotion ? 1 : 2).map((copyIndex) => (
-                    <div
-                      key={`${key}-group-${copyIndex}`}
-                      className="scm-group"
-                      aria-hidden={copyIndex > 0 ? "true" : undefined}
-                    >
-                      {rowItems.map((item, itemIndex) => (
+                {[0, 1].slice(0, reduceMotion ? 1 : 2).map((copyIndex) => (
+                  <div
+                    key={`${key}-group-${copyIndex}`}
+                    className="scm-group"
+                    aria-hidden={copyIndex > 0 ? "true" : undefined}
+                  >
+                    {groupItems.map((item, itemIndex) => {
+                      const Icon = item.Icon;
+                      return (
                         <span
-                          className="scm-pill"
+                          className={`scm-pill scm-tone--${item.tone}`}
                           key={`${item.name}-${itemIndex}`}
                         >
                           <span className="scm-icon-wrap" aria-hidden="true">
-                            <Sun />
+                            <Icon aria-hidden="true" focusable="false" />
                           </span>
                           <span className="scm-label">{item.name}</span>
                         </span>
-                      ))}
-                    </div>
-                  ))}
-                </div>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
-            );
-          })}
-        </motion.div>
-      </div>
+            </div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }

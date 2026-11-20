@@ -76,13 +76,6 @@ function ReviewCard({ review }) {
     <article className="smartedge-review-card">
       <div className="smartedge-review-card-glow" />
 
-      {/* Card Top */}
-      <div className="smartedge-review-card-header">
-        <div className="smartedge-review-quote">
-          <Quote aria-hidden="true" />
-        </div>
-      </div>
-
       {/* Service */}
       <div className="smartedge-review-service-row">
         <span className="smartedge-review-service-dot" />
@@ -448,14 +441,6 @@ export function CustomerReviews({
 
           width: 100%;
           height: 3px;
-
-          background: linear-gradient(
-            90deg,
-            var(--sr-blue),
-            #849cff,
-            var(--sr-gold)
-          );
-
           content: "";
         }
 
@@ -1083,36 +1068,7 @@ export function CustomerReviews({
             </div>
           </div>
 
-          {/* Marquee controls */}
-
-          <div className="smartedge-review-controls">
-            <p className="smartedge-review-controls-text">
-              Real stories. Better solar decisions.
-            </p>
-
-            {!reduceMotion && (
-              <button
-                type="button"
-                className="smartedge-review-pause"
-                onClick={() =>
-                  setIsPaused((current) => !current)
-                }
-                aria-pressed={isPaused}
-              >
-                {isPaused ? (
-                  <>
-                    <Play aria-hidden="true" />
-                    Resume Marquee
-                  </>
-                ) : (
-                  <>
-                    <Pause aria-hidden="true" />
-                    Pause Marquee
-                  </>
-                )}
-              </button>
-            )}
-          </div>
+          
         </>
       ) : (
         <div className="smartedge-review-empty">

@@ -70,12 +70,15 @@ function AnimatedStatValue({
   value,
   suffix = "",
   duration = COUNTER_DURATION,
+  shouldStart = false,
 }) {
   const [count, setCount] = useState(0);
 
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (!shouldStart) return undefined;
+
     let frameId = null;
     let startTime = null;
     let cancelled = false;
@@ -110,9 +113,10 @@ function AnimatedStatValue({
       const easedProgress =
         1 - Math.pow(1 - progress, 4);
 
-      const nextValue = Math.round(
-        value * easedProgress
-      );
+      const rawValue = value * easedProgress;
+      const nextValue = Number.isInteger(value)
+        ? Math.round(rawValue)
+        : Number(rawValue.toFixed(1));
 
       setCount(
         progress >= 1 ? value : nextValue
@@ -132,14 +136,16 @@ function AnimatedStatValue({
         window.cancelAnimationFrame(frameId);
       }
     };
-  }, [value, duration, reduceMotion]);
+  }, [value, duration, reduceMotion, shouldStart]);
 
   return (
     <span
       className="se-hero-stats__value"
       aria-hidden="true"
     >
-      {count.toLocaleString("en-IN")}
+      {Number.isInteger(value)
+        ? count.toLocaleString("en-IN")
+        : count.toFixed(1)}
       {suffix}
     </span>
   );
@@ -150,6 +156,34 @@ function AnimatedStatValue({
 // ======================================================
 
 function SolarHeroStats() {
+  const [shouldStart, setShouldStart] = useState(false);
+
+  useEffect(() => {
+    const handlePopupState = (event) => {
+      setShouldStart(
+        event.detail?.isPopupOpen === false
+      );
+    };
+
+    window.addEventListener(
+      "smartedge:solar-stats-state",
+      handlePopupState
+    );
+
+    if (
+      window.__smartedgeSolarQuoteOpen === false
+    ) {
+      setShouldStart(true);
+    }
+
+    return () => {
+      window.removeEventListener(
+        "smartedge:solar-stats-state",
+        handlePopupState
+      );
+    };
+  }, []);
+
   return (
     <section
       className="se-hero-stats"
@@ -167,6 +201,7 @@ function SolarHeroStats() {
               value={stat.value}
               suffix={stat.suffix}
               duration={COUNTER_DURATION}
+              shouldStart={shouldStart}
             />
 
             <span className="se-hero-stats__label">
@@ -279,7 +314,8 @@ const heroCarouselStyles = `
   object-fit: cover;
   object-position: center;
 
-  filter: brightness(1.4) saturate(1.12) contrast(1.04);
+  /* Keep the photo natural and clear instead of over-brightening it. */
+  filter: brightness(1.12) saturate(1.08) contrast(1.04);
 
   transform: scale(1.035);
 
@@ -318,20 +354,14 @@ const heroCarouselStyles = `
 
   pointer-events: none;
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(3, 10, 20, .68) 0%,
-      rgba(4, 13, 26, .52) 29%,
-      rgba(4, 13, 26, .25) 56%,
-      rgba(4, 13, 26, .06) 100%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(3, 10, 20, .48) 0%,
-      rgba(3, 10, 20, .03) 40%,
-      rgba(3, 10, 20, .12) 100%
-    );
+  /* Only a soft fade at the bottom protects the carousel controls.
+     The main dark shading now sits behind the text, not over the photo. */
+  background: linear-gradient(
+    0deg,
+    rgba(3, 10, 20, .22) 0%,
+    rgba(3, 10, 20, .07) 14%,
+    transparent 34%
+  );
 }
 
 /* =========================================
@@ -345,21 +375,17 @@ const heroCarouselStyles = `
 
   pointer-events: none;
 
+  /* Keep the ambient colour accents, but remove the dark full-image tint. */
   background:
     radial-gradient(
       ellipse at 72% 42%,
-      rgba(42, 215, 226, .16),
+      rgba(42, 215, 226, .12),
       transparent 31%
     ),
     radial-gradient(
       ellipse at 12% 94%,
-      rgba(25, 111, 164, .18),
+      rgba(25, 111, 164, .08),
       transparent 35%
-    ),
-    linear-gradient(
-      115deg,
-      rgba(3, 13, 25, .12),
-      transparent 58%
     );
 
   animation: seHeroAmbient 12s ease-in-out infinite alternate;
@@ -544,8 +570,30 @@ const heroCarouselStyles = `
 }
 
 .se-hero__copy {
+  position: relative;
+  isolation: isolate;
   width: min(100%, 780px);
   min-width: 0;
+}
+
+/* Localised readability shade: stays behind the copy only. */
+.se-hero__copy::before {
+  position: absolute;
+  z-index: -1;
+  inset: -34px -48px;
+  content: "";
+  pointer-events: none;
+
+  background: radial-gradient(
+    ellipse at 22% 48%,
+    rgba(2, 10, 20, .56) 0%,
+    rgba(2, 10, 20, .38) 38%,
+    rgba(2, 10, 20, .18) 62%,
+    rgba(2, 10, 20, 0) 100%
+  );
+
+  filter: blur(16px);
+  opacity: .92;
 }
 
 /* =========================================
@@ -851,7 +899,7 @@ const heroCarouselStyles = `
   width: min(1320px, calc(100% - 104px));
 
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   gap: 28px;
 
@@ -860,91 +908,6 @@ const heroCarouselStyles = `
   padding: 0 0 clamp(18px, 3vh, 28px);
 }
 
-/* Progress */
-
-.se-hero__progress {
-  display: flex;
-
-  min-width: 0;
-  max-width: 520px;
-
-  flex: 1 1 auto;
-
-  align-items: center;
-
-  gap: clamp(8px, 1vw, 14px);
-}
-
-.se-hero__progress-button {
-  display: block;
-
-  min-width: 0;
-  flex: 1 1 0;
-
-  padding: 10px 0;
-
-  border: 0;
-  background: transparent;
-
-  cursor: pointer;
-}
-
-.se-hero__progress-track {
-  position: relative;
-
-  display: block;
-
-  width: 100%;
-  height: 3px;
-
-  overflow: hidden;
-
-  border-radius: 99px;
-
-  background: rgba(231, 240, 255, .28);
-
-  transition:
-    background 200ms ease,
-    height 200ms ease;
-}
-
-.se-hero__progress-button:hover .se-hero__progress-track,
-.se-hero__progress-button:focus-visible .se-hero__progress-track {
-  height: 4px;
-  background: rgba(231, 240, 255, .48);
-}
-
-.se-hero__progress-fill {
-  position: absolute;
-  inset: 0;
-
-  display: block;
-
-  transform: scaleX(1);
-  transform-origin: left center;
-
-  border-radius: inherit;
-
-  background: var(--se-accent);
-
-  box-shadow: 0 0 14px rgba(112, 237, 241, .52);
-}
-
-.se-hero__progress-fill.is-running {
-  transform: scaleX(0);
-
-  animation:
-    seHeroProgress
-    3000ms
-    linear
-    forwards;
-}
-
-@keyframes seHeroProgress {
-  to {
-    transform: scaleX(1);
-  }
-}
 
 /* Arrow controls */
 
@@ -1009,7 +972,6 @@ const heroCarouselStyles = `
   stroke-width: 1.8;
 }
 
-.se-hero__progress-button:focus-visible,
 .se-hero__control:focus-visible,
 .se-hero .se-hero__action a:focus-visible,
 .se-hero .se-hero__action button:focus-visible {
@@ -1224,19 +1186,7 @@ const heroCarouselStyles = `
 
 /* Accent */
 
-.se-hero-stats__accent {
-  width: 0;
-  height: 2px;
 
-  margin-top: -3px;
-
-  border-radius: 99px;
-
-  background:
-    linear-gradient(90deg, var(--primary-600), var(--primary-400));
-
-  transition: width 300ms ease;
-}
 
 /* Hover */
 
@@ -1317,20 +1267,25 @@ const heroCarouselStyles = `
   }
 
   .se-hero__overlay {
-    background:
-      linear-gradient(
-        90deg,
-        rgba(3, 10, 20, .78) 0%,
-        rgba(4, 13, 26, .6) 62%,
-        rgba(4, 13, 26, .28) 100%
-      ),
-      linear-gradient(
-        0deg,
-        rgba(3, 10, 20, .72) 0%,
-        rgba(3, 10, 20, .48) 38%,
-        rgba(3, 10, 20, .08) 78%,
-        rgba(3, 10, 20, .22) 100%
-      );
+    /* Mobile keeps only a light bottom fade; the text shade is localised. */
+    background: linear-gradient(
+      0deg,
+      rgba(3, 10, 20, .24) 0%,
+      rgba(3, 10, 20, .06) 16%,
+      transparent 36%
+    );
+  }
+
+  .se-hero__copy::before {
+    inset: -24px -18px;
+    background: radial-gradient(
+      ellipse at 28% 46%,
+      rgba(2, 10, 20, .58) 0%,
+      rgba(2, 10, 20, .36) 48%,
+      rgba(2, 10, 20, .12) 72%,
+      transparent 100%
+    );
+    filter: blur(12px);
   }
 
   .se-hero__grid {
@@ -1415,14 +1370,6 @@ const heroCarouselStyles = `
   .se-hero__bottom {
     gap: 15px;
     padding-bottom: 15px;
-  }
-
-  .se-hero__progress {
-    gap: 7px;
-  }
-
-  .se-hero__progress-button {
-    padding: 8px 0;
   }
 
   .se-hero__controls {
@@ -2183,72 +2130,10 @@ export function HeroCarousel() {
         </div>
 
         {/* =========================================
-            PROGRESS + NAVIGATION
+            NAVIGATION
         ========================================= */}
 
         <div className="se-hero__bottom">
-
-          {/* PROGRESS INDICATORS */}
-
-          <div
-            className="se-hero__progress"
-            role="group"
-            aria-label="Choose a featured slide"
-          >
-            {slides.map((slide, slideIndex) => {
-              const isActive =
-                slideIndex === activeIndex;
-
-              const slideName =
-                slide.eyebrow ||
-                slide.title ||
-                "Featured slide";
-
-              return (
-                <button
-                  key={slide.id ?? slideIndex}
-
-                  type="button"
-
-                  className="se-hero__progress-button"
-
-                  aria-label={`Show ${slideName}`}
-
-                  aria-current={
-                    isActive
-                      ? "true"
-                      : undefined
-                  }
-
-                  onClick={() => {
-                    goToSlide(slideIndex);
-                  }}
-                >
-
-                  <span
-                    className="se-hero__progress-track"
-                    aria-hidden="true"
-                  >
-
-                    {isActive ? (
-                      <span
-                        key={`${slide.id ?? slideIndex}-${activeIndex}`}
-                        className="se-hero__progress-fill is-running"
-
-                        style={{
-                          animationDuration:
-                            `${AUTOPLAY_INTERVAL}ms`,
-                        }}
-                      />
-                    ) : null}
-
-                  </span>
-
-                </button>
-              );
-            })}
-          </div>
-
           {/* ARROW CONTROLS */}
 
           <div

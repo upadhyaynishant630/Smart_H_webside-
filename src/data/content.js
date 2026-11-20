@@ -1,5 +1,5 @@
 import residentialImg from "@/assets/hero/solar-residential.jpg";
-import commercialImg from "@/assets/hero/solar-commercial.jpg";
+import commercialImg from "@/assets/hero/solar-commercials.jpg";
 import industriesImg from "@/assets/hero/industries.png";
 
 export const industries = [

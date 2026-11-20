@@ -24,7 +24,7 @@ import {
 import { ThreeDIcon } from "@/components/ui/ThreeDIcon";
 import { services } from "@/data/services";
 import servicesHero from "@/assets/services/our service.jpeg";
-import solarHero from "@/assets/hero/solar-commercial.jpg";
+import solarHero from "@/assets/hero/solar-commercials.jpg";
 import { cn } from "@/lib/utils";
 
 /* ======================================================

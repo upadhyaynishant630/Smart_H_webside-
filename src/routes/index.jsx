@@ -416,30 +416,6 @@ const solarHomeStyles = `
     letter-spacing: -.025em;
   }
 
-  .solar-home-page .solar-image-note {
-    position: absolute;
-    z-index: 5;
-    top: 8%;
-    right: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: clamp(180px, 22vw, 250px);
-    max-width: calc(100% - 24px);
-    min-width: 0;
-    margin: 0;
-    padding: 12px;
-    border: 1px solid rgba(36, 87, 237, .16);
-    border-radius: 14px;
-    background: rgba(255, 255, 255, .96);
-    box-shadow: 0 12px 32px rgba(7, 20, 38, .16);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transform: translateY(-50%);
-    animation: solar-note-fade 650ms ease-out both;
-    transition: box-shadow 250ms ease, border-color 250ms ease;
-  }
-
   .solar-home-page .solar-image-note:hover {
     border-color: rgba(36, 87, 237, .35);
     box-shadow: 0 16px 36px rgba(7, 20, 38, .2);
@@ -495,17 +471,6 @@ const solarHomeStyles = `
   }
 
   @media (max-width: 767px) {
-    .solar-home-page .solar-image-note {
-      top: 12px;
-      right: 10px;
-      width: min(170px, 47%);
-      max-width: calc(100% - 20px);
-      gap: 7px;
-      padding: 9px;
-      border-radius: 12px;
-      transform: none;
-    }
-
     .solar-home-page .solar-image-note-icon {
       width: 29px;
       height: 29px;
@@ -531,13 +496,6 @@ const solarHomeStyles = `
   }
 
   @media (max-width: 380px) {
-    .solar-home-page .solar-image-note {
-      top: 8px;
-      right: 8px;
-      width: min(148px, 47%);
-      gap: 6px;
-      padding: 7px;
-    }
 
     .solar-home-page .solar-image-note-icon {
       width: 26px;
@@ -605,7 +563,7 @@ const solarHomeStyles = `
     right: 8%;
     height: 3px;
     border-radius: 0 0 999px 999px;
-    background: linear-gradient(90deg, var(--sh-cobalt), var(--sh-red));
+   
     content: "";
     opacity: .8;
   }
@@ -1513,16 +1471,7 @@ function Home() {
                 />
 
                 <div className="solar-image-caption">
-                  <span className="solar-image-badge">
-                    <Sun
-                      className="h-4 w-4 shrink-0"
-                      aria-hidden="true"
-                    />
-
-                    <span>
-                      {copy.intro.imageBadge}
-                    </span>
-                  </span>
+                 
 
                   <p>
                     {copy.intro.imageHeadline}
@@ -1531,12 +1480,6 @@ function Home() {
               </div>
 
               <div className="solar-image-note">
-                <span className="solar-image-note-icon">
-                  <Leaf
-                    className="h-5 w-5"
-                    aria-hidden="true"
-                  />
-                </span>
 
                 <div className="solar-image-note-copy">
                   <h3>

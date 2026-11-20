@@ -11,6 +11,17 @@ const STORAGE_KEY = "smartedge_solar_quote_popup_seen";
 const INITIAL_PATH_STORAGE_KEY = "smartedge_initial_path";
 let automaticOpenReserved = false;
 
+const SOLAR_STATS_STATE_EVENT = "smartedge:solar-stats-state";
+
+function announceSolarStatsState(isPopupOpen) {
+  window.__smartedgeSolarQuoteOpen = isPopupOpen;
+  window.dispatchEvent(
+    new CustomEvent(SOLAR_STATS_STATE_EVENT, {
+      detail: { isPopupOpen },
+    })
+  );
+}
+
 const QUOTE_CTA_LABELS = [
   "request a solar assessment",
   "request a site assessment",
@@ -69,6 +80,7 @@ export default function SolarQuotePopup({
     }
 
     isOpenRef.current = true;
+    announceSolarStatsState(true);
 
     // Remember that the popup has been displayed.
     // Session storage prevents automatic reopening after a refresh while
@@ -91,6 +103,7 @@ export default function SolarQuotePopup({
     if (isSubmittingRef.current) return;
 
     isOpenRef.current = false;
+    announceSolarStatsState(false);
     setIsOpen(false);
   }, []);
 
@@ -175,6 +188,7 @@ export default function SolarQuotePopup({
     if (autoOpen) {
       let alreadyShown = false;
       let openedAtHome = false;
+      let willAutoOpen = false;
 
       try {
         alreadyShown =
@@ -194,6 +208,8 @@ export default function SolarQuotePopup({
         !alreadyShown &&
         !automaticOpenReserved
       ) {
+        willAutoOpen = true;
+        announceSolarStatsState(true);
         const safeDelay = Number.isFinite(Number(delay))
           ? Math.max(0, Number(delay))
           : 2400;
@@ -213,6 +229,12 @@ export default function SolarQuotePopup({
           safeDelay
         );
       }
+
+      if (!willAutoOpen) {
+        announceSolarStatsState(false);
+      }
+    } else {
+      announceSolarStatsState(false);
     }
 
     return () => {
@@ -428,30 +450,7 @@ export default function SolarQuotePopup({
             {/* HEADER */}
             <header className="se-quote-header">
               <div className="se-quote-heading">
-                <span className="se-quote-eyebrow">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="4"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                    />
-
-                    <path
-                      d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-
-                  SMARTEDGE SOLAR
-                </span>
+               
 
                 <h2 id={titleId}>
                   Let's plan your{" "}
@@ -473,7 +472,7 @@ export default function SolarQuotePopup({
                 onClick={closePopup}
                 aria-label="Close solar quote form"
               >
-                <span>CLOSE</span>
+                
 
                 <svg
                   viewBox="0 0 24 24"
@@ -722,12 +721,8 @@ export default function SolarQuotePopup({
                 )}
               </button>
 
-              {/* FOOTER NOTE */}
-              <div className="se-quote-bottom-note">
-                <span className="se-quote-note-icon">✦</span>
-
-                A practical conversation. No obligation.
-              </div>
+           
+             
             </form>
           </section>
         </div>
@@ -951,7 +946,7 @@ export default function SolarQuotePopup({
           justify-content: center;
           gap: 7px;
 
-          min-width: 70px;
+          min-width: 50px;
           height: 36px;
 
           padding: 0 11px;

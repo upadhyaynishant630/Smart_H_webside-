@@ -11,7 +11,6 @@ import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { AnnouncementBar } from "@/components/common/AnnouncementBar";
 import { Navbar } from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
 import { buttonStyles } from "@/components/ui/brand";
@@ -150,7 +149,7 @@ function RootComponent() {
       >
         Skip to content
       </a>
-      <AnnouncementBar />
+     
       <Navbar />
       <main id="main">
         <Outlet />

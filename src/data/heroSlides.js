@@ -1,6 +1,6 @@
 import residential from "@/assets/hero/solar-residential.jpg";
-import commercial from "@/assets/hero/solar-commercial.jpg";
-import siteAssessment from "@/assets/hero/solar-site-assessment.jpg";
+import commercial from "@/assets/hero/Commercial-Solar.png";
+import siteAssessment from "@/assets/hero/housing-society.png";
 import longTerm from "@/assets/hero/solar-long-term.jpg";
 
 export const heroSlides = [
