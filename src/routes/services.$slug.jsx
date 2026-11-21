@@ -194,7 +194,7 @@ function ServiceDetail() {
           --sd-ink: #101a36;
           --sd-ink-light: #1b294d;
           --sd-blue: #243ec8;
-          --sd-violet: #7775ff;
+          --sd-violet: #79e900;
           --sd-cyan: #42d5e8;
           --sd-mint: #80f0d1;
           --sd-text: #505b74;
@@ -331,7 +331,7 @@ function ServiceDetail() {
         }
 
         .sh-sd-section-title span {
-          color: var(--sd-blue);
+            color: #0B7600;
         }
 
         .sh-sd-section-description {
@@ -719,7 +719,7 @@ function ServiceDetail() {
         }
 
         .sh-sd-included-title span {
-          color: var(--sd-cyan);
+            color: #0B7600;
         }
 
         .sh-sd-included-description {
@@ -1170,7 +1170,7 @@ function ServiceDetail() {
         }
 
         .sh-sd-related-title span {
-          color: var(--sd-blue);
+            color: #0B7600;
         }
 
         .sh-sd-related-description {

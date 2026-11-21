@@ -833,29 +833,7 @@ export default function SolarQuotePopup({
           z-index: -1;
         }
 
-        /* =========================================
-           ANIMATED TOP LINE
-        ========================================= */
-
-        .se-quote-top-line {
-          position: relative;
-          flex: 0 0 5px;
-
-          width: 100%;
-          height: 5px;
-
-          background: linear-gradient(
-            100deg,
-            #2358d8 0%,
-            #4379f3 35%,
-            #f4ad36 65%,
-            #2358d8 100%
-          );
-
-          background-size: 220% 100%;
-
-          animation: seQuoteGradient 5s linear infinite;
-        }
+       
 
         /* =========================================
            HEADER

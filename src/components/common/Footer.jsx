@@ -3,8 +3,6 @@ import { Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
   MapPin,
-  MessageCircle,
-  MessageSquareText,
   Phone,
 } from "lucide-react";
 
@@ -75,13 +73,20 @@ export function Footer() {
     <footer className="sh-footer surface-dark bg-night">
       <style>{`
         .sh-footer {
-          --sf-bg: var(--primary-900);
-          --sf-card: rgb(255 255 255 / 0.08);
-          --sf-line: rgb(237 233 254 / 0.22);
+          --primary-900: #0C1C4A;
+          --primary-700: #0C1C4A;
+          --primary-600: #0769E7;
+          --primary-400: #2C7236;
+          --primary-100: #F1F5F1;
+          --sf-bg: #0C1C4A;
+          --sf-card: transparent;
+          --sf-line: rgb(241 245 241 / 0.22);
           --sf-text: var(--white);
-          --sf-muted: var(--primary-100);
-          --sf-blue: var(--primary-400);
-          --sf-cyan: var(--accent-blue);
+          --sf-muted: #F1F5F1;
+          --sf-blue: #0769E7;
+          --sf-cyan: #53D132;
+          --sf-green: #53D132;
+          --sf-forest: #2C7236;
 
           position: relative;
           isolation: isolate;
@@ -90,16 +95,16 @@ export function Footer() {
           overflow: hidden;
           background:
             radial-gradient(
-              ellipse at 5% 0%,
-              rgb(109 40 217 / 0.18),
-              transparent 36%
+              ellipse at 8% 4%,
+              rgb(7 105 231 / 0.22),
+              transparent 34%
             ),
             radial-gradient(
-              ellipse at 100% 90%,
-              rgb(11 111 214 / 0.1),
-              transparent 32%
+              ellipse at 92% 88%,
+              rgb(44 114 54 / 0.15),
+              transparent 30%
             ),
-            linear-gradient(140deg, var(--primary-900) 0%, var(--primary-700) 52%, var(--primary-900) 100%);
+            linear-gradient(140deg, #0C1C4A 0%, #0C1C4A 58%, #2C7236 100%);
           color: var(--sf-text);
           font-family:
             Inter,
@@ -130,12 +135,12 @@ export function Footer() {
           inset: 0;
           background-image:
             linear-gradient(
-              rgba(160, 179, 230, 0.025) 1px,
+              rgba(241, 245, 241, 0.035) 1px,
               transparent 1px
             ),
             linear-gradient(
               90deg,
-              rgba(160, 179, 230, 0.025) 1px,
+              rgba(241, 245, 241, 0.035) 1px,
               transparent 1px
             );
           background-size: 44px 44px;
@@ -162,13 +167,13 @@ export function Footer() {
         .sh-footer-glow--left {
           top: 30px;
           left: -150px;
-          background: rgb(109 40 217 / 0.2);
+          background: rgb(7 105 231 / 0.18);
         }
 
         .sh-footer-glow--right {
           right: -155px;
           bottom: 90px;
-          background: rgb(11 111 214 / 0.12);
+          background: rgb(83 209 50 / 0.12);
           animation-delay: -5s;
         }
 
@@ -182,8 +187,8 @@ export function Footer() {
           background: linear-gradient(
             90deg,
             transparent,
-            rgb(155 114 234 / 0.8),
-            rgb(11 111 214 / 0.75),
+            rgb(7 105 231 / 0.85),
+            rgb(83 209 50 / 0.85),
             transparent
           );
         }
@@ -195,7 +200,7 @@ export function Footer() {
           width: 22%;
           height: 1px;
           background: #fff;
-          box-shadow: 0 0 12px rgba(92, 222, 237, 0.7);
+          box-shadow: 0 0 12px rgba(44, 114, 54, 0.7);
           animation: sh-footer-light-sweep 8s ease-in-out infinite;
           content: "";
         }
@@ -236,6 +241,22 @@ export function Footer() {
           transition: opacity 220ms ease;
         }
 
+     .sh-footer-logo-link .smartedge-logo-wrap {
+  width: clamp(200px, 15vw, 250px);
+  height: clamp(112px, 8.5vw, 140px);
+  overflow: hidden;
+  border-radius: 8px;
+  transform: none;
+}
+
+.sh-footer-logo-link .smartedge-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
         .sh-footer-logo-link:hover {
           opacity: 0.86;
         }
@@ -248,7 +269,7 @@ export function Footer() {
         .sh-footer-description {
           max-width: 420px;
           margin: 11px 0 0;
-          color: var(--sf-muted);
+          color: #F1F5F1;
           font-size: 12px;
           line-height: 1.8;
           overflow-wrap: anywhere;
@@ -270,11 +291,11 @@ export function Footer() {
           min-height: 40px;
           align-items: center;
           gap: 10px;
-          padding: 6px 10px;
-          overflow: hidden;
-          border: 1px solid var(--sf-line);
-          border-radius: 11px;
-          background: var(--sf-card);
+          padding: 5px 0;
+          overflow: visible;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
           color: var(--sf-text);
           text-decoration: none;
           transition:
@@ -285,33 +306,19 @@ export function Footer() {
         }
 
         .sh-footer-contact::before {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            110deg,
-            transparent 15%,
-            rgba(133, 132, 255, 0.075) 50%,
-            transparent 85%
-          );
-          opacity: 0;
-          transform: translateX(-100%);
-          transition:
-            opacity 250ms ease,
-            transform 500ms ease;
-          content: "";
-          pointer-events: none;
+          content: none;
+          display: none;
         }
 
         .sh-footer-contact:hover {
-          transform: translateY(-1px);
-          border-color: rgba(133, 132, 255, 0.43);
-          background: rgba(255, 255, 255, 0.055);
-          box-shadow: 0 5px 16px rgba(0, 0, 0, 0.08);
+          transform: translateX(2px);
+          border-color: transparent;
+          background: transparent;
+          box-shadow: none;
         }
 
         .sh-footer-contact:hover::before {
-          opacity: 1;
-          transform: translateX(100%);
+          display: none;
         }
 
         .sh-footer-contact:focus-visible {
@@ -327,10 +334,10 @@ export function Footer() {
           height: 29px;
           flex: 0 0 29px;
           place-items: center;
-          border: 1px solid rgba(133, 132, 255, 0.17);
-          border-radius: 9px;
-          background: rgba(76, 85, 237, 0.16);
-          color: var(--primary-400);
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          color: #53D132;
           transition:
             background 220ms ease,
             color 220ms ease,
@@ -344,8 +351,8 @@ export function Footer() {
 
         .sh-footer-contact:hover .sh-footer-contact-icon {
           transform: translateY(-1px);
-          background: var(--sf-blue);
-          color: #fff;
+          background: transparent;
+          color: #53D132;
         }
 
         .sh-footer-contact-label {
@@ -353,7 +360,7 @@ export function Footer() {
           z-index: 1;
           min-width: 0;
           flex: 1 1 auto;
-          color: var(--primary-100);
+          color: #F1F5F1;
           font-size: 12px;
           line-height: 1.55;
           overflow-wrap: anywhere;
@@ -397,15 +404,15 @@ export function Footer() {
           margin-top: 9px;
           padding: 10px 13px;
           overflow: hidden;
-          border: 1px solid rgba(133, 132, 255, 0.32);
+          border: 1px solid rgba(83, 209, 50, 0.32);
           border-radius: 12px;
           background: linear-gradient(
             110deg,
-            #4c55ed,
-            #6558e9 54%,
-            #5141c5
+            #0769E7 0%,
+            #0769E7 55%,
+            #2C7236 100%
           );
-          box-shadow: 0 5px 19px rgba(76, 85, 237, 0.16);
+          box-shadow: 0 5px 19px rgba(7, 105, 231, 0.16);
           color: #fff;
           font-size: 12px;
           font-weight: 750;
@@ -433,8 +440,8 @@ export function Footer() {
 
         .sh-footer-cta:hover {
           transform: translateY(-2px);
-          filter: brightness(1.07);
-          box-shadow: 0 9px 24px rgba(76, 85, 237, 0.24);
+          filter: brightness(1.06) saturate(1.05);
+          box-shadow: 0 9px 24px rgba(44, 114, 54, 0.24);
         }
 
         .sh-footer-cta:hover::before {
@@ -498,7 +505,7 @@ export function Footer() {
           border: 1px solid var(--sf-line);
           border-radius: 999px;
           background: rgba(255, 255, 255, 0.025);
-          color: var(--sf-muted);
+          color: #F1F5F1;
           font-size: 10px;
           font-weight: 700;
           text-decoration: none;
@@ -511,8 +518,8 @@ export function Footer() {
 
         .sh-footer-social-link:hover {
           transform: translateY(-2px);
-          border-color: rgba(133, 132, 255, 0.45);
-          background: rgba(133, 132, 255, 0.1);
+          border-color: rgba(83, 209, 50, 0.45);
+          background: rgba(83, 209, 50, 0.1);
           color: #fff;
         }
 
@@ -545,7 +552,7 @@ export function Footer() {
             var(--sf-blue),
             var(--sf-cyan)
           );
-          box-shadow: 0 0 8px rgba(133, 132, 255, 0.18);
+          box-shadow: 0 0 8px rgba(83, 209, 50, 0.2);
         }
 
         .sh-footer-link-list {
@@ -573,7 +580,7 @@ export function Footer() {
           align-items: baseline;
           gap: 7px;
           padding-block: 2px;
-          color: var(--sf-muted);
+          color: #F1F5F1;
           font-size: 12px;
           font-weight: 500;
           line-height: 1.65;
@@ -649,7 +656,7 @@ export function Footer() {
           position: relative;
           z-index: 3;
           border-top: 1px solid var(--sf-line);
-          background: rgba(5, 10, 25, 0.55);
+          background: rgba(12, 28, 74, 0.88);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
         }
@@ -669,7 +676,7 @@ export function Footer() {
         .sh-footer-copyright,
         .sh-footer-tagline {
           margin: 0;
-          color: var(--primary-100);
+          color: #F1F5F1;
           font-size: 10px;
           line-height: 1.7;
         }
@@ -690,7 +697,7 @@ export function Footer() {
           align-items: center;
           justify-content: flex-end;
           gap: 8px;
-          color: var(--primary-100);
+          color: #F1F5F1;
           font-size: 10px;
           font-weight: 650;
           line-height: 1.4;
@@ -749,6 +756,11 @@ export function Footer() {
 
           .sh-footer-brand {
             grid-column: 1 / -1;
+          }
+
+          .sh-footer-logo-link .smartedge-logo-wrap {
+            width: min(260px, 70vw);
+            height: clamp(146px, 39vw, 260px);
           }
 
           .sh-footer-description {
@@ -934,7 +946,7 @@ export function Footer() {
               {contactPhone && (
                 <ContactRow
                   href={`tel:${contactPhone}`}
-                  icon={<Phone />}
+                  icon={<Phone strokeWidth={1.8} />}
                   label={contactPhone}
                 />
               )}
@@ -950,7 +962,7 @@ export function Footer() {
               {address && (
                 <ContactRow
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
-                  icon={<MapPin />}
+                  icon={<MapPin strokeWidth={1.8} />}
                   label={address}
                 />
               )}

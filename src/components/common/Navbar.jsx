@@ -418,8 +418,7 @@ export function Navbar() {
 }
 
 .sh-navbar .sh-navbar-services-dropdown {
-  min-width: 30px;
-  padding-inline: 7px;
+  display: none;
 }
 
 /* =====================================
@@ -1179,27 +1178,7 @@ export function Navbar() {
 /* Mobile services expand button */
 
 .sh-navbar-mobile-expand {
-  display: grid;
-
-  width: 40px;
-  height: 40px;
-
-  flex: 0 0 40px;
-
-  place-items: center;
-
-  border: 1px solid var(--sh-nav-border);
-  border-radius: 11px;
-
-  background: #f1f7fd;
-  color: var(--sh-nav-ink);
-
-  cursor: pointer;
-
-  transition:
-    transform 200ms ease,
-    background 200ms ease,
-    border-color 200ms ease;
+  display: none;
 }
 
 .sh-navbar-mobile-expand:hover {
@@ -1531,24 +1510,50 @@ export function Navbar() {
 
 /* Desktop logo */
 .sh-navbar .sh-navbar-brand .smartedge-logo-wrap {
-  width: 10rem;
-  height: 4.8rem;
+  width: 11rem;
+  height: calc(var(--sh-nav-height) - 8px);
+  max-width: 100%;
   padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .sh-navbar .sh-navbar-brand .smartedge-logo {
-  transform: scale(1);
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  transform: none;
 }
 
 /* Mobile logo */
 .sh-navbar .sh-navbar-mobile-brand .smartedge-logo-wrap {
   width: 6.5rem;
   height: 2.3rem;
+  max-width: 100%;
   padding: 3px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .sh-navbar .sh-navbar-mobile-brand .smartedge-logo {
-  transform: scale(1);
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  transform: none;
 }
 
 
@@ -1623,6 +1628,13 @@ export function Navbar() {
   color: var(--sh-nav-ink);
 }
 
+/* Hide only the decorative chevrons beside Services.
+   Existing menu buttons and dropdown behaviour remain intact. */
+.sh-navbar .sh-navbar-link-chevron,
+.sh-navbar .sh-navbar-mobile-expand > svg {
+  display: none !important;
+}
+
 .sh-navbar .sh-navbar-mobile-link,
 .sh-navbar .sh-navbar-mobile-service,
 .sh-navbar .sh-navbar-mobile-all-services {
@@ -1641,8 +1653,17 @@ export function Navbar() {
   text-rendering: optimizeLegibility;
 }
 
+/* Reduce gap between Our Services and Franchisee */
+@media (min-width: 1120px) {
+  .sh-navbar-list
+  > .sh-navbar-item:has(.sh-navbar-services-home)
+  + .sh-navbar-item {
+    margin-left: -22px;
+  }
+}
 
       `}</style>
+
 
       {/* =====================================
           HEADER BAR

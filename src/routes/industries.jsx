@@ -109,8 +109,8 @@ function Industries() {
         .sh-industries-page {
           --si-ink: #111a35;
           --si-muted: #66718b;
-          --si-blue: #4c55ed;
-          --si-purple: #855bf6;
+          --si-blue: #178a00;
+          --si-purple: #79e900;
           --si-cyan: #47d4e8;
           --si-border: rgba(85, 103, 158, 0.15);
 
@@ -184,18 +184,11 @@ function Industries() {
           content: "";
         }
 
-        .si-gradient-text {
-          background: linear-gradient(
-            105deg,
-            var(--si-blue),
-            var(--si-purple) 58%,
-            #159fc4
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: var(--si-blue);
-        }
+       .si-gradient-text {
+  background: none;
+  color: #0B7600;
+  -webkit-text-fill-color: #0B7600;
+}
 
         .si-section-heading {
           max-width: 740px;
@@ -231,7 +224,7 @@ function Industries() {
           background:
             radial-gradient(
               ellipse at 0% 0%,
-              rgba(76, 85, 237, 0.045),
+              rgba(23, 138, 0, 0.045),
               transparent 34%
             ),
             #fff;
@@ -353,7 +346,7 @@ function Industries() {
 
         .si-industry-card:hover {
           transform: translateY(-5px);
-          border-color: rgba(76, 85, 237, 0.26);
+          border-color: rgba(23, 138, 0, 0.26);
           background: #fff;
           box-shadow: 0 18px 42px rgba(25, 38, 89, 0.085);
         }
@@ -376,11 +369,11 @@ function Industries() {
           height: 58px;
           flex: 0 0 58px;
           place-items: center;
-          border: 1px solid rgba(76, 85, 237, 0.12);
+          border: 1px solid rgba(23, 138, 0, 0.12);
           border-radius: 17px;
           background: linear-gradient(
             145deg,
-            rgba(76, 85, 237, 0.09),
+            rgba(23, 138, 0, 0.09),
             rgba(71, 212, 232, 0.13)
           );
           transition:
@@ -391,10 +384,10 @@ function Industries() {
 
         .si-industry-card:hover .si-industry-icon {
           transform: translateY(-2px) rotate(-3deg);
-          border-color: rgba(76, 85, 237, 0.25);
+          border-color: rgba(23, 138, 0, 0.25);
           background: linear-gradient(
             145deg,
-            rgba(76, 85, 237, 0.14),
+            rgba(23, 138, 0, 0.14),
             rgba(71, 212, 232, 0.18)
           );
         }
@@ -404,7 +397,7 @@ function Industries() {
           padding: 6px 8px;
           border: 1px solid rgba(85, 103, 158, 0.11);
           border-radius: 8px;
-          background: rgba(76, 85, 237, 0.035);
+          background: rgba(23, 138, 0, 0.035);
           color: #8490aa;
           font-size: 10px;
           font-weight: 800;
@@ -453,9 +446,9 @@ function Industries() {
           align-items: center;
           gap: 5px;
           padding: 7px 9px;
-          border: 1px solid rgba(76, 85, 237, 0.1);
+          border: 1px solid rgba(23, 138, 0, 0.1);
           border-radius: 9px;
-          background: rgba(76, 85, 237, 0.045);
+          background: rgba(23, 138, 0, 0.045);
           color: #555f7c;
           font-size: 10px;
           font-weight: 650;
@@ -475,8 +468,8 @@ function Industries() {
         }
 
         .si-industry-card:hover .si-industry-tag {
-          border-color: rgba(76, 85, 237, 0.15);
-          background: rgba(76, 85, 237, 0.065);
+          border-color: rgba(23, 138, 0, 0.15);
+          background: rgba(23, 138, 0, 0.065);
           color: #3d4771;
         }
 
@@ -507,7 +500,7 @@ function Industries() {
           background:
             radial-gradient(
               ellipse at 0% 0%,
-              rgba(76, 85, 237, 0.17),
+              rgba(23, 138, 0, 0.17),
               transparent 36%
             ),
             radial-gradient(
@@ -541,7 +534,7 @@ function Industries() {
         }
 
         .si-approach .si-eyebrow {
-          color: #b7b5ff;
+          color: #d7f6c2;
         }
 
         .si-approach .si-eyebrow::before {
@@ -608,7 +601,7 @@ function Industries() {
           border-color: rgba(133, 132, 255, 0.4);
           background: linear-gradient(
             145deg,
-            rgba(104, 105, 245, 0.13),
+            rgba(85, 197, 0, 0.13),
             rgba(255, 255, 255, 0.04)
           );
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
@@ -638,7 +631,7 @@ function Industries() {
           border-radius: 15px;
           background: linear-gradient(
             145deg,
-            rgba(123, 118, 255, 0.17),
+            rgba(121, 233, 0, 0.17),
             rgba(71, 212, 232, 0.09)
           );
           color: #b9b7ff;

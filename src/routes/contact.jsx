@@ -116,7 +116,7 @@ function Contact() {
           --sc-ink: #101a36;
           --sc-ink-soft: #1a2748;
           --sc-blue: #243ec8;
-          --sc-violet: #7775ff;
+          --sc-violet: #79e900;
           --sc-cyan: #42d5e8;
           --sc-mint: #80f0d1;
           --sc-text: #505b74;
@@ -237,7 +237,7 @@ function Contact() {
 
           margin-bottom: 15px;
 
-          color: var(--sc-blue);
+          color: #0B7600;
           font-size: 10px;
           font-weight: 800;
           line-height: 1.5;
@@ -272,7 +272,7 @@ function Contact() {
         }
 
         .sh-contact-title span {
-          color: var(--sc-blue);
+           color: #0B7600;
         }
 
         .sh-contact-description {
@@ -1211,6 +1211,7 @@ function Contact() {
             margin-bottom: 11px;
             font-size: 9px;
             letter-spacing: 0.13em;
+            
           }
 
           .sh-contact-title {

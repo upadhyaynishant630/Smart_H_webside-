@@ -152,7 +152,7 @@ function Services() {
           --svc-ink: #101a36;
           --svc-ink-soft: #1b294d;
           --svc-blue: #243ec8;
-          --svc-violet: #7775ff;
+          --svc-violet: #79e900;
           --svc-cyan: #42d5e8;
           --svc-mint: #80f0d1;
           --svc-text: #505b74;
@@ -262,7 +262,7 @@ function Services() {
 
           margin-bottom: 16px;
 
-          color: var(--svc-blue);
+            color: #0B7600;
           font-size: 10px;
           font-weight: 800;
           line-height: 1.5;
@@ -297,7 +297,7 @@ function Services() {
         }
 
         .sh-svc-intro-title span {
-          color: var(--svc-blue);
+            color: #0B7600;
         }
 
         .sh-svc-intro-description {
@@ -1019,7 +1019,7 @@ function Services() {
         }
 
         .sh-svc-workflow .sh-svc-eyebrow {
-          color: var(--svc-cyan);
+            color: #0B7600;
         }
 
         .sh-svc-workflow .sh-svc-eyebrow::before {
@@ -1043,7 +1043,7 @@ function Services() {
         }
 
         .sh-svc-workflow-title span {
-          color: var(--svc-cyan);
+            color: #0B7600;
         }
 
         .sh-svc-workflow-description {

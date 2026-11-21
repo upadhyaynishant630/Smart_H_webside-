@@ -61,12 +61,12 @@ export default function FranchisePlans() {
         ========================================= */
 
         .se-franchise-section {
-          --se-navy: var(--primary-900);
-          --se-blue: var(--primary-700);
-          --se-blue-light: var(--primary-600);
-          --se-accent: #7c3aed;
-          --se-accent-light: #9b72ea;
-          --se-white: #ffffff;
+          --se-navy: #0C1C4A;
+          --se-blue: #0769E7;
+          --se-blue-light: #0C1C4A;
+          --se-forest: #2C7236;
+          --se-forest-hover: #245D2D;
+          --se-white: #F1F5F1;
 
           position: relative;
           width: 100%;
@@ -76,14 +76,14 @@ export default function FranchisePlans() {
           background:
             radial-gradient(
               circle at 10% 10%,
-              rgba(155, 114, 234, 0.20),
+              rgba(7, 105, 231, 0.18),
               transparent 35%
             ),
             linear-gradient(
               135deg,
               var(--se-navy) 0%,
-              var(--se-blue) 55%,
-              var(--se-blue-light) 100%
+              var(--se-blue) 48%,
+              var(--se-navy) 100%
             );
 
           font-family: inherit;
@@ -118,11 +118,11 @@ export default function FranchisePlans() {
           padding: 8px 17px;
           margin-bottom: 16px;
 
-          border: 1px solid rgba(155, 114, 234, 0.45);
+          border: 1px solid rgba(44, 114, 54, 0.85);
           border-radius: 50px;
 
-          background: rgba(155, 114, 234, 0.10);
-          color: var(--se-accent-light);
+          background: var(--se-forest);
+          color: #ffffff;
 
           font-size: 12px;
           font-weight: 700;
@@ -141,14 +141,14 @@ export default function FranchisePlans() {
         }
 
         .se-franchise-heading h2 span {
-          color: var(--se-accent-light);
+          color: #ffffff;
         }
 
         .se-franchise-heading p {
           max-width: 650px;
           margin: 0 auto;
 
-          color: rgba(255, 255, 255, 0.72);
+          color: rgba(241, 245, 241, 0.82);
 
           font-size: 15px;
           line-height: 1.8;
@@ -179,9 +179,9 @@ export default function FranchisePlans() {
           background:
             linear-gradient(
               160deg,
-              var(--se-blue) 0%,
-              var(--se-navy) 55%,
-              #241050 100%
+              rgba(7, 105, 231, 0.28) 0%,
+              var(--se-navy) 58%,
+              #0C1C4A 100%
             );
 
           box-shadow:
@@ -197,11 +197,11 @@ export default function FranchisePlans() {
         .se-franchise-card:hover {
           transform: translateY(-8px);
 
-          border-color: rgba(155, 114, 234, 0.75);
+          border-color: rgba(44, 114, 54, 0.75);
 
           box-shadow:
             0 20px 40px rgba(0, 0, 0, 0.32),
-            0 0 25px rgba(155, 114, 234, 0.12);
+            0 0 25px rgba(44, 114, 54, 0.12);
         }
 
         /* ACCENT CARD HEADER */
@@ -218,11 +218,7 @@ export default function FranchisePlans() {
 
           text-align: center;
 
-          background: linear-gradient(
-            120deg,
-            var(--primary-700),
-            var(--se-accent-light)
-          );
+          background: green;
         }
 
         .se-franchise-card-header h3 {
@@ -282,7 +278,7 @@ export default function FranchisePlans() {
           display: block;
           margin-top: 7px;
 
-          color: rgba(255, 255, 255, 0.76);
+          color: rgba(241, 245, 241, 0.80);
 
           font-size: 13px;
           font-weight: 500;
@@ -313,7 +309,7 @@ export default function FranchisePlans() {
 
           border-bottom: 1px solid rgba(255, 255, 255, 0.22);
 
-          color: rgba(255, 255, 255, 0.88);
+          color: rgba(241, 245, 241, 0.90);
 
           font-size: 13px;
           font-weight: 500;
@@ -345,16 +341,16 @@ export default function FranchisePlans() {
           margin-top: 12px;
           padding: 12px 8px;
 
-          border: 1px solid rgba(155, 114, 234, 0.28);
+          border: 1px solid rgba(44, 114, 54, 0.28);
           border-radius: 12px;
 
-          background: rgba(155, 114, 234, 0.10);
+          background: rgba(44, 114, 54, 0.10);
 
           text-align: center;
         }
 
         .se-franchise-bonus-label {
-          color: var(--se-accent-light);
+          color: #ffffff;
 
           font-size: 10px;
           font-weight: 800;
@@ -370,7 +366,7 @@ export default function FranchisePlans() {
         }
 
         .se-franchise-bonus span {
-          color: rgba(255, 255, 255, 0.75);
+          color: rgba(241, 245, 241, 0.80);
 
           font-size: 12px;
           font-weight: 500;
@@ -393,11 +389,7 @@ export default function FranchisePlans() {
           border: none;
           border-radius: 7px;
 
-          background: linear-gradient(
-            110deg,
-            var(--primary-700),
-            var(--se-accent-light)
-          );
+          background: green;
 
           color: #ffffff;
 
@@ -416,16 +408,12 @@ export default function FranchisePlans() {
         }
 
         .se-franchise-action:hover {
-          background: linear-gradient(
-            110deg,
-            var(--primary-600),
-            #bfa6f5
-          );
+          background: var(--se-forest-hover);
 
           color: #ffffff;
           transform: translateY(-2px);
 
-          box-shadow: 0 7px 18px rgba(155, 114, 234, 0.25);
+          box-shadow: 0 7px 18px rgba(44, 114, 54, 0.25);
         }
 
         .se-franchise-action:focus-visible {
@@ -441,19 +429,15 @@ export default function FranchisePlans() {
         /* MASTER CARD HIGHLIGHT */
 
         .se-franchise-card.is-popular {
-          border: 1px solid rgba(155, 114, 234, 0.75);
+          border: 1px solid rgba(44, 114, 54, 0.75);
 
           box-shadow:
             0 14px 38px rgba(0, 0, 0, 0.25),
-            0 0 24px rgba(155, 114, 234, 0.12);
+            0 0 24px rgba(44, 114, 54, 0.12);
         }
 
         .se-franchise-card.is-popular .se-franchise-card-header {
-          background: linear-gradient(
-            120deg,
-            var(--primary-700),
-            #bfa6f5
-          );
+          background: green;
         }
 
         /* BOTTOM NOTE */
@@ -461,7 +445,7 @@ export default function FranchisePlans() {
         .se-franchise-note {
           margin-top: 30px;
 
-          color: rgba(255, 255, 255, 0.65);
+          color: rgba(241, 245, 241, 0.72);
 
           font-size: 12px;
           line-height: 1.7;

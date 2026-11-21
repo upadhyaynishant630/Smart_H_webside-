@@ -321,28 +321,28 @@ export function FloatingActions() {
           height: 54px;
           padding: 0;
           overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.29);
+          border: 1px solid rgba(255, 255, 255, 0.26);
           border-radius: 50%;
           color: #fff;
           background:
-            radial-gradient(circle at 25% 10%, rgba(255,255,255,.26), transparent 40%),
-            linear-gradient(135deg, #7775ff 0%, #484dde 47%, #2639be 100%);
+            radial-gradient(circle at 25% 10%, rgba(255,255,255,.22), transparent 40%),
+            linear-gradient(135deg, #1a9900 0%, #0d7800 50%, #0B7600 100%);
           box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.42),
-            inset 0 -6px 12px rgba(12,20,79,.25),
-            0 12px 27px -9px rgba(76,85,237,.62);
+            inset 0 1px 0 rgba(255,255,255,.32),
+            inset 0 -6px 12px rgba(5,50,0,.22),
+            0 12px 27px -9px rgba(11,118,0,.55);
           cursor: pointer;
           transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
         }
 
         .sh-fab-main:hover {
           transform: translateY(-2px) scale(1.035);
-          border-color: rgba(255,255,255,.5);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 16px 30px -8px rgba(76,85,237,.65);
+          border-color: rgba(255,255,255,.44);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.36), 0 16px 30px -8px rgba(11,118,0,.60);
         }
 
         .sh-fab-main:active { transform: scale(.95); }
-        .sh-fab-main:focus-visible { outline: 3px solid #5cdeed; outline-offset: 4px; }
+        .sh-fab-main:focus-visible { outline: 3px solid #79E900; outline-offset: 4px; }
 
         .sh-fab-main-icon {
           position: relative;
@@ -364,7 +364,7 @@ export function FloatingActions() {
         .sh-fab-ring {
           position: absolute;
           inset: 0;
-          border: 1px solid rgba(111,113,255,.45);
+          border: 1px solid rgba(23,138,0,.42);
           border-radius: 50%;
           pointer-events: none;
           animation: sh-fab-ring 2.7s cubic-bezier(.22,1,.36,1) infinite;
@@ -403,8 +403,8 @@ export function FloatingActions() {
           height: 6px;
           flex: 0 0 auto;
           border-radius: 50%;
-          background: #5cdeed;
-          box-shadow: 0 0 10px rgba(92,222,237,.7);
+          background: #79E900;
+          box-shadow: 0 0 10px rgba(121,233,0,.65);
         }
 
         /* Compact options panel */
@@ -421,7 +421,7 @@ export function FloatingActions() {
           overscroll-behavior: contain;
           list-style: none;
           scrollbar-width: thin;
-          scrollbar-color: rgba(133,132,255,.35) transparent;
+          scrollbar-color: rgba(23,138,0,.30) transparent;
         }
 
         .sh-fab-action-shell { width: 100%; min-width: 0; }
@@ -448,12 +448,12 @@ export function FloatingActions() {
 
         .sh-fab-action:hover {
           transform: translateX(-2px);
-          border-color: rgba(133,132,255,.48);
+          border-color: rgba(23,138,0,.40);
           background: linear-gradient(135deg, rgba(31,43,89,.99), rgba(10,18,44,.99));
           box-shadow: 0 10px 23px rgba(2,7,24,.22), inset 0 1px 0 rgba(255,255,255,.06);
         }
 
-        .sh-fab-action:focus-visible { outline: 2px solid #5cdeed; outline-offset: 3px; }
+        .sh-fab-action:focus-visible { outline: 2px solid #79E900; outline-offset: 3px; }
 
         /* Icon has a fixed tile so all logos align perfectly */
         .sh-fab-action-icon {
@@ -479,14 +479,14 @@ export function FloatingActions() {
         }
 
         .sh-fab-action:hover .sh-fab-action-icon-inner { transform: scale(1.04); }
-        .sh-fab-tone--consult { background: linear-gradient(140deg,#7775ff,#4748ce); }
+        .sh-fab-tone--consult { background: linear-gradient(140deg,#1a9900,#0B7600); }
         .sh-fab-tone--whatsapp { background: linear-gradient(140deg,#35dc79,#16884b); }
-        .sh-fab-tone--instagram { background: linear-gradient(145deg,#fdc468,#f14470 48%,#a52cc7 78%,#515bd4); }
+        .sh-fab-tone--instagram { background: linear-gradient(145deg,#fdc468,#f14470 48%,#178a00 78%,#55c500); }
         .sh-fab-tone--facebook { background: linear-gradient(145deg,#4e9cff,#185abc); }
         .sh-fab-tone--linkedin { background: linear-gradient(145deg,#3299d6,#155a8f); }
         .sh-fab-tone--youtube { background: linear-gradient(145deg,#ff6666,#d21d35); }
         .sh-fab-tone--call { background: linear-gradient(145deg,#3d94ff,#2251cb); }
-        .sh-fab-tone--email { background: linear-gradient(145deg,#8584ff,#4c55ed); }
+        .sh-fab-tone--email { background: linear-gradient(145deg,#79e900,#178a00); }
 
         .sh-fab-action-copy {
           display: flex;
@@ -521,7 +521,7 @@ export function FloatingActions() {
           transition: transform 180ms ease, color 180ms ease;
         }
 
-        .sh-fab-action:hover .sh-fab-action-arrow { transform: translate(2px,-2px); color: #5cdeed; }
+        .sh-fab-action:hover .sh-fab-action-arrow { transform: translate(2px,-2px); color: #79E900; }
 
         /* Animations */
         @keyframes sh-fab-ring {

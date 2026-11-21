@@ -110,8 +110,8 @@ const capabilities = [
     (Array.isArray(services) ? services : []).flatMap((service) =>
       Array.isArray(service?.capabilities)
         ? service.capabilities
-            .filter((capability) => typeof capability === "string")
-            .slice(0, 3)
+          .filter((capability) => typeof capability === "string")
+          .slice(0, 3)
         : []
     )
   ),
@@ -159,8 +159,8 @@ function About() {
         .sh-about-page {
           --sh-about-ink: #111a35;
           --sh-about-muted: #64708a;
-          --sh-about-blue: #4c55ed;
-          --sh-about-purple: #855bf6;
+          --sh-about-blue: #178a00;
+          --sh-about-purple: #79e900;
           --sh-about-cyan: #47d4e8;
           --sh-about-border: rgba(85, 103, 158, 0.16);
 
@@ -241,18 +241,11 @@ function About() {
           content: "";
         }
 
-        .sh-about-gradient-text {
-          background: linear-gradient(
-            105deg,
-            var(--sh-about-blue),
-            var(--sh-about-purple) 58%,
-            #159fc4
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: var(--sh-about-blue);
-        }
+       .sh-about-gradient-text {
+  background: none;
+  color: #0B7600;
+  -webkit-text-fill-color: #0B7600;
+}
 
         .sh-about-centered-heading {
           width: 100%;
@@ -288,7 +281,7 @@ function About() {
           background:
             radial-gradient(
               ellipse at 0% 10%,
-              rgba(76, 85, 237, 0.045),
+              rgba(23, 138, 0, 0.045),
               transparent 33%
             ),
             #fff;
@@ -324,7 +317,7 @@ function About() {
           border-radius: 28px;
           background: linear-gradient(
             145deg,
-            rgba(76, 85, 237, 0.2),
+            rgba(23, 138, 0, 0.2),
             rgba(71, 212, 232, 0.27)
           );
           content: "";
@@ -440,11 +433,11 @@ function About() {
           height: 37px;
           flex: 0 0 auto;
           place-items: center;
-          border: 1px solid rgba(76, 85, 237, 0.11);
+          border: 1px solid rgba(23, 138, 0, 0.11);
           border-radius: 12px;
           background: linear-gradient(
             140deg,
-            rgba(76, 85, 237, 0.12),
+            rgba(23, 138, 0, 0.12),
             rgba(71, 212, 232, 0.16)
           );
           color: var(--sh-about-blue);
@@ -501,9 +494,9 @@ function About() {
           max-width: 590px;
           margin-top: 16px;
           padding: 11px 13px;
-          border: 1px solid rgba(76, 85, 237, 0.11);
+          border: 1px solid rgba(23, 138, 0, 0.11);
           border-radius: 12px;
-          background: rgba(76, 85, 237, 0.045);
+          background: rgba(23, 138, 0, 0.045);
           color: #68718c;
           font-size: 11px;
           line-height: 1.75;
@@ -535,7 +528,7 @@ function About() {
           width: 40px;
           height: 40px;
           place-items: center;
-          border: 1px solid rgba(76, 85, 237, 0.11);
+          border: 1px solid rgba(23, 138, 0, 0.11);
           border-radius: 12px;
           background: linear-gradient(145deg, #f0f1ff, #f0fbff);
           color: var(--sh-about-blue);
@@ -628,7 +621,7 @@ function About() {
         }
 
         .sh-about-principles .sh-about-eyebrow::before {
-          background: linear-gradient(90deg, #8988ff, #5be0ed);
+          background: linear-gradient(90deg, #55c500, #79e900);
         }
 
         .sh-about-principles .sh-about-heading-title {
@@ -636,11 +629,11 @@ function About() {
         }
 
         .sh-about-title-highlight {
-          background: linear-gradient(100deg, #b7b5ff, #74e9f4);
+          background: linear-gradient(100deg, #d7f6c2, #79e900);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          color: #b7b5ff;
+          color: #d7f6c2;
         }
 
         .sh-about-principles .sh-about-heading-description {
@@ -687,7 +680,7 @@ function About() {
           left: 0;
           width: 100%;
           height: 2px;
-          background: linear-gradient(90deg, #8583ff, #55dcea, transparent);
+          background: linear-gradient(90deg, #55c500, #79e900, transparent);
           opacity: 0;
           transform: scaleX(0.3);
           transform-origin: left;
@@ -702,7 +695,7 @@ function About() {
           border-color: rgba(133, 131, 255, 0.42);
           background: linear-gradient(
             135deg,
-            rgba(104, 105, 245, 0.14),
+            rgba(85, 197, 0, 0.14),
             rgba(255, 255, 255, 0.045)
           );
           box-shadow: 0 14px 38px rgba(0, 0, 0, 0.12);
@@ -723,7 +716,7 @@ function About() {
           border-radius: 16px;
           background: linear-gradient(
             145deg,
-            rgba(123, 118, 255, 0.17),
+            rgba(121, 233, 0, 0.17),
             rgba(66, 205, 231, 0.1)
           );
           transition:
@@ -901,7 +894,7 @@ function About() {
 
         .sh-about-capability:hover {
           transform: translateY(-2px);
-          border-color: rgba(76, 85, 237, 0.25);
+          border-color: rgba(23, 138, 0, 0.25);
           color: var(--sh-about-blue);
           box-shadow: 0 5px 14px rgba(25, 38, 89, 0.055);
         }
@@ -944,7 +937,7 @@ function About() {
           background:
             radial-gradient(
               ellipse at 0% 0%,
-              rgba(76, 85, 237, 0.075),
+              rgba(23, 138, 0, 0.075),
               transparent 38%
             ),
             radial-gradient(
@@ -966,16 +959,9 @@ function About() {
         }
 
         .sh-about-work-title span {
-          background: linear-gradient(
-            100deg,
-            var(--sh-about-blue),
-            var(--sh-about-purple),
-            #159fc4
-          );
-          background-clip: text;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          color: var(--sh-about-blue);
+          background: none;
+  color: #0B7600;
+  -webkit-text-fill-color: #0B7600;
         }
 
         .sh-about-work-grid {
@@ -1029,7 +1015,7 @@ function About() {
 
         .sh-about-work-card:hover {
           transform: translateY(-5px);
-          border-color: rgba(76, 85, 237, 0.25);
+          border-color: rgba(23, 138, 0, 0.25);
           background: #fff;
           box-shadow: 0 16px 36px rgba(25, 38, 89, 0.085);
         }
@@ -1076,11 +1062,11 @@ function About() {
           flex: 0 0 auto;
           place-items: center;
           margin-top: 22px;
-          border: 1px solid rgba(76, 85, 237, 0.13);
+          border: 1px solid rgba(23, 138, 0, 0.13);
           border-radius: 15px;
           background: linear-gradient(
             145deg,
-            rgba(76, 85, 237, 0.1),
+            rgba(23, 138, 0, 0.1),
             rgba(71, 212, 232, 0.15)
           );
           color: var(--sh-about-blue);
@@ -1097,10 +1083,10 @@ function About() {
 
         .sh-about-work-card:hover .sh-about-work-step-icon {
           transform: translateY(-2px) rotate(-3deg);
-          border-color: rgba(76, 85, 237, 0.25);
+          border-color: rgba(23, 138, 0, 0.25);
           background: linear-gradient(
             145deg,
-            rgba(76, 85, 237, 0.15),
+            rgba(23, 138, 0, 0.15),
             rgba(71, 212, 232, 0.22)
           );
         }
@@ -1131,7 +1117,7 @@ function About() {
           max-width: 740px;
           margin: 20px auto 0;
           padding: 11px 14px;
-          border: 1px solid rgba(76, 85, 237, 0.1);
+          border: 1px solid rgba(23, 138, 0, 0.1);
           border-radius: 13px;
           background: rgba(255, 255, 255, 0.72);
           color: var(--sh-about-muted);

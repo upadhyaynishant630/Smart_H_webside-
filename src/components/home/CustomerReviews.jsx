@@ -146,11 +146,11 @@ export function CustomerReviews({
 
   const validReviews = Array.isArray(reviews)
     ? reviews.filter(
-        (review) =>
-          review &&
-          typeof review.text === "string" &&
-          review.text.trim().length > 0
-      )
+      (review) =>
+        review &&
+        typeof review.text === "string" &&
+        review.text.trim().length > 0
+    )
     : [];
 
   return (
@@ -286,21 +286,12 @@ export function CustomerReviews({
           letter-spacing: -0.055em;
         }
 
-        .smartedge-reviews-title span {
-          display: inline-block;
-
-          background: linear-gradient(
-            100deg,
-            #2852ee 5%,
-            #6684ff 58%,
-            #bd8627 100%
-          );
-
-          background-clip: text;
-          -webkit-background-clip: text;
-          color: transparent;
-          -webkit-text-fill-color: transparent;
-        }
+     .smartedge-reviews-title span {
+  display: inline-block;
+  color: #0B7600;
+  background: none;
+  -webkit-text-fill-color: #0B7600;
+}
 
         .smartedge-reviews-description {
           max-width: 650px;
@@ -328,7 +319,7 @@ export function CustomerReviews({
           background: linear-gradient(
             90deg,
             var(--sr-blue),
-            #829aff
+            #55c500
           );
         }
 
@@ -1068,7 +1059,7 @@ export function CustomerReviews({
             </div>
           </div>
 
-          
+
         </>
       ) : (
         <div className="smartedge-review-empty">

@@ -245,7 +245,12 @@ const heroCarouselStyles = `
   --se-bg: var(--primary-900);
   --se-white: #f7fbff;
   --se-muted: rgba(233, 241, 251, .78);
-  --se-accent: #9dff00;
+  --se-accent: #79E900;
+  --se-accent-deep: #0B7600;
+  --se-accent-bright: #79E900;
+  --se-accent-soft: rgba(23, 138, 0, 0.12);
+  --se-accent-border: rgba(23, 138, 0, 0.35);
+  --se-accent-glow: rgba(23, 138, 0, 0.22);
 
   position: relative;
   isolation: isolate;
@@ -379,7 +384,7 @@ const heroCarouselStyles = `
   background:
     radial-gradient(
       ellipse at 72% 42%,
-      rgba(42, 215, 226, .12),
+      rgba(23, 138, 0, .10),
       transparent 31%
     ),
     radial-gradient(
@@ -463,7 +468,7 @@ const heroCarouselStyles = `
 
   aspect-ratio: 1;
 
-  border: 1px solid rgba(157, 255, 0, .24);
+  border: 1px solid rgba(23, 138, 0, .22);
   border-radius: 50%;
 
   pointer-events: none;
@@ -471,9 +476,9 @@ const heroCarouselStyles = `
   transform: translateY(-50%);
 
   box-shadow:
-    0 0 0 38px rgba(157, 255, 0, .025),
-    0 0 0 84px rgba(157, 255, 0, .018),
-    inset 0 0 95px rgba(157, 255, 0, .045);
+    0 0 0 38px rgba(23, 138, 0, .020),
+    0 0 0 84px rgba(23, 138, 0, .014),
+    inset 0 0 95px rgba(23, 138, 0, .038);
 
   animation: seHeroOrbFloat 10s ease-in-out infinite alternate;
 }
@@ -485,13 +490,13 @@ const heroCarouselStyles = `
 
   content: "";
 
-  border: 1px solid rgba(157, 255, 0, .15);
+  border: 1px solid rgba(23, 138, 0, .13);
   border-radius: 50%;
 }
 
 .se-hero__orb::after {
   inset: 27%;
-  border-color: rgba(157, 255, 0, .12);
+  border-color: rgba(23, 138, 0, .10);
 }
 
 @keyframes seHeroOrbFloat {
@@ -607,7 +612,7 @@ const heroCarouselStyles = `
 
   margin: 0 0 clamp(15px, 2.2vh, 24px);
 
-  color: var(--se-accent);
+  color: #ffffff;
 
   font-size: clamp(.66rem, .82vw, .78rem);
   font-weight: 800;
@@ -631,7 +636,7 @@ const heroCarouselStyles = `
   overflow: hidden;
 
   border-radius: 10px;
-  background: rgba(157, 255, 0, .42);
+  background: rgba(255, 255, 255, .42);
 }
 
 .se-hero__eyebrow-line::after {
@@ -641,7 +646,7 @@ const heroCarouselStyles = `
   content: "";
 
   border-radius: inherit;
-  background: var(--se-accent);
+  background: #ffffff;
 
   transform-origin: left center;
 
@@ -686,6 +691,15 @@ const heroCarouselStyles = `
   text-shadow: 0 5px 34px rgba(0, 0, 0, .26);
 }
 
+/* Green accent word within heading */
+.se-hero__title-highlight {
+  color: var(--se-accent);
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  font-style: normal;
+}
+
 .se-hero__title::after {
   display: block;
 
@@ -698,14 +712,9 @@ const heroCarouselStyles = `
 
   border-radius: 99px;
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--se-accent),
-      rgba(157, 255, 0, .08)
-    );
+  background: #79E900;
 
-  box-shadow: 0 0 22px rgba(157, 255, 0, .32);
+  box-shadow: 0 0 22px rgba(121, 233, 0, .28);
 
   transform-origin: left center;
 
@@ -826,30 +835,28 @@ const heroCarouselStyles = `
 
 .se-hero .se-hero__action--primary a,
 .se-hero .se-hero__action--primary button {
-  color: #122400;
+  color: #ffffff;
 
-  border-color: rgba(255, 255, 255, .36);
+  border-color: #79E900;
 
-  background:
-    linear-gradient(
-      130deg,
-      #d7ff70 0%,
-      #9dff00 50%,
-      #55d000 100%
-    );
+  background: #79E900;
 
   box-shadow:
-    0 10px 32px rgba(111, 214, 0, .28),
-    inset 0 1px 0 rgba(255, 255, 255, .72);
+    0 10px 32px rgba(121, 233, 0, .32),
+    inset 0 1px 0 rgba(255, 255, 255, .28);
 }
 
 .se-hero .se-hero__action--primary a:hover,
 .se-hero .se-hero__action--primary button:hover {
-  color: #122400;
+  color: #ffffff;
+
+  background: #79E900;
+
+  border-color: #9AF500;
 
   box-shadow:
-    0 16px 42px rgba(111, 214, 0, .42),
-    inset 0 1px 0 rgba(255, 255, 255, .8);
+    0 16px 42px rgba(121, 233, 0, .44),
+    inset 0 1px 0 rgba(255, 255, 255, .28);
 
   transform: translateY(-2px);
 }
@@ -873,9 +880,9 @@ const heroCarouselStyles = `
 
 .se-hero .se-hero__action--secondary a:hover,
 .se-hero .se-hero__action--secondary button:hover {
-  color: var(--se-accent);
+  color: var(--se-white);
 
-  border-color: rgba(157, 255, 0, .78);
+  border-color: rgba(121, 233, 0, .62);
 
   background: rgba(12, 37, 52, .7);
 
@@ -953,11 +960,11 @@ const heroCarouselStyles = `
 .se-hero__control:hover {
   color: var(--se-accent);
 
-  border-color: rgba(157, 255, 0, .82);
+  border-color: rgba(121, 233, 0, .72);
 
   background: rgba(13, 39, 54, .83);
 
-  box-shadow: 0 0 24px rgba(157, 255, 0, .12);
+  box-shadow: 0 0 24px rgba(23, 138, 0, .18);
 
   transform: translateY(-2px);
 }
@@ -1033,7 +1040,7 @@ const heroCarouselStyles = `
     linear-gradient(
       90deg,
       transparent,
-      rgba(157, 255, 0, .055),
+      rgba(121, 233, 0, .045),
       transparent
     );
 
@@ -1191,12 +1198,12 @@ const heroCarouselStyles = `
 /* Hover */
 
 .se-hero-stats__item:hover .se-hero-stats__value {
-  color: #9cf6f2;
+  color: #79E900;
 
   transform: translateY(-4px);
 
   text-shadow:
-    0 0 25px rgba(157, 255, 0, .35);
+    0 0 25px rgba(23, 138, 0, .32);
 }
 
 .se-hero-stats__item:hover .se-hero-stats__label {
@@ -2032,7 +2039,21 @@ export function HeroCarousel() {
                     {...reveal(.07)}
                     className="se-hero__title"
                   >
-                    {activeSlide.title}
+                    {activeSlide.titleHighlight
+                      ? (() => {
+                          const word = activeSlide.titleHighlight;
+                          const full = activeSlide.title;
+                          const idx = full.indexOf(word);
+                          if (idx === -1) return full;
+                          return (
+                            <>
+                              {full.slice(0, idx)}
+                              <span className="se-hero__title-highlight">{word}</span>
+                              {full.slice(idx + word.length)}
+                            </>
+                          );
+                        })()
+                      : activeSlide.title}
                   </motion.h1>
                 ) : null}
 

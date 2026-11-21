@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext()({
       { property: "og:site_name", content: "SmartEDGE" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#6D28D9" },
+      { name: "theme-color", content: "#178A00" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -102,7 +102,7 @@ export const Route = createRootRouteWithContext()({
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/smartedge-logo.png", type: "image/png" },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon", sizes: "any" },
     ],
   }),
   shellComponent: RootShell,

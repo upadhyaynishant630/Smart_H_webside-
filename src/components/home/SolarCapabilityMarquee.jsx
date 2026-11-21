@@ -154,7 +154,7 @@ export function SolarCapabilityMarquee({
           --scm-ink: #0b1730;
           --scm-muted: #627087;
           --scm-blue: var(--primary-600, #2459d6);
-          --scm-violet: #7952d8;
+          --scm-violet: #79e900;
           --scm-cyan: #12b7c8;
           --scm-amber: #f4ad36;
           --scm-gutter: clamp(1rem, 4vw, 2rem);
@@ -279,7 +279,7 @@ export function SolarCapabilityMarquee({
 
         .scm-section .scm-title-highlight {
           color: var(--scm-blue);
-          background-image: linear-gradient(100deg, var(--scm-blue) 0%, #7150d6 42%, #0daec3 72%, var(--scm-blue) 100%);
+          background-image: linear-gradient(100deg, var(--scm-blue) 0%, #178a00 42%, #55c500 72%, var(--scm-blue) 100%);
           background-size: 220% auto;
           -webkit-background-clip: text;
           background-clip: text;
@@ -390,7 +390,7 @@ export function SolarCapabilityMarquee({
 
         .scm-section .scm-tone--amber  { --t-fg: #c78316; --t-bg1: #fff9ea; --t-bg2: #fff0cd; --t-bd: rgba(244, 173, 54, .32); --t-sh: rgba(244, 173, 54, .14); }
         .scm-section .scm-tone--blue   { --t-fg: #2459d6; --t-bg1: #f3f7ff; --t-bg2: #dfe9ff; --t-bd: rgba(36, 89, 214, .26);  --t-sh: rgba(36, 89, 214, .12); }
-        .scm-section .scm-tone--violet { --t-fg: #7952d8; --t-bg1: #f7f3ff; --t-bg2: #eadfff; --t-bd: rgba(121, 82, 216, .28); --t-sh: rgba(121, 82, 216, .12); }
+        .scm-section .scm-tone--violet { --t-fg: #178a00; --t-bg1: #f3fcef; --t-bg2: #daf3c7; --t-bd: rgba(23, 138, 0, .28); --t-sh: rgba(23, 138, 0, .12); }
         .scm-section .scm-tone--cyan   { --t-fg: #0e93a3; --t-bg1: #f0fcfd; --t-bg2: #d3f5f9; --t-bd: rgba(18, 183, 200, .30); --t-sh: rgba(18, 183, 200, .12); }
         .scm-section .scm-tone--green  { --t-fg: #178a58; --t-bg1: #f1fbf6; --t-bg2: #d5f3e3; --t-bd: rgba(23, 138, 88, .28);  --t-sh: rgba(23, 138, 88, .12); }
         .scm-section .scm-tone--rose   { --t-fg: #d1456b; --t-bg1: #fff4f7; --t-bg2: #ffe0e8; --t-bd: rgba(209, 69, 107, .28); --t-sh: rgba(209, 69, 107, .12); }

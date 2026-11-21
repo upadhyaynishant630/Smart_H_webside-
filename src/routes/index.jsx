@@ -146,10 +146,14 @@ const solarHomeStyles = `
   .solar-home-page {
     --sh-midnight: #071426;
     --sh-navy: #0b1730;
-    --sh-cobalt: var(--primary-600);
-    --sh-cobalt-dark: #193db2;
-    --sh-red: #ff304b;
-    --sh-red-dark: #df1839;
+    --sh-cobalt: #178A00;
+    --sh-cobalt-dark: #0B7600;
+    --sh-green: #178A00;
+    --sh-green-bright: #79E900;
+    --sh-green-soft: rgba(23, 138, 0, 0.12);
+    --sh-green-border: rgba(23, 138, 0, 0.35);
+    --sh-red: #178A00;
+    --sh-red-dark: #0B7600;
     --sh-ink: #101b34;
     --sh-muted: #65718a;
     --sh-line: rgba(21, 43, 80, .12);
@@ -1170,12 +1174,12 @@ const solarHomeStyles = `
   /* Hero carousel accent integration. */
 
   .solar-home-page .se-hero {
-    --se-accent: #ff304b;
+    
     --se-accent-strong: var(--primary-600);
   }
 
   .solar-home-page .se-hero .se-hero__eyebrow {
-    color: var(--sh-red);
+  
   }
 
   .solar-home-page .se-hero .se-hero__progress-fill {
