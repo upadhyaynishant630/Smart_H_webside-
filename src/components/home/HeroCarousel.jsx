@@ -245,7 +245,7 @@ const heroCarouselStyles = `
   --se-bg: var(--primary-900);
   --se-white: #f7fbff;
   --se-muted: rgba(233, 241, 251, .78);
-  --se-accent: var(--primary-400);
+  --se-accent: #9dff00;
 
   position: relative;
   isolation: isolate;
@@ -463,7 +463,7 @@ const heroCarouselStyles = `
 
   aspect-ratio: 1;
 
-  border: 1px solid rgba(112, 237, 241, .24);
+  border: 1px solid rgba(157, 255, 0, .24);
   border-radius: 50%;
 
   pointer-events: none;
@@ -471,9 +471,9 @@ const heroCarouselStyles = `
   transform: translateY(-50%);
 
   box-shadow:
-    0 0 0 38px rgba(112, 237, 241, .025),
-    0 0 0 84px rgba(112, 237, 241, .018),
-    inset 0 0 95px rgba(112, 237, 241, .045);
+    0 0 0 38px rgba(157, 255, 0, .025),
+    0 0 0 84px rgba(157, 255, 0, .018),
+    inset 0 0 95px rgba(157, 255, 0, .045);
 
   animation: seHeroOrbFloat 10s ease-in-out infinite alternate;
 }
@@ -485,13 +485,13 @@ const heroCarouselStyles = `
 
   content: "";
 
-  border: 1px solid rgba(112, 237, 241, .15);
+  border: 1px solid rgba(157, 255, 0, .15);
   border-radius: 50%;
 }
 
 .se-hero__orb::after {
   inset: 27%;
-  border-color: rgba(112, 237, 241, .12);
+  border-color: rgba(157, 255, 0, .12);
 }
 
 @keyframes seHeroOrbFloat {
@@ -631,7 +631,7 @@ const heroCarouselStyles = `
   overflow: hidden;
 
   border-radius: 10px;
-  background: rgba(112, 237, 241, .42);
+  background: rgba(157, 255, 0, .42);
 }
 
 .se-hero__eyebrow-line::after {
@@ -702,10 +702,10 @@ const heroCarouselStyles = `
     linear-gradient(
       90deg,
       var(--se-accent),
-      rgba(112, 237, 241, .08)
+      rgba(157, 255, 0, .08)
     );
 
-  box-shadow: 0 0 22px rgba(112, 237, 241, .32);
+  box-shadow: 0 0 22px rgba(157, 255, 0, .32);
 
   transform-origin: left center;
 
@@ -826,29 +826,29 @@ const heroCarouselStyles = `
 
 .se-hero .se-hero__action--primary a,
 .se-hero .se-hero__action--primary button {
-  color: #04141d;
+  color: #122400;
 
   border-color: rgba(255, 255, 255, .36);
 
   background:
     linear-gradient(
       130deg,
-      #b0fbf4 0%,
-      var(--primary-400) 50%,
-      #2cc8d8 100%
+      #d7ff70 0%,
+      #9dff00 50%,
+      #55d000 100%
     );
 
   box-shadow:
-    0 10px 32px rgba(36, 194, 211, .24),
+    0 10px 32px rgba(111, 214, 0, .28),
     inset 0 1px 0 rgba(255, 255, 255, .72);
 }
 
 .se-hero .se-hero__action--primary a:hover,
 .se-hero .se-hero__action--primary button:hover {
-  color: #04141d;
+  color: #122400;
 
   box-shadow:
-    0 16px 42px rgba(36, 194, 211, .37),
+    0 16px 42px rgba(111, 214, 0, .42),
     inset 0 1px 0 rgba(255, 255, 255, .8);
 
   transform: translateY(-2px);
@@ -875,7 +875,7 @@ const heroCarouselStyles = `
 .se-hero .se-hero__action--secondary button:hover {
   color: var(--se-accent);
 
-  border-color: rgba(112, 237, 241, .78);
+  border-color: rgba(157, 255, 0, .78);
 
   background: rgba(12, 37, 52, .7);
 
@@ -953,11 +953,11 @@ const heroCarouselStyles = `
 .se-hero__control:hover {
   color: var(--se-accent);
 
-  border-color: rgba(112, 237, 241, .82);
+  border-color: rgba(157, 255, 0, .82);
 
   background: rgba(13, 39, 54, .83);
 
-  box-shadow: 0 0 24px rgba(112, 237, 241, .12);
+  box-shadow: 0 0 24px rgba(157, 255, 0, .12);
 
   transform: translateY(-2px);
 }
@@ -1033,7 +1033,7 @@ const heroCarouselStyles = `
     linear-gradient(
       90deg,
       transparent,
-      rgba(112, 237, 241, .055),
+      rgba(157, 255, 0, .055),
       transparent
     );
 
@@ -1196,7 +1196,7 @@ const heroCarouselStyles = `
   transform: translateY(-4px);
 
   text-shadow:
-    0 0 25px rgba(112, 237, 241, .35);
+    0 0 25px rgba(157, 255, 0, .35);
 }
 
 .se-hero-stats__item:hover .se-hero-stats__label {
@@ -1639,6 +1639,7 @@ const heroCarouselStyles = `
     transform: none !important;
   }
 }
+  
 
 `;
 

@@ -204,26 +204,34 @@ export function Navbar() {
       <style>{`
  @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap");
 
+
 /* =====================================
-   SmartEDGE — PREMIUM NAVBAR
+   SMARTEDGE — PREMIUM WHITE & GREEN NAVBAR
 ===================================== */
 
 .sh-navbar {
-  /* SmartEDGE navigation colour system */
-  --sh-nav-bg: #000080;
-  --sh-nav-bg-scrolled: rgb(0 0 128 / 0.97);
-  --sh-nav-height: 70px;
-  --sh-nav-ink: #102a4c;
-  --sh-nav-muted: #35577d;
-  --sh-nav-blue: #4c9fe8;
-  --sh-nav-cyan: #82c8f5;
-  --sh-nav-border: #d5e7f8;
-  --sh-nav-soft: #eff7ff;
-  --sh-nav-panel: #ffffff;
-  --sh-nav-panel-muted: #617a96;
+  --sh-nav-bg: #ffffff;
+  --sh-nav-bg-scrolled: rgb(255 255 255 / 0.97);
 
-  /* Top menu text (Home, About, Services ...) */
-  --sh-nav-link-color: #ffffff;
+  --sh-nav-height: 70px;
+
+  --sh-nav-ink: #111827;
+  --sh-nav-muted: #4b5563;
+
+  --sh-nav-blue: #15803d;
+  --sh-nav-cyan: #16a34a;
+
+  --sh-nav-green: #15803d;
+  --sh-nav-green-bright: #16a34a;
+
+  --sh-nav-border: #e5e7eb;
+  --sh-nav-soft: #f0fdf4;
+
+  --sh-nav-panel: #ffffff;
+  --sh-nav-panel-muted: #64748b;
+
+  --sh-nav-link-color: #111827;
+
   --sh-nav-font:
     "Plus Jakarta Sans",
     Manrope,
@@ -241,14 +249,19 @@ export function Navbar() {
   isolation: isolate;
   width: 100%;
   max-width: 100%;
+
   color: var(--sh-nav-ink);
   background: var(--sh-nav-bg);
-  border-bottom: 1px solid rgb(255 255 255 / 0.1);
-  box-shadow: 0 4px 18px rgb(0 0 64 / 0.22);
+
+  border-bottom: 1px solid rgb(17 24 39 / 0.08);
+  box-shadow: 0 4px 18px rgb(17 24 39 / 0.06);
+
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+
   font-family: var(--sh-nav-font);
   -webkit-font-smoothing: antialiased;
+
   transition:
     background 300ms ease,
     border-color 300ms ease,
@@ -261,14 +274,22 @@ export function Navbar() {
   box-sizing: border-box;
 }
 
-/* Scrolled: navbar stays navy so the white menu text is always readable */
+/* =====================================
+   SCROLLED NAVBAR
+===================================== */
+
 .sh-navbar[data-scrolled="true"] {
   background: var(--sh-nav-bg-scrolled);
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
-  box-shadow: 0 8px 28px rgb(0 0 64 / 0.38);
+
+  border-bottom: 1px solid rgb(17 24 39 / 0.08);
+
+  box-shadow: 0 8px 28px rgb(17 24 39 / 0.08);
+
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
+
+/* Mobile open state */
 
 .sh-navbar[data-mobile-open="true"] > .sh-navbar-shell {
   display: none !important;
@@ -284,6 +305,10 @@ export function Navbar() {
   box-shadow: none;
 }
 
+/* =====================================
+   GLOBAL INTERACTION
+===================================== */
+
 .sh-navbar a,
 .sh-navbar button {
   -webkit-tap-highlight-color: transparent;
@@ -291,25 +316,34 @@ export function Navbar() {
 
 .sh-navbar a:focus-visible,
 .sh-navbar button:focus-visible {
-  outline: 2px solid var(--sh-nav-blue);
+  outline: 2px solid var(--sh-nav-green);
   outline-offset: 4px;
 }
 
-/* On the navy bar the focus ring must be white to stay visible */
 .sh-navbar .sh-navbar-link:focus-visible,
 .sh-navbar .sh-navbar-brand:focus-visible {
-  outline-color: #ffffff;
+  outline-color: var(--sh-nav-green);
 }
+
+/* =====================================
+   NAVBAR CONTAINER
+===================================== */
 
 .sh-navbar-shell {
   position: relative;
+
   display: flex;
+
   width: calc(100% - clamp(28px, 5vw, 80px));
   max-width: 1440px;
+
   height: var(--sh-nav-height);
+
   align-items: center;
   justify-content: space-between;
+
   gap: 20px;
+
   margin-inline: auto;
 }
 
@@ -319,11 +353,16 @@ export function Navbar() {
 
 .sh-navbar-brand {
   display: inline-flex;
+
   min-width: 0;
   flex: 0 0 auto;
+
   align-items: center;
+
   border-radius: 8px;
+
   text-decoration: none;
+
   transition: opacity 220ms ease;
 }
 
@@ -341,19 +380,25 @@ export function Navbar() {
 
 .sh-navbar-desktop {
   display: none;
+
   min-width: 0;
   flex: 1 1 auto;
+
   align-items: center;
   justify-content: center;
 }
 
 .sh-navbar-list {
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   gap: 4px;
+
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
@@ -377,48 +422,104 @@ export function Navbar() {
   padding-inline: 7px;
 }
 
-/* ---- Top menu links: WHITE text, larger size, new font ---- */
+/* =====================================
+   DESKTOP MENU LINKS
+   Default: Black
+   Hover: Green
+===================================== */
+
 .sh-navbar .sh-navbar-link {
   position: relative;
+
   display: inline-flex;
+
   min-height: 42px;
+
   align-items: center;
   justify-content: center;
+
   gap: 6px;
+
   padding: 9px 13px;
+
   border: 0;
   border-radius: 10px;
+
   background: transparent;
+
   color: var(--sh-nav-link-color);
+
   font-family: var(--sh-nav-font);
   font-size: 15px;
   font-weight: 700;
+
   letter-spacing: 0.012em;
   line-height: 1.4;
+
   text-decoration: none;
   text-shadow: none;
+
   white-space: nowrap;
   cursor: pointer;
+
   transition:
-    color 200ms ease,
-    background 200ms ease;
+    color 220ms ease,
+    background 220ms ease;
 }
+
+/* Animated green underline */
+
+.sh-navbar .sh-navbar-link:not(.sh-navbar-services-dropdown):not([data-active="true"])::after {
+  content: "";
+
+  position: absolute;
+
+  right: 13px;
+  bottom: 3px;
+  left: 13px;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: var(--sh-nav-green-bright);
+
+  transform: scaleX(0);
+  transform-origin: center;
+
+  transition: transform 240ms ease;
+}
+
+/* Underline appears on hover and keyboard focus */
+
+.sh-navbar .sh-navbar-link:not(.sh-navbar-services-dropdown):not([data-active="true"]):hover::after,
+.sh-navbar .sh-navbar-link:not(.sh-navbar-services-dropdown):not([data-active="true"]):focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Green hover and active text */
 
 .sh-navbar .sh-navbar-link:hover,
 .sh-navbar .sh-navbar-link[data-active="true"],
 .sh-navbar .sh-navbar-link[aria-expanded="true"] {
-  color: #ffffff;
-  background: rgb(255 255 255 / 0.12);
+  color: var(--sh-nav-green);
+  background: transparent;
 }
 
 .sh-navbar .sh-navbar-link[data-active="true"] {
   font-weight: 800;
 }
 
+/* =====================================
+   SERVICES DROPDOWN ARROW
+===================================== */
+
 .sh-navbar-link-chevron {
   width: 14px;
   height: 14px;
+
   flex: 0 0 auto;
+
   transition: transform 250ms ease;
 }
 
@@ -426,15 +527,24 @@ export function Navbar() {
   transform: rotate(180deg);
 }
 
+/* =====================================
+   ACTIVE PAGE GREEN UNDERLINE
+===================================== */
+
 .sh-navbar-indicator {
   position: absolute;
+
   right: 13px;
   bottom: 3px;
   left: 13px;
+
   height: 2px;
+
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--sh-nav-cyan), #ffffff);
-  box-shadow: 0 0 10px rgb(130 200 245 / 0.55);
+
+  background: var(--sh-nav-green-bright);
+
+  box-shadow: 0 0 10px rgb(22 163 74 / 0.25);
 }
 
 /* =====================================
@@ -443,95 +553,141 @@ export function Navbar() {
 
 .sh-navbar-mega-positioner {
   position: absolute;
+
   top: 100%;
   left: 50%;
+
   z-index: 110;
+
   width: min(700px, calc(100vw - 36px));
+
   padding-top: 11px;
+
   transform: translateX(-50%);
 }
 
 .sh-navbar-mega {
   position: relative;
   overflow: hidden;
+
   border: 1px solid #d9eafb;
   border-radius: 21px;
-  background: linear-gradient(145deg, #ffffff 0%, #f4f9ff 100%);
+
+  background: linear-gradient(
+    145deg,
+    #ffffff 0%,
+    #f4f9ff 100%
+  );
+
   box-shadow:
     0 22px 55px rgb(16 42 76 / 0.16),
     inset 0 1px 0 rgb(255 255 255 / 0.95);
+
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 .sh-navbar-mega-head {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 15px;
+
   padding: 19px 21px 16px;
+
   border-bottom: 1px solid #e4eef8;
 }
 
 .sh-navbar-mega-eyebrow {
   display: block;
+
   margin-bottom: 5px;
-  color: #398bd0;
+
+  color: #15803d;
+
   font-size: 9px;
   font-weight: 800;
+
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .sh-navbar-mega-heading {
   margin: 0;
+
   color: var(--sh-nav-ink);
+
   font-size: 17px;
   font-weight: 800;
+
   letter-spacing: -0.025em;
 }
 
 .sh-navbar-mega-caption {
   display: inline-flex;
+
   min-height: 30px;
+
   align-items: center;
   justify-content: center;
+
   gap: 6px;
+
   padding: 6px 11px;
+
   border: 1px solid #dceafa;
   border-radius: 999px;
+
   background: #eff7ff;
   color: #35577d;
+
   font-size: 11px;
   font-weight: 650;
+
   line-height: 1.3;
   white-space: nowrap;
 }
 
 .sh-navbar-mega-count {
-  color: #2788d0;
+  color: #16a34a;
+
   font-size: 13px;
   font-weight: 850;
+
   font-variant-numeric: tabular-nums;
 }
 
 .sh-navbar-mega-grid {
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 6px;
   padding: 12px;
 }
 
+/* Individual service cards */
+
 .sh-navbar-service-link {
   display: flex;
+
   min-width: 0;
+
   align-items: flex-start;
+
   gap: 12px;
+
   padding: 12px;
+
   border: 1px solid transparent;
   border-radius: 13px;
+
   color: var(--sh-nav-ink);
+
   text-decoration: none;
+
   transition:
     transform 220ms ease,
     background 220ms ease,
@@ -540,70 +696,97 @@ export function Navbar() {
 
 .sh-navbar-service-link:hover {
   transform: translateY(-2px);
-  border-color: #c7e2fa;
-  background: #edf6ff;
+
+  border-color: #bbf7d0;
+  background: #f0fdf4;
 }
+
+/* Service icons */
 
 .sh-navbar-service-icon {
   display: grid;
+
   width: 42px;
   height: 42px;
+
   flex: 0 0 42px;
+
   place-items: center;
+
   overflow: hidden;
+
   border: 1px solid #d8eafa;
   border-radius: 13px;
+
   background: linear-gradient(
     145deg,
     rgb(76 159 232 / 0.13),
     rgb(130 200 245 / 0.12)
   );
+
   transition:
     border-color 220ms ease,
     background 220ms ease;
 }
 
 .sh-navbar-service-link:hover .sh-navbar-service-icon {
-  border-color: #9bcdf3;
-  background: #e6f3ff;
+  border-color: #86efac;
+  background: #f0fdf4;
 }
 
 .sh-navbar-service-copy {
   display: block;
+
   min-width: 0;
   flex: 1 1 auto;
+
   padding-top: 2px;
 }
 
 .sh-navbar-service-title {
   display: block;
+
   color: var(--sh-nav-ink);
+
   font-size: 14px;
   font-weight: 750;
+
   line-height: 1.5;
   overflow-wrap: anywhere;
+
   transition: color 200ms ease;
 }
 
 .sh-navbar-service-link:hover .sh-navbar-service-title {
-  color: #287fc1;
+  color: #15803d;
 }
 
 .sh-navbar-service-summary {
   display: -webkit-box;
+
   margin-top: 4px;
+
   overflow: hidden;
+
   color: #617a96;
+
   opacity: 1;
+
   font-size: 12px;
   font-weight: 450;
+
   line-height: 1.65;
   letter-spacing: 0.005em;
+
   text-shadow: none;
+
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+
   overflow-wrap: anywhere;
 }
+
+/* View all services */
 
 .sh-navbar-mega-footer {
   padding: 0 12px 12px;
@@ -611,18 +794,27 @@ export function Navbar() {
 
 .sh-navbar-view-all {
   display: flex;
+
   min-height: 42px;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 12px;
+
   padding: 10px 14px;
+
   border: 1px solid #d8eafa;
   border-radius: 999px;
-  background: #eaf4ff;
-  color: #173d65;
+
+  background: #f0fdf4;
+  color: #166534;
+
   font-size: 12px;
   font-weight: 750;
+
   text-decoration: none;
+
   transition:
     color 200ms ease,
     border-color 200ms ease,
@@ -631,13 +823,15 @@ export function Navbar() {
 
 .sh-navbar-view-all:hover {
   border-color: #a9d4f6;
-  background: #d8edff;
-  color: #12365b;
+
+  background: #dcfce7;
+  color: #166534;
 }
 
 .sh-navbar-view-all svg {
   width: 15px;
   height: 15px;
+
   transition: transform 200ms ease;
 }
 
@@ -651,17 +845,25 @@ export function Navbar() {
 
 .sh-navbar-actions {
   display: flex;
+
   flex: 0 0 auto;
+
   align-items: center;
+
   gap: 10px;
 }
 
 .sh-navbar .sh-navbar-cta {
   display: none;
+
   min-height: 39px;
+
   justify-content: center;
+
   border-radius: 10px;
+
   font-size: 12px;
+
   transition:
     transform 220ms ease,
     box-shadow 220ms ease,
@@ -673,17 +875,26 @@ export function Navbar() {
   filter: brightness(1.06);
 }
 
+/* Mobile hamburger button */
+
 .sh-navbar-mobile-toggle {
   display: grid;
+
   width: 42px;
   height: 42px;
+
   flex: 0 0 42px;
+
   place-items: center;
+
   border: 1px solid var(--sh-nav-border);
   border-radius: 13px;
-  background: #eff7ff;
+
+  background: #ffffff;
   color: var(--sh-nav-ink);
+
   cursor: pointer;
+
   transition:
     background 200ms ease,
     border-color 200ms ease,
@@ -691,8 +902,8 @@ export function Navbar() {
 }
 
 .sh-navbar-mobile-toggle:hover {
-  border-color: #9bcdf3;
-  background: #e4f2ff;
+  border-color: #bbf7d0;
+  background: #f0fdf4;
 }
 
 .sh-navbar-mobile-toggle:active {
@@ -708,54 +919,97 @@ export function Navbar() {
    MOBILE MENU
 ===================================== */
 
+/* Background overlay */
+
 .sh-navbar-mobile-backdrop {
   position: fixed;
+
   z-index: 0;
+
   inset: 0;
+
   width: 100%;
+
   border: 0;
+
   background: rgb(31 21 53 / 0.22);
+
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   cursor: pointer;
 }
 
+/* Mobile navigation panel */
+
 .sh-navbar-mobile-panel {
   position: fixed;
+
   top: 0;
   right: 0;
+
   z-index: 1;
+
   width: min(420px, 100vw);
+
   height: 100vh;
   height: 100dvh;
+
   overflow-x: hidden;
   overflow-y: auto;
+
   overscroll-behavior: contain;
-  background: linear-gradient(160deg, #ffffff 0%, #f4f9ff 100%);
+
+  background: linear-gradient(
+    160deg,
+    #ffffff 0%,
+    #f4f9ff 100%
+  );
+
   box-shadow: -18px 0 40px rgb(16 42 76 / 0.14);
+
   border-left: 1px solid #e1edf8;
+
   scrollbar-width: thin;
   scrollbar-color: var(--sh-nav-blue) transparent;
 }
 
+/* Mobile menu header */
+
 .sh-navbar-mobile-sheet-head {
   display: flex;
+
   min-height: 74px;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 12px;
+
   padding: 0 16px;
+
   border-bottom: 1px solid #e2edf7;
-  background: linear-gradient(135deg, #ffffff 0%, #f4f9ff 100%);
+
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f4f9ff 100%
+  );
 }
+
+/* Mobile logo */
 
 .sh-navbar-mobile-brand .smartedge-logo-wrap {
   width: 8rem;
   height: 2.8rem;
+
   padding: 4px 8px;
+
   border: 1px solid #d7e9f9;
   border-radius: 10px;
+
   background: #ffffff;
+
   transform: none;
 }
 
@@ -763,78 +1017,123 @@ export function Navbar() {
   transform: scale(1.18);
 }
 
+/* Mobile close button */
+
 .sh-navbar-mobile-close {
   display: grid;
+
   width: 42px;
   height: 42px;
+
   place-items: center;
+
   border: 0;
   border-radius: 12px;
-  background: #eaf4ff;
+
+  background: #f0fdf4;
   color: var(--sh-nav-ink);
+
   cursor: pointer;
+
   transition:
     background 200ms ease,
     transform 200ms ease;
 }
 
 .sh-navbar-mobile-close:hover {
-  background: #dceeff;
+  background: #dcfce7;
+  color: #15803d;
+
   transform: rotate(4deg);
 }
 
+/* Mobile content */
+
 .sh-navbar-mobile-inner {
   width: calc(100% - 32px);
+
   max-width: 640px;
+
   margin-inline: auto;
+
   padding-block: 18px 25px;
 }
 
+/* Mobile caption */
+
 .sh-navbar-mobile-caption {
   margin: 0 0 12px;
+
   color: #5f7d9d;
+
   font-size: 10px;
   font-weight: 800;
+
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
+/* Mobile navigation list */
+
 .sh-navbar-mobile-list {
   display: grid;
+
   gap: 5px;
+
   margin: 0;
   padding: 0;
+
   list-style: none;
 }
 
 .sh-navbar-mobile-row {
   display: flex;
+
   min-width: 0;
+
   align-items: center;
+
   gap: 5px;
 }
 
-/* Mobile panel has a WHITE background, so its text stays dark (readable) */
+/* =====================================
+   MOBILE NAVIGATION LINKS
+   Default: Black
+   Hover: Green
+===================================== */
+
 .sh-navbar-mobile-link {
   display: flex;
+
   min-width: 0;
   min-height: 47px;
+
   flex: 1 1 auto;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 12px;
+
   padding: 10px 12px;
+
   border: 1px solid transparent;
   border-radius: 12px;
+
   color: var(--sh-nav-ink);
+
   white-space: normal;
+
   font-family: var(--sh-nav-font);
   font-size: 15.5px;
   font-weight: 700;
+
   letter-spacing: 0.01em;
   line-height: 1.5;
+
   text-decoration: none;
   text-shadow: none;
+
   transition:
     background 200ms ease,
     border-color 200ms ease,
@@ -843,38 +1142,60 @@ export function Navbar() {
 
 .sh-navbar-mobile-link:hover,
 .sh-navbar-mobile-link[data-active="true"] {
-  border-color: transparent;
-  background: #eaf4ff;
-  color: #1766a8;
+  border-color: #dcfce7;
+
+  background: #f0fdf4;
+
+  color: #15803d;
 }
+
+/* Mobile link label */
 
 .sh-navbar-mobile-link-label {
   display: flex;
+
   min-width: 0;
+
   align-items: center;
+
   gap: 9px;
 }
+
+/* Active menu indicator */
 
 .sh-navbar-mobile-active-dot {
   width: 6px;
   height: 6px;
+
   flex: 0 0 6px;
+
   border-radius: 50%;
-  background: var(--sh-nav-cyan);
-  box-shadow: 0 0 9px rgba(83, 222, 236, 0.3);
+
+  background: var(--sh-nav-green-bright);
+
+  box-shadow: 0 0 9px rgba(22, 163, 74, 0.25);
 }
+
+/* Mobile services expand button */
 
 .sh-navbar-mobile-expand {
   display: grid;
+
   width: 40px;
   height: 40px;
+
   flex: 0 0 40px;
+
   place-items: center;
+
   border: 1px solid var(--sh-nav-border);
   border-radius: 11px;
+
   background: #f1f7fd;
   color: var(--sh-nav-ink);
+
   cursor: pointer;
+
   transition:
     transform 200ms ease,
     background 200ms ease,
@@ -882,8 +1203,8 @@ export function Navbar() {
 }
 
 .sh-navbar-mobile-expand:hover {
-  border-color: #afd5f5;
-  background: #e8f4ff;
+  border-color: #bbf7d0;
+  background: #f0fdf4;
 }
 
 .sh-navbar-mobile-expand[aria-expanded="true"] svg {
@@ -893,31 +1214,49 @@ export function Navbar() {
 .sh-navbar-mobile-expand svg {
   width: 17px;
   height: 17px;
+
   transition: transform 220ms ease;
 }
 
+/* Mobile services submenu */
+
 .sh-navbar-mobile-services {
   display: grid;
+
   gap: 4px;
+
   margin: 7px 0 9px 13px;
   padding-left: 13px;
-  border-left: 1px solid #cfe3f6;
+
+  border-left: 1px solid #bbf7d0;
 }
+
+/* Mobile service links */
 
 .sh-navbar-mobile-service {
   display: flex;
+
   min-width: 0;
+
   align-items: center;
+
   gap: 10px;
+
   padding: 9px;
+
   border: 1px solid transparent;
   border-radius: 10px;
+
   color: #35577d;
+
   font-size: 13px;
   font-weight: 650;
+
   line-height: 1.5;
+
   text-decoration: none;
   text-shadow: none;
+
   transition:
     color 200ms ease,
     border-color 200ms ease,
@@ -925,20 +1264,30 @@ export function Navbar() {
 }
 
 .sh-navbar-mobile-service:hover {
-  border-color: #d4e8f9;
-  background: #edf6ff;
-  color: #1766a8;
+  border-color: #dcfce7;
+
+  background: #f0fdf4;
+
+  color: #15803d;
 }
+
+/* Mobile service icons */
 
 .sh-navbar-mobile-service-icon {
   display: grid;
+
   width: 32px;
   height: 32px;
+
   flex: 0 0 32px;
+
   place-items: center;
+
   overflow: hidden;
+
   border: 1px solid var(--sh-nav-border);
   border-radius: 10px;
+
   background: #eff7ff;
 }
 
@@ -949,22 +1298,34 @@ export function Navbar() {
 .sh-navbar-mobile-service-label {
   min-width: 0;
   flex: 1 1 auto;
+
   overflow-wrap: anywhere;
 }
 
+/* View all services — mobile */
+
 .sh-navbar-mobile-all-services {
   display: flex;
+
   min-height: 39px;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 10px;
+
   margin-top: 4px;
+
   padding: 9px 10px;
+
   border-radius: 10px;
-  background: #eaf4ff;
-  color: #173d65;
+
+  background: #f0fdf4;
+  color: #166534;
+
   font-size: 12px;
   font-weight: 750;
+
   text-decoration: none;
 }
 
@@ -973,20 +1334,31 @@ export function Navbar() {
   height: 14px;
 }
 
+/* =====================================
+   MOBILE CTA
+===================================== */
+
 .sh-navbar-mobile-cta-wrap {
   padding-top: 18px;
+
   margin-top: 15px;
+
   border-top: 1px solid #e1edf8;
 }
 
 .sh-navbar-mobile-cta {
   display: flex;
+
   width: 100%;
   min-height: 46px;
+
   align-items: center;
   justify-content: center;
+
   gap: 9px;
+
   border-radius: 999px;
+
   font-size: 13px;
 }
 
@@ -995,11 +1367,17 @@ export function Navbar() {
   height: 16px;
 }
 
+/* Mobile footer note */
+
 .sh-navbar-mobile-note {
   margin: 12px 0 0;
+
   color: #617a96;
+
   font-size: 11px;
+
   line-height: 1.7;
+
   text-align: center;
 }
 
@@ -1007,7 +1385,6 @@ export function Navbar() {
    DESKTOP BREAKPOINT
 ===================================== */
 
-/* Desktop navigation appears only when the full menu has enough room. */
 @media (min-width: 1120px) {
   .sh-navbar-desktop {
     display: flex;
@@ -1026,11 +1403,15 @@ export function Navbar() {
   }
 }
 
+/* Tablet */
+
 @media (min-width: 640px) and (max-width: 1119px) {
   .sh-navbar-mobile-panel {
     width: min(460px, 88vw);
   }
 }
+
+/* Small mobile */
 
 @media (max-width: 560px) {
   .sh-navbar-mobile-panel {
@@ -1038,9 +1419,14 @@ export function Navbar() {
   }
 }
 
+/* =====================================
+   COMPACT DESKTOP NAVIGATION
+===================================== */
+
 @media (min-width: 1120px) and (max-width: 1279px) {
   .sh-navbar-shell {
     width: calc(100% - 32px);
+
     gap: 10px;
   }
 
@@ -1050,7 +1436,9 @@ export function Navbar() {
 
   .sh-navbar .sh-navbar-link {
     gap: 4px;
+
     padding-inline: 8px;
+
     font-size: 14px;
   }
 
@@ -1061,9 +1449,12 @@ export function Navbar() {
 
   .sh-navbar .sh-navbar-cta {
     padding-inline: 12px;
+
     font-size: 11px;
   }
 }
+
+/* Large desktop */
 
 @media (min-width: 1280px) {
   .sh-navbar {
@@ -1076,16 +1467,22 @@ export function Navbar() {
 
   .sh-navbar .sh-navbar-link {
     padding-inline: 13px;
+
     font-size: 15px;
   }
 }
 
-/* Tablet and mobile */
+/* =====================================
+   TABLET AND MOBILE
+===================================== */
+
 @media (max-width: 1119px) {
   .sh-navbar {
     --sh-nav-height: 66px;
   }
 }
+
+/* Small mobile adjustments */
 
 @media (max-width: 560px) {
   .sh-navbar {
@@ -1094,6 +1491,7 @@ export function Navbar() {
 
   .sh-navbar-shell {
     width: calc(100% - 28px);
+
     gap: 10px;
   }
 
@@ -1104,24 +1502,59 @@ export function Navbar() {
   .sh-navbar-mobile-toggle {
     width: 40px;
     height: 40px;
+
     flex-basis: 40px;
   }
 
   .sh-navbar-mobile-inner {
     width: calc(100% - 28px);
+
     padding-top: 12px;
   }
 
   .sh-navbar-mobile-link {
     min-height: 44px;
+
     font-size: 14.5px;
   }
 
   .sh-navbar-mobile-services {
     margin-left: 10px;
+
     padding-left: 10px;
   }
 }
+
+/* =====================================
+   SMARTEDGE — LOGO SIZE CONTROL
+===================================== */
+
+/* Desktop logo */
+.sh-navbar .sh-navbar-brand .smartedge-logo-wrap {
+  width: 10rem;
+  height: 4.8rem;
+  padding: 3px 6px;
+}
+
+.sh-navbar .sh-navbar-brand .smartedge-logo {
+  transform: scale(1);
+}
+
+/* Mobile logo */
+.sh-navbar .sh-navbar-mobile-brand .smartedge-logo-wrap {
+  width: 6.5rem;
+  height: 2.3rem;
+  padding: 3px 6px;
+}
+
+.sh-navbar .sh-navbar-mobile-brand .smartedge-logo {
+  transform: scale(1);
+}
+
+
+/* =====================================
+   ACCESSIBILITY — REDUCED MOTION
+===================================== */
 
 @media (prefers-reduced-motion: reduce) {
   .sh-navbar *,
@@ -1132,13 +1565,58 @@ export function Navbar() {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+
+  .sh-navbar .sh-navbar-link::after {
+    transition: none;
+  }
 }
 
+
 /* =====================================
-   NAVBAR THEME SAFETY OVERRIDES
-   Navy bar + white menu text (desktop),
-   white panel + dark text (mobile menu)
+   SMARTEDGE — GREEN PARTNER CTA BUTTON
 ===================================== */
+
+.sh-navbar a.sh-navbar-cta,
+.sh-navbar a.sh-navbar-mobile-cta {
+  background: #15803d !important;
+  background-color: #15803d !important;
+  border-color: #15803d !important;
+  color: #ffffff !important;
+
+  box-shadow: 0 5px 15px rgba(21, 128, 61, 0.18);
+
+  transition:
+    background 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease;
+}
+
+/* Hover effect */
+.sh-navbar a.sh-navbar-cta:hover,
+.sh-navbar a.sh-navbar-mobile-cta:hover {
+  background: #166534 !important;
+  background-color: #166534 !important;
+  border-color: #166534 !important;
+  color: #ffffff !important;
+
+  box-shadow: 0 8px 20px rgba(21, 128, 61, 0.25);
+
+  transform: translateY(-2px);
+}
+
+/* Keep button arrow white */
+.sh-navbar a.sh-navbar-cta svg,
+.sh-navbar a.sh-navbar-mobile-cta svg {
+  color: #ffffff !important;
+  stroke: #ffffff;
+}
+
+
+/* =====================================
+   FINAL NAVBAR THEME SAFETY
+===================================== */
+
 .sh-navbar .sh-navbar-mobile-toggle,
 .sh-navbar .sh-navbar-mobile-close,
 .sh-navbar .sh-navbar-mobile-expand {
@@ -1154,7 +1632,7 @@ export function Navbar() {
 .sh-navbar .sh-navbar-mobile-link:hover,
 .sh-navbar .sh-navbar-mobile-link[data-active="true"],
 .sh-navbar .sh-navbar-mobile-service:hover {
-  color: #1766a8;
+  color: #15803d;
 }
 
 .sh-navbar .sh-navbar-link,
@@ -1162,6 +1640,7 @@ export function Navbar() {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
 
       `}</style>
 
