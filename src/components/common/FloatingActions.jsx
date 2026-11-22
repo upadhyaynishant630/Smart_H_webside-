@@ -1,676 +1,432 @@
-import { useEffect, useState } from "react";
-import { Link, useRouterState } from "@tanstack/react-router";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
-import {
-  ArrowUpRight,
-  CalendarCheck,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MessageCircle,
-  Phone,
-  X,
-  Youtube,
-} from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { siteConfig } from "@/data/site";
 
 /* ======================================================
-   ENVIRONMENT + SAFE HELPERS
+   SAFE WHATSAPP URL HELPERS
 ====================================================== */
 
 const ENV = import.meta.env || {};
 
 const getText = (value) =>
-  typeof value === "string" ? value.trim() : "";
+  typeof value === "string" || typeof value === "number"
+    ? String(value).trim()
+    : "";
 
-function WhatsAppIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-      <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3Zm-8.4 18.1h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.8-1.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.1 3.3 5.1 4.6 1.9.8 2.6.9 3.5.8.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3Z" />
-    </svg>
-  );
-}
-
-function getSafeWebUrl(value) {
+function getSafeWhatsAppUrl(value) {
   const input = getText(value);
   if (!input) return "";
 
   try {
     const parsed = new URL(input);
-    if (parsed.protocol !== "https:" && parsed.protocol !== "http:") {
+
+    const allowedHosts = new Set([
+      "wa.me",
+      "api.whatsapp.com",
+      "web.whatsapp.com",
+      "whatsapp.com",
+      "www.whatsapp.com",
+    ]);
+
+    if (
+      (parsed.protocol !== "https:" &&
+        parsed.protocol !== "http:") ||
+      !allowedHosts.has(parsed.hostname.toLowerCase())
+    ) {
       return "";
     }
+
     return parsed.href;
   } catch {
     return "";
   }
 }
 
-const socialItems = Array.isArray(siteConfig?.social)
-  ? siteConfig.social.filter(
-      (item) =>
-        item &&
-        typeof item.label === "string" &&
-        typeof item.href === "string",
-    )
-  : [];
+function buildWhatsAppUrl() {
+  const socialItems = Array.isArray(siteConfig?.social)
+    ? siteConfig.social
+    : [];
 
-function findSocialUrl(pattern, envKey, fallbackUrl) {
-  const match = socialItems.find((item) => {
-    const label = getText(item.label).toLowerCase();
-    const href = getText(item.href).toLowerCase();
-    return pattern.test(label) || pattern.test(href);
+  const whatsappSocialLink = socialItems.find((item) => {
+    const label = getText(item?.label).toLowerCase();
+    const href = getText(item?.href).toLowerCase();
+
+    return (
+      label.includes("whatsapp") ||
+      href.includes("whatsapp") ||
+      href.includes("wa.me")
+    );
   });
 
-  return (
-    getSafeWebUrl(match?.href) ||
-    getSafeWebUrl(ENV[envKey]) ||
-    fallbackUrl
-  );
-}
+  // Prefer configured WhatsApp URL.
+  const configuredUrl =
+    getSafeWhatsAppUrl(ENV.VITE_WHATSAPP_URL) ||
+    getSafeWhatsAppUrl(whatsappSocialLink?.href);
 
-/* ======================================================
-   BUILD CONTACT + SOCIAL ACTIONS
-====================================================== */
+  if (configuredUrl) return configuredUrl;
 
-function buildActions(pathname) {
-  const actions = [];
-  const phone =
+  // Read configured WhatsApp phone number.
+  const configuredPhone =
+    getText(siteConfig?.whatsappPhone) ||
     getText(siteConfig?.contactPhone) ||
+    getText(ENV.VITE_WHATSAPP_PHONE) ||
     getText(ENV.VITE_CONTACT_PHONE);
-  const email =
-    getText(siteConfig?.contactEmail) ||
-    getText(ENV.VITE_CONTACT_EMAIL);
-  const phoneDigits = phone.replace(/\D/g, "");
-  const whatsappText = encodeURIComponent(
-    "Hello SmartEDGE, I would like to enquire about your solar products and services.",
+
+  const phoneDigits = configuredPhone.replace(/\D/g, "");
+
+  const message = encodeURIComponent(
+    "Hello SmartEDGE, I would like to enquire about your solar products and services."
   );
 
-  const configuredWhatsApp =
-    getSafeWebUrl(ENV.VITE_WHATSAPP_URL) ||
-    (() => {
-      const match = socialItems.find((item) =>
-        /whatsapp|wa\.me/i.test(
-          `${getText(item.label)} ${getText(item.href)}`,
-        ),
-      );
-      return getSafeWebUrl(match?.href);
-    })();
+  const validInternationalNumber =
+    phoneDigits.length >= 8 &&
+    phoneDigits.length <= 15;
 
-  const whatsappUrl =
-    configuredWhatsApp ||
-    ((siteConfig?.whatsappPhone || phoneDigits.length >= 8)
-      ? `https://wa.me/${siteConfig?.whatsappPhone || phoneDigits}?text=${whatsappText}`
-      : `https://api.whatsapp.com/send?text=${whatsappText}`);
+  const baseUrl = validInternationalNumber
+    ? `https://wa.me/${phoneDigits}`
+    : "https://wa.me/";
 
-  if (pathname !== "/contact") {
-    actions.push({
-      id: "consult",
-      label: "Book a consultation",
-      description: "Discuss your project with SmartEDGE",
-      icon: <CalendarCheck size={17} strokeWidth={1.9} aria-hidden="true" />,
-      tone: "consult",
-      to: "/contact",
-    });
-  }
-
-  actions.push({
-    id: "whatsapp",
-    label: "WhatsApp",
-    description:
-      siteConfig?.whatsappPhone || (phone.startsWith("+") && phoneDigits.length >= 8)
-        ? "Message SmartEDGE directly"
-        : "Open WhatsApp and choose a contact",
-    icon: <WhatsAppIcon />,
-    tone: "whatsapp",
-    href: whatsappUrl,
-    external: true,
-  });
-
-  actions.push({
-    id: "instagram",
-    label: "Instagram",
-    description: "Open Instagram",
-    icon: <Instagram size={17} strokeWidth={1.9} aria-hidden="true" />,
-    tone: "instagram",
-    href: findSocialUrl(/instagram/i, "VITE_INSTAGRAM_URL", "https://www.instagram.com/"),
-    external: true,
-  });
-
- 
-
-  actions.push({
-    id: "linkedin",
-    label: "LinkedIn",
-    description: "Open LinkedIn",
-    icon: <Linkedin size={17} strokeWidth={1.9} aria-hidden="true" />,
-    tone: "linkedin",
-    href: findSocialUrl(/linkedin/i, "VITE_LINKEDIN_URL", "https://www.linkedin.com/"),
-    external: true,
-  });
-
-
-
-  if (phone) {
-    actions.push({
-      id: "call",
-      label: "Call us",
-      description: phone,
-      icon: <Phone size={17} strokeWidth={1.9} aria-hidden="true" />,
-      tone: "call",
-      href: `tel:${phone.replace(/[^\d+*#,;]/g, "")}`,
-    });
-  }
-
-  if (email) {
-    actions.push({
-      id: "email",
-      label: "Email us",
-      description: email,
-      icon: <Mail size={17} strokeWidth={1.9} aria-hidden="true" />,
-      tone: "email",
-      href: `mailto:${email}`,
-    });
-  }
-
-  return actions;
+  return `${baseUrl}?text=${message}`;
 }
 
+const WHATSAPP_URL = buildWhatsAppUrl();
+
 /* ======================================================
-   MENU ACTION ITEM
+   WHATSAPP BRAND ICON
 ====================================================== */
 
-function ActionItem({ action, index, reduce, onPick }) {
-  const content = (
-    <>
-      <span className="sh-fab-action-icon" aria-hidden="true">
-        <span className={`sh-fab-action-icon-inner sh-fab-tone--${action.tone}`}>
-          {action.icon}
-        </span>
-      </span>
-
-      <span className="sh-fab-action-copy">
-        <span className="sh-fab-action-title">{action.label}</span>
-        <span className="sh-fab-action-description">{action.description}</span>
-      </span>
-
-      <ArrowUpRight className="sh-fab-action-arrow" aria-hidden="true" />
-    </>
-  );
-
-  const className = "sh-fab-action";
-
+function WhatsAppIcon() {
   return (
-    <motion.li
-      className="sh-fab-action-shell"
-      initial={reduce ? false : { opacity: 0, y: 10, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: reduce ? 0 : 6, scale: 0.99 }}
-      transition={{
-        duration: reduce ? 0 : 0.19,
-        delay: reduce ? 0 : Math.min(index * 0.025, 0.16),
-        ease: [0.22, 1, 0.36, 1],
-      }}
+    <svg
+      viewBox="0 0 24 24"
+      width="27"
+      height="27"
+      fill="currentColor"
+      role="img"
+      aria-label="WhatsApp"
     >
-      {action.to ? (
-        <Link to={action.to} className={className} onClick={onPick}>
-          {content}
-        </Link>
-      ) : (
-        <a
-          href={action.href}
-          className={className}
-          onClick={onPick}
-          target={action.external ? "_blank" : undefined}
-          rel={action.external ? "noopener noreferrer" : undefined}
-        >
-          {content}
-        </a>
-      )}
-    </motion.li>
+      <path d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.9L.2 24l6.5-1.7a11.8 11.8 0 0 0 5.4 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3Zm-8.4 18.1h-.1a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.9 1 1-3.8-.2-.4a9.8 9.8 0 1 1 8.6 4.8Zm5.4-7.3c-.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-1.8-.9-3-1.6-4.2-3.6-.3-.5.3-.5.8-1.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.1 3.3 5.1 4.6 1.9.8 2.6.9 3.5.8.6-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.1-1.3Z" />
+    </svg>
   );
 }
 
 /* ======================================================
-   MAIN FLOATING ACTIONS
+   SINGLE FLOATING WHATSAPP ACTION
 ====================================================== */
 
 export function FloatingActions() {
-  const reduce = useReducedMotion();
-  const pathname = useRouterState({
-    select: (state) => state.location.pathname,
-  });
-
-  const [open, setOpen] = useState(false);
-  const [hover, setHover] = useState(false);
-  const [focused, setFocused] = useState(false);
-
-  const actions = buildActions(pathname);
-  const showLabel = !open && (hover || focused);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!open) return undefined;
-
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  const closeMenu = () => setOpen(false);
+  const reduceMotion = useReducedMotion();
 
   return (
     <>
       <style>{`
-        .sh-fab-root,
-        .sh-fab-root * {
+
+        .sh-fab-whatsapp,
+        .sh-fab-whatsapp * {
           box-sizing: border-box;
         }
 
-        .sh-fab-root {
+        /* MAIN FLOATING WHATSAPP BUTTON */
+
+        .sh-fab-whatsapp {
           position: fixed;
           right: 20px;
           bottom: calc(20px + env(safe-area-inset-bottom));
           z-index: 1000;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 10px;
-          width: max-content;
-          max-width: calc(100vw - 20px);
-          font-family: Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-          -webkit-font-smoothing: antialiased;
-        }
 
-        .sh-fab-backdrop {
-          position: fixed;
-          inset: 0;
-          z-index: 999;
-          width: 100%;
-          height: 100%;
-          padding: 0;
-          border: 0;
-          background: rgba(5, 10, 28, 0.32);
-          backdrop-filter: blur(3px);
-          -webkit-backdrop-filter: blur(3px);
-          cursor: default;
-        }
-
-        .sh-fab-main-wrap {
-          position: relative;
-          z-index: 2;
-        }
-
-        /* Smaller, balanced primary button */
-        .sh-fab-main {
-          position: relative;
           display: grid;
+          width: 58px;
+          height: 58px;
+
           place-items: center;
-          width: 54px;
-          height: 54px;
-          padding: 0;
-          overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.26);
+          overflow: visible;
+
+          border: 1px solid rgba(255,255,255,.42);
           border-radius: 50%;
-          color: #fff;
-          background:
-            radial-gradient(circle at 25% 10%, rgba(255,255,255,.22), transparent 40%),
-            linear-gradient(135deg, #1a9900 0%, #0d7800 50%, #0B7600 100%);
+
+          color: #ffffff;
+
+          background: linear-gradient(
+            145deg,
+            #25d366 0%,
+            #18b957 100%
+          );
+
           box-shadow:
-            inset 0 1px 0 rgba(255,255,255,.32),
-            inset 0 -6px 12px rgba(5,50,0,.22),
-            0 12px 27px -9px rgba(11,118,0,.55);
-          cursor: pointer;
-          transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
+            0 10px 26px rgba(37,211,102,.32),
+            inset 0 1px 0 rgba(255,255,255,.34);
+
+          text-decoration: none;
+
+          -webkit-tap-highlight-color: transparent;
+
+          isolation: isolate;
+
+          transition:
+            box-shadow 220ms ease,
+            filter 220ms ease;
         }
 
-        .sh-fab-main:hover {
-          transform: translateY(-2px) scale(1.035);
-          border-color: rgba(255,255,255,.44);
-          box-shadow: inset 0 1px 0 rgba(255,255,255,.36), 0 16px 30px -8px rgba(11,118,0,.60);
+        .sh-fab-whatsapp:hover {
+          filter: brightness(1.045);
+
+          box-shadow:
+            0 14px 30px rgba(37,211,102,.40),
+            inset 0 1px 0 rgba(255,255,255,.38);
         }
 
-        .sh-fab-main:active { transform: scale(.95); }
-        .sh-fab-main:focus-visible { outline: 3px solid #79E900; outline-offset: 4px; }
+        .sh-fab-whatsapp:focus-visible {
+          outline: 3px solid #128c4a;
+          outline-offset: 5px;
+        }
 
-        .sh-fab-main-icon {
+        /* WHATSAPP ICON */
+
+        .sh-fab-whatsapp-icon {
           position: relative;
           z-index: 2;
+
           display: grid;
-          place-items: center;
-        }
 
-        .sh-fab-main-icon svg { width: 23px; height: 23px; stroke-width: 1.9; }
-
-        .sh-fab-shine {
-          position: absolute;
-          inset: -20%;
-          background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.43) 50%, transparent 60%);
-          animation: sh-fab-shine 4.5s ease-in-out 1.5s infinite;
-          pointer-events: none;
-        }
-
-        .sh-fab-ring {
-          position: absolute;
-          inset: 0;
-          border: 1px solid rgba(23,138,0,.42);
-          border-radius: 50%;
-          pointer-events: none;
-          animation: sh-fab-ring 2.7s cubic-bezier(.22,1,.36,1) infinite;
-        }
-
-        .sh-fab-ring--late { animation-delay: 1.35s; }
-        .sh-fab-bob { animation: sh-fab-bob 4s ease-in-out infinite; }
-        .sh-fab-bob:hover, .sh-fab-bob:focus-within { animation-play-state: paused; }
-
-        /* The label appears on hover/focus only */
-        .sh-fab-label {
-          position: absolute;
-          top: 50%;
-          right: calc(100% + 11px);
-          display: inline-flex;
-          align-items: center;
-          gap: 7px;
-          max-width: calc(100vw - 100px);
-          padding: 9px 13px;
-          transform: translateY(-50%);
-          border: 1px solid rgba(190,204,255,.18);
-          border-radius: 999px;
-          color: #fff;
-          background: rgba(10,17,42,.94);
-          box-shadow: 0 8px 23px rgba(0,0,0,.17);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          font-size: 11px;
-          font-weight: 750;
-          white-space: nowrap;
-          pointer-events: none;
-        }
-
-        .sh-fab-label-dot {
-          width: 6px;
-          height: 6px;
-          flex: 0 0 auto;
-          border-radius: 50%;
-          background: #79E900;
-          box-shadow: 0 0 10px rgba(121,233,0,.65);
-        }
-
-        /* Compact options panel */
-        .sh-fab-menu {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 7px;
-          width: min(300px, calc(100vw - 24px));
-          max-height: min(65vh, 540px);
-          margin: 0;
-          padding: 0 2px 3px;
-          overflow-y: auto;
-          overscroll-behavior: contain;
-          list-style: none;
-          scrollbar-width: thin;
-          scrollbar-color: rgba(23,138,0,.30) transparent;
-        }
-
-        .sh-fab-action-shell { width: 100%; min-width: 0; }
-
-        .sh-fab-action {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          width: 100%;
-          min-width: 0;
-          min-height: 54px;
-          padding: 8px 10px;
-          border: 1px solid rgba(190,204,255,.14);
-          border-radius: 14px;
-          color: #fff;
-          background: linear-gradient(135deg, rgba(23,33,69,.97), rgba(9,16,40,.97));
-          box-shadow: 0 7px 19px rgba(2,7,24,.18), inset 0 1px 0 rgba(255,255,255,.045);
-          backdrop-filter: blur(17px);
-          -webkit-backdrop-filter: blur(17px);
-          text-align: left;
-          text-decoration: none;
-          transition: transform 200ms ease, border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
-        }
-
-        .sh-fab-action:hover {
-          transform: translateX(-2px);
-          border-color: rgba(23,138,0,.40);
-          background: linear-gradient(135deg, rgba(31,43,89,.99), rgba(10,18,44,.99));
-          box-shadow: 0 10px 23px rgba(2,7,24,.22), inset 0 1px 0 rgba(255,255,255,.06);
-        }
-
-        .sh-fab-action:focus-visible { outline: 2px solid #79E900; outline-offset: 3px; }
-
-        /* Icon has a fixed tile so all logos align perfectly */
-        .sh-fab-action-icon {
-          display: grid;
-          place-items: center;
-          width: 36px;
-          height: 36px;
-          flex: 0 0 36px;
-          padding: 0;
-          border: 1px solid rgba(255,255,255,.13);
-          border-radius: 11px;
-          background: rgba(255,255,255,.04);
-          overflow: hidden;
-        }
-
-        .sh-fab-action-icon-inner {
-          display: grid;
-          place-items: center;
           width: 100%;
           height: 100%;
-          color: #fff;
-          transition: transform 200ms ease;
+
+          place-items: center;
+
+          color: #ffffff;
         }
 
-        .sh-fab-action:hover .sh-fab-action-icon-inner { transform: scale(1.04); }
-        .sh-fab-tone--consult { background: linear-gradient(140deg,#1a9900,#0B7600); }
-        .sh-fab-tone--whatsapp { background: linear-gradient(140deg,#35dc79,#16884b); }
-        .sh-fab-tone--instagram { background: linear-gradient(145deg,#fdc468,#f14470 48%,#178a00 78%,#55c500); }
-        .sh-fab-tone--facebook { background: linear-gradient(145deg,#4e9cff,#185abc); }
-        .sh-fab-tone--linkedin { background: linear-gradient(145deg,#3299d6,#155a8f); }
-        .sh-fab-tone--youtube { background: linear-gradient(145deg,#ff6666,#d21d35); }
-        .sh-fab-tone--call { background: linear-gradient(145deg,#3d94ff,#2251cb); }
-        .sh-fab-tone--email { background: linear-gradient(145deg,#79e900,#178a00); }
-
-        .sh-fab-action-copy {
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-          gap: 3px;
-          min-width: 0;
-        }
-
-        .sh-fab-action-title {
+        .sh-fab-whatsapp-icon svg {
           display: block;
-          color: #f4f6ff;
-          font-size: 11px;
-          font-weight: 750;
-          line-height: 1.4;
+
+          width: 29px;
+          height: 29px;
         }
 
-        .sh-fab-action-description {
-          display: block;
-          color: #a7b3d0;
-          font-size: 9px;
-          font-weight: 500;
-          line-height: 1.5;
-          overflow-wrap: anywhere;
+        /* PULSE ANIMATION */
+
+        .sh-fab-whatsapp-ring {
+          position: absolute;
+          z-index: -1;
+
+          inset: -2px;
+
+          border: 1px solid rgba(37,211,102,.55);
+
+          border-radius: 50%;
+
+          pointer-events: none;
+
+          animation:
+            sh-fab-whatsapp-pulse
+            2.6s cubic-bezier(.22,1,.36,1) infinite;
         }
 
-        .sh-fab-action-arrow {
-          width: 14px;
-          height: 14px;
-          flex: 0 0 auto;
-          color: #7c8bb0;
-          transition: transform 180ms ease, color 180ms ease;
+        .sh-fab-whatsapp-ring--delayed {
+          animation-delay: 1.3s;
         }
 
-        .sh-fab-action:hover .sh-fab-action-arrow { transform: translate(2px,-2px); color: #79E900; }
+        /* HOVER TOOLTIP */
 
-        /* Animations */
-        @keyframes sh-fab-ring {
-          0% { transform: scale(1); opacity: .5; }
-          80%, 100% { transform: scale(1.8); opacity: 0; }
+        .sh-fab-whatsapp-tooltip {
+          position: absolute;
+
+          top: 50%;
+          right: calc(100% + 12px);
+
+          padding: 9px 13px;
+
+          transform: translateY(-50%);
+
+          border: 1px solid rgba(255,255,255,.12);
+          border-radius: 999px;
+
+          color: #ffffff;
+
+          background: rgba(17,24,39,.94);
+
+          box-shadow:
+            0 8px 22px rgba(0,0,0,.17);
+
+          font-family:
+            Inter,
+            Manrope,
+            ui-sans-serif,
+            system-ui,
+            sans-serif;
+
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1;
+
+          white-space: nowrap;
+
+          opacity: 0;
+          visibility: hidden;
+
+          pointer-events: none;
+
+          transition:
+            opacity 180ms ease,
+            visibility 180ms ease;
         }
 
-        @keyframes sh-fab-shine {
-          0% { transform: translateX(-140%) rotate(20deg); }
-          55%, 100% { transform: translateX(140%) rotate(20deg); }
+        .sh-fab-whatsapp:hover
+        .sh-fab-whatsapp-tooltip,
+        .sh-fab-whatsapp:focus-visible
+        .sh-fab-whatsapp-tooltip {
+          opacity: 1;
+          visibility: visible;
         }
 
-        @keyframes sh-fab-bob {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-3px); }
-        }
+        /* KEYFRAMES */
 
-        @media (max-width: 560px) {
-          .sh-fab-root {
-            right: 13px;
-            bottom: calc(13px + env(safe-area-inset-bottom));
-            gap: 8px;
-            max-width: calc(100vw - 18px);
+        @keyframes sh-fab-whatsapp-pulse {
+          0% {
+            transform: scale(1);
+            opacity: .48;
           }
 
-          .sh-fab-main { width: 48px; height: 48px; }
-          .sh-fab-main-icon svg { width: 21px; height: 21px; }
-          .sh-fab-menu { width: min(280px, calc(100vw - 18px)); max-height: min(62vh, 490px); gap: 6px; }
-          .sh-fab-action { min-height: 49px; gap: 9px; padding: 7px 9px; border-radius: 12px; }
-          .sh-fab-action-icon { width: 33px; height: 33px; flex-basis: 33px; border-radius: 10px; }
-          .sh-fab-action-title { font-size: 10px; }
-          .sh-fab-action-description { font-size: 8px; }
-          .sh-fab-label { padding: 8px 11px; font-size: 10px; }
+          80%, 100% {
+            transform: scale(1.75);
+            opacity: 0;
+          }
         }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 560px) {
+
+          .sh-fab-whatsapp {
+            right: 13px;
+
+            bottom: calc(
+              13px + env(safe-area-inset-bottom)
+            );
+
+            width: 52px;
+            height: 52px;
+          }
+
+          .sh-fab-whatsapp-icon svg {
+            width: 26px;
+            height: 26px;
+          }
+
+          .sh-fab-whatsapp-tooltip {
+            font-size: 11px;
+            padding: 8px 11px;
+          }
+        }
+
+        /* SMALL MOBILE */
 
         @media (max-width: 350px) {
-          .sh-fab-root { right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); }
-          .sh-fab-main { width: 45px; height: 45px; }
-          .sh-fab-menu { width: calc(100vw - 20px); }
-          .sh-fab-action-description { display: none; }
+
+          .sh-fab-whatsapp {
+            right: 10px;
+
+            bottom: calc(
+              10px + env(safe-area-inset-bottom)
+            );
+
+            width: 48px;
+            height: 48px;
+          }
+
+          .sh-fab-whatsapp-icon svg {
+            width: 24px;
+            height: 24px;
+          }
         }
+
+        /* ACCESSIBILITY */
 
         @media (prefers-reduced-motion: reduce) {
-          .sh-fab-bob, .sh-fab-ring, .sh-fab-shine { animation: none !important; }
-          .sh-fab-ring { display: none; }
-          .sh-fab-action, .sh-fab-main { transition-duration: .01ms !important; }
+
+          .sh-fab-whatsapp-ring {
+            animation: none !important;
+            display: none;
+          }
+
+          .sh-fab-whatsapp,
+          .sh-fab-whatsapp-tooltip {
+            transition-duration: .01ms !important;
+          }
         }
+
       `}</style>
 
-      {/* Click outside the panel to close it */}
-      <AnimatePresence>
-        {open && (
-          <motion.button
-            type="button"
-            className="sh-fab-backdrop"
-            aria-label="Close contact menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.16 }}
-            onClick={closeMenu}
-          />
-        )}
-      </AnimatePresence>
+      <motion.a
+        href={WHATSAPP_URL}
+        className="sh-fab-whatsapp"
+        aria-label="Chat with SmartEDGE on WhatsApp"
+        title="Chat with SmartEDGE on WhatsApp"
+        target="_blank"
+        rel="noopener noreferrer"
 
-      <div className="sh-fab-root">
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.ul
-              key="floating-actions-menu"
-              id="floating-actions-menu"
-              className="sh-fab-menu"
-              aria-label="Contact and social options"
-              initial={reduce ? false : { opacity: 0, y: 9 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: reduce ? 0 : 6 }}
-              transition={{ duration: reduce ? 0 : 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {actions.map((action, index) => (
-                <ActionItem
-                  key={action.id}
-                  action={action}
-                  index={index}
-                  reduce={reduce}
-                  onPick={closeMenu}
-                />
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
+        initial={
+          reduceMotion
+            ? false
+            : {
+                opacity: 0,
+                y: 12,
+                scale: 0.9,
+              }
+        }
 
-        <div
-          className="sh-fab-main-wrap"
-          onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          onFocusCapture={() => setFocused(true)}
-          onBlurCapture={() => setFocused(false)}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: 1,
+        }}
+
+        whileHover={
+          reduceMotion
+            ? undefined
+            : {
+                y: -3,
+                scale: 1.045,
+              }
+        }
+
+        whileTap={
+          reduceMotion
+            ? undefined
+            : {
+                scale: 0.95,
+              }
+        }
+
+        transition={{
+          duration: reduceMotion ? 0 : 0.28,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+      >
+        <span
+          className="sh-fab-whatsapp-ring"
+          aria-hidden="true"
+        />
+
+        <span
+          className="
+            sh-fab-whatsapp-ring
+            sh-fab-whatsapp-ring--delayed
+          "
+          aria-hidden="true"
+        />
+
+        <span className="sh-fab-whatsapp-icon">
+          <WhatsAppIcon />
+        </span>
+
+        <span
+          className="sh-fab-whatsapp-tooltip"
+          aria-hidden="true"
         >
-          <AnimatePresence>
-            {showLabel && (
-              <motion.span
-                key="lets-talk-label"
-                className="sh-fab-label"
-                initial={reduce ? false : { opacity: 0, x: 7, scale: 0.97 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: 5, scale: 0.98 }}
-                transition={{ duration: reduce ? 0 : 0.18 }}
-              >
-                <span className="sh-fab-label-dot" aria-hidden="true" />
-                Let's Talk
-              </motion.span>
-            )}
-          </AnimatePresence>
+          Chat on WhatsApp
+        </span>
 
-          {!open && (
-            <>
-              <span className="sh-fab-ring" aria-hidden="true" />
-              <span className="sh-fab-ring sh-fab-ring--late" aria-hidden="true" />
-            </>
-          )}
-
-          <div className={!open ? "sh-fab-bob" : ""}>
-            <motion.button
-              type="button"
-              className="sh-fab-main"
-              aria-label={open ? "Close contact and social options" : "Open contact and social options"}
-              aria-expanded={open}
-              aria-controls="floating-actions-menu"
-              onClick={() => setOpen((current) => !current)}
-              whileTap={reduce ? undefined : { scale: 0.95 }}
-            >
-              <span className="sh-fab-shine" aria-hidden="true" />
-
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={open ? "close" : "contact"}
-                  className="sh-fab-main-icon"
-                  initial={reduce ? false : { rotate: -60, opacity: 0, scale: 0.75 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 55, opacity: 0, scale: 0.75 }}
-                  transition={{ duration: reduce ? 0 : 0.17 }}
-                >
-                  {open ? <X aria-hidden="true" /> : <MessageCircle aria-hidden="true" />}
-                </motion.span>
-              </AnimatePresence>
-            </motion.button>
-          </div>
-        </div>
-      </div>
+      </motion.a>
     </>
   );
 }
