@@ -226,45 +226,9 @@ export function SolarCapabilityMarquee({
           min-width: 0;
         }
 
-        .scm-section .scm-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: .65rem;
-          max-width: 100%;
-          padding: .48rem .85rem;
-          border: 1px solid rgba(36, 89, 214, .22);
-          border-radius: 999px;
-          color: var(--scm-blue);
-          background: rgba(255, 255, 255, .82);
-          box-shadow: 0 6px 20px rgba(12, 23, 48, .035);
-          font-size: .69rem;
-          font-weight: 800;
-          line-height: 1.4;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-        }
+    
 
-        .scm-section .scm-badge-dot {
-          position: relative;
-          display: inline-block;
-          flex: 0 0 .5rem;
-          width: .5rem;
-          height: .5rem;
-          border-radius: 50%;
-          background: var(--scm-amber);
-          box-shadow: 0 0 0 4px rgba(244, 173, 54, .14);
-        }
-
-        .scm-section .scm-badge-dot::after {
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          background: var(--scm-amber);
-          content: "";
-          animation: scm-pulse 2.2s ease-out infinite;
-        }
+      
 
         .scm-section .scm-title {
           margin: 1.15rem 0 0;
@@ -442,13 +406,7 @@ export function SolarCapabilityMarquee({
           transition: transform .45s ease;
         }
 
-        .scm-section .scm-pill:hover .scm-icon-wrap {
-          color: #fff;
-          border-color: transparent;
-          background: linear-gradient(135deg, var(--t-fg), var(--scm-violet));
-          transform: rotate(-8deg) scale(1.06);
-        }
-
+     
         .scm-section .scm-pill:hover .scm-icon-wrap svg {
           transform: scale(1.08) rotate(8deg);
         }
@@ -624,11 +582,7 @@ export function SolarCapabilityMarquee({
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="scm-heading">
-          <span className="scm-badge">
-            <span className="scm-badge-dot" aria-hidden="true" />
-            {badge}
-          </span>
-
+          
           <h2 id={headingId} className="scm-title">
             {titleFirst}{" "}
             <span className="scm-title-highlight">{titleHighlight}</span>

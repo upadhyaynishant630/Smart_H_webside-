@@ -76,11 +76,8 @@ function ReviewCard({ review }) {
     <article className="smartedge-review-card">
       <div className="smartedge-review-card-glow" />
 
-      {/* Service */}
-      <div className="smartedge-review-service-row">
-        <span className="smartedge-review-service-dot" />
-        {review.service}
-      </div>
+    
+     
 
       {/* Rating */}
       <ReviewStars rating={review.rating} />
@@ -123,12 +120,8 @@ function ReviewCard({ review }) {
         </div>
       </div>
 
-      {/* Card footer */}
-      <div className="smartedge-review-card-footer">
-        <span>Customer feedback</span>
-
-        <ArrowUpRight aria-hidden="true" />
-      </div>
+   
+      
     </article>
   );
 }
@@ -245,34 +238,9 @@ export function CustomerReviews({
           text-align: center;
         }
 
-        .smartedge-reviews-kicker {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 9px;
-          margin-bottom: 19px;
-          padding: 10px 16px;
+        
 
-          border: 1px solid rgba(47, 91, 255, 0.16);
-          border-radius: 50px;
-
-          background: rgba(255, 255, 255, 0.88);
-
-          box-shadow:
-            0 6px 22px rgba(35, 52, 105, 0.06);
-
-          color: var(--sr-blue);
-          font-size: 10px;
-          font-weight: 850;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-        }
-
-        .smartedge-reviews-kicker svg {
-          width: 16px;
-          height: 16px;
-          color: var(--sr-gold);
-        }
+       
 
         .smartedge-reviews-title {
           max-width: 850px;
@@ -982,10 +950,7 @@ export function CustomerReviews({
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        <div className="smartedge-reviews-kicker">
-          <Sparkles aria-hidden="true" />
-          Customer Experiences
-        </div>
+       
 
         <h2
           className="smartedge-reviews-title"

@@ -29,7 +29,7 @@ export const customerReviews = [
     text:
       "The team explained the complete rooftop solar process clearly, from roof assessment and system capacity to installation and expected usage. The work was planned neatly and completed with good attention to detail.",
     initials: "RM",
-    date: "October 2025",
+    
   },
   {
     id: "review-02",
@@ -41,7 +41,7 @@ export const customerReviews = [
     text:
       "We received a practical proposal based on our shop's operating hours and electricity consumption. The coordination was straightforward, and all technical stages were explained before work began.",
     initials: "PS",
-    date: "September 2025",
+   
   },
   {
     id: "review-03",
@@ -53,7 +53,7 @@ export const customerReviews = [
     text:
       "The consultation covered roof suitability, available space, shading and the factors that affect system size. It helped us understand what would work for our property instead of choosing a system blindly.",
     initials: "AD",
-    date: "August 2025",
+    
   },
   {
     id: "review-04",
@@ -65,7 +65,7 @@ export const customerReviews = [
     text:
       "The assessment was organised around our facility's load pattern, roof access and maintenance needs. We appreciated the clear communication and the careful explanation of each project stage.",
     initials: "SI",
-    date: "July 2025",
+    
   },
   {
     id: "review-05",
@@ -77,7 +77,7 @@ export const customerReviews = [
     text:
       "The team took time to understand our electricity usage and checked the roof layout before recommending a system. The process felt well managed, transparent and easy to follow.",
     initials: "NP",
-    date: "June 2025",
+    
   },
   {
     id: "review-06",
@@ -89,7 +89,7 @@ export const customerReviews = [
     text:
       "We had a clear discussion on common-area load, rooftop feasibility and approval requirements. The proposal was practical for our society and made it easier for members to understand the next steps.",
     initials: "VS",
-    date: "May 2025",
+   
   },
 ];
 
@@ -134,7 +134,7 @@ export const solarHomeCopy = {
   },
 
   solutionsSection: {
-    eyebrow: "Solar solutions",
+  
     title: "One solar approach. Different kinds of properties.",
     lead: "Start with your property type, then shape the technical and operational plan around the roof, the load and your goals.",
     button: "Explore solar solutions",
@@ -142,7 +142,7 @@ export const solarHomeCopy = {
   },
 
   principlesSection: {
-    eyebrow: "A considered solar plan",
+    
     title: "Good solar is engineered before it is installed.",
     lead: "The details behind a dependable system matter just as much as the panels themselves.",
   },
@@ -158,7 +158,7 @@ export const solarHomeCopy = {
   },
 
   processSection: {
-    eyebrow: "From survey to switch-on",
+    
     title: "A clear path from first assessment to ongoing care.",
     lead: "Every stage should have a clear purpose, with site and utility requirements addressed early.",
   },

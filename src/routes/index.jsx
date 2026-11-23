@@ -1669,7 +1669,7 @@ function Home() {
         >
           <div className="container-x">
             <SectionHeading
-              eyebrow="SOLAR SYSTEM CONFIGURATIONS"
+              
               title="Choose a Solar System That Fits Your Energy Needs"
               lead="On-grid, off-grid and hybrid systems serve different needs. The right configuration depends on grid availability, backup expectations, electricity usage and site conditions."
               align="center"
@@ -1790,7 +1790,7 @@ function Home() {
         >
           <div className="container-x">
             <SectionHeading
-              eyebrow="SOLAR COMPONENTS & TECHNOLOGY"
+             
               title="The Key Components Behind a Reliable Solar System"
               lead="A solar installation is a connected system. Each component has a specific role, and its specification should be selected around the property, electrical design and energy requirements."
               align="center"
