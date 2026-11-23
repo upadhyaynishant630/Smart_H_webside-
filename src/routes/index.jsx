@@ -279,6 +279,21 @@ const solarHomeStyles = `
     gap: .55rem;
   }
 
+  /* Remove decorative eyebrow lines across the home page,
+     except for "A smarter place to start". */
+  .solar-home-page .eyebrow::before {
+    display: none;
+  }
+
+  .solar-home-page .solar-intro-copy .eyebrow::before {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    flex: 0 0 auto;
+    content: "";
+    background: var(--signal);
+  }
+
   .solar-home-page .solar-intro-copy h2 {
     max-width: 690px;
     line-height: 1.12;
