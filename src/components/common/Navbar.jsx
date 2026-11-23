@@ -394,7 +394,7 @@ export function Navbar() {
   align-items: center;
   justify-content: center;
 
-  gap: 4px;
+  gap: 10px;
 
   margin: 0;
   padding: 0;
@@ -405,6 +405,7 @@ export function Navbar() {
 .sh-navbar-item {
   position: relative;
   min-width: 0;
+  
 }
 
 .sh-navbar-services-trigger {
@@ -437,9 +438,9 @@ export function Navbar() {
   align-items: center;
   justify-content: center;
 
-  gap: 6px;
+  gap: 4px;
 
-  padding: 9px 13px;
+  padding: 9px 8px;
 
   border: 0;
   border-radius: 10px;
@@ -1077,7 +1078,7 @@ export function Navbar() {
 .sh-navbar-mobile-list {
   display: grid;
 
-  gap: 5px;
+  gap: 2px;
 
   margin: 0;
   padding: 0;
@@ -1410,7 +1411,7 @@ export function Navbar() {
   }
 
   .sh-navbar-list {
-    gap: 2px;
+    gap: 0;
   }
 
   .sh-navbar .sh-navbar-link {
@@ -1445,7 +1446,7 @@ export function Navbar() {
   }
 
   .sh-navbar .sh-navbar-link {
-    padding-inline: 13px;
+    padding-inline: 8px;
 
     font-size: 15px;
   }
@@ -1651,6 +1652,7 @@ export function Navbar() {
 .sh-navbar .sh-navbar-mobile-link {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+
 }
 
 
