@@ -1626,10 +1626,6 @@ function Services() {
           <Reveal>
             <div className="sh-svc-section-intro">
               <div className="sh-svc-intro-copy">
-                <span className="sh-svc-eyebrow">
-                  What we do
-                </span>
-
                 <h2
                   id="sh-svc-directory-title"
                   className="sh-svc-intro-title"
@@ -1906,10 +1902,6 @@ function Services() {
           <Reveal>
             <div className="sh-svc-workflow-header">
               <div>
-                <span className="sh-svc-eyebrow">
-                  A connected way of working
-                </span>
-
                 <h2
                   id="sh-svc-workflow-title"
                   className="sh-svc-workflow-title"
@@ -2015,7 +2007,7 @@ function Services() {
           4. EXISTING CONTACT CTA
       ================================================== */}
 
-      <CtaBand />
+      <CtaBand showEyebrow={false} />
     </main>
   );
 }

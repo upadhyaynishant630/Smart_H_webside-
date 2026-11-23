@@ -1757,10 +1757,6 @@ function ServiceDetail() {
         <div className="sh-sd-container">
           <Reveal>
             <header className="sh-sd-section-heading">
-              <span className="sh-sd-eyebrow">
-                Understanding the need
-              </span>
-
               <h2 className="sh-sd-section-title">
                 A clearer view of
                 <br />
@@ -1795,10 +1791,6 @@ function ServiceDetail() {
                     strokeWidth={1.7}
                     aria-hidden="true"
                   />
-                </span>
-
-                <span className="sh-sd-eyebrow">
-                  Service overview
                 </span>
 
                 <h2>
@@ -1914,10 +1906,6 @@ function ServiceDetail() {
         <div className="sh-sd-container">
           <Reveal>
             <header className="sh-sd-included-header">
-              <span className="sh-sd-eyebrow">
-                Inside the service
-              </span>
-
               <h2 className="sh-sd-included-title">
                 The capabilities.
                 <br />
@@ -2081,10 +2069,6 @@ function ServiceDetail() {
           <Reveal>
             <header className="sh-sd-process-header">
               <div className="sh-sd-process-heading">
-                <span className="sh-sd-eyebrow">
-                  From planning to delivery
-                </span>
-
                 <h2 className="sh-sd-section-title">
                   A structured path
                   <br />
@@ -2198,10 +2182,6 @@ function ServiceDetail() {
           <Reveal>
             <header className="sh-sd-related-header">
               <div className="sh-sd-related-intro">
-                <span className="sh-sd-eyebrow">
-                  Explore the ecosystem
-                </span>
-
                 <h2 className="sh-sd-related-title">
                   Connect this with
                   <br />
@@ -2291,6 +2271,7 @@ function ServiceDetail() {
 
       <CtaBand
         title={`Ready to talk about ${service.title.toLowerCase()}?`}
+        showEyebrow={false}
       />
     </main>
   );

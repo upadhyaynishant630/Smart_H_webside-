@@ -1527,10 +1527,6 @@ function Contact() {
           <Reveal>
             <header className="sh-contact-intro">
               <div className="sh-contact-intro-copy">
-                <span className="sh-contact-eyebrow">
-                  Start a conversation
-                </span>
-
                 <h2 className="sh-contact-title">
                   A clear next step
                   <br />
@@ -1544,38 +1540,7 @@ function Contact() {
                 </p>
               </div>
 
-              <motion.div
-                className="sh-contact-intro-mark"
-                initial={
-                  reduceMotion
-                    ? false
-                    : { opacity: 0, y: 12 }
-                }
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                viewport={{
-                  once: true,
-                  amount: 0.3,
-                }}
-                transition={{
-                  duration: reduceMotion ? 0 : 0.4,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <span className="sh-contact-intro-mark-icon">
-                  <Sparkles
-                    size={19}
-                    aria-hidden="true"
-                  />
-                </span>
-
-                <span className="sh-contact-intro-mark-copy">
-                  <strong>Practical next steps</strong>
-                  <span>Start with your requirements</span>
-                </span>
-              </motion.div>
+             
             </header>
           </Reveal>
 
@@ -1808,13 +1773,7 @@ function Contact() {
                       </h2>
                     </div>
 
-                    <span className="sh-contact-form-badge">
-                      <span
-                        className="sh-contact-form-badge-dot"
-                        aria-hidden="true"
-                      />
-                      Get in touch
-                    </span>
+                    
                   </div>
 
                   <p className="sh-contact-form-description">

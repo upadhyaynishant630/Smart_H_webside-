@@ -1632,10 +1632,6 @@ function About() {
             delay={0.1}
             className="sh-about-story-copy"
           >
-            <span className="sh-about-eyebrow">
-              Mission & Vision
-            </span>
-
             <h2
               className="sh-about-story-title"
               id="sh-about-story-title"
@@ -1711,10 +1707,6 @@ function About() {
       >
         <div className="sh-about-principles-inner">
           <Reveal className="sh-about-centered-heading">
-            <span className="sh-about-eyebrow">
-              Our Core Values
-            </span>
-
             <h2
               className="sh-about-heading-title"
               id="sh-about-core-values-title"
@@ -1773,10 +1765,6 @@ function About() {
         <div className="sh-about-capabilities-inner">
           <div className="sh-about-capabilities-layout">
             <Reveal>
-              <span className="sh-about-eyebrow">
-                Our Expertise
-              </span>
-
               <h2
                 className="sh-about-capabilities-title"
                 id="sh-about-expertise-title"
@@ -1854,10 +1842,6 @@ function About() {
       >
         <div className="sh-about-work-inner">
           <Reveal className="sh-about-centered-heading">
-            <span className="sh-about-eyebrow">
-              How We Work
-            </span>
-
             <h2
               className="sh-about-work-title"
               id="sh-about-work-title"
@@ -1932,7 +1916,7 @@ function About() {
           6. FINAL CTA
       ================================= */}
 
-      <CtaBand title="Let's talk about what you're building." />
+      <CtaBand title="Let's talk about what you're building." showEyebrow={false} />
     </main>
   );
 }

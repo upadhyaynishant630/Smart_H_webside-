@@ -967,10 +967,6 @@ function Industries() {
         <div className="si-container">
           <Reveal className="si-directory-head">
             <div className="si-directory-intro">
-              <span className="si-eyebrow">
-                Industry expertise
-              </span>
-
               <h2
                 className="si-directory-title"
                 id="si-directory-title"
@@ -1086,10 +1082,6 @@ function Industries() {
       >
         <div className="si-container">
           <Reveal className="si-section-heading">
-            <span className="si-eyebrow">
-              Our sector-first approach
-            </span>
-
             <h2
               className="si-section-title"
               id="si-approach-title"
@@ -1171,6 +1163,7 @@ function Industries() {
         <CtaBand
           title="Don't see your industry?"
           body="Our practices can apply across different sectors. Tell us about your environment and we'll be candid about fit."
+          showEyebrow={false}
         />
       </div>
     </main>

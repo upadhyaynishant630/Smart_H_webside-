@@ -37,8 +37,7 @@ function Gallery() {
       <section className="section-y container-x" aria-labelledby="gallery-title">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <div>
-            <span className="eyebrow">Solar imagery</span>
-            <h2 id="gallery-title" className="text-h2 mt-4">
+            <h2 id="gallery-title" className="text-h2">
               Products, projects and support.
             </h2>
           </div>

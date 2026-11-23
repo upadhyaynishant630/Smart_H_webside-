@@ -20,8 +20,7 @@ function Franchise() {
       </PageHero>
       <section className="section-y" aria-labelledby="franchise-journey-title">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="eyebrow">The journey</span>
-          <h2 id="franchise-journey-title" className="text-h2 mt-4">A clear path to explore the opportunity.</h2>
+          <h2 id="franchise-journey-title" className="text-h2">A clear path to explore the opportunity.</h2>
         </div>
       
         <div className="mx-auto mt-12 grid max-w-6xl gap-6 md:grid-cols-2">
@@ -35,7 +34,7 @@ function Franchise() {
       </section>
 
        <FranchisePlans />
-      <CtaBand title="Ready to explore a partnership?" body="Share your interest and our team will review the information you provide." />
+      <CtaBand title="Ready to explore a partnership?" body="Share your interest and our team will review the information you provide." showEyebrow={false} />
     </main>
   );
 }

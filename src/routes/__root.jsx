@@ -23,7 +23,6 @@ function NotFoundComponent() {
     <section className="surface-dark relative flex min-h-[70vh] items-center overflow-hidden bg-night">
       <div className="grid-lines absolute inset-0" />
       <div className="container-x relative py-24">
-        <span className="eyebrow text-electric">Error 404</span>
         <h1 className="text-display mt-5 max-w-3xl">This page took a different route.</h1>
         <p className="text-lead mt-5 max-w-xl text-muted-foreground">
           The page you're looking for doesn't exist or has moved. Let's get you back on track.

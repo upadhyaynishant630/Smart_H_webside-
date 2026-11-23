@@ -114,6 +114,7 @@ export function PageHero({
 export function CtaBand({
   title = "Have a solar requirement worth discussing?",
   body = "Tell us where you are and where you want to be. We'll come back with practical next steps.",
+  showEyebrow = true,
 }) {
   return (
     <section className="container-x py-16 md:py-24">
@@ -123,7 +124,7 @@ export function CtaBand({
           <div className="absolute -right-24 -top-24 h-80 w-80 rounded-full bg-primary/40 blur-3xl" />
           <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <span className="eyebrow text-electric">Next step</span>
+              {showEyebrow && <span className="eyebrow text-electric">Next step</span>}
               <h2 className="text-h2 mt-4 text-balance">{title}</h2>
               <p className="text-lead mt-4 text-muted-foreground">{body}</p>
             </div>
