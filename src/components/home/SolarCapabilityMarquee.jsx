@@ -342,7 +342,6 @@ export function SolarCapabilityMarquee({
           border-radius: 999px;
           color: #26344d;
           background: rgba(255, 255, 255, .84);
-          box-shadow: 0 8px 26px rgba(12, 23, 48, .055), inset 0 1px 0 rgba(255, 255, 255, .9);
           font-size: .91rem;
           font-weight: 750;
           line-height: 1.35;
@@ -376,7 +375,7 @@ export function SolarCapabilityMarquee({
           z-index: 2;
           border-color: var(--t-bd);
           background: rgba(255, 255, 255, .98);
-          box-shadow: 0 15px 34px var(--t-sh), 0 3px 10px rgba(12, 23, 48, .04);
+         
           transform: translateY(-3px);
         }
 
