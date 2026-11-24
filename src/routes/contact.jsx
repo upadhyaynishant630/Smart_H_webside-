@@ -543,21 +543,7 @@ function Contact() {
            DIRECT CONTACT PANEL
         ================================================== */
 
-        .sh-contact-direct {
-          min-width: 0;
-          padding: 24px;
-
-          border: 1px solid rgba(16, 26, 54, 0.09);
-          border-radius: 20px;
-
-          background:
-            radial-gradient(
-              circle at 100% 0%,
-              rgba(119, 117, 255, 0.07),
-              transparent 46%
-            ),
-            #fafbff;
-        }
+        
 
         .sh-contact-direct-heading {
           display: flex;
@@ -1633,12 +1619,7 @@ function Contact() {
               <Reveal delay={0.06}>
                 <section className="sh-contact-direct">
                   <div className="sh-contact-direct-heading">
-                    <span className="sh-contact-direct-heading-icon">
-                      <Mail
-                        size={19}
-                        aria-hidden="true"
-                      />
-                    </span>
+                    
 
                     <div>
                       <h2>Prefer direct contact?</h2>
