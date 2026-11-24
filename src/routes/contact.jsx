@@ -772,13 +772,6 @@ function Contact() {
 
           height: 3px;
 
-          background: linear-gradient(
-            90deg,
-            var(--sc-blue),
-            var(--sc-violet),
-            var(--sc-cyan)
-          );
-
           background-size: 180% 100%;
 
           animation: sh-contact-gradient 7s ease-in-out infinite alternate;
